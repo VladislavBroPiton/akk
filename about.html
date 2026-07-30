@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>О компании — Ампер</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="header-mount"></div>
+
+<!-- INNER HERO -->
+<section class="inner-hero" style="min-height:320px;">
+  <div class="inner-hero-bg">
+    <img class="inner-hero-bg-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Car_battery_1.jpg/1280px-Car_battery_1.jpg" alt="">
+    <div class="inner-hero-overlay"></div>
+  </div>
+  <div class="container" style="width:100%">
+    <div class="inner-hero-content">
+      <h1 class="inner-hero-title">Подберём аккумулятор<br>под ваш автомобиль</h1>
+    </div>
+  </div>
+</section>
+
+<div id="breadcrumb-mount"></div>
+
+<section class="section">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 2fr;gap:60px;align-items:start;margin-bottom:64px;">
+      <h2 class="section-title">О компании</h2>
+      <div>
+        <p style="font-family:'Oswald',sans-serif;font-weight:700;font-size:22px;text-transform:uppercase;line-height:1.3;margin-bottom:20px;">Мы — команда, которая специализируется на аккумуляторах, зарядных устройствах и комплектующих для автомобилей</p>
+      </div>
+    </div>
+
+    <!-- STATS -->
+    <div class="stats-row" style="justify-content:space-around;border:1px solid var(--gray-400);border-radius:16px;padding:48px;">
+      <div class="stat">
+        <div class="stat-num">10+</div>
+        <div class="stat-label">Лет опыта</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">24/7</div>
+        <div class="stat-label">Принимаем заявки</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Подбор</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ADVANTAGES -->
+<section class="section" style="background:var(--gray-300);">
+  <div class="container">
+    <h2 class="section-title" style="margin-bottom:36px;">Преимущества</h2>
+    <div class="advantages-list">
+      <div class="advantage-row" style="margin-bottom:16px;border-radius:12px;">
+        <div class="advantage-text">
+          <div class="advantage-title">Быстрый подбор аккумулятора</div>
+          <p class="advantage-desc">Поможем выбрать аккумулятор под ваш автомобиль, мотоцикл, лодку или ИБП за несколько минут</p>
+        </div>
+        <div class="advantage-img">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Car_battery_1.jpg/640px-Car_battery_1.jpg" alt="Подбор аккумулятора" onerror="this.parentElement.innerHTML='<div style=padding:40px;font-size:60px;text-align:center>🔋</div>'">
+        </div>
+      </div>
+      <div class="advantage-row" style="margin-bottom:16px;border-radius:12px;">
+        <div class="advantage-text">
+          <div class="advantage-title">Консультация специалистов</div>
+          <p class="advantage-desc">Подскажем оптимальное решение по характеристикам, бюджету и условиям эксплуатации</p>
+        </div>
+        <div class="advantage-img" style="background:var(--gray-400);display:flex;align-items:center;justify-content:center;font-size:80px;">🎧</div>
+      </div>
+      <div class="advantage-row" style="margin-bottom:16px;border-radius:12px;">
+        <div class="advantage-text">
+          <div class="advantage-title">Товары в наличии и под заказ</div>
+          <p class="advantage-desc">Большой выбор аккумуляторов, зарядных устройств и аксессуаров с возможностью заказа редких моделей</p>
+        </div>
+        <div class="advantage-img" style="background:var(--gray-400);display:flex;align-items:center;justify-content:center;font-size:80px;">📦</div>
+      </div>
+      <div class="advantage-row" style="border-radius:12px;">
+        <div class="advantage-text">
+          <div class="advantage-title">Удобное получение заказа</div>
+          <p class="advantage-desc">Самовывоз из магазина в Волжском или доставка по договорённости в удобное для вас время</p>
+        </div>
+        <div class="advantage-img" style="background:var(--gray-400);display:flex;align-items:center;justify-content:center;font-size:80px;">🚚</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="cta-mount"></div>
+<div id="footer-mount"></div>
+<script src="js/main.js"></script>
+<script>
+  document.getElementById('header-mount').innerHTML = renderHeader('about.html');
+  document.getElementById('breadcrumb-mount').innerHTML = renderBreadcrumb([
+    {href:'index.html',label:'Главная'},
+    {href:'about.html',label:'О компании'}
+  ]);
+  document.getElementById('cta-mount').innerHTML = renderCtaForm();
+  document.getElementById('footer-mount').innerHTML = renderFooter();
+</script>
+</body>
+</html>

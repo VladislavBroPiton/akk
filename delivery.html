@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Доставка и оплата — Ампер</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="header-mount"></div>
+<div id="breadcrumb-mount"></div>
+
+<div class="container">
+  <div class="delivery-section">
+
+    <div class="delivery-row">
+      <div class="delivery-label">Доставка</div>
+      <div class="delivery-content">
+        <div class="delivery-content-title">Осуществляем доставку аккумуляторов, зарядных устройств и аксессуаров по Волжскому и ближайшим районам</div>
+        <p>Доставку согласовываем индивидуально: уточняем адрес, сроки и удобное время получения.</p>
+        <p>Возможна доставка в день обращения при наличии товара.</p>
+        <p>Стоимость и условия доставки зависят от адреса и объёма заказа — свяжитесь с нами, и мы быстро всё рассчитаем.</p>
+        <div style="margin-top:20px;"><a href="#cta" class="btn btn-primary">Рассчитать доставку</a></div>
+      </div>
+    </div>
+
+    <div class="delivery-row">
+      <div class="delivery-label">Самовывоз</div>
+      <div class="delivery-content">
+        <div class="delivery-content-title">Вы можете забрать заказ самостоятельно в нашем магазине</div>
+        <p><strong>Адрес:</strong> г. Волжский, ул. Пушкина 51д/319</p>
+        <p>Перед приездом рекомендуем связаться с нами, чтобы мы подготовили товар к выдаче.</p>
+        <p>Мы поможем проверить аккумулятор, проконсультируем и ответим на все вопросы на месте.</p>
+      </div>
+    </div>
+
+    <div class="delivery-row">
+      <div class="delivery-label">Оплата</div>
+      <div class="delivery-content">
+        <div class="delivery-content-title">Оплатить заказ можно удобным для вас способом: наличными или переводом</div>
+        <p>Мы работаем без сложных онлайн-платежей — всё просто и прозрачно.</p>
+        <p>Доступные варианты оплаты:</p>
+        <ol class="delivery-list" style="list-style:decimal;padding-left:20px;">
+          <li style="list-style:decimal;">Наличными при получении</li>
+          <li style="list-style:decimal;">Перевод на карту или по реквизитам</li>
+          <li style="list-style:decimal;">Оплата при самовывозе в магазине</li>
+        </ol>
+        <p>После оформления заказа мы свяжемся с вами, уточним детали и подскажем оптимальный способ оплаты.</p>
+      </div>
+    </div>
+
+    <div class="delivery-row" style="border-bottom:none;">
+      <div class="delivery-label">Гарантии</div>
+      <div class="delivery-content">
+        <div class="delivery-content-title">На все товары распространяется гарантия от производителя. Срок гарантии зависит от модели и указывается в характеристиках товара</div>
+        <p>Каждый товар проходит обязательную проверку перед отправкой или выдачей, чтобы вы получили полностью исправное и готовое к работе устройство.</p>
+        <p>Если товар не подошёл или был обнаружен заводской дефект, вы можете обратиться к нам для обмена или возврата в рамках гарантийных условий.</p>
+        <p>Наши специалисты всегда готовы помочь:</p>
+        <ul class="delivery-list">
+          <li>проконсультируют перед покупкой</li>
+          <li>подскажут по установке и эксплуатации</li>
+          <li>помогут решить любые вопросы после покупки</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="cta"></div>
+<div id="cta-mount"></div>
+<div id="footer-mount"></div>
+<script src="js/main.js"></script>
+<script>
+  document.getElementById('header-mount').innerHTML = renderHeader('delivery.html');
+  document.getElementById('breadcrumb-mount').innerHTML = renderBreadcrumb([
+    {href:'index.html',label:'Главная'},
+    {href:'delivery.html',label:'Доставка'}
+  ]);
+  document.getElementById('cta-mount').innerHTML = renderCtaForm();
+  document.getElementById('footer-mount').innerHTML = renderFooter();
+</script>
+</body>
+</html>

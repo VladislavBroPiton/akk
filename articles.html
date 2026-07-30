@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Статьи — Ампер</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="header-mount"></div>
+<div id="breadcrumb-mount"></div>
+
+<div class="container">
+  <div class="articles-page-header">
+    <h1 class="articles-page-title">Статьи</h1>
+    <span class="articles-count">260</span>
+    <div style="margin-left:auto;display:flex;align-items:center;gap:8px;font-size:14px;">
+      Сортировка:
+      <select class="sort-select">
+        <option>Сначала новые</option>
+        <option>Сначала старые</option>
+        <option>По популярности</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="articles-page-grid" id="articles-list"></div>
+
+  <div class="load-more">
+    <button class="btn btn-outline" onclick="loadMore()">Смотреть ещё</button>
+  </div>
+</div>
+
+<div id="cta-mount"></div>
+<div id="footer-mount"></div>
+<script src="js/main.js"></script>
+<script>
+  document.getElementById('header-mount').innerHTML = renderHeader('articles.html');
+  document.getElementById('breadcrumb-mount').innerHTML = renderBreadcrumb([
+    {href:'index.html',label:'Главная'},
+    {href:'articles.html',label:'Статьи'}
+  ]);
+  document.getElementById('cta-mount').innerHTML = renderCtaForm();
+  document.getElementById('footer-mount').innerHTML = renderFooter();
+
+  const ARTS = [
+    { title: 'Как правильно выбрать автомобильный аккумулятор: основные критерии', text: 'Автомобильный аккумулятор — один из важнейших элементов любого транспортного средства. От его состояния зависит запуск двигателя, работа электроники...', img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Car_battery_1.jpg/640px-Car_battery_1.jpg' },
+    { title: 'Когда необходимо менять автомобильный аккумулятор: основные признаки', text: 'Даже самый надёжный аккумулятор имеет ограниченный срок службы. В среднем качественная АКБ служит от 3–5 лет...', img: null },
+    { title: 'Зарядные устройства для автомобильных аккумуляторов: зачем они нужны', text: 'Зарядное устройство помогает поддерживать аккумулятор в рабочем состоянии и значительно продлевает срок его службы...', img: null },
+    { title: 'Аксессуары для аккумуляторов и их преимущества', text: 'Для надёжной работы аккумулятора важно использовать качественные аксессуары. Они упрощают обслуживание батареи...', img: null },
+    { title: 'Как правильно выбрать автомобильный аккумулятор: основные критерии', text: 'Автомобильный аккумулятор — один из важнейших элементов любого транспортного средства...', img: null },
+    { title: 'Когда необходимо менять автомобильный аккумулятор: основные признаки', text: 'Даже самый надёжный аккумулятор имеет ограниченный срок службы...', img: null },
+    { title: 'Зарядные устройства для автомобильных аккумуляторов: зачем они нужны', text: 'Зарядное устройство помогает поддерживать аккумулятор в рабочем состоянии...', img: null },
+    { title: 'Аксессуары для аккумуляторов и их преимущества', text: 'Для надёжной работы аккумулятора важно использовать качественные аксессуары...', img: null },
+    { title: 'Как правильно выбрать автомобильный аккумулятор: основные критерии', text: 'Автомобильный аккумулятор — один из важнейших элементов...', img: null },
+    { title: 'Когда необходимо менять автомобильный аккумулятор', text: 'Даже самый надёжный аккумулятор имеет ограниченный срок службы...', img: null },
+    { title: 'Зарядные устройства: зачем они нужны', text: 'Зарядное устройство помогает поддерживать аккумулятор в рабочем состоянии...', img: null },
+    { title: 'Аксессуары для аккумуляторов', text: 'Для надёжной работы аккумулятора важно использовать качественные аксессуары...', img: null },
+  ];
+
+  document.getElementById('articles-list').innerHTML = ARTS.map(a => articleCard(a.title, a.text, a.img)).join('');
+
+  function loadMore() {
+    const more = ARTS.slice(0,8).map(a => articleCard(a.title, a.text, a.img)).join('');
+    document.getElementById('articles-list').insertAdjacentHTML('beforeend', more);
+  }
+</script>
+</body>
+</html>

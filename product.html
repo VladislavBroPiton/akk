@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VARTA Silver Dynamic AGM 70Ah — Ампер</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="header-mount"></div>
+<div id="breadcrumb-mount"></div>
+
+<div class="container">
+  <div class="product-page">
+    <div class="product-layout">
+      <!-- GALLERY -->
+      <div class="product-gallery">
+        <div class="product-thumbnails">
+          <div class="product-thumb active"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Car_battery_1.jpg/640px-Car_battery_1.jpg" alt=""></div>
+          <div class="product-thumb"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Car_battery_1.jpg/640px-Car_battery_1.jpg" alt=""></div>
+          <div class="product-thumb"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Car_battery_1.jpg/640px-Car_battery_1.jpg" alt=""></div>
+        </div>
+        <div class="product-main-img">
+          <span class="inline-badge" style="position:absolute;top:16px;left:16px;">В наличии</span>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Car_battery_1.jpg/640px-Car_battery_1.jpg" alt="VARTA Silver Dynamic AGM 70Ah">
+        </div>
+      </div>
+
+      <!-- INFO -->
+      <div class="product-info">
+        <h1 class="product-page-title">Аккумулятор автомобильный<br>Premium Power 75Ah</h1>
+        <p class="product-page-desc">Аккумулятор разработан с учётом современных требований к надёжности и эффективности. Он обеспечивает стабильную работу всех систем автомобиля, включая электронику, систему зажигания и дополнительные устройства. Благодаря использованию кальциевой технологии (Ca/Ca), аккумулятор обладает низким саморазрядом и увеличенным сроком службы.</p>
+        <div class="product-page-price">Цена уточняется</div>
+
+        <div class="product-delivery-row">
+          <div class="product-delivery-item">
+            <div class="product-delivery-icon">🚚</div>
+            <div>Доставка</div>
+            <a href="delivery.html" class="btn-link btn-link-orange" style="font-size:12px;">Подробнее</a>
+          </div>
+          <div class="product-delivery-item">
+            <div class="product-delivery-icon">🏪</div>
+            <div>Самовывоз</div>
+            <a href="contacts.html" class="btn-link btn-link-orange" style="font-size:12px;">Подробнее</a>
+          </div>
+          <div class="product-delivery-item">
+            <div class="product-delivery-icon">🛡️</div>
+            <div>Гарантии</div>
+            <a href="delivery.html" class="btn-link btn-link-orange" style="font-size:12px;">Подробнее</a>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:12px;flex-wrap:wrap;">
+          <a href="contacts.html" class="btn btn-primary" style="flex:1;min-width:180px;">Заказать</a>
+          <a href="tel:+79950253434" class="btn btn-outline" style="width:52px;padding:0;font-size:20px;">📞</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- SPECS -->
+    <div style="margin-top:48px;">
+      <h2 class="section-title" style="font-size:22px;margin-bottom:20px;">Характеристики</h2>
+      <table class="specs-table">
+        <tr><td>Ёмкость</td><td>75 Ah</td></tr>
+        <tr><td>Пусковой ток</td><td>720 A</td></tr>
+        <tr><td>Полярность</td><td>Обратная</td></tr>
+        <tr><td>Тип корпуса</td><td>Европейский</td></tr>
+        <tr><td>Технология</td><td>Ca/Ca</td></tr>
+        <tr><td>Гарантия</td><td>6 месяцев</td></tr>
+      </table>
+    </div>
+
+    <!-- SIMILAR -->
+    <div class="similar-title">
+      Похожие товары
+      <div class="slider-nav">
+        <button class="slider-btn">←</button>
+        <button class="slider-btn">→</button>
+      </div>
+    </div>
+    <div class="products-grid" id="similar-mount"></div>
+  </div>
+</div>
+
+<div id="cta-mount"></div>
+<div id="footer-mount"></div>
+<script src="js/main.js"></script>
+<script>
+  document.getElementById('header-mount').innerHTML = renderHeader('catalog.html');
+  document.getElementById('breadcrumb-mount').innerHTML = renderBreadcrumb([
+    {href:'index.html',label:'Главная'},
+    {href:'catalog.html',label:'Каталог'},
+    {href:'product.html',label:'VARTA Silver Dynamic AGM 70Ah'},
+  ]);
+  document.getElementById('cta-mount').innerHTML = renderCtaForm();
+  document.getElementById('footer-mount').innerHTML = renderFooter();
+
+  const SPECS = [
+    ['Ёмкость / Пуск.ток', '60 / 460'],
+    ['Габариты', '242×175×190'],
+    ['Полярность', 'Обратная'],
+    ['Гарантия', '6 месяцев'],
+  ];
+  document.getElementById('similar-mount').innerHTML = [
+    'VARTA Silver Dynamic AGM 70Ah',
+    'VARTA Silver Dynamic AGM 74Ah',
+    'TOPLA Energy 70Ah',
+    'ZUBR Asia 65Ah',
+  ].map(n => productCard(n, SPECS)).join('');
+  initThumbs();
+</script>
+</body>
+</html>
