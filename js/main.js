@@ -76,8 +76,15 @@ function renderHeader(activePage = '') {
     <a href="contacts.html">Контакты</a>
     <a href="articles.html">Статьи</a>
   </nav>
-  <div style="margin-top:32px;">
-    <a href="tel:+79950253434" style="font-family:'Oswald',sans-serif;font-size:28px;font-weight:700;color:#FF4F00;">+7-995-025-34-34</a>
+  <div class="mobile-phone-block">
+    <div style="font-size:12px;color:#cbcbcb;text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px;">Телефон</div>
+    <a href="tel:+79950253434" style="font-family:'Oswald',sans-serif;font-size:28px;font-weight:700;color:#FF4F00;display:block;margin-bottom:16px;">+7-995-025-34-34</a>
+    <div style="font-size:12px;color:#cbcbcb;text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px;">Мессенджеры</div>
+    <div style="display:flex;gap:10px;">
+      <a href="#" style="width:36px;height:36px;border:1px solid rgba(255,255,255,0.2);border-radius:8px;display:flex;align-items:center;justify-content:center;color:white;font-size:16px;">✈</a>
+      <a href="#" style="width:36px;height:36px;border:1px solid rgba(255,255,255,0.2);border-radius:8px;display:flex;align-items:center;justify-content:center;color:white;font-size:16px;">◎</a>
+      <a href="mailto:amper134@yandex.ru" style="width:36px;height:36px;border:1px solid rgba(255,255,255,0.2);border-radius:8px;display:flex;align-items:center;justify-content:center;color:white;font-size:16px;">✉</a>
+    </div>
   </div>
 </div>`;
 }
@@ -251,8 +258,22 @@ function initThumbs() {
   });
 }
 
+// ── FILTER TOGGLE (mobile) ──
+function toggleFilter() {
+  const sidebar = document.querySelector('.sidebar');
+  if (sidebar) sidebar.classList.toggle('open');
+}
+
+// ── SHOW FILTER BTN ON MOBILE ──
+function checkMobileFilterBtn() {
+  const btn = document.getElementById('filterToggle');
+  if (btn) btn.style.display = window.innerWidth <= 768 ? 'flex' : 'none';
+}
+
 // ── INIT ──
 document.addEventListener('DOMContentLoaded', () => {
+  checkMobileFilterBtn();
+  window.addEventListener('resize', checkMobileFilterBtn);
   initTabs();
   initMobileMenu();
   initThumbs();
