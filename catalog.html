@@ -10,58 +10,73 @@
 <div id="header-mount"></div>
 <div id="breadcrumb-mount"></div>
 
-<!-- CATALOG CATEGORIES -->
-<section style="padding:48px 0 0;">
+<!-- ── СОСТОЯНИЕ A: витрина каталога (вход через кнопку «Каталог») ── -->
+<section class="catalog-showcase" id="showcase" hidden>
   <div class="container">
-    <div class="catalog-tabs-row">
-      <button class="catalog-tab active" onclick="switchCategory(this,'acc')">Аккумуляторы</button>
-      <button class="catalog-tab" onclick="switchCategory(this,'charge')">Зарядные устройства</button>
-      <button class="catalog-tab" onclick="switchCategory(this,'access')">Аксессуары</button>
-    </div>
+    <h1 class="section-title" style="margin-bottom:32px;">Каталог</h1>
+    <div class="categories-grid" id="showcase-grid"></div>
   </div>
 </section>
 
-<div class="container">
+<!-- ── СОСТОЯНИЕ B: листинг раздела (вход через выбор категории) ── -->
+<div class="container" id="listing" hidden>
   <div class="catalog-layout">
     <!-- SIDEBAR -->
     <aside class="sidebar">
+      <div class="filter-head">
+        <div class="filter-head-title">Фильтр</div>
+        <button class="filter-reset" type="button" onclick="resetFilters()">Сбросить все</button>
+      </div>
+
       <div class="sidebar-section">
         <div class="sidebar-title">Применяемость</div>
-        <label class="filter-check"><input type="checkbox" checked> Автомобильные</label>
-        <label class="filter-check"><input type="checkbox"> Мото</label>
-        <label class="filter-check"><input type="checkbox"> Лодочные</label>
-        <label class="filter-check"><input type="checkbox"> Тяговые / ИБП</label>
+        <div class="filter-body">
+          <label class="filter-check"><input type="checkbox" checked> Автомобильные</label>
+          <label class="filter-check"><input type="checkbox" checked> Мото</label>
+          <label class="filter-check"><input type="checkbox"> Лодочные</label>
+          <label class="filter-check"><input type="checkbox"> Тяговые / ИБП</label>
+        </div>
       </div>
       <div class="sidebar-section">
         <div class="sidebar-title">Ёмкость</div>
-        <input type="range" class="range-slider" min="20" max="200" value="100">
-        <div class="filter-range"><span>20</span><span>–</span><span>200 Ah</span></div>
+        <div class="filter-body">
+          <input type="range" class="range-slider" min="20" max="200" value="100">
+          <div class="filter-range"><span>20</span><span>–</span><span>200 Ah</span></div>
+        </div>
       </div>
       <div class="sidebar-section">
         <div class="sidebar-title">Полярность</div>
-        <label class="filter-check"><input type="checkbox" checked> Прямая</label>
-        <label class="filter-check"><input type="checkbox" checked> Обратная</label>
+        <div class="filter-body">
+          <label class="filter-check"><input type="checkbox" checked> Прямая</label>
+          <label class="filter-check"><input type="checkbox"> Обратная</label>
+        </div>
       </div>
       <div class="sidebar-section">
         <div class="sidebar-title">Технология</div>
-        <label class="filter-check"><input type="checkbox" checked> Ca/Ca</label>
-        <label class="filter-check"><input type="checkbox"> EFB</label>
-        <label class="filter-check"><input type="checkbox"> AGM</label>
-        <label class="filter-check"><input type="checkbox"> GEL</label>
-        <label class="filter-check"><input type="checkbox"> AGM+GEL</label>
+        <div class="filter-body">
+          <label class="filter-check"><input type="checkbox" checked> Ca/Ca</label>
+          <label class="filter-check"><input type="checkbox"> EFB</label>
+          <label class="filter-check"><input type="checkbox"> AGM</label>
+          <label class="filter-check"><input type="checkbox"> GEL</label>
+          <label class="filter-check"><input type="checkbox"> AGM+GEL</label>
+        </div>
       </div>
       <div class="sidebar-section">
         <div class="sidebar-title">Тип корпуса</div>
-        <label class="filter-check"><input type="checkbox" checked> Европейский</label>
-        <label class="filter-check"><input type="checkbox"> Азиатский</label>
+        <div class="filter-body">
+          <label class="filter-check"><input type="checkbox" checked> Европейский</label>
+          <label class="filter-check"><input type="checkbox"> Азиатский</label>
+        </div>
       </div>
       <div class="sidebar-section">
         <div class="sidebar-title">Бренд</div>
-        <label class="filter-check"><input type="checkbox" checked> VARTA</label>
-        <label class="filter-check"><input type="checkbox"> TOPLA</label>
-        <label class="filter-check"><input type="checkbox"> ZUBR</label>
-        <label class="filter-check"><input type="checkbox"> PLATIN</label>
-        <label class="filter-check"><input type="checkbox"> ENEUS</label>
+        <div class="filter-body">
+          <label class="filter-check"><input type="checkbox" checked> VARTA</label>
+          <label class="filter-check"><input type="checkbox"> TOPLA</label>
+          <label class="filter-check"><input type="checkbox"> ZUBR</label>
+          <label class="filter-check"><input type="checkbox"> PLATIN</label>
+          <label class="filter-check"><input type="checkbox"> ENEUS</label>
+        </div>
       </div>
       <button class="filter-btn">Применить</button>
     </aside>
@@ -69,16 +84,22 @@
     <!-- PRODUCTS -->
     <div>
       <button class="filter-toggle-btn" id="filterToggle" onclick="toggleFilter()" style="display:none;">⚙ Фильтры</button>
+
+      <!-- плитки разделов -->
+      <div class="cat-tiles" id="cat-tiles"></div>
+
       <div class="catalog-top">
-        <div class="catalog-count" id="cat-title">Аккумуляторы <span>260</span></div>
-        <select class="sort-select">
-          <option>Сортировать по: Популярные</option>
-          <option>По цене (возр.)</option>
-          <option>По цене (убыв.)</option>
-          <option>Новинки</option>
+        <div class="catalog-count" id="cat-title"></div>
+        <select class="sort-select" id="sort-select" onchange="renderGrid()">
+          <option value="popular">Сортировать по: Популярные</option>
+          <option value="price-desc">Сначала дорогие</option>
+          <option value="price-asc">Сначала дешевые</option>
+          <option value="new">Новинки</option>
         </select>
       </div>
+
       <div class="products-grid" id="cat-grid"></div>
+
       <div class="pagination">
         <button class="page-btn prev-next">← Назад</button>
         <button class="page-btn active">1</button>
@@ -99,41 +120,125 @@
 <script src="js/main.js"></script>
 <script>
   document.getElementById('header-mount').innerHTML = renderHeader('catalog.html');
-  document.getElementById('breadcrumb-mount').innerHTML = renderBreadcrumb([
-    {href:'index.html',label:'Главная'},
-    {href:'catalog.html',label:'Каталог'}
-  ]);
   document.getElementById('cta-mount').innerHTML = renderCtaForm();
   document.getElementById('footer-mount').innerHTML = renderFooter();
 
-  const SPECS = [
-    ['Ёмкость / Пуск.ток', '60 / 460'],
-    ['Габариты Д×Ш×В, мм', '242×175×190'],
-    ['Полярность', 'Обратная'],
-    ['Гарантия', '6 месяцев'],
-  ];
-  const NAMES = [
-    'VARTA Silver Dynamic AGM 70Ah','VARTA Silver Dynamic AGM 74Ah',
-    'VARTA Blue Dynamic EFB N70','VARTA Black Dynamic 60Ah',
-    'TOPLA Energy 70Ah','TOPLA Top 55Ah',
-    'ZUBR Asia 65Ah','PLATIN PRO 75Ah',
-    'VARTA Silver Dynamic AGM 80Ah','ENEUS Energy 60Ah',
-    'VARTA Silver Dynamic 72Ah','TOPLA Premium 80Ah',
-  ];
+  // ── Разделы каталога ──
+  const CATS = {
+    acc: {
+      label: 'Аккумуляторы', icon: '🔋', count: 260,
+      desc: 'Надёжные аккумуляторы для автомобилей, мотоциклов, лодок и ИБП. Поможем подобрать подходящую модель по параметрам, бренду и типу техники',
+      specs: [
+        ['Ёмкость / Пуск.ток', '60 / 460'],
+        ['Габариты Д×Ш×В, мм', '242×175×190'],
+        ['Полярность', 'Обратная'],
+        ['Гарантия', '6 месяцев'],
+      ],
+    },
+    charge: {
+      label: 'Зарядные устройства', icon: '🔌', count: 48,
+      desc: 'Современные зарядные устройства для быстрого и безопасного обслуживания аккумуляторов. Решения для личного использования и профессиональных задач',
+      specs: [
+        ['Ток заряда', 'до 10 A'],
+        ['Напряжение', '12 / 24 В'],
+        ['Режимы', 'Авто / Ручной'],
+        ['Гарантия', '12 месяцев'],
+      ],
+    },
+    access: {
+      label: 'Аксессуары', icon: '🔧', count: 74,
+      desc: 'Клеммы, провода, крепления и другие полезные аксессуары для подключения, обслуживания и эксплуатации аккумуляторов',
+      specs: [
+        ['Материал', 'Латунь / свинец'],
+        ['Совместимость', 'Евро / Азия'],
+        ['Комплект', '2 шт.'],
+        ['Гарантия', '6 месяцев'],
+      ],
+    },
+  };
 
-  function switchCategory(btn, key) {
-    document.querySelectorAll('.catalog-tab').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    const labels = {acc:'Аккумуляторы',charge:'Зарядные устройства',access:'Аксессуары'};
-    document.getElementById('cat-title').innerHTML = `${labels[key]} <span>260</span>`;
+  // Демо-данные. price === null → «Цена уточняется».
+  // Когда клиент передаст прайс — проставить числа, сортировка по цене заработает сама.
+  const PRODUCTS = {
+    acc: [
+      { name: 'VARTA Silver Dynamic AGM 70Ah', price: null, isNew: false },
+      { name: 'VARTA Silver Dynamic AGM 74Ah', price: null, isNew: false },
+      { name: 'VARTA Blue Dynamic EFB N70',    price: null, isNew: true  },
+      { name: 'VARTA Black Dynamic 60Ah',      price: null, isNew: false },
+      { name: 'TOPLA Energy 70Ah',             price: null, isNew: false },
+      { name: 'TOPLA Top 55Ah',                price: null, isNew: false },
+      { name: 'ZUBR Asia 65Ah',                price: null, isNew: true  },
+      { name: 'PLATIN PRO 75Ah',               price: null, isNew: false },
+      { name: 'VARTA Silver Dynamic AGM 80Ah', price: null, isNew: false },
+      { name: 'ENEUS Energy 60Ah',             price: null, isNew: false },
+      { name: 'VARTA Silver Dynamic 72Ah',     price: null, isNew: false },
+      { name: 'TOPLA Premium 80Ah',            price: null, isNew: true  },
+    ],
+    charge: [
+      { name: 'Зарядное устройство 12В, 4 A',        price: null, isNew: false },
+      { name: 'Зарядное устройство 12/24В, 10 A',    price: null, isNew: true  },
+      { name: 'Пуско-зарядное устройство 12В',       price: null, isNew: false },
+      { name: 'Импульсное ЗУ 12В, 6 A',              price: null, isNew: false },
+      { name: 'Автоматическое ЗУ 12В, 8 A',          price: null, isNew: false },
+      { name: 'Зарядно-восстановительное ЗУ 12В',    price: null, isNew: true  },
+      { name: 'Пусковое устройство 12В, 800 A',      price: null, isNew: false },
+      { name: 'ЗУ для мото-аккумуляторов 12В, 2 A',  price: null, isNew: false },
+    ],
+    access: [
+      { name: 'Клеммы аккумуляторные, свинцовые',  price: null, isNew: false },
+      { name: 'Клеммы аккумуляторные, латунные',   price: null, isNew: false },
+      { name: 'Провода прикуривателя 400 A',       price: null, isNew: true  },
+      { name: 'Провода прикуривателя 600 A',       price: null, isNew: false },
+      { name: 'Крепление аккумулятора универсал.', price: null, isNew: false },
+      { name: 'Ареометр для электролита',          price: null, isNew: false },
+      { name: 'Щётка для чистки клемм',            price: null, isNew: false },
+      { name: 'Тестер аккумулятора цифровой',      price: null, isNew: true  },
+    ],
+  };
+
+  const catKey = getParam('cat');
+  const cat = CATS[catKey];
+
+  if (!cat) {
+    // ── Витрина: карточки разделов ──
+    document.getElementById('breadcrumb-mount').innerHTML = renderBreadcrumb([
+      { href: 'index.html',   label: 'Главная' },
+      { href: 'catalog.html', label: 'Каталог' },
+    ]);
+    document.getElementById('showcase').hidden = false;
+    document.getElementById('showcase-grid').innerHTML = Object.entries(CATS).map(([key, c]) => `
+      <a href="catalog.html?cat=${key}" class="category-card">
+        <div class="category-card-img"><span class="category-card-icon">${c.icon}</span></div>
+        <div class="category-card-name">${c.label}</div>
+        <p class="category-card-desc">${c.desc}</p>
+        <span class="btn-link">Подробнее</span>
+      </a>`).join('');
+    initReveal();
+  } else {
+    // ── Листинг раздела ──
+    document.title = `${cat.label} — Ампер`;
+    document.getElementById('breadcrumb-mount').innerHTML = renderBreadcrumb([
+      { href: 'index.html',   label: 'Главная' },
+      { href: 'catalog.html', label: 'Каталог' },
+      { href: `catalog.html?cat=${catKey}`, label: cat.label },
+    ]);
+    document.getElementById('listing').hidden = false;
+    document.getElementById('cat-title').innerHTML = `${cat.label} <span>${cat.count}</span>`;
+    document.getElementById('cat-tiles').innerHTML = Object.entries(CATS).map(([key, c]) => `
+      <a href="catalog.html?cat=${key}" class="cat-tile ${key === catKey ? 'active' : ''}">
+        <span class="cat-tile-icon">${c.icon}</span>
+        ${c.label}
+      </a>`).join('');
     renderGrid();
   }
 
   function renderGrid() {
-    document.getElementById('cat-grid').innerHTML = NAMES.map(n => productCard(n, SPECS)).join('');
-    initTabs();
+    const mode = document.getElementById('sort-select').value;
+    const list = sortProducts(PRODUCTS[catKey], mode);
+    document.getElementById('cat-grid').innerHTML =
+      list.map(p => productCard(p.name, cat.specs, 'В наличии', p.price)).join('');
+    initReveal();
   }
-  renderGrid();
 </script>
 </body>
 </html>

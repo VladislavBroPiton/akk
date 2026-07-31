@@ -13,41 +13,58 @@
 <div class="container">
   <div class="product-page">
     <div class="product-layout">
-      <!-- GALLERY -->
-      <div class="product-gallery">
-        <div class="product-thumbnails">
-          <div class="product-thumb active"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Car_battery_1.jpg/640px-Car_battery_1.jpg" alt=""></div>
-          <div class="product-thumb"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Car_battery_1.jpg/640px-Car_battery_1.jpg" alt=""></div>
-          <div class="product-thumb"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Car_battery_1.jpg/640px-Car_battery_1.jpg" alt=""></div>
+      <!-- ЛЕВАЯ КОЛОНКА — скроллится -->
+      <div class="product-col-main">
+        <!-- GALLERY -->
+        <div class="product-gallery">
+          <div class="product-thumbnails">
+            <div class="product-thumb active"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Car_battery_1.jpg/640px-Car_battery_1.jpg" alt=""></div>
+            <div class="product-thumb"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Car_battery_1.jpg/640px-Car_battery_1.jpg" alt=""></div>
+            <div class="product-thumb"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Car_battery_1.jpg/640px-Car_battery_1.jpg" alt=""></div>
+          </div>
+          <div class="product-main-img">
+            <span class="inline-badge" style="position:absolute;top:16px;left:16px;">В наличии</span>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Car_battery_1.jpg/640px-Car_battery_1.jpg" alt="VARTA Silver Dynamic AGM 70Ah">
+          </div>
         </div>
-        <div class="product-main-img">
-          <span class="inline-badge" style="position:absolute;top:16px;left:16px;">В наличии</span>
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Car_battery_1.jpg/640px-Car_battery_1.jpg" alt="VARTA Silver Dynamic AGM 70Ah">
+
+        <!-- SPECS -->
+        <div>
+          <h2 class="section-title" style="font-size:22px;margin-bottom:20px;">Характеристики</h2>
+          <table class="specs-table">
+            <tr><td>Ёмкость</td><td>75 Ah</td></tr>
+            <tr><td>Пусковой ток</td><td>720 A</td></tr>
+            <tr><td>Полярность</td><td>Обратная</td></tr>
+            <tr><td>Тип корпуса</td><td>Европейский</td></tr>
+            <tr><td>Технология</td><td>Ca/Ca</td></tr>
+            <tr><td>Гарантия</td><td>6 месяцев</td></tr>
+          </table>
         </div>
       </div>
 
-      <!-- INFO -->
+      <!-- ПРАВАЯ КОЛОНКА — фиксированная -->
       <div class="product-info">
         <h1 class="product-page-title">Аккумулятор автомобильный<br>Premium Power 75Ah</h1>
         <p class="product-page-desc">Аккумулятор разработан с учётом современных требований к надёжности и эффективности. Он обеспечивает стабильную работу всех систем автомобиля, включая электронику, систему зажигания и дополнительные устройства. Благодаря использованию кальциевой технологии (Ca/Ca), аккумулятор обладает низким саморазрядом и увеличенным сроком службы.</p>
         <div class="product-page-price">Цена уточняется</div>
 
+        <!-- плитки целиком кликабельны -->
         <div class="product-delivery-row">
-          <div class="product-delivery-item">
-            <div class="product-delivery-icon">🚚</div>
-            <div>Доставка</div>
-            <a href="delivery.html" class="btn-link btn-link-orange" style="font-size:12px;">Подробнее</a>
-          </div>
-          <div class="product-delivery-item">
-            <div class="product-delivery-icon">🏪</div>
-            <div>Самовывоз</div>
-            <a href="contacts.html" class="btn-link btn-link-orange" style="font-size:12px;">Подробнее</a>
-          </div>
-          <div class="product-delivery-item">
-            <div class="product-delivery-icon">🛡️</div>
-            <div>Гарантии</div>
-            <a href="delivery.html" class="btn-link btn-link-orange" style="font-size:12px;">Подробнее</a>
-          </div>
+          <a href="delivery.html" class="product-delivery-item">
+            <span class="product-delivery-icon">🚚</span>
+            <span>Доставка</span>
+            <span class="btn-link">Подробнее</span>
+          </a>
+          <a href="delivery.html#pickup" class="product-delivery-item">
+            <span class="product-delivery-icon">🏪</span>
+            <span>Самовывоз</span>
+            <span class="btn-link">Подробнее</span>
+          </a>
+          <a href="delivery.html#warranty" class="product-delivery-item">
+            <span class="product-delivery-icon">🛡️</span>
+            <span>Гарантии</span>
+            <span class="btn-link">Подробнее</span>
+          </a>
         </div>
 
         <div style="display:flex;gap:12px;flex-wrap:wrap;">
@@ -55,19 +72,6 @@
           <a href="tel:+79950253434" class="btn btn-outline" style="width:52px;padding:0;font-size:20px;">📞</a>
         </div>
       </div>
-    </div>
-
-    <!-- SPECS -->
-    <div style="margin-top:48px;">
-      <h2 class="section-title" style="font-size:22px;margin-bottom:20px;">Характеристики</h2>
-      <table class="specs-table">
-        <tr><td>Ёмкость</td><td>75 Ah</td></tr>
-        <tr><td>Пусковой ток</td><td>720 A</td></tr>
-        <tr><td>Полярность</td><td>Обратная</td></tr>
-        <tr><td>Тип корпуса</td><td>Европейский</td></tr>
-        <tr><td>Технология</td><td>Ca/Ca</td></tr>
-        <tr><td>Гарантия</td><td>6 месяцев</td></tr>
-      </table>
     </div>
 
     <!-- SIMILAR -->
@@ -107,7 +111,7 @@
     'TOPLA Energy 70Ah',
     'ZUBR Asia 65Ah',
   ].map(n => productCard(n, SPECS)).join('');
-  initThumbs();
+  // initThumbs() вызывается один раз из main.js на DOMContentLoaded
 </script>
 </body>
 </html>

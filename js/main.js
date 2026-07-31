@@ -10,8 +10,9 @@ function renderHeader(activePage = '') {
     { href: 'catalog.html',  label: 'Каталог' },
     {
       label: 'Покупателям', dropdown: [
-        { href: 'delivery.html', label: 'Доставка и оплата' },
-        { href: 'services.html', label: 'Услуги' },
+        { href: 'services.html',       label: 'Услуги' },
+        { href: 'delivery.html',       label: 'Доставка' },
+        { href: 'services.html#parts', label: 'Запчасти под заказ' },
       ]
     },
     { href: 'about.html',    label: 'О нас' },
@@ -108,6 +109,8 @@ function renderFooter() {
       <div>
         <div class="footer-label">Адрес магазина</div>
         <span class="footer-val">г. Волжский, ул. Пушкина 51д/319</span>
+        <div class="footer-label">Почта</div>
+        <a href="mailto:amper134@yandex.ru" class="footer-val footer-mail">amper134@yandex.ru</a>
         <div class="footer-label">График работы</div>
         <span class="footer-val">Ежедневно: 08:30 – 18:30</span>
       </div>
@@ -181,7 +184,11 @@ function renderBreadcrumb(items) {
 }
 
 // ── PRODUCT CARD ──
-function productCard(name, specs, badge = 'В наличии') {
+// price === null → «Цена уточняется» (пока клиент не передал прайс)
+function productCard(name, specs, badge = 'В наличии', price = null) {
+  const priceLabel = price == null
+    ? 'Цена уточняется'
+    : `${price.toLocaleString('ru-RU')} ₽`;
   return `
 <div class="product-card">
   <div class="product-card-img">
@@ -191,7 +198,7 @@ function productCard(name, specs, badge = 'В наличии') {
   <div class="product-card-body">
     <div class="product-card-name">${name}</div>
     ${specs.map(s => `<div class="product-spec"><span>${s[0]}</span><span class="product-spec-val">${s[1]}</span></div>`).join('')}
-    <div class="product-price">Цена уточняется</div>
+    <div class="product-price">${priceLabel}</div>
     <a href="product.html" class="btn-link">Подробнее</a>
   </div>
 </div>`;
@@ -244,16 +251,27 @@ function initMobileMenu() {
   const btn = document.getElementById('burgerBtn');
   const menu = document.getElementById('mobileMenu');
   const close = document.getElementById('mobileClose');
-  if (btn) btn.addEventListener('click', () => menu.classList.add('open'));
-  if (close) close.addEventListener('click', () => menu.classList.remove('open'));
+  if (!btn || !menu) return;
+
+  const open = () => { menu.classList.add('open'); document.body.style.overflow = 'hidden'; };
+  const hide = () => { menu.classList.remove('open'); document.body.style.overflow = ''; };
+
+  btn.addEventListener('click', open);
+  if (close) close.addEventListener('click', hide);
+  // клик по пункту меню закрывает оверлей
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', hide));
 }
 
 // ── THUMBNAIL SWITCHER ──
 function initThumbs() {
-  document.querySelectorAll('.product-thumb').forEach(thumb => {
+  const thumbs = document.querySelectorAll('.product-thumb');
+  const main = document.querySelector('.product-main-img img');
+  thumbs.forEach(thumb => {
     thumb.addEventListener('click', () => {
-      document.querySelectorAll('.product-thumb').forEach(t => t.classList.remove('active'));
+      thumbs.forEach(t => t.classList.remove('active'));
       thumb.classList.add('active');
+      const src = thumb.querySelector('img');
+      if (main && src) main.src = src.src;
     });
   });
 }
@@ -270,6 +288,67 @@ function checkMobileFilterBtn() {
   if (btn) btn.style.display = window.innerWidth <= 768 ? 'flex' : 'none';
 }
 
+// ── COLLAPSIBLE FILTER SECTIONS ──
+function initFilterCollapse() {
+  document.querySelectorAll('.sidebar-title').forEach(title => {
+    title.addEventListener('click', () => {
+      title.classList.toggle('collapsed');
+      const body = title.nextElementSibling;
+      if (body) body.hidden = title.classList.contains('collapsed');
+    });
+  });
+}
+
+// ── RESET FILTERS ──
+function resetFilters() {
+  const sidebar = document.querySelector('.sidebar');
+  if (!sidebar) return;
+  sidebar.querySelectorAll('input[type=checkbox]').forEach(c => { c.checked = false; });
+  sidebar.querySelectorAll('input[type=range]').forEach(r => { r.value = r.max; });
+}
+
+// ── URL QUERY HELPER ──
+function getParam(name) {
+  return new URLSearchParams(window.location.search).get(name);
+}
+
+// ── SORTING ──
+// Товары без цены (price === null) сортировка по цене не трогает —
+// заработает автоматически, когда клиент передаст прайс.
+function sortProducts(list, mode) {
+  const items = list.slice();
+  if (mode === 'price-asc' || mode === 'price-desc') {
+    const dir = mode === 'price-asc' ? 1 : -1;
+    return items.sort((a, b) => {
+      if (a.price == null && b.price == null) return 0;
+      if (a.price == null) return 1;   // «цена уточняется» — всегда в конец
+      if (b.price == null) return -1;
+      return (a.price - b.price) * dir;
+    });
+  }
+  if (mode === 'new') return items.sort((a, b) => Number(b.isNew) - Number(a.isNew));
+  return items; // «популярные» — порядок как в источнике
+}
+
+// ── SCROLL REVEAL ──
+// Класс .reveal вешается из JS, поэтому без JS ничего не прячется.
+function initReveal(root = document) {
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  root.querySelectorAll('.category-card, .product-card, .service-card, .article-card').forEach(el => {
+    if (el.classList.contains('reveal')) return;
+    el.classList.add('reveal');
+    observer.observe(el);
+  });
+}
+
 // ── INIT ──
 document.addEventListener('DOMContentLoaded', () => {
   checkMobileFilterBtn();
@@ -277,13 +356,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initTabs();
   initMobileMenu();
   initThumbs();
-
-  // Scroll reveal
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
-  }, { threshold: 0.08 });
-  document.querySelectorAll('.category-card, .product-card, .service-card, .article-card').forEach(el => {
-    el.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
-    observer.observe(el);
-  });
+  initFilterCollapse();
+  initReveal();
 });
