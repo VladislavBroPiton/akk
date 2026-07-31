@@ -183,6 +183,21 @@ function renderBreadcrumb(items) {
   return `<div class="breadcrumb"><div class="container">${html}</div></div>`;
 }
 
+// ── ЗАГЛУШКИ ДЛЯ НЕЗАГРУЗИВШИХСЯ ФОТО ──
+// Пока фото товаров лежат на внешнем домене, часть картинок не отдаётся.
+// Вместо иконки «битое изображение» + alt-текста подставляем аккуратную заглушку.
+function productImgFallback(el) {
+  const ph = document.createElement('div');
+  ph.className = 'img-fallback';
+  ph.textContent = '🔋';
+  el.replaceWith(ph);
+}
+function articleImgFallback(el) {
+  const ph = document.createElement('div');
+  ph.className = 'article-card-img-placeholder';
+  el.replaceWith(ph);
+}
+
 // ── PRODUCT CARD ──
 // price === null → «Цена уточняется» (пока клиент не передал прайс)
 function productCard(name, specs, badge = 'В наличии', price = null) {
@@ -193,7 +208,7 @@ function productCard(name, specs, badge = 'В наличии', price = null) {
 <div class="product-card">
   <div class="product-card-img">
     <span class="product-badge">${badge}</span>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Car_battery_1.jpg/640px-Car_battery_1.jpg" alt="${name}">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Car_battery_1.jpg/640px-Car_battery_1.jpg" alt="${name}" onerror="productImgFallback(this)">
   </div>
   <div class="product-card-body">
     <div class="product-card-name">${name}</div>
@@ -209,7 +224,7 @@ function articleCard(title, text, imgSrc) {
   return `
 <div class="article-card">
   ${imgSrc
-    ? `<img src="${imgSrc}" alt="${title}" class="article-card-img">`
+    ? `<img src="${imgSrc}" alt="${title}" class="article-card-img" onerror="articleImgFallback(this)">`
     : `<div class="article-card-img-placeholder"></div>`}
   <div class="article-card-body">
     <div class="article-card-title">${title}</div>
