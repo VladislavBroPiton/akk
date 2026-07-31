@@ -304,22 +304,18 @@ function checkMobileFilterBtn() {
 }
 
 // ── COLLAPSIBLE FILTER SECTIONS ──
+// вызывается и на DOMContentLoaded, и после динамической сборки сайдбара —
+// флаг не даёт навесить обработчик дважды
 function initFilterCollapse() {
   document.querySelectorAll('.sidebar-title').forEach(title => {
+    if (title.dataset.bound) return;
+    title.dataset.bound = '1';
     title.addEventListener('click', () => {
       title.classList.toggle('collapsed');
       const body = title.nextElementSibling;
       if (body) body.hidden = title.classList.contains('collapsed');
     });
   });
-}
-
-// ── RESET FILTERS ──
-function resetFilters() {
-  const sidebar = document.querySelector('.sidebar');
-  if (!sidebar) return;
-  sidebar.querySelectorAll('input[type=checkbox]').forEach(c => { c.checked = false; });
-  sidebar.querySelectorAll('input[type=range]').forEach(r => { r.value = r.max; });
 }
 
 // ── URL QUERY HELPER ──
@@ -344,6 +340,222 @@ function sortProducts(list, mode) {
   if (mode === 'new') return items.sort((a, b) => Number(b.isNew) - Number(a.isNew));
   return items; // «популярные» — порядок как в источнике
 }
+
+/* ═══════════════ КАТАЛОГ: ФИЛЬТРЫ ═══════════════
+   Движок универсальный и от данных не зависит: получает конфиг раздела,
+   сам строит сайдбар, считает счётчики, синхронит состояние с адресной строкой.
+   Состояние фильтров живёт в DOM — отдельного стора нет намеренно,
+   иначе его пришлось бы синхронизировать в трёх местах.            */
+const CatalogUI = {
+  key: '', cfg: null, defs: null, cardSpecs: null,
+  list: [], shown: 0, PAGE: 12,
+
+  init(opts) {
+    this.key = opts.key;
+    this.cfg = opts.section;
+    this.defs = opts.defs;
+    this.cardSpecs = opts.cardSpecs;
+    this.renderSidebar();
+    this.readUrl();
+    this.bind();
+    this.apply();
+  },
+
+  isMobile() { return window.innerWidth <= 768; },
+
+  // значение может быть массивом (например, применяемость)
+  hasValue(v, want) {
+    return Array.isArray(v) ? v.map(String).includes(want) : String(v) === want;
+  },
+
+  // ── СБОРКА САЙДБАРА ПО КОНФИГУ РАЗДЕЛА ──
+  renderSidebar() {
+    const blocks = this.cfg.filters.map(key => {
+      const def = this.defs[key];
+      if (!def) return '';
+      let body;
+
+      if (def.type === 'range') {
+        const vals = this.cfg.products.map(p => Number(p[key])).filter(v => !isNaN(v));
+        const min = Math.min(...vals), max = Math.max(...vals);
+        body = `
+          <div class="filter-range-inputs">
+            <input type="number" class="filter-num" data-key="${key}" data-bound="min" placeholder="от ${min}">
+            <span>–</span>
+            <input type="number" class="filter-num" data-key="${key}" data-bound="max" placeholder="до ${max}">
+          </div>`;
+      } else {
+        // показываем только те варианты, что реально встречаются в разделе
+        const present = new Set();
+        this.cfg.products.forEach(p => {
+          const v = p[key];
+          (Array.isArray(v) ? v : [v]).forEach(x => present.add(String(x)));
+        });
+        body = Object.keys(def.labels)
+          .filter(v => present.has(v))
+          .map(v => `
+            <label class="filter-check">
+              <input type="checkbox" data-key="${key}" value="${v}">
+              <span>${def.labels[v]}</span>
+              <span class="filter-count"></span>
+            </label>`).join('');
+      }
+
+      return `
+        <div class="sidebar-section">
+          <div class="sidebar-title">${def.title}</div>
+          <div class="filter-body">${body}</div>
+        </div>`;
+    }).join('');
+
+    document.getElementById('sidebar').innerHTML = `
+      <div class="filter-head">
+        <div class="filter-head-title">Фильтр</div>
+        <button class="filter-reset" type="button">Сбросить все</button>
+      </div>
+      ${blocks}
+      <button class="filter-btn" type="button">Применить</button>`;
+  },
+
+  // ── СОСТОЯНИЕ ЧИТАЕМ ИЗ DOM ──
+  readState() {
+    const state = { checks: {}, ranges: {} };
+    document.querySelectorAll('#sidebar input[type=checkbox]').forEach(cb => {
+      if (!cb.checked) return;
+      (state.checks[cb.dataset.key] = state.checks[cb.dataset.key] || []).push(cb.value);
+    });
+    document.querySelectorAll('#sidebar .filter-num').forEach(inp => {
+      if (inp.value === '') return;
+      const r = state.ranges[inp.dataset.key] = state.ranges[inp.dataset.key] || {};
+      r[inp.dataset.bound] = Number(inp.value);
+    });
+    return state;
+  },
+
+  // skipKey — чтобы посчитать счётчики без учёта своей же группы
+  match(p, state, skipKey) {
+    for (const key in state.checks) {
+      if (key === skipKey) continue;
+      const sel = state.checks[key];
+      if (!sel.length) continue;
+      if (!sel.some(v => this.hasValue(p[key], v))) return false;
+    }
+    for (const key in state.ranges) {
+      if (key === skipKey) continue;
+      const r = state.ranges[key], v = Number(p[key]);
+      if (r.min !== undefined && v < r.min) return false;
+      if (r.max !== undefined && v > r.max) return false;
+    }
+    return true;
+  },
+
+  results(state, skipKey) {
+    return this.cfg.products.filter(p => this.match(p, state, skipKey));
+  },
+
+  // ── ПРИМЕНИТЬ ──
+  apply() {
+    const state = this.readState();
+    this.list = sortProducts(this.results(state), document.getElementById('sort-select').value);
+    this.shown = this.PAGE;
+    this.renderGrid();
+    this.updateCounts(state);
+    this.syncUrl(state);
+    document.getElementById('cat-title').innerHTML =
+      `${this.cfg.label} <span>${this.list.length}</span>`;
+  },
+
+  showMore() { this.shown += this.PAGE; this.renderGrid(); },
+
+  renderGrid() {
+    const grid = document.getElementById('cat-grid');
+    const empty = document.getElementById('cat-empty');
+    const more = document.getElementById('load-more-wrap');
+
+    if (!this.list.length) {
+      grid.innerHTML = '';
+      empty.hidden = false;
+      more.hidden = true;
+      return;
+    }
+    empty.hidden = true;
+    const slice = this.list.slice(0, this.shown);
+    grid.innerHTML = slice.map(p =>
+      productCard(p.name, this.cardSpecs(p), 'В наличии', p.price)).join('');
+    more.hidden = this.shown >= this.list.length;
+    document.getElementById('load-more-left').textContent = this.list.length - slice.length;
+    initReveal();
+  },
+
+  // счётчик у пункта = сколько найдётся, если выбрать именно его
+  updateCounts(state) {
+    document.querySelectorAll('#sidebar input[type=checkbox]').forEach(cb => {
+      const key = cb.dataset.key;
+      const n = this.results(state, key).filter(p => this.hasValue(p[key], cb.value)).length;
+      const label = cb.closest('.filter-check');
+      label.querySelector('.filter-count').textContent = n;
+      const dead = n === 0 && !cb.checked;
+      label.classList.toggle('is-empty', dead);
+      cb.disabled = dead;
+    });
+    const btn = document.querySelector('#sidebar .filter-btn');
+    if (btn) btn.textContent = `Применить (${this.list.length})`;
+  },
+
+  // ── АДРЕСНАЯ СТРОКА ──
+  // replaceState, а не pushState: иначе каждый чекбокс плодил бы запись в истории
+  syncUrl(state) {
+    const p = new URLSearchParams();
+    p.set('cat', this.key);
+    for (const key in state.checks) {
+      if (state.checks[key].length) p.set(key, state.checks[key].join(','));
+    }
+    for (const key in state.ranges) {
+      const r = state.ranges[key];
+      p.set(key, `${r.min === undefined ? '' : r.min}-${r.max === undefined ? '' : r.max}`);
+    }
+    const sort = document.getElementById('sort-select').value;
+    if (sort !== 'popular') p.set('sort', sort);
+    history.replaceState(null, '', location.pathname + '?' + p.toString());
+  },
+
+  readUrl() {
+    const p = new URLSearchParams(location.search);
+    document.querySelectorAll('#sidebar input[type=checkbox]').forEach(cb => {
+      const v = p.get(cb.dataset.key);
+      cb.checked = !!v && v.split(',').indexOf(cb.value) !== -1;
+    });
+    document.querySelectorAll('#sidebar .filter-num').forEach(inp => {
+      const v = p.get(inp.dataset.key);
+      if (!v || v.indexOf('-') === -1) return;
+      const parts = v.split('-');
+      inp.value = inp.dataset.bound === 'min' ? parts[0] : parts[1];
+    });
+    const sort = p.get('sort');
+    if (sort) document.getElementById('sort-select').value = sort;
+  },
+
+  reset() {
+    document.querySelectorAll('#sidebar input[type=checkbox]').forEach(c => { c.checked = false; });
+    document.querySelectorAll('#sidebar .filter-num').forEach(i => { i.value = ''; });
+    this.apply();
+  },
+
+  bind() {
+    const sidebar = document.getElementById('sidebar');
+    // на десктопе применяем сразу, на мобиле — по кнопке, чтобы список не дёргался под пальцем
+    sidebar.addEventListener('change', () => { if (!this.isMobile()) this.apply(); });
+    sidebar.addEventListener('input', e => {
+      if (e.target.classList.contains('filter-num') && !this.isMobile()) this.apply();
+    });
+    sidebar.querySelector('.filter-reset').addEventListener('click', () => this.reset());
+    sidebar.querySelector('.filter-btn').addEventListener('click', () => {
+      this.apply();
+      if (this.isMobile()) sidebar.classList.remove('open');
+    });
+    document.getElementById('sort-select').addEventListener('change', () => this.apply());
+  },
+};
 
 // ── SCROLL REVEAL ──
 // Класс .reveal вешается из JS, поэтому без JS ничего не прячется.
