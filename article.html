@@ -17,7 +17,7 @@
       <h1>Как правильно выбрать автомобильный аккумулятор: основные критерии</h1>
       <div class="article-date">24.07.2026</div>
 
-      <div class="article-hero-img"></div>
+      <div class="article-hero-img" id="article-hero-img"></div>
 
       <p>Автомобильный аккумулятор — один из важнейших элементов любого транспортного средства. От его состояния зависит запуск двигателя, стабильная работа электроники и комфорт эксплуатации автомобиля в любое время года.</p>
 
@@ -99,6 +99,13 @@
 <script src="js/main.js"></script>
 <script>
   document.getElementById('header-mount').innerHTML = renderHeader('articles.html');
+  // Устанавливаем фото-герой статьи
+  const ah = document.getElementById('article-hero-img');
+  if (ah) {
+    ah.style.backgroundImage = `url(${IMG.articleBattery})`;
+    ah.style.backgroundSize = 'cover';
+    ah.style.backgroundPosition = 'center';
+  }
   document.getElementById('breadcrumb-mount').innerHTML = renderBreadcrumb([
     {href:'index.html',label:'Главная'},
     {href:'articles.html',label:'Статьи'},

@@ -58,7 +58,7 @@ function renderHeader(activePage = '') {
         `<a href="${d.href}" class="${activePage === d.href ? 'active' : ''}">${d.label}</a>`
       ).join('');
       return `<li class="nav-dropdown"><a href="#">${p.label}</a>
-        <div class="nav-dropdown-menu">${items}</div></li>`;
+        <div class="nav-dropdown-menu"><div class="nav-dropdown-menu-inner">${items}</div></div></li>`;
     }
     return `<li><a href="${p.href}" class="${activePage === p.href ? 'active' : ''}">${p.label}</a></li>`;
   }).join('');

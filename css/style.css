@@ -122,9 +122,18 @@ input, textarea { font-family: inherit; }
 .nav-dropdown { position: relative; }
 .nav-dropdown > a::after { content: ' ▾'; font-size: 10px; }
 .nav-dropdown-menu {
-  display: none; position: absolute; top: calc(100% + 12px); left: 0;
+  display: none; position: absolute; top: 100%; left: 0;
+  padding-top: 8px;
+  z-index: 200;
+}
+/* невидимый мост между ссылкой и меню — курсор не теряет hover */
+.nav-dropdown::after {
+  content: ''; position: absolute; top: 100%; left: 0;
+  width: 100%; height: 12px; background: transparent;
+}
+.nav-dropdown-menu-inner {
   background: var(--white); box-shadow: 0 8px 32px rgba(0,0,0,0.12);
-  border-radius: 8px; min-width: 180px; padding: 8px 0; z-index: 200;
+  border-radius: 8px; min-width: 200px; padding: 8px 0;
 }
 .nav-dropdown:hover .nav-dropdown-menu { display: block; }
 .nav-dropdown-menu a { display: block; padding: 10px 20px; font-size: 14px; }
