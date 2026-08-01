@@ -26,7 +26,7 @@ const IMG = {
   advantage3: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 480 280'%3E%3Crect width='480' height='280' fill='%23ECF0F5'/%3E%3Crect x='60' y='80' width='360' height='140' rx='8' fill='%23d0d5de'/%3E%3Crect x='60' y='80' width='360' height='36' fill='%23b8bfcc'/%3E%3Crect x='80' y='132' width='64' height='64' rx='4' fill='%23c8cdd6'/%3E%3Crect x='152' y='132' width='64' height='64' rx='4' fill='%23c8cdd6'/%3E%3Crect x='224' y='132' width='64' height='64' rx='4' fill='%23c8cdd6'/%3E%3Crect x='296' y='132' width='64' height='64' rx='4' fill='%23c8cdd6'/%3E%3Cpath d='M100 160 l8-14 h6 l-8 14 h6 l-14 22 l6-14 h-6 z' fill='%23FF4F00' opacity='.7'/%3E%3C/svg%3E`,
 
   advantage4: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 480 280'%3E%3Crect width='480' height='280' fill='%23ECF0F5'/%3E%3Crect x='80' y='140' width='320' height='90' rx='8' fill='%23d0d5de'/%3E%3Cellipse cx='140' cy='230' rx='36' ry='14' fill='%23b0b8c8'/%3E%3Cellipse cx='340' cy='230' rx='36' ry='14' fill='%23b0b8c8'/%3E%3Crect x='100' y='100' width='80' height='60' rx='6' fill='%23c0c8d4' stroke='%23b0b8c8' stroke-width='2'/%3E%3Crect x='196' y='108' width='18' height='30' rx='2' fill='%23b0b8c8'/%3E%3Crect x='100' y='100' width='80' height='20' rx='6' fill='%23b0b8c8'/%3E%3Crect x='112' y='72' width='14' height='30' rx='3' fill='%23999'/%3E%3Crect x='150' y='72' width='14' height='30' rx='3' fill='%23666'/%3E%3Ctext x='350' y='130' font-family='Arial' font-size='13' fill='%23888' text-anchor='middle'%3EДоставка%3C/text%3E%3C/svg%3E`,
-};`
+};
 
 // ── HEADER HTML ──
 function renderHeader(activePage = '') {
