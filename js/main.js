@@ -77,11 +77,13 @@ function renderHeader(activePage = '') {
     </div>
     <div class="header-main">
       <a href="index.html" class="logo">
-        <span class="logo-bolt">⚡</span>
-        <div class="logo-wrap">
-          <span>АМПЕР</span>
-          <span class="logo-sub">аккумуляторный центр</span>
-        </div>
+        <span class="logo-bolt-svg" style="display:flex;align-items:center;gap:8px;">
+          <img src="img/logo-bolt_sm.svg" alt="" width="22" height="34" style="flex-shrink:0;">
+          <span style="display:flex;flex-direction:column;gap:2px;">
+            <img src="img/logo-text_sm.svg" alt="АМПЕР" height="18" style="max-width:72px;">
+            <span class="logo-sub">аккумуляторный центр</span>
+          </span>
+        </span>
       </a>
       <a href="catalog.html" class="btn-catalog">
         <span class="btn-catalog-icon"><span></span><span></span><span></span><span></span></span>
@@ -133,6 +135,13 @@ function renderFooter() {
   <div class="container">
     <div class="footer-grid">
       <div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;">
+          <img src="img/logo-bolt_sm.svg" alt="" width="22" height="34" style="filter:brightness(10);">
+          <span style="display:flex;flex-direction:column;gap:2px;">
+            <img src="img/logo-text_sm.svg" alt="АМПЕР" height="18" style="max-width:72px;filter:brightness(10);">
+            <span style="font-size:9px;color:#cbcbcb;font-family:'Onest',sans-serif;">аккумуляторный центр</span>
+          </span>
+        </div>
         <div class="footer-phone-big-label" style="font-size:13px;color:#cbcbcb;text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px;">Телефон</div>
         <a href="tel:+79950253434" class="footer-phone-big">+7-995-025-34-34</a>
         <div style="font-size:13px;color:#cbcbcb;text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px;">Мессенджеры</div>

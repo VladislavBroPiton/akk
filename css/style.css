@@ -86,11 +86,10 @@ input, textarea { font-family: inherit; }
   display: flex; align-items: center; gap: 16px; padding: 14px 0;
 }
 .logo {
-  display: flex; align-items: center; gap: 8px;
-  font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 22px;
-  text-transform: uppercase; color: var(--black); flex-shrink: 0;
+  display: flex; align-items: center; gap: 10px;
+  color: var(--black); flex-shrink: 0; text-decoration: none;
 }
-.logo-bolt { color: var(--orange); font-size: 28px; line-height: 1; }
+.logo-bolt-svg { display: flex; align-items: center; gap: 8px; }
 .logo-sub { font-size: 9px; font-weight: 400; font-family: 'Onest', sans-serif; color: var(--black-50); line-height: 1.2; text-transform: none; }
 .logo-wrap { display: flex; flex-direction: column; }
 
