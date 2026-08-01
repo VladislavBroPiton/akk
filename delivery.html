@@ -8,6 +8,20 @@
 </head>
 <body>
 <div id="header-mount"></div>
+
+<!-- HERO -->
+<section class="inner-hero" style="min-height:260px;">
+  <div class="inner-hero-bg">
+    <img id="delivery-hero-img" class="inner-hero-bg-img" alt="">
+    <div class="inner-hero-overlay"></div>
+  </div>
+  <div class="container" style="width:100%">
+    <div class="inner-hero-content">
+      <h1 class="inner-hero-title">Доставка и оплата</h1>
+    </div>
+  </div>
+</section>
+
 <div id="breadcrumb-mount"></div>
 
 <div class="container">
@@ -73,6 +87,9 @@
 <script src="js/main.js"></script>
 <script>
   document.getElementById('header-mount').innerHTML = renderHeader('delivery.html');
+  // Фон героя
+  const dh = document.getElementById('delivery-hero-img');
+  if (dh) dh.src = IMG.heroBg4;
   document.getElementById('breadcrumb-mount').innerHTML = renderBreadcrumb([
     {href:'index.html',label:'Главная'},
     {href:'delivery.html',label:'Доставка'}
