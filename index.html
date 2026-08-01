@@ -14,7 +14,7 @@
 <!-- HERO -->
 <section class="hero">
   <div class="hero-bg"></div>
-  <img class="hero-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Car_battery_1.jpg/1280px-Car_battery_1.jpg" alt="Аккумуляторы" onerror="this.style.display='none'">
+  <img class="hero-img" id="hero-img" alt="Аккумуляторы">
   <div class="container" style="width:100%">
     <div class="hero-content fade-in">
       <h1 class="hero-title">Аккумуляторы, зарядные устройства и аксессуары<br><span class="text-orange">в Волжском</span></h1>
@@ -176,13 +176,16 @@
   });
 
   const ARTICLES = [
-    { title: 'Как правильно выбрать автомобильный аккумулятор: основные критерии', text: 'Автомобильный аккумулятор — один из важнейших элементов любого транспортного средства. От его состояния зависит запуск двигателя, работа электроники...', img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Car_battery_1.jpg/640px-Car_battery_1.jpg' },
+    { title: 'Как правильно выбрать автомобильный аккумулятор: основные критерии', text: 'Автомобильный аккумулятор — один из важнейших элементов любого транспортного средства. От его состояния зависит запуск двигателя, работа электроники...', img: IMG.articleBattery },
     { title: 'Когда необходимо менять автомобильный аккумулятор: основные признаки', text: 'Даже самый надёжный аккумулятор имеет ограниченный срок службы. В среднем качественная АКБ служит от 3–5 лет...', img: null },
     { title: 'Зарядные устройства для автомобильных аккумуляторов: зачем они нужны', text: 'Зарядное устройство помогает поддерживать аккумулятор в рабочем состоянии и значительно продлевает срок его службы...', img: null },
     { title: 'Аксессуары для аккумуляторов и их преимущества', text: 'Для надёжной работы аккумулятора важно использовать качественные аксессуары. Они упрощают обслуживание батареи...', img: null },
   ];
   document.getElementById('articles-mount').innerHTML = ARTICLES.map(a => articleCard(a.title, a.text, a.img)).join('');
 
+  // Устанавливаем SVG-изображения
+  const hi = document.getElementById('hero-img');
+  if (hi) hi.src = IMG.heroBg;
   document.getElementById('header-mount').innerHTML = renderHeader('index.html');
   document.getElementById('cta-mount').innerHTML = renderCtaForm();
   document.getElementById('footer-mount').innerHTML = renderFooter();

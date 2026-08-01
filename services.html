@@ -12,7 +12,7 @@
 <!-- INNER HERO -->
 <section class="inner-hero">
   <div class="inner-hero-bg">
-    <img class="inner-hero-bg-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Car_battery_1.jpg/1280px-Car_battery_1.jpg" alt="" onerror="this.remove()">
+    <img class="inner-hero-bg-img" id="hero-bg-img" alt="">
     <div class="inner-hero-overlay"></div>
   </div>
   <div class="container" style="width:100%">
@@ -92,6 +92,9 @@
 <div id="footer-mount"></div>
 <script src="js/main.js"></script>
 <script>
+  // Устанавливаем SVG-изображения
+  const hb = document.getElementById('hero-bg-img');
+  if (hb) hb.src = IMG.heroBg;
   document.getElementById('header-mount').innerHTML = renderHeader('services.html');
   document.getElementById('breadcrumb-mount').innerHTML = renderBreadcrumb([
     {href:'index.html',label:'Главная'},

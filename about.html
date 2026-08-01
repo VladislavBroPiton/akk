@@ -12,7 +12,7 @@
 <!-- INNER HERO -->
 <section class="inner-hero" style="min-height:320px;">
   <div class="inner-hero-bg">
-    <img class="inner-hero-bg-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Car_battery_1.jpg/1280px-Car_battery_1.jpg" alt="" onerror="this.remove()">
+    <img class="inner-hero-bg-img" id="hero-bg-img" alt="">
     <div class="inner-hero-overlay"></div>
   </div>
   <div class="container" style="width:100%">
@@ -62,7 +62,7 @@
           <p class="advantage-desc">Поможем выбрать аккумулятор под ваш автомобиль, мотоцикл, лодку или ИБП за несколько минут</p>
         </div>
         <div class="advantage-img">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Car_battery_1.jpg/640px-Car_battery_1.jpg" alt="Подбор аккумулятора" onerror="this.parentElement.innerHTML='<div style=padding:40px;font-size:60px;text-align:center>🔋</div>'">
+          <img id="adv-img-1" alt="Подбор аккумулятора">
         </div>
       </div>
       <div class="advantage-row" style="margin-bottom:16px;border-radius:12px;">
@@ -94,6 +94,11 @@
 <div id="footer-mount"></div>
 <script src="js/main.js"></script>
 <script>
+  // Устанавливаем SVG-изображения
+  const hb = document.getElementById('hero-bg-img');
+  if (hb) hb.src = IMG.heroBg;
+  const a1 = document.getElementById('adv-img-1');
+  if (a1) a1.src = IMG.advantage1;
   document.getElementById('header-mount').innerHTML = renderHeader('about.html');
   document.getElementById('breadcrumb-mount').innerHTML = renderBreadcrumb([
     {href:'index.html',label:'Главная'},

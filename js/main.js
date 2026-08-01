@@ -3,6 +3,31 @@
    Shared components + interactivity
 ───────────────────────────────────────── */
 
+// ── ВСТРОЕННЫЕ SVG-ИЗОБРАЖЕНИЯ ──
+// Не зависят от внешних CDN — работают везде, включая GitHub Pages.
+// Заменить на реальные фото когда клиент предоставит материалы:
+// просто поменять значения IMG.* на пути к файлам из папки img/.
+
+const IMG = {
+  // Фото аккумулятора — используется в карточках товаров, на странице товара, в герое
+  battery: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 220'%3E%3Crect width='320' height='220' fill='%23ECF0F5'/%3E%3Crect x='60' y='55' width='200' height='120' rx='10' fill='%23d0d5de' stroke='%23b0b8c8' stroke-width='2'/%3E%3Crect x='60' y='55' width='200' height='38' rx='10' fill='%23b0b8c8'/%3E%3Crect x='60' y='80' width='200' height='13' fill='%23b0b8c8'/%3E%3Crect x='130' y='36' width='28' height='22' rx='4' fill='%23888'/%3E%3Crect x='162' y='36' width='28' height='22' rx='4' fill='%23555'/%3E%3Crect x='80' y='105' width='50' height='52' rx='4' fill='%23c5cad4'/%3E%3Crect x='140' y='105' width='50' height='52' rx='4' fill='%23c5cad4'/%3E%3Crect x='200' y='105' width='40' height='52' rx='4' fill='%23c5cad4'/%3E%3Ctext x='160' y='186' font-family='Arial' font-size='13' fill='%23888' text-anchor='middle'%3EVARTA 70Ah%3C/text%3E%3Cpath d='M148 128 l10-18 h8 l-10 18 h8 l-18 28 l6-18 h-8 z' fill='%23FF4F00' opacity='.7'/%3E%3C/svg%3E`,
+
+  // Фото для статей
+  articleBattery: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 240'%3E%3Crect width='400' height='240' fill='%23242424'/%3E%3Crect x='80' y='50' width='240' height='145' rx='12' fill='%23333'/%3E%3Crect x='80' y='50' width='240' height='44' rx='12' fill='%23444'/%3E%3Crect x='80' y='82' width='240' height='12' fill='%23444'/%3E%3Crect x='155' y='30' width='34' height='24' rx='5' fill='%23555'/%3E%3Crect x='195' y='30' width='34' height='24' rx='5' fill='%23333'/%3E%3Crect x='100' y='118' width='60' height='58' rx='5' fill='%23444'/%3E%3Crect x='170' y='118' width='60' height='58' rx='5' fill='%23444'/%3E%3Crect x='240' y='118' width='60' height='58' rx='5' fill='%23444'/%3E%3Cpath d='M183 145 l12-22 h10 l-12 22 h10 l-22 34 l8-22 h-10 z' fill='%23FF4F00'/%3E%3C/svg%3E`,
+
+  // Фото для героя и фонов страниц
+  heroBg: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 560'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%231a0800'/%3E%3Cstop offset='.5' stop-color='%233d1500'/%3E%3Cstop offset='1' stop-color='%23242424'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='1440' height='560' fill='url(%23g)'/%3E%3Cellipse cx='1050' cy='280' rx='420' ry='300' fill='%23FF4F00' opacity='.06'/%3E%3Crect x='720' y='100' width='460' height='290' rx='18' fill='%23333' opacity='.5'/%3E%3Crect x='720' y='100' width='460' height='88' rx='18' fill='%23444' opacity='.5'/%3E%3Crect x='720' y='175' width='460' height='22' fill='%23444' opacity='.5'/%3E%3Crect x='755' y='58' width='68' height='48' rx='8' fill='%23555' opacity='.6'/%3E%3Crect x='835' y='58' width='68' height='48' rx='8' fill='%23333' opacity='.6'/%3E%3Crect x='750' y='222' width='120' height='130' rx='8' fill='%23444' opacity='.5'/%3E%3Crect x='880' y='222' width='120' height='130' rx='8' fill='%23444' opacity='.5'/%3E%3Crect x='1010' y='222' width='140' height='130' rx='8' fill='%23444' opacity='.5'/%3E%3Cpath d='M900 262 l24-44 h20 l-24 44 h20 l-44 68 l16-44 h-20 z' fill='%23FF4F00' opacity='.8'/%3E%3C/svg%3E`,
+
+  // Фото для преимуществ на странице «О компании»
+  advantage1: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 480 280'%3E%3Crect width='480' height='280' fill='%23ECF0F5'/%3E%3Crect x='100' y='60' width='280' height='170' rx='12' fill='%23d0d5de' stroke='%23b8bfcc' stroke-width='2'/%3E%3Crect x='100' y='60' width='280' height='52' rx='12' fill='%23b8bfcc'/%3E%3Crect x='100' y='100' width='280' height='12' fill='%23b8bfcc'/%3E%3Crect x='178' y='38' width='40' height='26' rx='5' fill='%23999'/%3E%3Crect x='225' y='38' width='40' height='26' rx='5' fill='%23666'/%3E%3Crect x='120' y='132' width='72' height='74' rx='6' fill='%23c8cdd6'/%3E%3Crect x='200' y='132' width='72' height='74' rx='6' fill='%23c8cdd6'/%3E%3Crect x='280' y='132' width='72' height='74' rx='6' fill='%23c8cdd6'/%3E%3Cpath d='M220 162 l14-26 h12 l-14 26 h12 l-26 40 l10-26 h-12 z' fill='%23FF4F00' opacity='.8'/%3E%3Ccircle cx='360' cy='80' r='18' fill='%2322c55e' opacity='.9'/%3E%3Cpath d='M352 80 l5 5 l10-10' stroke='white' stroke-width='2.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E`,
+
+  advantage2: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 480 280'%3E%3Crect width='480' height='280' fill='%23ECF0F5'/%3E%3Ccircle cx='240' cy='130' r='80' fill='%23d0d5de' stroke='%23b0b8c8' stroke-width='2'/%3E%3Ccircle cx='240' cy='130' r='60' fill='%23c0c8d4'/%3E%3Ccircle cx='240' cy='130' r='8' fill='%23888'/%3E%3Cline x1='240' y1='122' x2='240' y2='88' stroke='%23555' stroke-width='3' stroke-linecap='round'/%3E%3Cline x1='240' y1='122' x2='268' y2='138' stroke='%23FF4F00' stroke-width='3' stroke-linecap='round'/%3E%3Ctext x='240' y='230' font-family='Arial' font-size='14' fill='%23888' text-anchor='middle'%3EДиагностика%3C/text%3E%3C/svg%3E`,
+
+  advantage3: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 480 280'%3E%3Crect width='480' height='280' fill='%23ECF0F5'/%3E%3Crect x='60' y='80' width='360' height='140' rx='8' fill='%23d0d5de'/%3E%3Crect x='60' y='80' width='360' height='36' fill='%23b8bfcc'/%3E%3Crect x='80' y='132' width='64' height='64' rx='4' fill='%23c8cdd6'/%3E%3Crect x='152' y='132' width='64' height='64' rx='4' fill='%23c8cdd6'/%3E%3Crect x='224' y='132' width='64' height='64' rx='4' fill='%23c8cdd6'/%3E%3Crect x='296' y='132' width='64' height='64' rx='4' fill='%23c8cdd6'/%3E%3Cpath d='M100 160 l8-14 h6 l-8 14 h6 l-14 22 l6-14 h-6 z' fill='%23FF4F00' opacity='.7'/%3E%3C/svg%3E`,
+
+  advantage4: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 480 280'%3E%3Crect width='480' height='280' fill='%23ECF0F5'/%3E%3Crect x='80' y='140' width='320' height='90' rx='8' fill='%23d0d5de'/%3E%3Cellipse cx='140' cy='230' rx='36' ry='14' fill='%23b0b8c8'/%3E%3Cellipse cx='340' cy='230' rx='36' ry='14' fill='%23b0b8c8'/%3E%3Crect x='100' y='100' width='80' height='60' rx='6' fill='%23c0c8d4' stroke='%23b0b8c8' stroke-width='2'/%3E%3Crect x='196' y='108' width='18' height='30' rx='2' fill='%23b0b8c8'/%3E%3Crect x='100' y='100' width='80' height='20' rx='6' fill='%23b0b8c8'/%3E%3Crect x='112' y='72' width='14' height='30' rx='3' fill='%23999'/%3E%3Crect x='150' y='72' width='14' height='30' rx='3' fill='%23666'/%3E%3Ctext x='350' y='130' font-family='Arial' font-size='13' fill='%23888' text-anchor='middle'%3EДоставка%3C/text%3E%3C/svg%3E`,
+};`
+
 // ── HEADER HTML ──
 function renderHeader(activePage = '') {
   const pages = [
@@ -208,7 +233,7 @@ function productCard(name, specs, badge = 'В наличии', price = null) {
 <div class="product-card">
   <div class="product-card-img">
     <span class="product-badge">${badge}</span>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Car_battery_1.jpg/640px-Car_battery_1.jpg" alt="${name}" onerror="productImgFallback(this)">
+    <img src="${IMG.battery}" alt="${name}">
   </div>
   <div class="product-card-body">
     <div class="product-card-name">${name}</div>
@@ -224,7 +249,7 @@ function articleCard(title, text, imgSrc) {
   return `
 <div class="article-card">
   ${imgSrc
-    ? `<img src="${imgSrc}" alt="${title}" class="article-card-img" onerror="articleImgFallback(this)">`
+    ? `<img src="${imgSrc}" alt="${title}" class="article-card-img">`
     : `<div class="article-card-img-placeholder"></div>`}
   <div class="article-card-body">
     <div class="article-card-title">${title}</div>
