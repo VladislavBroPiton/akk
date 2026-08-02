@@ -166,9 +166,9 @@ function renderFooter() {
     <div class="footer-grid">
       <div>
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;">
-          <img src="img/logo-bolt_sm.svg" alt="" width="22" height="34" style="filter:brightness(10);">
+          <img src="img/logo-bolt_sm.svg" alt="" width="22" height="34" style="filter:brightness(0) invert(1);">
           <span style="display:flex;flex-direction:column;gap:2px;">
-            <img src="img/logo-text_sm.svg" alt="АМПЕР" height="18" style="max-width:72px;filter:brightness(10);">
+            <img src="img/logo-text_sm.svg" alt="АМПЕР" height="18" style="max-width:72px;filter:brightness(0) invert(1);">
             <span style="font-size:9px;color:#cbcbcb;font-family:'Onest',sans-serif;">аккумуляторный центр</span>
           </span>
         </div>

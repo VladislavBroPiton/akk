@@ -572,10 +572,14 @@ input, textarea { font-family: inherit; }
 .article-sidebar-widget { background: var(--orange); border-radius: 12px; padding: 28px; color: var(--white); position: sticky; top: 100px; }
 .widget-title { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 22px; text-transform: uppercase; margin-bottom: 12px; }
 .widget-desc { font-size: 13px; line-height: 1.55; opacity: 0.9; margin-bottom: 20px; }
-.widget-form .form-input { background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.3); color: var(--white); margin-bottom: 10px; }
-.widget-form .form-input::placeholder { color: rgba(255,255,255,0.6); }
-.widget-form .form-submit { background: var(--white); color: var(--orange); }
-.widget-form .form-check { color: rgba(255,255,255,0.7); }
+.widget-btn {
+  display: flex; align-items: center; justify-content: center;
+  height: 52px; background: var(--white); color: var(--orange);
+  font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 16px;
+  letter-spacing: 0.05em; text-transform: uppercase; border-radius: 4px;
+  transition: all 0.2s;
+}
+.widget-btn:hover { background: var(--black); color: var(--white); }
 .see-also { margin-top: 60px; }
 .see-also-title { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 24px; text-transform: uppercase; margin-bottom: 24px; }
 

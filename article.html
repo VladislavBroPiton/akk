@@ -79,21 +79,14 @@
       <div class="article-sidebar-widget">
         <div class="widget-title">Подобрать аккумулятор</div>
         <p class="widget-desc">Наши специалисты учитывают все характеристики — от ёмкости до типа корпуса. Вы получите точный подбор, консультацию и рекомендации по эксплуатации</p>
-        <form class="widget-form contact-form" onsubmit="handleForm(event)">
-          <div class="form-field"><input type="text" class="form-input" placeholder="Имя" required></div>
-          <div class="form-field"><input type="tel" class="form-input" placeholder="Ваш телефон" required></div>
-          <div class="form-field"><input type="text" class="form-input" placeholder="Что нужно найти?"></div>
-          <label class="form-check">
-            <input type="checkbox" checked>
-            Я согласен/на на обработку персональных данных
-          </label>
-          <button type="submit" class="form-submit">Оставить заявку</button>
-        </form>
+        <!-- по макету здесь только кнопка: форма одна, внизу страницы -->
+        <a href="#cta" class="widget-btn">Оставить заявку</a>
       </div>
     </aside>
   </div>
 </div>
 
+<div id="cta"></div>
 <div id="cta-mount"></div>
 <div id="footer-mount"></div>
 <script src="js/catalog-data.js"></script>
@@ -116,10 +109,10 @@
   document.getElementById('footer-mount').innerHTML = renderFooter();
 
   const ARTS = [
-    { title: 'Когда необходимо менять автомобильный аккумулятор: основные признаки', text: 'Даже самый надёжный аккумулятор имеет ограниченный срок службы. В среднем качественная АКБ служит от 3–5 лет...', img: null },
-    { title: 'Зарядные устройства для автомобильных аккумуляторов: зачем они нужны', text: 'Зарядное устройство помогает поддерживать аккумулятор в рабочем состоянии...', img: null },
-    { title: 'Аксессуары для аккумуляторов и их преимущества', text: 'Для надёжной работы аккумулятора важно использовать качественные аксессуары...', img: null },
-    { title: 'Аксессуары для аккумуляторов и их преимущества', text: 'Для надёжной работы аккумулятора важно использовать качественные аксессуары...', img: null },
+    { title: 'Когда необходимо менять автомобильный аккумулятор: основные признаки', text: 'Даже самый надёжный аккумулятор имеет ограниченный срок службы. В среднем качественная АКБ служит от 3–5 лет...', img: IMG.articleWrench },
+    { title: 'Зарядные устройства для автомобильных аккумуляторов: зачем они нужны', text: 'Зарядное устройство помогает поддерживать аккумулятор в рабочем состоянии...', img: IMG.articleCharger },
+    { title: 'Аксессуары для аккумуляторов и их преимущества', text: 'Для надёжной работы аккумулятора важно использовать качественные аксессуары...', img: IMG.articleAccessory },
+    { title: 'Аксессуары для аккумуляторов и их преимущества', text: 'Для надёжной работы аккумулятора важно использовать качественные аксессуары...', img: IMG.articleAccessory },
   ];
   document.getElementById('see-also-mount').innerHTML = ARTS.map(a => articleCard(a.title, a.text, a.img)).join('');
 </script>
