@@ -15,8 +15,7 @@
 
   const CFG = {
     // URL приёмника на Render. Пустая строка = сбор выключен.
-    // Пример: 'https://amper-stat.onrender.com/collect'
-    endpoint: '',
+    endpoint: 'https://amper-stat.onrender.com/collect',
     // Сколько ждать после ввода в поиске, прежде чем засчитать запрос
     searchDelay: 1200,
   };
