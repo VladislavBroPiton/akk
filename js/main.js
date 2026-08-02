@@ -187,7 +187,7 @@ function renderFooter() {
         <div class="footer-label">Почта</div>
         <a href="mailto:amper134@yandex.ru" class="footer-val footer-mail">amper134@yandex.ru</a>
         <div class="footer-label">График работы</div>
-        <span class="footer-val">Ежедневно: 08:30 – 18:30</span>
+        <span class="footer-val">Ежедневно: 09:00 – 19:00</span>
       </div>
       <div>
         <div class="footer-nav-title">Меню</div>
