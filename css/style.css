@@ -75,6 +75,8 @@ input, textarea { font-family: inherit; }
   background: var(--white);
   border-bottom: 1px solid var(--gray-400);
 }
+/* Две строки, как в макете: сверху адрес/почта и навигация,
+   снизу логотип, каталог, поиск и телефон. */
 .header-top {
   display: flex; align-items: center; justify-content: space-between;
   padding: 8px 0; font-size: 13px; color: var(--black-50);
@@ -82,6 +84,11 @@ input, textarea { font-family: inherit; }
 }
 .header-top a:hover { color: var(--orange); }
 .header-top-left { display: flex; gap: 24px; align-items: center; }
+.header-addr { display: flex; align-items: center; gap: 6px; }
+.header-addr::before {
+  content: ''; width: 12px; height: 15px; flex-shrink: 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='15' viewBox='0 0 12 15' fill='none'%3E%3Cpath d='M6 1C3.5 1 1.5 3 1.5 5.5C1.5 9 6 14 6 14S10.5 9 10.5 5.5C10.5 3 8.5 1 6 1Z' stroke='%23242424' stroke-opacity='0.5' stroke-width='1.2'/%3E%3Ccircle cx='6' cy='5.5' r='1.6' stroke='%23242424' stroke-opacity='0.5' stroke-width='1.2'/%3E%3C/svg%3E") no-repeat center;
+}
 .header-main {
   display: flex; align-items: center; gap: 16px; padding: 14px 0;
 }
@@ -103,20 +110,38 @@ input, textarea { font-family: inherit; }
   transition: background 0.2s;
 }
 .btn-catalog:hover { background: var(--orange); }
-.btn-catalog-icon { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; width: 14px; }
+.btn-catalog-icon { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; width: 14px; flex-shrink: 0; }
 .btn-catalog-icon span { display: block; height: 6px; background: currentColor; border-radius: 1px; }
 
-.search-wrap { flex: 1; max-width: 400px; position: relative; }
+/* квадратные кнопки-иконки: поиск в мобильной шапке и каталог в мобильном меню */
+.icon-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 40px; height: 40px; border-radius: 6px; flex-shrink: 0;
+  transition: all 0.2s;
+}
+.icon-btn svg { width: 18px; height: 18px; }
+.icon-btn-search { display: none; border: 1px solid var(--gray-100); background: var(--white); color: var(--black); }
+.icon-btn-search:hover { border-color: var(--orange); color: var(--orange); }
+.icon-btn-light { background: rgba(255,255,255,0.12); color: var(--white); }
+.icon-btn-light:hover { background: rgba(255,255,255,0.22); }
+.icon-btn-white { background: var(--white); color: var(--black); }
+.icon-btn-white:hover { background: var(--orange); color: var(--white); }
+
+.search-wrap { flex: 1; max-width: 340px; position: relative; }
 .search-input {
   width: 100%; height: 44px; padding: 0 16px 0 44px;
   border: 1px solid var(--gray-100); border-radius: 4px;
   font-size: 14px; background: var(--gray-300); outline: none;
 }
 .search-input:focus { border-color: var(--orange); }
-.search-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--gray-100); font-size: 16px; }
+.search-icon {
+  position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+  color: var(--gray-100); display: flex; pointer-events: none;
+}
+.search-icon svg { width: 18px; height: 18px; }
 
 .nav { display: flex; align-items: center; gap: 28px; margin-left: auto; }
-.nav a { font-size: 15px; font-weight: 500; color: var(--black); transition: color 0.2s; }
+.nav a { font-size: 14px; font-weight: 500; color: var(--black); transition: color 0.2s; }
 .nav a:hover, .nav a.active { color: var(--orange); }
 .nav-dropdown { position: relative; }
 .nav-dropdown > a::after { content: ' ▾'; font-size: 10px; }
@@ -142,8 +167,70 @@ input, textarea { font-family: inherit; }
   font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 17px;
   color: var(--black); border: 2px solid var(--black); border-radius: 4px;
   padding: 8px 18px; white-space: nowrap; transition: all 0.2s; flex-shrink: 0;
+  margin-left: auto;
 }
 .header-phone:hover { background: var(--black); color: var(--white); }
+
+/* ── ПОИСК: результаты ── */
+/* Одна и та же разметка показывается в выпадашке под полем (десктоп)
+   и в полноэкранном оверлее (мобильный) — отличаются только фоном. */
+.search-drop {
+  position: absolute; top: calc(100% + 8px); left: 0; right: 0; z-index: 300;
+  background: var(--white); border-radius: 8px; padding: 12px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.16);
+  max-height: 60vh; overflow-y: auto;
+}
+.search-meta {
+  display: flex; align-items: center; justify-content: space-between;
+  font-size: 13px; color: var(--black-50); margin-bottom: 10px; gap: 12px;
+}
+.search-meta a { color: var(--black); text-decoration: underline; white-space: nowrap; }
+.search-meta a:hover { color: var(--orange); }
+.search-list { display: flex; flex-direction: column; gap: 10px; }
+.search-row {
+  display: flex; align-items: center; gap: 12px;
+  background: var(--white); border: 1px solid var(--gray-400);
+  border-radius: 8px; padding: 10px; transition: border-color 0.2s;
+}
+.search-row:hover { border-color: var(--orange); }
+.search-row-img { width: 76px; height: 56px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+.search-row-img img { max-width: 100%; max-height: 100%; object-fit: contain; }
+.search-row-body { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.search-row-name {
+  font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 13px;
+  text-transform: uppercase; color: var(--black);
+}
+.search-row-price {
+  font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 13px;
+  text-transform: uppercase; color: var(--orange);
+}
+.search-empty { font-size: 14px; color: var(--black-50); padding: 8px 2px; }
+
+/* ── ПОИСК: полноэкранный оверлей (мобильный) ── */
+.search-overlay {
+  display: none; position: fixed; inset: 0; z-index: 600;
+  background: var(--black); overflow-y: auto;
+}
+.search-overlay.open { display: block; }
+.search-overlay-bar { display: flex; align-items: center; gap: 12px; padding: 14px 16px; }
+.search-overlay-field { position: relative; flex: 1; }
+.search-overlay-field input {
+  width: 100%; height: 40px; padding: 0 44px 0 14px;
+  background: rgba(255,255,255,0.12); border: none; border-radius: 6px;
+  color: var(--white); font-size: 14px; outline: none;
+}
+.search-overlay-field input::placeholder { color: rgba(255,255,255,0.45); }
+.search-overlay-icon {
+  position: absolute; right: 14px; top: 50%; transform: translateY(-50%);
+  color: var(--white); display: flex; pointer-events: none;
+}
+.search-overlay-icon svg { width: 18px; height: 18px; }
+.search-overlay-close { color: var(--white); font-size: 26px; line-height: 1; padding: 0 4px; }
+.search-overlay-body { padding: 6px 16px 32px; }
+.search-overlay .search-meta { color: rgba(255,255,255,0.5); }
+.search-overlay .search-meta a { color: var(--white); }
+.search-overlay .search-row { border-color: transparent; }
+.search-overlay .search-empty { color: rgba(255,255,255,0.5); }
 
 .breadcrumb { padding: 12px 0; font-size: 13px; color: var(--black-50); }
 .breadcrumb a { color: var(--black-50); }
@@ -186,14 +273,11 @@ input, textarea { font-family: inherit; }
   background: var(--white);
 }
 .category-card:hover { border-color: var(--orange); box-shadow: 0 8px 32px rgba(255,79,0,0.1); transform: translateY(-2px); }
-.category-card-img { height: 140px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; overflow: hidden; }
-.category-card-img img { max-height: 100%; object-fit: contain; }
-.category-card-icon { font-size: 80px; line-height: 1; }
+.category-card-img { height: 180px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; overflow: hidden; }
+.category-card-img img { max-height: 100%; max-width: 100%; object-fit: contain; }
 /* hover: картинка увеличивается, название становится оранжевым */
-.category-card-img img,
-.category-card-icon { transition: transform 0.3s ease; }
-.category-card:hover .category-card-img img,
-.category-card:hover .category-card-icon { transform: scale(1.12); }
+.category-card-img img { transition: transform 0.3s ease; }
+.category-card:hover .category-card-img img { transform: scale(1.08); }
 .category-card-name { font-family: 'Onest', sans-serif; font-size: 20px; font-weight: 600; margin-bottom: 10px; color: var(--black); transition: color 0.25s ease; }
 .category-card:hover .category-card-name { color: var(--orange); }
 .category-card-desc { font-size: 14px; color: var(--black-50); line-height: 1.55; margin-bottom: 20px; }
@@ -239,7 +323,8 @@ input, textarea { font-family: inherit; }
   transition: all 0.25s;
 }
 .service-card:hover { border-color: var(--orange); box-shadow: 0 8px 28px rgba(255,79,0,0.1); }
-.service-icon { font-size: 60px; margin-bottom: 20px; }
+/* иллюстрация из макета */
+.service-ill { height: 150px; width: auto; object-fit: contain; margin-bottom: 20px; }
 .service-name { font-family: 'Onest', sans-serif; font-weight: 700; font-size: 18px; margin-bottom: 10px; }
 .service-desc { font-size: 14px; color: var(--black-50); line-height: 1.55; margin-bottom: 20px; }
 
@@ -355,8 +440,9 @@ input, textarea { font-family: inherit; }
 
 /* ── SERVICES PAGE ── */
 .services-page-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
-.service-page-card { border: 1px solid var(--gray-400); border-radius: 10px; padding: 36px 32px 36px; display: grid; grid-template-columns: 1fr 140px; gap: 24px; align-items: center; background: var(--white); margin: 1px; }
-.service-page-icon-wrap { background: var(--gray-300); border-radius: 8px; display: flex; align-items: center; justify-content: center; height: 120px; font-size: 64px; }
+.service-page-card { border: 1px solid var(--gray-400); border-radius: 10px; padding: 24px; display: grid; grid-template-columns: 1fr 240px; gap: 24px; align-items: center; background: var(--white); margin: 1px; }
+.service-page-icon-wrap { background: var(--gray-400); border-radius: 8px; display: flex; align-items: center; justify-content: center; height: 200px; font-size: 64px; padding: 12px; }
+.service-page-icon-wrap img { max-height: 100%; max-width: 100%; object-fit: contain; }
 
 /* ── CONTACTS PAGE ── */
 .contacts-hero { min-height: 480px; position: relative; overflow: hidden; display: flex; }
@@ -394,6 +480,13 @@ input, textarea { font-family: inherit; }
 .catalog-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
 .catalog-count { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 28px; text-transform: uppercase; }
 .catalog-count span { font-size: 16px; font-weight: 400; font-family: 'Onest', sans-serif; color: var(--black-50); margin-left: 8px; }
+/* «по запросу «…» ✕» рядом с заголовком раздела — приходит из поиска в шапке */
+.catalog-query {
+  font-family: 'Onest', sans-serif; font-size: 14px; font-weight: 400;
+  color: var(--black-50); text-transform: none; white-space: nowrap;
+}
+.catalog-query:hover { color: var(--orange); }
+
 .sort-select { height: 40px; padding: 0 36px 0 14px; border: 1px solid var(--gray-100); border-radius: 6px; font-size: 14px; font-family: 'Onest', sans-serif; outline: none; appearance: none; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23242424' stroke-width='1.5' fill='none'/%3E%3C/svg%3E") no-repeat right 12px center; background-color: var(--white); cursor: pointer; }
 /* на десктопе фильтр применяется сразу по клику, кнопка нужна только на мобиле */
 .filter-btn { display: none; width: 100%; height: 44px; background: var(--orange); color: var(--white); font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 15px; text-transform: uppercase; letter-spacing: 0.04em; border-radius: 6px; border: none; cursor: pointer; margin-top: 20px; transition: background 0.2s; }
@@ -408,10 +501,12 @@ input, textarea { font-family: inherit; }
   text-transform: uppercase; letter-spacing: 0.04em; text-align: center;
   transition: all 0.25s ease;
 }
-.cat-tile-icon { font-size: 34px; line-height: 1; transition: transform 0.3s ease; }
+.cat-tile-icon { height: 46px; width: auto; object-fit: contain; transition: transform 0.3s ease; }
 .cat-tile:hover { border-color: var(--orange); background: var(--white); box-shadow: 0 8px 28px rgba(255,79,0,0.1); }
 .cat-tile:hover .cat-tile-icon { transform: scale(1.12); }
 .cat-tile.active { background: var(--black); color: var(--white); border-color: var(--black); }
+/* иллюстрация нарисована тёмным контуром — на активной чёрной плитке инвертируем */
+.cat-tile.active .cat-tile-icon { filter: invert(1); }
 
 /* Шапка сайдбара фильтров */
 .filter-head { display: flex; align-items: center; justify-content: space-between; padding-bottom: 12px; }
@@ -492,14 +587,36 @@ input, textarea { font-family: inherit; }
 .load-more { display: flex; justify-content: center; margin-top: 40px; }
 
 /* ── MOBILE MENU ── */
-.burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; }
+.burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; background: none; border: none; }
 .burger span { display: block; width: 24px; height: 2px; background: var(--black); transition: all 0.3s; }
-.mobile-menu { display: none; position: fixed; inset: 0; background: var(--white); z-index: 500; overflow-y: auto; padding: 24px; }
-.mobile-menu.open { display: block; }
-.mobile-menu-close { position: absolute; top: 20px; right: 24px; font-size: 28px; cursor: pointer; background: none; border: none; }
-.mobile-nav { display: flex; flex-direction: column; gap: 4px; margin-top: 48px; }
-.mobile-nav a { font-family: 'Oswald', sans-serif; font-size: 28px; font-weight: 700; text-transform: uppercase; padding: 8px 0; border-bottom: 1px solid var(--gray-300); color: var(--black); }
-.mobile-nav a:hover { color: var(--orange); }
+
+/* ── МОБИЛЬНОЕ МЕНЮ ── */
+/* Тёмный полноэкранный слой: сверху крестик, логотип и кнопки поиска/каталога,
+   снизу адрес и почта — состав по макету. */
+.mobile-menu { display: none; position: fixed; inset: 0; background: var(--black); z-index: 500; overflow-y: auto; }
+.mobile-menu.open { display: flex; flex-direction: column; }
+.mobile-menu-bar { display: flex; align-items: center; gap: 12px; padding: 14px 16px; }
+.mobile-menu-close { color: var(--white); font-size: 26px; line-height: 1; padding: 0 4px; }
+/* логотип оставляем фирменным оранжевым — на тёмном он читается, как в макете */
+.mobile-menu-logo { display: flex; align-items: center; gap: 8px; margin: 0 auto; }
+.mobile-nav { display: flex; flex-direction: column; padding: 20px 20px 0; }
+.mobile-nav a {
+  font-family: 'Oswald', sans-serif; font-size: 26px; font-weight: 700;
+  text-transform: uppercase; padding: 13px 0; color: var(--white);
+}
+.mobile-nav a:hover, .mobile-nav a.active { color: var(--orange); }
+.mobile-menu-contacts { margin-top: auto; padding: 40px 20px 28px; }
+.mobile-menu-label { font-size: 12px; color: rgba(255,255,255,0.5); margin-bottom: 5px; }
+.mobile-menu-val {
+  display: flex; align-items: center; gap: 6px; margin-bottom: 18px;
+  font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 14px;
+  text-transform: uppercase; color: var(--white);
+}
+.mobile-menu-val:last-child { margin-bottom: 0; }
+.mobile-menu-addr::before {
+  content: ''; width: 12px; height: 15px; flex-shrink: 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='15' viewBox='0 0 12 15' fill='none'%3E%3Cpath d='M6 1C3.5 1 1.5 3 1.5 5.5C1.5 9 6 14 6 14S10.5 9 10.5 5.5C10.5 3 8.5 1 6 1Z' stroke='%23ffffff' stroke-width='1.2'/%3E%3Ccircle cx='6' cy='5.5' r='1.6' stroke='%23ffffff' stroke-width='1.2'/%3E%3C/svg%3E") no-repeat center;
+}
 
 /* ── UTILS ── */
 .text-orange { color: var(--orange); }
@@ -542,22 +659,27 @@ input, textarea { font-family: inherit; }
   .h2 { font-size: 22px; }
   .stat-num { font-size: 48px; }
 
-  /* HEADER — логотип + каталог + бургер в одну строку */
+  /* HEADER — по макету: бургер, логотип, поиск и каталог в одну строку,
+     телефон переносится на вторую (перенос форсирует ::after). */
   .header-top { display: none; }
   .header-main {
-    flex-wrap: nowrap;
-    gap: 10px;
+    flex-wrap: wrap;
+    column-gap: 10px; row-gap: 0;
     padding: 12px 0;
     align-items: center;
   }
-  .logo { font-size: 18px; }
+  /* пустой элемент во всю ширину — заставляет телефон уехать на вторую строку */
+  .header-main::after { content: ''; order: 5; flex-basis: 100%; height: 0; }
+  .logo { font-size: 18px; order: 2; margin: 0 auto; }
   .logo-sub { display: none; }
   .logo-bolt { font-size: 22px; }
-  .btn-catalog { padding: 0 12px; font-size: 13px; height: 38px; gap: 6px; }
-  .search-wrap { display: none; } /* скрыт в хедере, открывается отдельно */
+  .btn-catalog { order: 4; width: 40px; height: 40px; padding: 0; justify-content: center; }
+  .btn-catalog-label { display: none; }
+  .search-wrap { display: none; }        /* на мобильном поиск — отдельный экран */
+  .icon-btn-search { display: inline-flex; order: 3; }
   .nav { display: none; }
-  .header-phone { display: none; }
-  .burger { display: flex; margin-left: auto; flex-shrink: 0; }
+  .header-phone { display: inline-flex; order: 6; font-size: 15px; padding: 6px 14px; margin-top: 10px; }
+  .burger { display: flex; order: 1; flex-shrink: 0; }
 
   /* HERO */
   .hero { min-height: 320px; }
@@ -569,15 +691,12 @@ input, textarea { font-family: inherit; }
   /* SECTION HEAD */
   .section-head { margin-bottom: 20px; }
 
-  /* CATEGORIES — 1 колонка, иконка слева, весь текст в правой колонке.
-     Позиции заданы явно: иначе описание уезжает в узкую колонку под иконку. */
+  /* CATEGORIES — 1 колонка, иллюстрация сверху во всю ширину (как в макете) */
   .categories-grid { grid-template-columns: 1fr; gap: 12px; }
-  .category-card { padding: 20px; display: grid; grid-template-columns: 80px 1fr; column-gap: 16px; align-items: start; }
-  .category-card-img { grid-column: 1; grid-row: 1 / span 3; height: 70px; margin-bottom: 0; }
-  .category-card-icon { font-size: 48px; }
-  .category-card-name { grid-column: 2; grid-row: 1; font-size: 16px; margin-bottom: 6px; }
-  .category-card-desc { grid-column: 2; grid-row: 2; font-size: 13px; margin-bottom: 10px; }
-  .category-card .btn-link { grid-column: 2; grid-row: 3; }
+  .category-card { padding: 20px; }
+  .category-card-img { height: 150px; margin-bottom: 16px; }
+  .category-card-name { font-size: 18px; margin-bottom: 8px; }
+  .category-card-desc { font-size: 13px; margin-bottom: 14px; }
 
   /* PRODUCTS — 2 колонки (как в Figma) */
   .products-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
@@ -591,13 +710,12 @@ input, textarea { font-family: inherit; }
   .tabs { overflow-x: auto; white-space: nowrap; gap: 0; border-bottom-width: 1px; }
   .tab-btn { padding: 10px 16px; font-size: 13px; }
 
-  /* SERVICES — та же схема: иконка слева, текст одной колонкой справа */
+  /* SERVICES — 1 колонка, иллюстрация сверху */
   .services-grid { grid-template-columns: 1fr; gap: 12px; }
-  .service-card { padding: 20px; display: grid; grid-template-columns: 56px 1fr; column-gap: 16px; align-items: start; }
-  .service-card > .service-icon { grid-column: 1; grid-row: 1 / span 3; font-size: 40px; margin-bottom: 0; }
-  .service-card > .service-name { grid-column: 2; grid-row: 1; font-size: 16px; margin-bottom: 6px; }
-  .service-card > .service-desc { grid-column: 2; grid-row: 2; margin-bottom: 12px; }
-  .service-card > .btn-link { grid-column: 2; grid-row: 3; }
+  .service-card { padding: 20px; }
+  .service-ill { height: 130px; margin-bottom: 16px; }
+  .service-card > .service-name { font-size: 18px; margin-bottom: 8px; }
+  .service-card > .service-desc { margin-bottom: 14px; }
 
   /* CTA BANNER */
   .cta-banner { padding: 32px 0; }
@@ -621,31 +739,8 @@ input, textarea { font-family: inherit; }
   .footer-phone-big { font-size: 24px; }
   .footer-bottom { flex-direction: column; gap: 8px; font-size: 11px; }
 
-  /* MOBILE MENU — тёмный, на весь экран */
-  .mobile-menu {
-    background: var(--black);
-    padding: 0;
-  }
-  .mobile-menu-close {
-    color: var(--white);
-    top: 16px; right: 20px;
-    font-size: 24px;
-  }
-  .mobile-nav {
-    margin-top: 60px;
-    padding: 0 20px;
-  }
-  .mobile-nav a {
-    color: var(--white);
-    font-size: 24px;
-    border-bottom-color: rgba(255,255,255,0.1);
-    padding: 14px 0;
-  }
-  .mobile-nav a:hover { color: var(--orange); }
-  .mobile-phone-block {
-    padding: 24px 20px 0;
-    margin-top: 8px;
-  }
+  /* MOBILE MENU — размеры под узкий экран, оформление в базовых стилях */
+  .mobile-nav a { font-size: 24px; padding: 12px 0; }
 
   /* BREADCRUMB */
   .breadcrumb { font-size: 12px; padding: 8px 0; }
@@ -660,7 +755,7 @@ input, textarea { font-family: inherit; }
   .catalog-empty { padding: 40px 16px; }
   .cat-tiles { gap: 8px; margin-bottom: 20px; }
   .cat-tile { min-height: 84px; padding: 12px 6px; font-size: 11px; gap: 6px; }
-  .cat-tile-icon { font-size: 26px; }
+  .cat-tile-icon { height: 34px; }
   .catalog-showcase { padding: 24px 0 48px; }
   .filter-toggle-btn {
     display: flex; align-items: center; gap: 8px;
@@ -682,10 +777,10 @@ input, textarea { font-family: inherit; }
   .product-delivery-row { flex-wrap: wrap; gap: 16px; }
   .similar-title { font-size: 22px; margin: 40px 0 20px; flex-direction: column; align-items: flex-start; gap: 12px; }
 
-  /* SERVICES PAGE */
+  /* SERVICES PAGE — иллюстрация переезжает наверх карточки */
   .services-page-grid { grid-template-columns: 1fr; gap: 12px; }
-  .service-page-card { grid-template-columns: 1fr; padding: 24px 20px; }
-  .service-page-icon-wrap { display: none; }
+  .service-page-card { grid-template-columns: 1fr; padding: 16px; gap: 16px; }
+  .service-page-icon-wrap { order: -1; height: 230px; }
 
   /* DELIVERY PAGE */
   .delivery-section { padding: 32px 0; }

@@ -62,7 +62,7 @@
           <p class="advantage-desc">Поможем выбрать аккумулятор под ваш автомобиль, мотоцикл, лодку или ИБП за несколько минут</p>
         </div>
         <div class="advantage-img">
-          <img id="adv-img-1" alt="Подбор аккумулятора">
+          <img src="img/adv-select.jpg" alt="Быстрый подбор аккумулятора">
         </div>
       </div>
       <div class="advantage-row" style="margin-bottom:16px;border-radius:12px;">
@@ -70,21 +70,21 @@
           <div class="advantage-title">Консультация специалистов</div>
           <p class="advantage-desc">Подскажем оптимальное решение по характеристикам, бюджету и условиям эксплуатации</p>
         </div>
-        <div class="advantage-img" style="background:var(--gray-400);display:flex;align-items:center;justify-content:center;font-size:80px;">🎧</div>
+        <div class="advantage-img"><img src="img/adv-consult.jpg" alt="Консультация специалистов"></div>
       </div>
       <div class="advantage-row" style="margin-bottom:16px;border-radius:12px;">
         <div class="advantage-text">
           <div class="advantage-title">Товары в наличии и под заказ</div>
           <p class="advantage-desc">Большой выбор аккумуляторов, зарядных устройств и аксессуаров с возможностью заказа редких моделей</p>
         </div>
-        <div class="advantage-img" style="background:var(--gray-400);display:flex;align-items:center;justify-content:center;font-size:80px;">📦</div>
+        <div class="advantage-img"><img src="img/adv-stock.jpg" alt="Товары в наличии и под заказ"></div>
       </div>
       <div class="advantage-row" style="border-radius:12px;">
         <div class="advantage-text">
           <div class="advantage-title">Удобное получение заказа</div>
           <p class="advantage-desc">Самовывоз из магазина в Волжском или доставка по договорённости в удобное для вас время</p>
         </div>
-        <div class="advantage-img" style="background:var(--gray-400);display:flex;align-items:center;justify-content:center;font-size:80px;">🚚</div>
+        <div class="advantage-img"><img src="img/adv-pickup.jpg" alt="Удобное получение заказа"></div>
       </div>
     </div>
   </div>
@@ -92,13 +92,12 @@
 
 <div id="cta-mount"></div>
 <div id="footer-mount"></div>
+<script src="js/catalog-data.js"></script>
 <script src="js/main.js"></script>
 <script>
   // Устанавливаем SVG-изображения
   const hb = document.getElementById('hero-bg-img');
   if (hb) { hb.src = IMG.heroBgAbout; hb.style.objectPosition = 'center center'; }
-  const a1 = document.getElementById('adv-img-1');
-  if (a1) a1.src = IMG.advantage1;
   document.getElementById('header-mount').innerHTML = renderHeader('about.html');
   document.getElementById('breadcrumb-mount').innerHTML = renderBreadcrumb([
     {href:'index.html',label:'Главная'},
