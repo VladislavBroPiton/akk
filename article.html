@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Как правильно выбрать автомобильный аккумулятор — Ампер</title>
+<title>Как правильно выбрать автомобильный аккумулятор: основные критерии — Ампер</title>
+<meta name="description" content="Ёмкость, пусковой ток, размеры, полярность и тип аккумулятора: на что смотреть при выборе, чтобы батарея подошла машине и прослужила дольше.">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -91,31 +92,8 @@
 <div id="footer-mount"></div>
 <script src="js/stat.js"></script>
 <script src="js/catalog-data.js"></script>
+<script src="js/articles-data.js"></script>
 <script src="js/main.js"></script>
-<script>
-  document.getElementById('header-mount').innerHTML = renderHeader('articles.html');
-  // Устанавливаем фото-герой статьи
-  const ah = document.getElementById('article-hero-img');
-  if (ah) {
-    ah.style.backgroundImage = `url(${IMG.articleBattery})`;
-    ah.style.backgroundSize = 'cover';
-    ah.style.backgroundPosition = 'center';
-  }
-  document.getElementById('breadcrumb-mount').innerHTML = renderBreadcrumb([
-    {href:'index.html',label:'Главная'},
-    {href:'articles.html',label:'Статьи'},
-    {href:'article.html',label:'Как правильно выбрать автомобильный аккумулятор'},
-  ]);
-  document.getElementById('cta-mount').innerHTML = renderCtaForm();
-  document.getElementById('footer-mount').innerHTML = renderFooter();
-
-  const ARTS = [
-    { title: 'Когда необходимо менять автомобильный аккумулятор: основные признаки', text: 'Даже самый надёжный аккумулятор имеет ограниченный срок службы. В среднем качественная АКБ служит от 3–5 лет...', img: IMG.articleWrench },
-    { title: 'Зарядные устройства для автомобильных аккумуляторов: зачем они нужны', text: 'Зарядное устройство помогает поддерживать аккумулятор в рабочем состоянии...', img: IMG.articleCharger },
-    { title: 'Аксессуары для аккумуляторов и их преимущества', text: 'Для надёжной работы аккумулятора важно использовать качественные аксессуары...', img: IMG.articleAccessory },
-    { title: 'Аксессуары для аккумуляторов и их преимущества', text: 'Для надёжной работы аккумулятора важно использовать качественные аксессуары...', img: IMG.articleAccessory },
-  ];
-  document.getElementById('see-also-mount').innerHTML = ARTS.map(a => articleCard(a.title, a.text, a.img)).join('');
-</script>
+<script>initArticlePage('choose');</script>
 </body>
 </html>

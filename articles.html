@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Статьи — Ампер</title>
+<title>Статьи об аккумуляторах — Ампер</title>
+<meta name="description" content="Полезные статьи про автомобильные аккумуляторы: как выбрать, когда менять, чем отличаются AGM и EFB, зачем зарядное устройство.">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -13,13 +14,13 @@
 <div class="container">
   <div class="articles-page-header">
     <h1 class="articles-page-title">Статьи</h1>
-    <span class="articles-count">260</span>
+    <span class="articles-count" id="articles-count"></span>
     <div style="margin-left:auto;display:flex;align-items:center;gap:8px;font-size:14px;">
       Сортировка:
-      <select class="sort-select">
-        <option>Сначала новые</option>
-        <option>Сначала старые</option>
-        <option>По популярности</option>
+      <select class="sort-select" id="articles-sort">
+        <option value="new">Сначала новые</option>
+        <option value="old">Сначала старые</option>
+        <option value="editor">По популярности</option>
       </select>
     </div>
   </div>
@@ -35,6 +36,7 @@
 <div id="footer-mount"></div>
 <script src="js/stat.js"></script>
 <script src="js/catalog-data.js"></script>
+<script src="js/articles-data.js"></script>
 <script src="js/main.js"></script>
 <script>
   document.getElementById('header-mount').innerHTML = renderHeader('articles.html');
@@ -45,27 +47,34 @@
   document.getElementById('cta-mount').innerHTML = renderCtaForm();
   document.getElementById('footer-mount').innerHTML = renderFooter();
 
-  const ARTS = [
-    { title: 'Как правильно выбрать автомобильный аккумулятор: основные критерии', text: 'Автомобильный аккумулятор — один из важнейших элементов любого транспортного средства. От его состояния зависит запуск двигателя, работа электроники...', img: IMG.articleBattery },
-    { title: 'Когда необходимо менять автомобильный аккумулятор: основные признаки', text: 'Даже самый надёжный аккумулятор имеет ограниченный срок службы. В среднем качественная АКБ служит от 3–5 лет...', img: IMG.articleWrench },
-    { title: 'Зарядные устройства для автомобильных аккумуляторов: зачем они нужны', text: 'Зарядное устройство помогает поддерживать аккумулятор в рабочем состоянии и значительно продлевает срок его службы...', img: IMG.articleCharger },
-    { title: 'Аксессуары для аккумуляторов и их преимущества', text: 'Для надёжной работы аккумулятора важно использовать качественные аксессуары. Они упрощают обслуживание батареи...', img: IMG.articleAccessory },
-    { title: 'Как правильно выбрать автомобильный аккумулятор: основные критерии', text: 'Автомобильный аккумулятор — один из важнейших элементов любого транспортного средства...', img: IMG.articleBattery },
-    { title: 'Когда необходимо менять автомобильный аккумулятор: основные признаки', text: 'Даже самый надёжный аккумулятор имеет ограниченный срок службы...', img: IMG.articleWrench },
-    { title: 'Зарядные устройства для автомобильных аккумуляторов: зачем они нужны', text: 'Зарядное устройство помогает поддерживать аккумулятор в рабочем состоянии...', img: IMG.articleCharger },
-    { title: 'Аксессуары для аккумуляторов и их преимущества', text: 'Для надёжной работы аккумулятора важно использовать качественные аксессуары...', img: IMG.articleAccessory },
-    { title: 'Как правильно выбрать автомобильный аккумулятор: основные критерии', text: 'Автомобильный аккумулятор — один из важнейших элементов...', img: IMG.articleBattery },
-    { title: 'Когда необходимо менять автомобильный аккумулятор', text: 'Даже самый надёжный аккумулятор имеет ограниченный срок службы...', img: IMG.articleWrench },
-    { title: 'Зарядные устройства: зачем они нужны', text: 'Зарядное устройство помогает поддерживать аккумулятор в рабочем состоянии...', img: IMG.articleCharger },
-    { title: 'Аксессуары для аккумуляторов', text: 'Для надёжной работы аккумулятора важно использовать качественные аксессуары...', img: IMG.articleAccessory },
-  ];
+  const PAGE = 8;             // сколько карточек показываем за раз
+  let shown = PAGE;
 
-  document.getElementById('articles-list').innerHTML = ARTS.map(a => articleCard(a.title, a.text, a.img)).join('');
-
-  function loadMore() {
-    const more = ARTS.slice(0,8).map(a => articleCard(a.title, a.text, a.img)).join('');
-    document.getElementById('articles-list').insertAdjacentHTML('beforeend', more);
+  // «По популярности» пока = порядок в js/articles-data.js: реальных
+  // просмотров у нас нет. Когда накопится статистика из своей метрики,
+  // сюда можно подставить сортировку по числу открытий.
+  function sorted() {
+    const mode = document.getElementById('articles-sort').value;
+    const list = ARTICLES.slice();
+    if (mode === 'new') return list.sort((a, b) => b.date.localeCompare(a.date));
+    if (mode === 'old') return list.sort((a, b) => a.date.localeCompare(b.date));
+    return list;
   }
+
+  function draw() {
+    const list = sorted();
+    document.getElementById('articles-list').innerHTML =
+      list.slice(0, shown).map(articleCard).join('');
+    document.getElementById('articles-count').textContent = ARTICLES.length;
+    // кнопку прячем, когда показывать больше нечего
+    document.querySelector('.load-more').hidden = shown >= list.length;
+    initReveal();
+  }
+
+  function loadMore() { shown += PAGE; draw(); }
+
+  document.getElementById('articles-sort').addEventListener('change', () => { shown = PAGE; draw(); });
+  draw();
 </script>
 </body>
 </html>

@@ -589,6 +589,9 @@ input, textarea { font-family: inherit; }
 .articles-page-title { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 40px; text-transform: uppercase; }
 .articles-count { font-size: 18px; color: var(--black-50); }
 .load-more { display: flex; justify-content: center; margin-top: 40px; }
+/* display у элемента перебивает атрибут hidden, поэтому прячем явно —
+   иначе кнопка «Показать ещё» остаётся видна, когда показывать уже нечего */
+.load-more[hidden] { display: none; }
 
 /* ── MOBILE MENU ── */
 .burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; background: none; border: none; }
