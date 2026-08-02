@@ -520,6 +520,50 @@ function initSearch() {
   });
 }
 
+/* ── ВЫПАДАЮЩАЯ СОРТИРОВКА ──
+   Нативный <select> под макет не оформить: список вариантов рисует
+   операционная система, а не страница. Поэтому свой: подпись сверху,
+   значение крупно в Oswald, панель с остальными вариантами.
+   Текущий вариант из списка убирается — как в Figma. */
+function initSortDropdown(root, onChange) {
+  const el = typeof root === 'string' ? document.getElementById(root) : root;
+  if (!el || el.dataset.bound) return el;
+  el.dataset.bound = '1';
+
+  const btn = el.querySelector('.sort-btn');
+  const current = el.querySelector('.sort-current');
+  const options = Array.prototype.slice.call(el.querySelectorAll('.sort-list button'));
+
+  const markCurrent = () => options.forEach(o =>
+    o.classList.toggle('is-current', o.dataset.value === el.dataset.value));
+
+  const close = () => {
+    el.classList.remove('open');
+    btn.setAttribute('aria-expanded', 'false');
+  };
+
+  btn.addEventListener('click', e => {
+    e.stopPropagation();
+    const open = !el.classList.contains('open');
+    el.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', String(open));
+  });
+
+  options.forEach(o => o.addEventListener('click', () => {
+    el.dataset.value = o.dataset.value;
+    current.textContent = o.textContent;
+    markCurrent();
+    close();
+    if (onChange) onChange(o.dataset.value);
+  }));
+
+  document.addEventListener('click', e => { if (!el.contains(e.target)) close(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+
+  markCurrent();
+  return el;
+}
+
 // ── THUMBNAIL SWITCHER ──
 function initThumbs() {
   const thumbs = document.querySelectorAll('.product-thumb');

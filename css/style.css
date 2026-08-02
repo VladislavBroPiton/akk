@@ -480,6 +480,41 @@ input, textarea { font-family: inherit; }
 .catalog-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
 .catalog-count { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 28px; text-transform: uppercase; }
 .catalog-count span { font-size: 16px; font-weight: 400; font-family: 'Onest', sans-serif; color: var(--black-50); margin-left: 8px; }
+/* ── СОРТИРОВКА (свой выпадающий список, как в макете) ── */
+.sort { position: relative; }
+.sort-label {
+  font-size: 11px; color: var(--black-50); line-height: 1.2;
+  margin-bottom: 3px; white-space: nowrap;
+}
+.sort-btn {
+  display: flex; align-items: center; gap: 8px;
+  font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 15px;
+  text-transform: uppercase; letter-spacing: 0.02em;
+  color: var(--black); background: none; border: none; padding: 0;
+  white-space: nowrap; transition: color 0.2s;
+}
+.sort-btn::after { content: '▼'; font-size: 8px; line-height: 1; }
+.sort.open .sort-btn::after { content: '▲'; }
+.sort-btn:hover { color: var(--orange); }
+
+.sort-list {
+  display: none; position: absolute; top: 100%; left: 0; z-index: 60;
+  min-width: 100%; padding: 8px 0; margin-top: 6px;
+  background: var(--white); border-radius: 4px;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.16);
+}
+.sort.open .sort-list { display: block; }
+.sort-list button {
+  display: block; width: 100%; text-align: left;
+  padding: 6px 16px; white-space: nowrap;
+  font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 14px;
+  text-transform: uppercase; letter-spacing: 0.02em;
+  color: var(--black); background: none; border: none; transition: color 0.15s;
+}
+.sort-list button:hover { color: var(--orange); }
+/* выбранный вариант в списке не показываем — он уже стоит в заголовке */
+.sort-list button.is-current { display: none; }
+
 /* «по запросу «…» ✕» рядом с заголовком раздела — приходит из поиска в шапке */
 .catalog-query {
   font-family: 'Onest', sans-serif; font-size: 14px; font-weight: 400;
@@ -813,6 +848,10 @@ input, textarea { font-family: inherit; }
   /* ARTICLES PAGE */
   .articles-page-header { flex-wrap: wrap; padding: 24px 0 16px; gap: 10px; }
   .articles-page-title { font-size: 28px; }
+  /* блок сортировки прижат к правому краю — панель раскрываем влево,
+     иначе она вылезает за экран и появляется горизонтальная прокрутка */
+  .sort-list { left: auto; right: 0; }
+  .sort-btn { font-size: 14px; }
 
   /* ARTICLE PAGE */
   .article-layout { grid-template-columns: 1fr; padding: 24px 0 48px; gap: 32px; }

@@ -15,13 +15,17 @@
   <div class="articles-page-header">
     <h1 class="articles-page-title">Статьи</h1>
     <span class="articles-count" id="articles-count"></span>
-    <div style="margin-left:auto;display:flex;align-items:center;gap:8px;font-size:14px;">
-      Сортировка:
-      <select class="sort-select" id="articles-sort">
-        <option value="new">Сначала новые</option>
-        <option value="old">Сначала старые</option>
-        <option value="editor">По популярности</option>
-      </select>
+    <!-- свой выпадающий список вместо <select>: системный не оформить под макет -->
+    <div class="sort" id="articles-sort" data-value="new" style="margin-left:auto;">
+      <div class="sort-label">Сортировка</div>
+      <button class="sort-btn" type="button" aria-haspopup="listbox" aria-expanded="false">
+        <span class="sort-current">Сначала новые</span>
+      </button>
+      <div class="sort-list" role="listbox">
+        <button type="button" role="option" data-value="new">Сначала новые</button>
+        <button type="button" role="option" data-value="editor">По популярности</button>
+        <button type="button" role="option" data-value="old">Сначала старые</button>
+      </div>
     </div>
   </div>
 
@@ -53,8 +57,10 @@
   // «По популярности» пока = порядок в js/articles-data.js: реальных
   // просмотров у нас нет. Когда накопится статистика из своей метрики,
   // сюда можно подставить сортировку по числу открытий.
+  const sortEl = document.getElementById('articles-sort');
+
   function sorted() {
-    const mode = document.getElementById('articles-sort').value;
+    const mode = sortEl.dataset.value;
     const list = ARTICLES.slice();
     if (mode === 'new') return list.sort((a, b) => b.date.localeCompare(a.date));
     if (mode === 'old') return list.sort((a, b) => a.date.localeCompare(b.date));
@@ -73,7 +79,7 @@
 
   function loadMore() { shown += PAGE; draw(); }
 
-  document.getElementById('articles-sort').addEventListener('change', () => { shown = PAGE; draw(); });
+  initSortDropdown(sortEl, () => { shown = PAGE; draw(); });
   draw();
 </script>
 </body>
