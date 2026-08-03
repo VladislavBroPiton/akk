@@ -71,9 +71,9 @@ input, textarea { font-family: inherit; }
 
 /* ── HEADER ── */
 .header {
-  position: sticky; top: 0; z-index: 100;
-  background: var(--black);
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  position: absolute; top: 0; left: 0; right: 0; z-index: 100;
+  background: transparent;
+  border-bottom: none;
 }
 /* Две строки, как в макете: сверху адрес/почта и навигация,
    снизу логотип, каталог, поиск и телефон. */
@@ -235,6 +235,8 @@ input, textarea { font-family: inherit; }
 .search-overlay .search-empty { color: rgba(255,255,255,0.5); }
 
 .breadcrumb { padding: 12px 0; font-size: 13px; color: var(--black-50); }
+/* На страницах без баннера шапка absolute — компенсируем отступом */
+.no-hero-page .breadcrumb { padding-top: 122px; }
 .breadcrumb a { color: var(--black-50); }
 .breadcrumb a:hover { color: var(--orange); }
 .breadcrumb span { color: var(--black); }
@@ -243,8 +245,9 @@ input, textarea { font-family: inherit; }
 /* ── HERO ── */
 .hero {
   position: relative; overflow: hidden;
-  min-height: 480px; display: flex; align-items: flex-end;
+  min-height: 560px; display: flex; align-items: flex-end;
   background: var(--black);
+  padding-top: 110px; /* место под прозрачную шапку */
 }
 .hero-bg {
   position: absolute; inset: 0;
@@ -252,7 +255,8 @@ input, textarea { font-family: inherit; }
 }
 .hero-bg::after {
   content: ''; position: absolute; inset: 0;
-  background: linear-gradient(to right, rgba(0,0,0,0.8) 40%, transparent 100%);
+  background: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 30%),
+              linear-gradient(to right, rgba(0,0,0,0.8) 40%, transparent 100%);
 }
 .hero-img {
   position: absolute; right: 0; top: 0; bottom: 0; width: 60%;
@@ -405,10 +409,10 @@ input, textarea { font-family: inherit; }
 .footer-bottom a:hover { color: var(--white); }
 
 /* ── INNER PAGE HERO ── */
-.inner-hero { min-height: 280px; display: flex; align-items: flex-end; background: var(--black); position: relative; overflow: hidden; }
+.inner-hero { min-height: 280px; display: flex; align-items: flex-end; background: var(--black); position: relative; overflow: hidden; padding-top: 110px; }
 .inner-hero-bg { position: absolute; inset: 0; }
 .inner-hero-bg-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; opacity: 1; }
-.inner-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(0,0,0,0.45) 30%, rgba(0,0,0,0.1) 100%); }
+.inner-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0) 25%), linear-gradient(to right, rgba(0,0,0,0.45) 30%, rgba(0,0,0,0.1) 100%); }
 .inner-hero-content { position: relative; z-index: 1; padding: 48px 0; color: var(--white); }
 .inner-hero-title { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 44px; text-transform: uppercase; }
 
