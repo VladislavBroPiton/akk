@@ -72,33 +72,33 @@ input, textarea { font-family: inherit; }
 /* ── HEADER ── */
 .header {
   position: sticky; top: 0; z-index: 100;
-  background: var(--white);
-  border-bottom: 1px solid var(--gray-400);
+  background: var(--black);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 /* Две строки, как в макете: сверху адрес/почта и навигация,
    снизу логотип, каталог, поиск и телефон. */
 .header-top {
   display: flex; align-items: center; justify-content: space-between;
-  padding: 8px 0; font-size: 13px; color: var(--black-50);
-  border-bottom: 1px solid var(--gray-400);
+  padding: 8px 0; font-size: 13px; color: rgba(255,255,255,0.5);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 .header-top a:hover { color: var(--orange); }
 .header-top-left { display: flex; gap: 24px; align-items: center; }
 .header-addr { display: flex; align-items: center; gap: 6px; }
 .header-addr::before {
   content: ''; width: 12px; height: 15px; flex-shrink: 0;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='15' viewBox='0 0 12 15' fill='none'%3E%3Cpath d='M6 1C3.5 1 1.5 3 1.5 5.5C1.5 9 6 14 6 14S10.5 9 10.5 5.5C10.5 3 8.5 1 6 1Z' stroke='%23242424' stroke-opacity='0.5' stroke-width='1.2'/%3E%3Ccircle cx='6' cy='5.5' r='1.6' stroke='%23242424' stroke-opacity='0.5' stroke-width='1.2'/%3E%3C/svg%3E") no-repeat center;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='15' viewBox='0 0 12 15' fill='none'%3E%3Cpath d='M6 1C3.5 1 1.5 3 1.5 5.5C1.5 9 6 14 6 14S10.5 9 10.5 5.5C10.5 3 8.5 1 6 1Z' stroke='%23ffffff' stroke-opacity='0.5' stroke-width='1.2'/%3E%3Ccircle cx='6' cy='5.5' r='1.6' stroke='%23ffffff' stroke-opacity='0.5' stroke-width='1.2'/%3E%3C/svg%3E") no-repeat center;
 }
 .header-main {
   display: flex; align-items: center; gap: 16px; padding: 14px 0;
 }
 .logo {
   display: flex; align-items: center; gap: 10px;
-  color: var(--black); flex-shrink: 0; text-decoration: none;
+  color: var(--white); flex-shrink: 0; text-decoration: none;
 }
 .logo-bolt-svg { display: flex; align-items: center; gap: 8px; }
-.logo-sub { font-size: 9px; font-weight: 400; font-family: 'Onest', sans-serif; color: var(--black-50); line-height: 1.2; text-transform: none; }
-.logo-wrap { display: flex; flex-direction: column; }
+.logo-sub { font-size: 9px; font-weight: 400; font-family: 'Onest', sans-serif; color: rgba(255,255,255,0.5); line-height: 1.2; text-transform: none; }
+.logo-text-img { filter: brightness(10); }
 
 .btn-catalog {
   display: flex; align-items: center; gap: 8px;
@@ -130,18 +130,20 @@ input, textarea { font-family: inherit; }
 .search-wrap { flex: 1; max-width: 340px; position: relative; }
 .search-input {
   width: 100%; height: 44px; padding: 0 16px 0 44px;
-  border: 1px solid var(--gray-100); border-radius: 4px;
-  font-size: 14px; background: var(--gray-300); outline: none;
+  border: 1px solid rgba(255,255,255,0.2); border-radius: 4px;
+  font-size: 14px; background: rgba(255,255,255,0.1); outline: none;
+  color: var(--white);
 }
+.search-input::placeholder { color: rgba(255,255,255,0.4); }
 .search-input:focus { border-color: var(--orange); }
 .search-icon {
   position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
-  color: var(--gray-100); display: flex; pointer-events: none;
+  color: rgba(255,255,255,0.4); display: flex; pointer-events: none;
 }
 .search-icon svg { width: 18px; height: 18px; }
 
 .nav { display: flex; align-items: center; gap: 28px; margin-left: auto; }
-.nav a { font-size: 14px; font-weight: 500; color: var(--black); transition: color 0.2s; }
+.nav a { font-size: 14px; font-weight: 500; color: var(--white); transition: color 0.2s; }
 .nav a:hover, .nav a.active { color: var(--orange); }
 .nav-dropdown { position: relative; }
 .nav-dropdown > a::after { content: ' ▾'; font-size: 10px; }
@@ -165,11 +167,11 @@ input, textarea { font-family: inherit; }
 
 .header-phone {
   font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 17px;
-  color: var(--black); border: 2px solid var(--black); border-radius: 4px;
+  color: var(--white); border: 2px solid var(--white); border-radius: 4px;
   padding: 8px 18px; white-space: nowrap; transition: all 0.2s; flex-shrink: 0;
   margin-left: auto;
 }
-.header-phone:hover { background: var(--black); color: var(--white); }
+.header-phone:hover { background: var(--white); color: var(--black); }
 
 /* ── ПОИСК: результаты ── */
 /* Одна и та же разметка показывается в выпадашке под полем (десктоп)
