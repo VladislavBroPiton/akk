@@ -10,7 +10,7 @@
 <div id="header-mount"></div>
 
 <!-- INNER HERO -->
-<section class="inner-hero" style="min-height:420px;">
+<section class="inner-hero">
   <div class="inner-hero-bg">
     <img class="inner-hero-bg-img" id="hero-bg-img" alt="">
     <div class="inner-hero-overlay"></div>
@@ -98,7 +98,7 @@
 <script>
   // Устанавливаем SVG-изображения
   const hb = document.getElementById('hero-bg-img');
-  if (hb) { hb.src = IMG.heroBgAbout; hb.style.objectPosition = 'center center'; }
+  if (hb) { hb.src = IMG.heroBgAbout; hb.style.objectPosition = 'center top'; }
   document.getElementById('header-mount').innerHTML = renderHeader('about.html');
   document.getElementById('breadcrumb-mount').innerHTML = renderBreadcrumb([
     {href:'index.html',label:'Главная'},
