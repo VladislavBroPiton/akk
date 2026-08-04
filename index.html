@@ -5,6 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ампер — Аккумуляторы, зарядные устройства и аксессуары в Волжском</title>
 <meta name="description" content="Подберём аккумулятор под ваш автомобиль за несколько минут — с консультацией, доставкой и гарантией качества">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=Oswald:wght@600;700&display=swap">
+<link rel="icon" href="img/logo-bolt_sm.svg" type="image/svg+xml">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -161,28 +165,23 @@
 <script src="js/articles-data.js"></script>
 <script src="js/main.js"></script>
 <script>
-  const SPECS = [
-    ['Ёмкость / Пуск.ток', '60 / 460'],
-    ['Габариты Д×Ш×В, мм', '242×175×190'],
-    ['Полярность', 'Обратная'],
-    ['Гарантия', '6 месяцев'],
-  ];
-  const NAMES = [
-    'VARTA Silver Dynamic AGM 70Ah',
-    'VARTA Silver Dynamic AGM 74Ah',
-    'VARTA Blue Dynamic EFB N70',
-    'VARTA Black Dynamic 60Ah',
-  ];
-  ['acc','charge','acc2'].forEach(key => {
-    const el = document.getElementById('products-' + key);
-    if (el) el.innerHTML = NAMES.map(n => productCard(n, SPECS)).join('');
+  // Хиты продаж берём из общего каталога (js/catalog-data.js): в каждой
+  // вкладке товары своего раздела со своими характеристиками. Раньше здесь
+  // был жёстко вписанный список, из-за чего во вкладках «Зарядные устройства»
+  // и «Аксессуары» показывались одни и те же аккумуляторы.
+  const HIT_TABS = { 'acc': 'acc', 'charge': 'charge', 'acc2': 'access' };
+  Object.keys(HIT_TABS).forEach(tab => {
+    const el = document.getElementById('products-' + tab);
+    const cat = HIT_TABS[tab];
+    if (!el || !CATALOG[cat]) return;
+    el.innerHTML = CATALOG[cat].products.slice(0, 4)
+      .map(p => productCard(p.name, CARD_SPECS[cat](p), 'В наличии', p.price)).join('');
   });
 
   // четыре свежие статьи из общего списка js/articles-data.js
   document.getElementById('articles-mount').innerHTML =
     ARTICLES.slice(0, 4).map(articleCard).join('');
 
-  // Устанавливаем SVG-изображения
   const hi = document.getElementById('hero-img');
   if (hi) hi.src = IMG.heroBg;
   document.getElementById('header-mount').innerHTML = renderHeader('index.html');

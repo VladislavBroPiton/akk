@@ -4,6 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>VARTA Silver Dynamic AGM 70Ah — Ампер</title>
+<meta name="description" content="VARTA Silver Dynamic AGM 70Ah — аккумулятор для автомобилей с системой Start-Stop: 70 Ah, пусковой ток 760 A. Самовывоз и доставка в Волжском.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=Oswald:wght@600;700&display=swap">
+<link rel="icon" href="img/logo-bolt_sm.svg" type="image/svg+xml">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="no-hero-page">
@@ -32,11 +37,11 @@
         <div>
           <h2 class="section-title" style="font-size:22px;margin-bottom:20px;">Характеристики</h2>
           <table class="specs-table">
-            <tr><td>Ёмкость</td><td>75 Ah</td></tr>
-            <tr><td>Пусковой ток</td><td>720 A</td></tr>
+            <tr><td>Ёмкость</td><td>70 Ah</td></tr>
+            <tr><td>Пусковой ток</td><td>760 A</td></tr>
             <tr><td>Полярность</td><td>Обратная</td></tr>
             <tr><td>Тип корпуса</td><td>Европейский</td></tr>
-            <tr><td>Технология</td><td>Ca/Ca</td></tr>
+            <tr><td>Технология</td><td>AGM</td></tr>
             <tr><td>Гарантия</td><td>6 месяцев</td></tr>
           </table>
         </div>
@@ -44,8 +49,8 @@
 
       <!-- ПРАВАЯ КОЛОНКА — фиксированная -->
       <div class="product-info">
-        <h1 class="product-page-title">Аккумулятор автомобильный<br>Premium Power 75Ah</h1>
-        <p class="product-page-desc">Аккумулятор разработан с учётом современных требований к надёжности и эффективности. Он обеспечивает стабильную работу всех систем автомобиля, включая электронику, систему зажигания и дополнительные устройства. Благодаря использованию кальциевой технологии (Ca/Ca), аккумулятор обладает низким саморазрядом и увеличенным сроком службы.</p>
+        <h1 class="product-page-title">Аккумулятор автомобильный<br>VARTA Silver Dynamic AGM 70Ah</h1>
+        <p class="product-page-desc">Аккумулятор разработан с учётом современных требований к надёжности и эффективности. Он обеспечивает стабильную работу всех систем автомобиля, включая электронику, систему зажигания и дополнительные устройства. Технология AGM рассчитана на автомобили с системой Start-Stop и повышенной нагрузкой на бортовую сеть: электролит связан в стекловолокне, поэтому батарея не боится вибрации и держит частые пуски.</p>
         <div class="product-page-price">Цена уточняется</div>
 
         <!-- плитки целиком кликабельны -->
@@ -101,19 +106,14 @@
   document.getElementById('cta-mount').innerHTML = renderCtaForm();
   document.getElementById('footer-mount').innerHTML = renderFooter();
 
-  const SPECS = [
-    ['Ёмкость / Пуск.ток', '60 / 460'],
-    ['Габариты', '242×175×190'],
-    ['Полярность', 'Обратная'],
-    ['Гарантия', '6 месяцев'],
-  ];
-  document.getElementById('similar-mount').innerHTML = [
-    'VARTA Silver Dynamic AGM 70Ah',
-    'VARTA Silver Dynamic AGM 74Ah',
-    'TOPLA Energy 70Ah',
-    'ZUBR Asia 65Ah',
-  ].map(n => productCard(n, SPECS)).join('');
-  // Устанавливаем SVG-изображения
+  // Похожие товары берём из каталога, а сам этот товар из списка убираем —
+  // раньше он показывался первым в собственном блоке «Похожие».
+  const THIS_PRODUCT = 'VARTA Silver Dynamic AGM 70Ah';
+  document.getElementById('similar-mount').innerHTML = CATALOG.acc.products
+    .filter(p => p.name !== THIS_PRODUCT)
+    .slice(0, 4)
+    .map(p => productCard(p.name, CARD_SPECS.acc(p), 'В наличии', p.price)).join('');
+
   ['prod-thumb-1','prod-thumb-2','prod-thumb-3'].forEach(id => {
     const el = document.getElementById(id);
     if (el) el.src = IMG.battery;
