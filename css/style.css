@@ -390,19 +390,23 @@ input, textarea { font-family: inherit; }
 .footer-map-img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
 .footer-content { position: relative; z-index: 1; padding-top: 60px; padding-bottom: 32px; }
 /* ── FOOTER GRID ── */
+/* Раньше это была сетка «300px + остальное», из-за чего адрес и график
+   растягивались на всю ширину колонки и начинались сразу после телефона.
+   По макету адрес и меню стоят компактным блоком у правого края — тут flex
+   с justify-content:space-between: телефон слева, остальное прижато вправо. */
 .footer-grid {
-  display: grid;
-  grid-template-columns: 300px 1fr;
-  gap: 0 48px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
   margin-bottom: 0;
-  align-items: start;
 }
 /* footer-map-mobile скрыт на десктопе, показывается только на мобиле */
 .footer-map-mobile { display: none; }
 .footer-col-mid-right {
-  display: grid;
-  grid-template-columns: 1fr 200px;
-  gap: 0 48px;
+  display: flex;
+  gap: 48px;
 }
 .footer-logo { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 24px; color: var(--white); text-transform: uppercase; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
 .footer-logo .logo-bolt { color: var(--orange); }
@@ -426,6 +430,8 @@ input, textarea { font-family: inherit; }
 .footer-bottom { padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--gray-100); flex-wrap: wrap; gap: 12px; margin-top: 32px; }
 .footer-bottom a { color: var(--gray-100); }
 .footer-bottom a:hover { color: var(--white); }
+.footer-credit { display: flex; align-items: center; gap: 6px; text-transform: uppercase; letter-spacing: 0.04em; }
+.footer-credit-icon { width: 10px; height: 10px; background: var(--orange); transform: rotate(45deg); border-radius: 2px; flex-shrink: 0; }
 
 /* ── INNER PAGE HERO ── */
 .inner-hero { min-height: 500px; display: flex; align-items: flex-end; background: var(--black); position: relative; overflow: hidden; padding-top: 110px; }
@@ -709,7 +715,6 @@ input, textarea { font-family: inherit; }
   .catalog-layout { grid-template-columns: 220px 1fr; gap: 24px; }
   .article-layout { grid-template-columns: 1fr; }
   .article-sidebar-widget { position: static; }
-  .footer-grid { grid-template-columns: 1fr 1fr; }
   .services-grid { grid-template-columns: repeat(2, 1fr); }
   .services-page-grid { grid-template-columns: 1fr; }
   .cta-inner { gap: 32px; }
@@ -819,11 +824,17 @@ input, textarea { font-family: inherit; }
   .footer { padding: 0; }
   .footer-map-wrap { display: none; }
   .footer-content { background: var(--black); padding-top: 28px; padding-bottom: 0; }
-  .footer-grid { grid-template-columns: 1fr; gap: 0; }
+  /* на мобиле всё в столбик: телефон сверху, затем адрес и меню в два столбца */
+  .footer-grid { display: block; }
   .footer-col-left { padding-bottom: 16px; }
-  .footer-col-mid-right { grid-template-columns: 1fr 1fr; gap: 16px; padding-bottom: 0; }
+  .footer-col-mid-right { display: flex; gap: 16px; padding-bottom: 0; }
+  .footer-col-mid, .footer-col-right { flex: 1; min-width: 0; }
   .footer-phone-big { font-size: 26px; margin-bottom: 10px; }
+  /* на мобиле порядок строк другой: сначала политика, потом копирайт, потом «Разработка» */
   .footer-bottom { flex-direction: column; align-items: flex-start; gap: 4px; font-size: 11px; margin-top: 0; border-top: none; padding: 10px 0 16px; }
+  .footer-policy { order: 1; }
+  .footer-copy { order: 2; }
+  .footer-credit { order: 3; }
   .footer-mail-row { display: none; } /* почта скрыта на мобиле */
   /* Карта на мобиле */
   .footer-map-mobile {
