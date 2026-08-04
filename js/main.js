@@ -200,14 +200,15 @@ function renderFooter() {
       </div><!-- /footer-col-mid-right -->
 
     </div>
+  <!-- Карта только для мобилы — между контентом и копирайтом -->
+  <div class="footer-map-mobile">
+    <img id="footer-map-mob-img" alt="">
+  </div>
+  <div class="container">
     <div class="footer-bottom">
       <span>Copyright © Ампер аккумуляторный центр</span>
       <a href="#">Политика конфиденциальности</a>
     </div>
-  </div>
-  <!-- Карта только для мобилы -->
-  <div class="footer-map-mobile">
-    <img id="footer-map-mob-img" alt="">
   </div>
 </footer>`;
 }

@@ -394,7 +394,8 @@ input, textarea { font-family: inherit; }
   margin-bottom: 0;
   align-items: start;
 }
-.footer-col-left { }
+/* footer-map-mobile скрыт на десктопе, показывается только на мобиле */
+.footer-map-mobile { display: none; }
 .footer-col-mid-right {
   display: grid;
   grid-template-columns: 1fr 200px;
@@ -805,23 +806,24 @@ input, textarea { font-family: inherit; }
 
   /* FOOTER */
   .footer { padding: 0; }
-  .footer-map-wrap { display: none; } /* на мобиле карта-фон скрыта */
-  .footer-content { background: var(--black); padding-top: 32px; padding-bottom: 0; }
+  .footer-map-wrap { display: none; }
+  .footer-content { background: var(--black); padding-top: 32px; padding-bottom: 16px; }
   .footer-grid { grid-template-columns: 1fr; gap: 0; }
   .footer-col-left { padding-bottom: 20px; }
   .footer-col-mid-right { grid-template-columns: 1fr 1fr; gap: 16px; padding-bottom: 0; }
   .footer-phone-big { font-size: 26px; margin-bottom: 12px; }
-  .footer-bottom { flex-direction: column; align-items: flex-start; gap: 6px; font-size: 11px; margin-top: 0; border-top: none; padding-top: 16px; }
-  /* Карта на мобиле — отдельный блок снизу */
+  .footer-bottom { flex-direction: column; align-items: flex-start; gap: 6px; font-size: 11px; margin-top: 0; border-top: none; padding: 12px 0 20px; }
+  /* Карта на мобиле */
   .footer-map-mobile {
+    display: block;
     width: 100%;
-    position: relative;
     height: 220px;
     overflow: hidden;
-    margin-top: 16px;
+    background: var(--black);
   }
   .footer-map-mobile img {
-    width: 100%; height: 100%;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
     object-position: left center;
     display: block;
