@@ -384,10 +384,10 @@ input, textarea { font-family: inherit; }
 /* ── FOOTER ── */
 .footer { background: var(--black); color: var(--white); padding: 60px 0 32px; position: relative; overflow: hidden; }
 .footer::before {
-  content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
-  width: 600px; height: 400px;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cpath fill='%23333' d='M50,0 C80,20 120,20 150,0 L200,50 C180,80 180,120 200,150 L150,200 C120,180 80,180 50,200 L0,150 C20,120 20,80 0,50 Z'/%3E%3C/svg%3E") center/contain no-repeat;
-  opacity: 0.05; pointer-events: none;
+  content: ''; position: absolute; bottom: 0; right: 0;
+  width: 55%; height: 100%;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600' fill='none'%3E%3Cg stroke='%23ffffff' stroke-opacity='0.06' stroke-width='1'%3E%3Cpath d='M200 100 L350 80 L500 120 L600 90 L700 140 L680 200 L720 260 L680 320 L700 380 L640 420 L660 480 L600 500 L520 460 L440 500 L380 460 L300 480 L240 440 L200 480 L140 460 L120 400 L80 360 L100 300 L60 240 L100 180 L160 160 Z'/%3E%3Cpath d='M300 140 L400 120 L480 160 L520 200 L500 260 L540 300 L520 360 L460 380 L400 360 L340 380 L300 340 L260 360 L240 300 L280 260 L260 200 Z'/%3E%3Cpath d='M350 80 L420 60 L480 100 L460 140 L400 120 Z'/%3E%3Cpath d='M500 120 L580 100 L640 140 L620 180 L560 200 L500 160 Z'/%3E%3Cpath d='M680 200 L740 180 L760 240 L720 260 Z'/%3E%3Cpath d='M100 180 L160 160 L200 200 L180 240 L120 240 Z'/%3E%3Cpath d='M60 240 L100 220 L120 260 L100 300 L60 280 Z'/%3E%3Cpath d='M640 420 L700 400 L720 440 L680 460 L640 440 Z'/%3E%3Cpath d='M240 300 L300 280 L340 320 L300 360 L240 340 Z'/%3E%3Cpath d='M460 300 L520 280 L540 320 L500 360 L460 340 Z'/%3E%3Cpath d='M380 380 L440 360 L460 400 L420 420 L380 400 Z'/%3E%3Cpath d='M200 380 L260 360 L280 400 L240 420 L200 400 Z'/%3E%3Cpath d='M560 360 L620 340 L640 380 L600 400 L560 380 Z'/%3E%3C/g%3E%3C/svg%3E") center/cover no-repeat;
+  pointer-events: none;
 }
 .footer-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
 .footer-logo { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 24px; color: var(--white); text-transform: uppercase; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
