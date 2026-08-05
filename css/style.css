@@ -238,12 +238,27 @@ input, textarea { font-family: inherit; }
 .search-overlay .search-empty { color: rgba(255,255,255,0.5); }
 
 .breadcrumb { padding: 12px 0; font-size: 13px; color: var(--black-50); }
-/* На страницах без баннера шапка тёмная и sticky */
+/* На страницах без баннера (каталог, товар, статьи, контакты, доставка)
+   шапке не на что накладываться — тёмного фонового фото нет. Поэтому она
+   не прозрачная поверх картинки, а sticky и светлая, и все цвета внутри
+   неё (текст, иконки, поиск, кнопки) идут в тёмном варианте на светлом
+   фоне — обратный набор от шапки на hero-страницах. */
 .no-hero-page .header {
   position: sticky;
-  background: var(--black);
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  background: var(--white);
+  border-bottom: 1px solid var(--gray-400);
 }
+.no-hero-page .header-top { color: var(--black-50); border-bottom-color: var(--gray-400); }
+.no-hero-page .header-addr::before {
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='15' viewBox='0 0 12 15' fill='none'%3E%3Cpath d='M6 1C3.5 1 1.5 3 1.5 5.5C1.5 9 6 14 6 14S10.5 9 10.5 5.5C10.5 3 8.5 1 6 1Z' stroke='%23242424' stroke-opacity='0.5' stroke-width='1.2'/%3E%3Ccircle cx='6' cy='5.5' r='1.6' stroke='%23242424' stroke-opacity='0.5' stroke-width='1.2'/%3E%3C/svg%3E") no-repeat center;
+}
+.no-hero-page .logo-sub { color: var(--black-50); }
+.no-hero-page .nav a { color: var(--black); }
+.no-hero-page .search-input { background: var(--gray-400); border-color: var(--gray-100); color: var(--black); }
+.no-hero-page .search-input::placeholder { color: var(--black-50); }
+.no-hero-page .search-icon { color: var(--black-50); }
+.no-hero-page .header-phone { color: var(--black); border-color: var(--black); }
+.no-hero-page .header-phone:hover { background: var(--black); color: var(--white); }
 .breadcrumb a { color: var(--black-50); }
 .breadcrumb a:hover { color: var(--orange); }
 .breadcrumb span { color: var(--black); }
@@ -767,6 +782,13 @@ input, textarea { font-family: inherit; }
     color: var(--white); border-color: var(--white);
   }
   .burger { display: flex; order: 1; flex-shrink: 0; }
+  /* На страницах без баннера шапка на мобиле тоже светлая: белая иконка
+     на белом фоне была бы не видна, поэтому кнопки каталога и поиска
+     здесь тёмные, а не полупрозрачно-белые. */
+  .no-hero-page .btn-catalog { background: var(--black); }
+  .no-hero-page .icon-btn-search { background: var(--gray-400); color: var(--black); }
+  .no-hero-page .icon-btn-search:hover { background: var(--gray-100); color: var(--black); }
+  .no-hero-page .header-phone { color: var(--black); border-color: var(--black); }
 
   /* HERO */
   .hero { min-height: 320px; padding-top: 110px; }
