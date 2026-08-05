@@ -373,7 +373,7 @@ input, textarea { font-family: inherit; }
 .form-input::placeholder { color: var(--black-50); }
 .form-required { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); color: var(--orange); font-size: 18px; }
 .form-check { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--black-50); margin-bottom: 16px; cursor: pointer; }
-.form-check input[type=checkbox] { accent-color: var(--orange); width: 16px; height: 16px; flex-shrink: 0; }
+.form-check input[type=checkbox] { accent-color: var(--black); width: 16px; height: 16px; flex-shrink: 0; }
 .form-submit { width: 100%; height: 52px; background: var(--orange); color: var(--white); font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 16px; letter-spacing: 0.08em; text-transform: uppercase; border-radius: 6px; border: none; cursor: pointer; transition: background 0.2s; }
 .form-submit:hover { background: #e54500; }
 
@@ -449,7 +449,9 @@ input, textarea { font-family: inherit; }
 .footer-credit-icon { width: 10px; height: 10px; background: var(--orange); transform: rotate(45deg); border-radius: 2px; flex-shrink: 0; }
 
 /* ── INNER PAGE HERO ── */
-.inner-hero { min-height: 500px; display: flex; align-items: flex-end; background: var(--black); position: relative; overflow: hidden; padding-top: 110px; }
+/* Крошки живут внутри героя (сверху, поверх фото), заголовок — снизу:
+   flex-column с justify-content:space-between разводит их по краям. */
+.inner-hero { min-height: 500px; display: flex; flex-direction: column; justify-content: space-between; background: var(--black); position: relative; overflow: hidden; padding-top: 110px; }
 .inner-hero-bg { position: absolute; inset: 0; }
 .inner-hero-bg-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; opacity: 1; }
 .inner-hero-overlay {
@@ -460,9 +462,14 @@ input, textarea { font-family: inherit; }
 }
 .inner-hero-content { position: relative; z-index: 1; padding: 48px 0; color: var(--white); }
 .inner-hero-title { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 44px; text-transform: uppercase; max-width: 480px; line-height: 1.1; }
+/* крошки поверх тёмного фото — светлый вариант вместо обычного тёмного текста */
+.inner-hero-crumbs { position: relative; z-index: 1; }
+.inner-hero-crumbs .breadcrumb, .inner-hero-crumbs .breadcrumb a { color: rgba(255,255,255,0.5); }
+.inner-hero-crumbs .breadcrumb a:hover { color: var(--orange); }
+.inner-hero-crumbs .breadcrumb span { color: var(--white); }
 
 /* ── STATS ROW ── */
-.stats-row { display: flex; gap: 60px; padding: 64px 0; border-bottom: 1px solid var(--gray-400); }
+.stats-row { display: flex; justify-content: space-around; gap: 60px; padding: 48px 0; border-bottom: 1px solid var(--gray-400); }
 .stat { text-align: center; }
 .stat-num { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 72px; color: var(--black); line-height: 1; }
 .stat-label { font-size: 14px; color: var(--black-50); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 8px; }
@@ -924,9 +931,13 @@ input, textarea { font-family: inherit; }
   .delivery-label { font-size: 22px; }
   .delivery-content-title { font-size: 16px; }
 
-  /* ABOUT PAGE */
-  .stats-row { flex-direction: row; flex-wrap: wrap; justify-content: space-around; gap: 24px; padding: 32px 20px; }
-  .stat-num { font-size: 44px; }
+  /* ABOUT PAGE — flex-wrap:wrap раньше ронял «24/7» и «100%» на свои строки,
+     как только три числа переставали помещаться в ряд. nowrap + flex:1
+     держит их в одну линию на любом мобильном экране. */
+  .stats-row { flex-wrap: nowrap; gap: 8px; padding: 32px 0; }
+  .stat { flex: 1; min-width: 0; }
+  .stat-num { font-size: 34px; }
+  .stat-label { font-size: 11px; }
   .advantage-row { grid-template-columns: 1fr; min-height: auto; }
   .advantage-img { min-height: 200px; order: 2; }
   .advantage-text { padding: 20px; order: 1; }
@@ -952,8 +963,9 @@ input, textarea { font-family: inherit; }
   .article-content h1 { font-size: 22px; }
   .article-hero-img { min-height: 180px; }
 
-  /* INNER HERO */
-  .inner-hero { min-height: 200px; }
+  /* INNER HERO — было 200px: фото едва помещалось под шапкой, заголовок
+     оказывался прижат к самому низу. По макету блок заметно выше. */
+  .inner-hero { min-height: 500px; }
   .inner-hero-content { padding: 28px 0; }
 }
 

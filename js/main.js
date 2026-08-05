@@ -162,9 +162,9 @@ function renderFooter() {
         <a href="tel:+79950253434" class="footer-phone-big">+7-995-025-34-34</a>
         <div class="footer-label">Мессенджеры</div>
         <div class="footer-messengers">
-          <a href="#" class="footer-messenger" title="Telegram"><svg width="18" height="15" viewBox="0 0 18 15" fill="none"><path d="M.87 7.3L4.84 8.81L6.37 13.69C6.47 14.02 6.88 14.13 7.13 13.9L9.3 11.87C9.53 11.66 9.87 11.65 10.11 11.85L14.07 14.91C14.34 15.12 14.73 14.97 14.8 14.63L17.99 1.02C18.07.64 17.7.33 17.34.47L.87 6.42C.44 6.58.44 7.14.87 7.3ZM6.22 8.12L13.76 3.49C13.94 3.38 14.12 3.63 13.97 3.77L7.5 9.83C7.27 10.04 7.12 10.33 7.08 10.64L6.83 12.5L6.22 8.12Z" fill="white"/></svg></a>
-          <a href="#" class="footer-messenger" title="Viber"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 1C4.58 1 1 4.32 1 8.41C1 10.5 1.94 12.39 3.44 13.72V16.5L6.18 15.06C7.07 15.29 8.02 15.41 9 15.41C13.42 15.41 17 12.09 17 8C17 3.91 13.42 1 9 1ZM9.92 10.76L8.42 9.23L5.5 10.76L8.71 7.37L10.22 8.9L13.13 7.37L9.92 10.76Z" fill="white"/></svg></a>
-          <a href="mailto:amper134@yandex.ru" class="footer-messenger" title="Email"><svg width="18" height="14" viewBox="0 0 18 14" fill="none"><rect x="1" y="1" width="16" height="12" rx="2" stroke="white" stroke-width="1.5"/><path d="M1 3.5L9 8.5L17 3.5" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+          <a href="#" class="footer-messenger" title="Telegram"><img src="img/icon-telegram.png" alt="Telegram" width="18" height="18"></a>
+          <a href="#" class="footer-messenger" title="Max"><img src="img/icon-max.png" alt="Max" width="18" height="18"></a>
+          <a href="mailto:amper134@yandex.ru" class="footer-messenger" title="Email"><img src="img/icon-mail.png" alt="Email" width="18" height="18"></a>
         </div>
 
       </div>
