@@ -72,13 +72,13 @@ function renderHeader(activePage = '') {
     `<a href="${p.href}" class="${activePage === p.href ? 'active' : ''}">${p.label}</a>`
   ).join('');
 
+  // logo-text_sm.svg уже содержит подпись «аккумуляторный центр» внутри
+  // самой картинки — раньше та же подпись рисовалась ещё раз обычным
+  // текстом поверх, и в шапке было два «аккумуляторный центр» подряд.
   const logoInner = `
         <span class="logo-bolt-svg">
           <img src="img/logo-bolt_sm.svg" alt="" width="22" height="34" style="flex-shrink:0;">
-          <span style="display:flex;flex-direction:column;gap:2px;">
-            <img src="img/logo-text_sm.svg" alt="АМПЕР" height="18" class="logo-text-img" style="max-width:72px;">
-            <span class="logo-sub">аккумуляторный центр</span>
-          </span>
+          <img src="img/logo-text_sm.svg" alt="АМПЕР аккумуляторный центр" height="34" class="logo-text-img">
         </span>`;
 
   const catalogIcon = '<span class="btn-catalog-icon"><span></span><span></span><span></span><span></span></span>';
