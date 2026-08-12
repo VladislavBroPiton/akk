@@ -41,7 +41,11 @@ input, textarea { font-family: inherit; }
 .tag { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 0.03em; }
 
 /* ── LAYOUT ── */
-.container { max-width: 1280px; margin: 0 auto; padding: 0 40px; }
+/* Раньше было 1280px — по замерам макета (отступ шапки, высота кнопки
+   телефона, ширина поля поиска — все совпадают 1:1 без масштабирования)
+   реальная ширина контента 1600px. Из-за узкого контейнера все карточки
+   и картинки на сайте были у́же и мельче, чем в макете. */
+.container { max-width: 1600px; margin: 0 auto; padding: 0 40px; }
 .section { padding: 80px 0; }
 .section-sm { padding: 48px 0; }
 
@@ -300,11 +304,13 @@ input, textarea { font-family: inherit; }
 .categories-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
 .category-card {
   border: 1px solid var(--gray-400); border-radius: 12px;
-  padding: 32px; transition: all 0.25s ease; cursor: pointer;
+  padding: 20px; transition: all 0.25s ease; cursor: pointer;
   background: var(--white);
 }
 .category-card:hover { border-color: var(--orange); box-shadow: 0 8px 32px rgba(255,79,0,0.1); transform: translateY(-2px); }
-.category-card-img { height: 180px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; overflow: hidden; }
+/* без overflow:hidden — раньше при наведении картинка увеличивалась (scale)
+   и обрезалась рамкой блока; высоту увеличили под реальный размер из макета */
+.category-card-img { height: 260px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
 .category-card-img img { max-height: 100%; max-width: 100%; object-fit: contain; }
 /* hover: картинка увеличивается, название становится оранжевым */
 .category-card-img img { transition: transform 0.3s ease; }
