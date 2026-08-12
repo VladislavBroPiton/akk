@@ -107,16 +107,20 @@ input, textarea { font-family: inherit; }
 /* Логотип в шапке — оранжевый (без фильтра) */
 .logo-text-img { filter: none; }
 
+/* По макету на тёмной шапке (главная, о компании, услуги) кнопка белая
+   с чёрным текстом — раньше была чёрная и на тёмном фоне сливалась.
+   На светлой шапке (каталог, товар, контакты и т.д.) — наоборот,
+   тёмная кнопка на светлом фоне, см. .no-hero-page .btn-catalog ниже. */
 .btn-catalog {
   display: flex; align-items: center; gap: 8px;
   height: 44px; padding: 0 20px;
-  background: var(--black); color: var(--white);
+  background: var(--white); color: var(--black);
   font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 15px;
   text-transform: uppercase; letter-spacing: 0.03em;
   border-radius: 4px; flex-shrink: 0;
-  transition: background 0.2s;
+  transition: background 0.2s, color 0.2s;
 }
-.btn-catalog:hover { background: var(--orange); }
+.btn-catalog:hover { background: var(--orange); color: var(--white); }
 .btn-catalog-icon { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; width: 14px; flex-shrink: 0; }
 .btn-catalog-icon span { display: block; height: 6px; background: currentColor; border-radius: 1px; }
 
@@ -138,7 +142,7 @@ input, textarea { font-family: inherit; }
 .search-input {
   width: 100%; height: 44px; padding: 0 16px 0 44px;
   border: 1px solid rgba(255,255,255,0.2); border-radius: 4px;
-  font-size: 14px; background: rgba(255,255,255,0.1); outline: none;
+  font-size: 14px; background: rgba(255,255,255,0.18); outline: none;
   color: var(--white);
 }
 .search-input::placeholder { color: rgba(255,255,255,0.4); }
@@ -258,6 +262,10 @@ input, textarea { font-family: inherit; }
 }
 .no-hero-page .logo-sub { color: var(--black-50); }
 .no-hero-page .nav a { color: var(--black); }
+/* на светлой шапке кнопка каталога тёмная — обратный вариант базовой
+   (белой) кнопки, которая рассчитана на тёмную шапку поверх фото */
+.no-hero-page .btn-catalog { background: var(--black); color: var(--white); }
+.no-hero-page .btn-catalog:hover { background: var(--orange); color: var(--white); }
 .no-hero-page .search-input { background: var(--gray-400); border-color: var(--gray-100); color: var(--black); }
 .no-hero-page .search-input::placeholder { color: var(--black-50); }
 .no-hero-page .search-icon { color: var(--black-50); }
@@ -282,14 +290,14 @@ input, textarea { font-family: inherit; }
 .hero-bg::after {
   content: ''; position: absolute; inset: 0;
   background: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 30%),
-              linear-gradient(to right, rgba(0,0,0,0.8) 40%, transparent 100%);
+              linear-gradient(to right, rgba(0,0,0,0.55) 40%, transparent 100%);
 }
 .hero-img {
   /* картинка — <img>, а не div: без явного height браузер считает высоту
      по её собственным пропорциям, а не растягивает между top и bottom,
      поэтому фото не доходило до низа блока и обрывалось на середине */
   position: absolute; right: 0; top: 0; bottom: 0; width: 60%; height: 100%;
-  object-fit: cover; opacity: 0.5;
+  object-fit: cover; opacity: 0.75;
 }
 .hero-content { position: relative; z-index: 1; padding: 60px 0; color: var(--white); max-width: 620px; }
 .hero-title { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 52px; line-height: 1.05; text-transform: uppercase; margin-bottom: 16px; }
@@ -798,10 +806,9 @@ input, textarea { font-family: inherit; }
     color: var(--white); border-color: var(--white);
   }
   .burger { display: flex; order: 1; flex-shrink: 0; }
-  /* На страницах без баннера шапка на мобиле тоже светлая: белая иконка
-     на белом фоне была бы не видна, поэтому кнопки каталога и поиска
-     здесь тёмные, а не полупрозрачно-белые. */
-  .no-hero-page .btn-catalog { background: var(--black); }
+  /* Кнопка каталога уже тёмная на .no-hero-page (см. выше) — здесь только
+     кнопка поиска: раньше была полупрозрачно-белой, на светлой шапке
+     мобильной версии становилась не видна. */
   .no-hero-page .icon-btn-search { background: var(--gray-400); color: var(--black); }
   .no-hero-page .icon-btn-search:hover { background: var(--gray-100); color: var(--black); }
   .no-hero-page .header-phone { color: var(--black); border-color: var(--black); }
