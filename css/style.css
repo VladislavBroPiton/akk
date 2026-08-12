@@ -295,13 +295,16 @@ input, textarea { font-family: inherit; }
 .hero-img {
   /* картинка — <img>, а не div: без явного height браузер считает высоту
      по её собственным пропорциям, а не растягивает между top и bottom,
-     поэтому фото не доходило до низа блока и обрывалось на середине */
-  position: absolute; right: 0; top: 0; bottom: 0; width: 60%; height: 100%;
+     поэтому фото не доходило до низа блока и обрывалось на середине.
+     width:60% считается от .hero (во всю ширину окна), а не от .container
+     (max-width:1600px) — на широких мониторах картинка росла бесконечно.
+     max-width держит её в размере, который был бы при 1600px контейнере. */
+  position: absolute; right: 0; top: 0; bottom: 0; width: 60%; max-width: 960px; height: 100%;
   object-fit: cover; opacity: 0.75;
 }
 .hero-content { position: relative; z-index: 1; padding: 60px 0; color: var(--white); max-width: 620px; }
 .hero-title { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 52px; line-height: 1.05; text-transform: uppercase; margin-bottom: 16px; }
-.hero-subtitle { font-size: 16px; font-weight: 400; color: rgba(255,255,255,0.75); margin-bottom: 32px; line-height: 1.55; max-width: 460px; }
+.hero-subtitle { font-size: 16px; font-weight: 400; color: var(--white); margin-bottom: 32px; line-height: 1.55; max-width: 460px; }
 .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
 
 /* ── SECTION HEADING ── */
