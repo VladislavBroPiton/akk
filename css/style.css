@@ -85,7 +85,7 @@ input, textarea { font-family: inherit; }
    снизу логотип, каталог, поиск и телефон. */
 .header-top {
   display: flex; align-items: center; justify-content: space-between;
-  padding: 8px 0; font-size: 13px; color: rgba(255,255,255,0.5);
+  padding: 8px 0; font-size: 13px; color: var(--white);
   border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 .header-top a:hover { color: var(--orange); }
