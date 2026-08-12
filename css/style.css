@@ -279,7 +279,7 @@ input, textarea { font-family: inherit; }
 /* ── HERO ── */
 .hero {
   position: relative; overflow: hidden;
-  min-height: 560px; display: flex; align-items: flex-end;
+  min-height: 700px; display: flex; align-items: flex-end;
   background: var(--black);
   padding-top: 110px; /* место под прозрачную шапку */
 }
@@ -293,13 +293,14 @@ input, textarea { font-family: inherit; }
               linear-gradient(to right, rgba(0,0,0,0.55) 40%, transparent 100%);
 }
 .hero-img {
-  /* картинка — <img>, а не div: без явного height браузер считает высоту
-     по её собственным пропорциям, а не растягивает между top и bottom,
-     поэтому фото не доходило до низа блока и обрывалось на середине.
-     width:60% считается от .hero (во всю ширину окна), а не от .container
-     (max-width:1600px) — на широких мониторах картинка росла бесконечно.
-     max-width держит её в размере, который был бы при 1600px контейнере. */
-  position: absolute; right: 0; top: 0; bottom: 0; width: 60%; max-width: 960px; height: 100%;
+  /* В Figma сама фотография — блок 1600×700, во всю ширину героя, а не
+     полоса в правых 60%: раньше картинка была прижата к правому краю
+     и на широких экранах уезжала ещё дальше вправо от центра.
+     margin:auto с left:0;right:0 центрирует блок, когда окно шире 1600px —
+     без явного height браузер иначе посчитал бы высоту по пропорциям
+     файла, а не растянул между top и bottom. */
+  position: absolute; inset: 0; width: 100%; max-width: 1600px; height: 100%;
+  margin: 0 auto;
   object-fit: cover; opacity: 0.75;
 }
 .hero-content { position: relative; z-index: 1; padding: 60px 0; color: var(--white); max-width: 620px; }
