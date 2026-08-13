@@ -279,7 +279,7 @@ input, textarea { font-family: inherit; }
 /* ── HERO ── */
 .hero {
   position: relative; overflow: hidden;
-  min-height: 700px; display: flex; align-items: flex-end;
+  min-height: 700px; display: flex; align-items: flex-start;
   background: var(--black);
   padding-top: 110px; /* место под прозрачную шапку */
 }
@@ -303,9 +303,11 @@ input, textarea { font-family: inherit; }
   margin: 0 auto;
   object-fit: cover; opacity: 0.75;
 }
-.hero-content { position: relative; z-index: 1; padding: 60px 0; color: var(--white); max-width: 620px; }
+/* max-width был 620px — заголовок в макете шире (замер ≈830px) и должен
+   переноситься в 2 строки, а не в 3 */
+.hero-content { position: relative; z-index: 1; padding: 60px 0; color: var(--white); max-width: 1000px; }
 .hero-title { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 52px; line-height: 1.05; text-transform: uppercase; margin-bottom: 16px; }
-.hero-subtitle { font-size: 16px; font-weight: 400; color: var(--white); margin-bottom: 32px; line-height: 1.55; max-width: 460px; }
+.hero-subtitle { font-size: 16px; font-weight: 400; color: var(--white); margin-bottom: 32px; line-height: 1.55; max-width: 540px; }
 .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
 
 /* ── SECTION HEADING ── */
