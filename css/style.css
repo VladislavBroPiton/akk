@@ -73,7 +73,10 @@ input, textarea { font-family: inherit; }
 .btn-link:hover { color: var(--orange); }
 .btn-link-orange { color: var(--orange); }
 .btn-link-orange:hover { color: #e54500; }
-.btn-sm { height: 40px; padding: 0 20px; font-size: 14px; }
+/* маленькие кнопки-ссылки («В каталог», «Читать все») со стрелкой —
+   раньше её не было, хотя в макете она есть у обеих */
+.btn-sm { height: 40px; padding: 0 20px; font-size: 14px; gap: 8px; }
+.btn-sm::after { content: '▶'; font-size: 9px; }
 
 /* ── HEADER ── */
 .header {
@@ -293,14 +296,12 @@ input, textarea { font-family: inherit; }
               linear-gradient(to right, rgba(0,0,0,0.55) 40%, transparent 100%);
 }
 .hero-img {
-  /* В Figma сама фотография — блок 1600×700, во всю ширину героя, а не
-     полоса в правых 60%: раньше картинка была прижата к правому краю
-     и на широких экранах уезжала ещё дальше вправо от центра.
-     margin:auto с left:0;right:0 центрирует блок, когда окно шире 1600px —
-     без явного height браузер иначе посчитал бы высоту по пропорциям
-     файла, а не растянул между top и bottom. */
-  position: absolute; inset: 0; width: 100%; max-width: 1600px; height: 100%;
-  margin: 0 auto;
+  /* Фото героя — full-bleed: тянется на всю ширину экрана даже за пределы
+     контейнера сайта (1600px), а не только внутри него. Текст и меню
+     остаются в рамках .container, а фон-фото уходит до самых краёв.
+     object-fit:cover без явного height иначе посчитал бы высоту картинки
+     по её собственным пропорциям, а не растянул между top и bottom. */
+  position: absolute; inset: 0; width: 100%; height: 100%;
   object-fit: cover; opacity: 0.75;
 }
 /* max-width был 620px — заголовок в макете шире (замер ≈830px) и должен
@@ -315,7 +316,7 @@ input, textarea { font-family: inherit; }
 .section-title { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 36px; text-transform: uppercase; }
 
 /* ── CATEGORY CARDS ── */
-.categories-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.categories-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
 .category-card {
   border: 1px solid var(--gray-400); border-radius: 12px;
   padding: 20px; transition: all 0.25s ease; cursor: pointer;
@@ -334,13 +335,16 @@ input, textarea { font-family: inherit; }
 .category-card-desc { font-size: 14px; color: var(--black-50); line-height: 1.55; margin-bottom: 20px; }
 
 /* ── PRODUCT TABS ── */
-.tabs { display: flex; border-bottom: 2px solid var(--gray-400); margin-bottom: 32px; }
+/* По макету — не подчёркивание активной вкладки, а сегменты через
+   вертикальные разделители, поровну по ширине; активная — чёрным жирным. */
+.tabs { display: flex; margin-bottom: 32px; }
 .tab-btn {
-  padding: 12px 24px; font-size: 15px; font-weight: 600;
-  color: var(--black-50); border-bottom: 2px solid transparent;
-  margin-bottom: -2px; transition: all 0.2s; background: none; border-top: none; border-left: none; border-right: none;
+  flex: 1; padding: 14px 8px; font-size: 15px; font-weight: 600;
+  color: var(--black-50); border: none; border-right: 1px solid var(--gray-400);
+  transition: color 0.2s; background: none;
 }
-.tab-btn.active { color: var(--black); border-bottom-color: var(--orange); }
+.tab-btn:last-child { border-right: none; }
+.tab-btn.active { color: var(--black); font-weight: 700; }
 .tab-btn:hover { color: var(--black); }
 .tab-panel { display: none; }
 .tab-panel.active { display: block; }
@@ -850,9 +854,10 @@ input, textarea { font-family: inherit; }
   .product-spec { font-size: 11px; }
   .product-price { font-size: 12px; }
 
-  /* TABS */
-  .tabs { overflow-x: auto; white-space: nowrap; gap: 0; border-bottom-width: 1px; }
-  .tab-btn { padding: 10px 16px; font-size: 13px; }
+  /* TABS — на мобиле сегменты poровну не влезают, оставляем скролл
+     вбок с шириной по содержимому, а не flex:1 */
+  .tabs { overflow-x: auto; white-space: nowrap; gap: 0; }
+  .tab-btn { flex: none; padding: 10px 16px; font-size: 13px; }
 
   /* SERVICES — 1 колонка, иллюстрация сверху */
   .services-grid { grid-template-columns: 1fr; gap: 12px; }
