@@ -387,7 +387,9 @@ input, textarea { font-family: inherit; }
 
 /* ── CTA BANNER ── */
 .cta-banner { background: var(--orange); padding: 64px 0; }
-.cta-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+/* align-items:center раньше центрировал текст относительно формы —
+   форма выше текстового блока, и текст «плавал» ниже верхнего края */
+.cta-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
 .cta-title { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 40px; text-transform: uppercase; color: var(--white); margin-bottom: 14px; }
 .cta-desc { font-size: 15px; color: rgba(255,255,255,0.85); line-height: 1.6; }
 .cta-form { background: var(--white); border-radius: 12px; padding: 32px; }
@@ -416,6 +418,9 @@ input, textarea { font-family: inherit; }
 .article-card-img-placeholder { width: 100%; height: 160px; background: linear-gradient(135deg, #3d1500, #242424); flex-shrink: 0; }
 .article-card-body { padding: 18px 18px 20px; display: flex; flex-direction: column; flex: 1; }
 .article-card-title { font-weight: 700; font-size: 14px; line-height: 1.45; margin-bottom: 10px; text-transform: uppercase; }
+/* в блоке «Полезные статьи» на главной первая карточка выделена
+   оранжевым заголовком — только там, не в общем списке статей */
+#articles-mount .article-card:first-child .article-card-title { color: var(--orange); }
 .article-card-text { font-size: 13px; color: var(--black-50); line-height: 1.55; margin-bottom: 14px; flex: 1; }
 
 /* ── MAP BLOCK ── */
