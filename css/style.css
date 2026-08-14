@@ -351,6 +351,9 @@ input, textarea { font-family: inherit; }
 
 /* ── PRODUCT CARD ── */
 .products-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+/* сетка каталога — 3 колонки по макету, а не 4 как на остальных страницах;
+   id весомее класса и специально переопределяет только #cat-grid */
+#cat-grid { grid-template-columns: repeat(3, 1fr); }
 .product-card {
   border: 1px solid var(--gray-400); border-radius: 10px;
   overflow: hidden; transition: all 0.2s; background: var(--white);
@@ -358,13 +361,14 @@ input, textarea { font-family: inherit; }
 .product-card:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.1); transform: translateY(-2px); }
 .product-card-img { background: var(--white); padding: 20px; text-align: center; position: relative; height: 180px; display: flex; align-items: center; justify-content: center; }
 .product-card-img img { max-height: 130px; object-fit: contain; }
+/* по макету — контурный оранжевый бейдж, не заливка зелёным */
 .product-badge {
   position: absolute; top: 10px; left: 10px;
-  background: #22c55e; color: white; font-size: 11px; font-weight: 700;
-  padding: 3px 10px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.03em;
+  background: transparent; color: var(--orange); font-size: 11px; font-weight: 700;
+  padding: 3px 10px; border: 1px solid var(--orange); border-radius: 20px; text-transform: uppercase; letter-spacing: 0.03em;
 }
 .product-card-body { padding: 16px; }
-.product-card-name { font-weight: 600; font-size: 14px; margin-bottom: 12px; line-height: 1.4; }
+.product-card-name { font-weight: 600; font-size: 14px; margin-bottom: 12px; line-height: 1.4; text-transform: uppercase; }
 .product-spec { display: flex; justify-content: space-between; font-size: 12px; color: var(--black-50); padding: 4px 0; border-bottom: 1px solid var(--gray-300); }
 .product-spec:last-of-type { border-bottom: none; }
 .product-spec-val { font-weight: 600; color: var(--black); }
@@ -571,11 +575,25 @@ input, textarea { font-family: inherit; }
    иначе сайдбар прыгает при каждом клике */
 .filter-count { margin-left: auto; font-size: 12px; color: var(--black-50); }
 .filter-check.is-empty { opacity: 0.4; cursor: default; }
-.filter-range { display: flex; gap: 12px; align-items: center; font-size: 14px; color: var(--black-50); }
-.filter-range-inputs { display: flex; align-items: center; gap: 8px; }
-.filter-num { width: 100%; min-width: 0; height: 36px; border: 1px solid var(--gray-100); border-radius: 6px; padding: 0 10px; font-size: 14px; outline: none; transition: border-color 0.2s; }
-.filter-num:focus { border-color: var(--orange); }
-.range-slider { width: 100%; accent-color: var(--orange); }
+/* ── ПОЛЗУНОК ЁМКОСТИ (и других «range»-фильтров) ──
+   Один бегунок «от» — как в макете, вместо пары полей. --fill выставляет
+   updateSliderFill() в JS при движении и при восстановлении из URL. */
+.filter-slider { padding: 6px 2px 0; }
+.filter-range-input {
+  -webkit-appearance: none; appearance: none;
+  width: 100%; height: 4px; border-radius: 2px; outline: none; cursor: pointer;
+  background: linear-gradient(to right,
+    var(--orange) 0%, var(--orange) var(--fill, 0%),
+    var(--gray-100) var(--fill, 0%), var(--gray-100) 100%);
+}
+.filter-range-input::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 16px; height: 16px; border-radius: 50%;
+  background: var(--orange); border: none; cursor: pointer;
+}
+.filter-range-input::-moz-range-thumb { width: 16px; height: 16px; border-radius: 50%; background: var(--orange); border: none; cursor: pointer; }
+.filter-range-input::-moz-range-track { height: 4px; border-radius: 2px; background: var(--gray-100); }
+.filter-range-input::-moz-range-progress { height: 4px; border-radius: 2px; background: var(--orange); }
+.filter-range-labels { display: flex; justify-content: space-between; font-size: 13px; color: var(--black-50); margin-top: 10px; }
 /* пустой результат */
 .catalog-empty { text-align: center; padding: 64px 20px; border: 1px dashed var(--gray-100); border-radius: 12px; }
 .catalog-empty-title { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 22px; text-transform: uppercase; margin-bottom: 8px; }
@@ -625,7 +643,15 @@ input, textarea { font-family: inherit; }
 }
 .catalog-query:hover { color: var(--orange); }
 
-.sort-select { height: 40px; padding: 0 36px 0 14px; border: 1px solid var(--gray-100); border-radius: 6px; font-size: 14px; font-family: 'Onest', sans-serif; outline: none; appearance: none; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23242424' stroke-width='1.5' fill='none'/%3E%3C/svg%3E") no-repeat right 12px center; background-color: var(--white); cursor: pointer; }
+/* сортировка в сайдбаре каталога — та же .sort-логика, что и на странице
+   статей, но кнопкой во всю ширину с фоном, а не текстовой ссылкой */
+.catalog-sort { margin-bottom: 24px; }
+.catalog-sort .sort-btn {
+  width: 100%; justify-content: space-between;
+  background: var(--gray-400); border-radius: 6px; padding: 14px 16px;
+}
+.catalog-sort .sort-btn::after { font-size: 10px; }
+.catalog-sort .sort-list { width: 100%; }
 /* на десктопе фильтр применяется сразу по клику, кнопка нужна только на мобиле */
 .filter-btn { display: none; width: 100%; height: 44px; background: var(--orange); color: var(--white); font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 15px; text-transform: uppercase; letter-spacing: 0.04em; border-radius: 6px; border: none; cursor: pointer; margin-top: 20px; transition: background 0.2s; }
 .filter-btn:hover { background: #e54500; }
@@ -767,7 +793,7 @@ input, textarea { font-family: inherit; }
 .text-orange { color: var(--orange); }
 .text-gray { color: var(--black-50); }
 .mt-8 { margin-top: 8px; } .mt-16 { margin-top: 16px; } .mt-24 { margin-top: 24px; } .mt-32 { margin-top: 32px; } .mt-40 { margin-top: 40px; } .mt-48 { margin-top: 48px; } .mb-8 { margin-bottom: 8px; } .mb-16 { margin-bottom: 16px; } .mb-24 { margin-bottom: 24px; } .mb-32 { margin-bottom: 32px; }
-.inline-badge { display: inline-block; background: #22c55e; color: white; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px; text-transform: uppercase; }
+.inline-badge { display: inline-block; background: transparent; color: var(--orange); border: 1px solid var(--orange); font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px; text-transform: uppercase; }
 /* заглушка вместо незагрузившегося фото товара */
 .img-fallback { display: flex; align-items: center; justify-content: center; font-size: 56px; opacity: 0.22; line-height: 1; }
 .product-thumb .img-fallback { font-size: 24px; }
@@ -865,6 +891,8 @@ input, textarea { font-family: inherit; }
 
   /* PRODUCTS — 2 колонки (как в Figma) */
   .products-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  /* каталог на мобиле — 1 колонка, отдельно от общих 2 у остальных сеток */
+  #cat-grid { grid-template-columns: 1fr; }
   .product-card-img { height: 140px; padding: 12px; }
   .product-card-body { padding: 12px; }
   .product-card-name { font-size: 12px; margin-bottom: 8px; }

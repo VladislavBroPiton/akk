@@ -44,12 +44,6 @@
 
       <div class="catalog-top">
         <div class="catalog-count" id="cat-title"></div>
-        <select class="sort-select" id="sort-select">
-          <option value="popular">Сортировать по: Популярные</option>
-          <option value="price-desc">Сначала дорогие</option>
-          <option value="price-asc">Сначала дешевые</option>
-          <option value="new">Новинки</option>
-        </select>
       </div>
 
       <div class="products-grid" id="cat-grid"></div>
@@ -60,11 +54,7 @@
         <button class="btn btn-outline" type="button" onclick="CatalogUI.reset()">Сбросить фильтры</button>
       </div>
 
-      <div class="load-more" id="load-more-wrap" hidden>
-        <button class="btn btn-outline" type="button" onclick="CatalogUI.showMore()">
-          Показать ещё <span id="load-more-left"></span>
-        </button>
-      </div>
+      <div class="pagination" id="pagination"></div>
     </div>
   </div>
 </div>

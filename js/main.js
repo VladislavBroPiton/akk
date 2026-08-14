@@ -635,7 +635,7 @@ function sortProducts(list, mode) {
    иначе его пришлось бы синхронизировать в трёх местах.            */
 const CatalogUI = {
   key: '', cfg: null, defs: null, cardSpecs: null,
-  list: [], shown: 0, PAGE: 12,
+  list: [], page: 1, PAGE: 12,
   q: '',   // текстовый запрос из поиска в шапке (?q=)
 
   init(opts) {
@@ -657,6 +657,12 @@ const CatalogUI = {
     return Array.isArray(v) ? v.map(String).includes(want) : String(v) === want;
   },
 
+  // закрашивает трек ползунка слева от бегунка через CSS-переменную
+  updateSliderFill(inp) {
+    const pct = (inp.value - inp.min) / (inp.max - inp.min || 1) * 100;
+    inp.style.setProperty('--fill', pct + '%');
+  },
+
   // ── СБОРКА САЙДБАРА ПО КОНФИГУ РАЗДЕЛА ──
   renderSidebar() {
     const blocks = this.cfg.filters.map(key => {
@@ -667,11 +673,12 @@ const CatalogUI = {
       if (def.type === 'range') {
         const vals = this.cfg.products.map(p => Number(p[key])).filter(v => !isNaN(v));
         const min = Math.min(...vals), max = Math.max(...vals);
+        // один ползунок — «от», а не пара полей: показывает товары с этим
+        // значением и выше. Проценты для заливки трека считает updateSliderFill().
         body = `
-          <div class="filter-range-inputs">
-            <input type="number" class="filter-num" data-key="${key}" data-bound="min" placeholder="от ${min}">
-            <span>–</span>
-            <input type="number" class="filter-num" data-key="${key}" data-bound="max" placeholder="до ${max}">
+          <div class="filter-slider">
+            <input type="range" class="filter-range-input" data-key="${key}" min="${min}" max="${max}" value="${min}">
+            <div class="filter-range-labels"><span>${min}</span><span>${max}</span></div>
           </div>`;
       } else {
         // показываем только те варианты, что реально встречаются в разделе
@@ -698,12 +705,26 @@ const CatalogUI = {
     }).join('');
 
     document.getElementById('sidebar').innerHTML = `
+      <div class="sort catalog-sort" id="catalog-sort" data-value="popular">
+        <button class="sort-btn" type="button" aria-haspopup="listbox" aria-expanded="false">
+          Сортировать по: <span class="sort-current">Популярные</span>
+        </button>
+        <div class="sort-list" role="listbox">
+          <button type="button" role="option" data-value="popular">Популярные</button>
+          <button type="button" role="option" data-value="price-desc">Сначала дорогие</button>
+          <button type="button" role="option" data-value="price-asc">Сначала дешевые</button>
+          <button type="button" role="option" data-value="new">Новинки</button>
+        </div>
+      </div>
       <div class="filter-head">
         <div class="filter-head-title">Фильтр</div>
         <button class="filter-reset" type="button">Сбросить все</button>
       </div>
       ${blocks}
       <button class="filter-btn" type="button">Применить</button>`;
+
+    initSortDropdown('catalog-sort', () => this.apply());
+    document.querySelectorAll('#sidebar .filter-range-input').forEach(inp => this.updateSliderFill(inp));
   },
 
   // ── СОСТОЯНИЕ ЧИТАЕМ ИЗ DOM ──
@@ -713,10 +734,10 @@ const CatalogUI = {
       if (!cb.checked) return;
       (state.checks[cb.dataset.key] = state.checks[cb.dataset.key] || []).push(cb.value);
     });
-    document.querySelectorAll('#sidebar .filter-num').forEach(inp => {
-      if (inp.value === '') return;
-      const r = state.ranges[inp.dataset.key] = state.ranges[inp.dataset.key] || {};
-      r[inp.dataset.bound] = Number(inp.value);
+    // ползунок «от» — значение ниже своего минимума ничего не отсекает,
+    // поэтому его можно всегда учитывать, не проверяя, двигали ли бегунок
+    document.querySelectorAll('#sidebar .filter-range-input').forEach(inp => {
+      state.ranges[inp.dataset.key] = { min: Number(inp.value) };
     });
     return state;
   },
@@ -746,8 +767,9 @@ const CatalogUI = {
   // ── ПРИМЕНИТЬ ──
   apply() {
     const state = this.readState();
-    this.list = sortProducts(this.results(state), document.getElementById('sort-select').value);
-    this.shown = this.PAGE;
+    const sort = document.getElementById('catalog-sort').dataset.value;
+    this.list = sortProducts(this.results(state), sort);
+    this.page = 1;
     this.renderGrid();
     this.updateCounts(state);
     this.syncUrl(state);
@@ -759,26 +781,57 @@ const CatalogUI = {
       `${this.cfg.label} <span>${this.list.length}</span>${query}`;
   },
 
-  showMore() { this.shown += this.PAGE; this.renderGrid(); },
+  goToPage(n) {
+    this.page = n;
+    this.renderGrid();
+    document.getElementById('cat-grid').scrollIntoView({ block: 'start', behavior: 'smooth' });
+  },
 
   renderGrid() {
     const grid = document.getElementById('cat-grid');
     const empty = document.getElementById('cat-empty');
-    const more = document.getElementById('load-more-wrap');
+    const pagination = document.getElementById('pagination');
 
     if (!this.list.length) {
       grid.innerHTML = '';
       empty.hidden = false;
-      more.hidden = true;
+      pagination.innerHTML = '';
       return;
     }
     empty.hidden = true;
-    const slice = this.list.slice(0, this.shown);
+    const totalPages = Math.ceil(this.list.length / this.PAGE);
+    if (this.page > totalPages) this.page = totalPages;
+    const start = (this.page - 1) * this.PAGE;
+    const slice = this.list.slice(start, start + this.PAGE);
     grid.innerHTML = slice.map(p =>
       productCard(p.name, this.cardSpecs(p), 'В наличии', p.price)).join('');
-    more.hidden = this.shown >= this.list.length;
-    document.getElementById('load-more-left').textContent = this.list.length - slice.length;
+    this.renderPagination(totalPages);
     initReveal();
+  },
+
+  // страницы вокруг текущей + первая/последняя, промежутки — многоточием
+  pageNumbers(cur, total) {
+    const keep = new Set([1, total, cur - 1, cur, cur + 1].filter(n => n >= 1 && n <= total));
+    const list = Array.from(keep).sort((a, b) => a - b);
+    const out = [];
+    list.forEach((n, i) => {
+      if (i > 0 && n - list[i - 1] > 1) out.push('…');
+      out.push(n);
+    });
+    return out;
+  },
+
+  renderPagination(totalPages) {
+    const el = document.getElementById('pagination');
+    if (totalPages <= 1) { el.innerHTML = ''; return; }
+    const cur = this.page;
+    el.innerHTML = `
+      <button class="page-btn prev-next" type="button" data-page="${cur - 1}" ${cur === 1 ? 'disabled' : ''}>‹ Назад</button>
+      ${this.pageNumbers(cur, totalPages).map(n => n === '…'
+        ? `<span class="page-btn page-dots">…</span>`
+        : `<button class="page-btn ${n === cur ? 'active' : ''}" type="button" data-page="${n}">${n}</button>`
+      ).join('')}
+      <button class="page-btn prev-next" type="button" data-page="${cur + 1}" ${cur === totalPages ? 'disabled' : ''}>Вперёд ›</button>`;
   },
 
   // счётчик у пункта = сколько найдётся, если выбрать именно его
@@ -804,11 +857,12 @@ const CatalogUI = {
     for (const key in state.checks) {
       if (state.checks[key].length) p.set(key, state.checks[key].join(','));
     }
-    for (const key in state.ranges) {
-      const r = state.ranges[key];
-      p.set(key, `${r.min === undefined ? '' : r.min}-${r.max === undefined ? '' : r.max}`);
-    }
-    const sort = document.getElementById('sort-select').value;
+    // ползунок пишем в адрес, только если его реально сдвинули с минимума —
+    // иначе там всегда болтался бы «capacity=20» и на неизменённый фильтр
+    document.querySelectorAll('#sidebar .filter-range-input').forEach(inp => {
+      if (Number(inp.value) > Number(inp.min)) p.set(inp.dataset.key, inp.value);
+    });
+    const sort = document.getElementById('catalog-sort').dataset.value;
     if (sort !== 'popular') p.set('sort', sort);
     if (this.q) p.set('q', this.q);
     history.replaceState(null, '', location.pathname + '?' + p.toString());
@@ -820,19 +874,27 @@ const CatalogUI = {
       const v = p.get(cb.dataset.key);
       cb.checked = !!v && v.split(',').indexOf(cb.value) !== -1;
     });
-    document.querySelectorAll('#sidebar .filter-num').forEach(inp => {
+    document.querySelectorAll('#sidebar .filter-range-input').forEach(inp => {
       const v = p.get(inp.dataset.key);
-      if (!v || v.indexOf('-') === -1) return;
-      const parts = v.split('-');
-      inp.value = inp.dataset.bound === 'min' ? parts[0] : parts[1];
+      if (v === null || v === '') return;
+      inp.value = v;
+      this.updateSliderFill(inp);
     });
     const sort = p.get('sort');
-    if (sort) document.getElementById('sort-select').value = sort;
+    const sortEl = document.getElementById('catalog-sort');
+    const opt = sort && sortEl.querySelector(`.sort-list button[data-value="${sort}"]`);
+    if (opt) {
+      sortEl.dataset.value = sort;
+      sortEl.querySelector('.sort-current').textContent = opt.textContent;
+    }
   },
 
   reset() {
     document.querySelectorAll('#sidebar input[type=checkbox]').forEach(c => { c.checked = false; });
-    document.querySelectorAll('#sidebar .filter-num').forEach(i => { i.value = ''; });
+    document.querySelectorAll('#sidebar .filter-range-input').forEach(inp => {
+      inp.value = inp.min;
+      this.updateSliderFill(inp);
+    });
     this.apply();
   },
 
@@ -841,14 +903,21 @@ const CatalogUI = {
     // на десктопе применяем сразу, на мобиле — по кнопке, чтобы список не дёргался под пальцем
     sidebar.addEventListener('change', () => { if (!this.isMobile()) this.apply(); });
     sidebar.addEventListener('input', e => {
-      if (e.target.classList.contains('filter-num') && !this.isMobile()) this.apply();
+      if (!e.target.classList.contains('filter-range-input')) return;
+      this.updateSliderFill(e.target);
+      if (!this.isMobile()) this.apply();
     });
     sidebar.querySelector('.filter-reset').addEventListener('click', () => this.reset());
     sidebar.querySelector('.filter-btn').addEventListener('click', () => {
       this.apply();
       if (this.isMobile()) sidebar.classList.remove('open');
     });
-    document.getElementById('sort-select').addEventListener('change', () => this.apply());
+    document.getElementById('pagination').addEventListener('click', e => {
+      const btn = e.target.closest('.page-btn[data-page]');
+      if (!btn || btn.disabled) return;
+      const n = Number(btn.dataset.page);
+      if (n >= 1) this.goToPage(n);
+    });
   },
 };
 
