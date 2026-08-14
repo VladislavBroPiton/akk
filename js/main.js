@@ -200,7 +200,7 @@ function renderFooter() {
   </div>
   <div class="container">
     <div class="footer-bottom">
-      <span class="footer-copy">Copyright © Монтаж строй сервис</span>
+      <span class="footer-copy">Все права защищены ©АМПЕР</span>
       <a href="#" class="footer-policy">Политика конфиденциальности</a>
       <span class="footer-credit"><span>Разработка</span><span class="footer-credit-icon"></span><span>Lead Studio</span></span>
     </div>

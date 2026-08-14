@@ -425,12 +425,20 @@ input, textarea { font-family: inherit; }
 
 /* ── MAP BLOCK ── */
 .map-section { padding: 64px 0; background: var(--gray-300); }
-.map-inner { display: grid; grid-template-columns: 1fr 2fr; gap: 0; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 40px rgba(0,0,0,0.12); min-height: 360px; }
-.map-info { background: var(--white); padding: 48px 40px; display: flex; flex-direction: column; justify-content: center; gap: 8px; }
-.map-city { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 22px; text-transform: uppercase; margin-bottom: 4px; }
+/* По макету карточка «Волжский» не отдельная колонка рядом с картой,
+   а плавает поверх неё в левом нижнем углу */
+.map-inner { position: relative; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 40px rgba(0,0,0,0.12); min-height: 480px; }
+.map-info {
+  position: absolute; left: 24px; bottom: 24px; z-index: 1;
+  background: var(--white); border-radius: 12px; padding: 28px 32px;
+  display: flex; flex-direction: column; gap: 8px; width: 280px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+.map-city { display: flex; align-items: center; gap: 6px; font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 22px; text-transform: uppercase; margin-bottom: 4px; }
+.map-city-badge { flex-shrink: 0; }
 .map-rating { display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--black-50); margin-bottom: 20px; }
 .stars { color: #ffc107; font-size: 14px; }
-.map-frame { background: var(--gray-400); min-height: 360px; display: flex; align-items: center; justify-content: center; font-size: 14px; color: var(--black-50); position: relative; overflow: hidden; }
+.map-frame { position: absolute; inset: 0; background: var(--gray-400); display: flex; align-items: center; justify-content: center; font-size: 14px; color: var(--black-50); overflow: hidden; }
 .map-frame iframe { width: 100%; height: 100%; border: none; position: absolute; inset: 0; }
 
 /* ── FOOTER ── */
@@ -462,22 +470,23 @@ input, textarea { font-family: inherit; }
 .footer-phone-big { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 32px; color: var(--white); margin-bottom: 16px; display: block; }
 .footer-phone-big:hover { color: var(--orange); }
 .footer-messengers { display: flex; gap: 10px; margin-bottom: 0; }
+/* в макете кнопки залиты серым, не обведены рамкой */
 .footer-messenger {
-  width: 40px; height: 40px; border-radius: 10px; border: 1.5px solid rgba(255,255,255,0.25);
+  width: 40px; height: 40px; border-radius: 10px; border: none;
   display: flex; align-items: center; justify-content: center;
-  transition: all 0.2s; color: var(--white); background: transparent;
+  transition: all 0.2s; color: var(--white); background: rgba(255,255,255,0.1);
 }
-.footer-messenger:hover { background: var(--orange); border-color: var(--orange); }
+.footer-messenger:hover { background: var(--orange); }
 .footer-messenger svg { width: 18px; height: 18px; }
-.footer-label { font-size: 12px; color: var(--gray-100); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+.footer-label { font-size: 12px; color: var(--gray-100); letter-spacing: 0.02em; margin-bottom: 8px; }
 .footer-val { font-size: 15px; font-weight: 600; color: var(--white); margin-bottom: 20px; display: block; }
 .footer-mail { transition: color 0.2s; }
 .footer-mail:hover { color: var(--orange); }
 .footer-nav-title { font-family: 'Oswald', sans-serif; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gray-100); margin-bottom: 16px; }
 .footer-nav a { display: block; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--white); padding: 4px 0; transition: color 0.2s; }
 .footer-nav a:hover { color: var(--orange); }
-.footer-bottom { padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--gray-100); flex-wrap: wrap; gap: 12px; margin-top: 32px; }
-.footer-bottom a { color: var(--gray-100); }
+.footer-bottom { padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: rgba(255,255,255,0.4); flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+.footer-bottom a { color: rgba(255,255,255,0.4); }
 .footer-bottom a:hover { color: var(--white); }
 .footer-credit { display: flex; align-items: center; gap: 6px; text-transform: uppercase; letter-spacing: 0.04em; }
 .footer-credit-icon { width: 10px; height: 10px; background: var(--orange); transform: rotate(45deg); border-radius: 2px; flex-shrink: 0; }
@@ -883,10 +892,11 @@ input, textarea { font-family: inherit; }
   .articles-page-grid { grid-template-columns: 1fr; gap: 12px; }
   .article-card-img, .article-card-img-placeholder { height: 150px; }
 
-  /* MAP */
+  /* MAP — на мобиле карточка не помещается плавающей поверх узкой карты,
+     занимает всю ширину снизу */
   .map-section { padding: 32px 0; }
-  .map-inner { grid-template-columns: 1fr; border-radius: 12px; }
-  .map-info { padding: 24px 20px; }
+  .map-inner { border-radius: 12px; min-height: 420px; }
+  .map-info { position: absolute; left: 12px; right: 12px; bottom: 12px; width: auto; padding: 20px; }
   .map-frame { min-height: 220px; }
 
   /* FOOTER */
