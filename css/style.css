@@ -428,8 +428,10 @@ input, textarea { font-family: inherit; }
 /* По макету карточка «Волжский» не отдельная колонка рядом с картой,
    а плавает поверх неё в левом нижнем углу */
 .map-inner { position: relative; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 40px rgba(0,0,0,0.12); min-height: 480px; }
+/* bottom:56px, не 24px — вплотную к низу карточка перекрывала собственную
+   ссылку Яндекс.Карт «Открыть в Яндекс картах» под виджетом */
 .map-info {
-  position: absolute; left: 24px; bottom: 24px; z-index: 1;
+  position: absolute; left: 24px; bottom: 56px; z-index: 1;
   background: var(--white); border-radius: 12px; padding: 28px 32px;
   display: flex; flex-direction: column; gap: 8px; width: 280px;
   box-shadow: 0 8px 24px rgba(0,0,0,0.15);
@@ -474,12 +476,13 @@ input, textarea { font-family: inherit; }
 .footer-messenger {
   width: 40px; height: 40px; border-radius: 10px; border: none;
   display: flex; align-items: center; justify-content: center;
-  transition: all 0.2s; color: var(--white); background: rgba(255,255,255,0.1);
+  transition: all 0.2s; color: var(--white); background: rgba(255,255,255,0.18);
 }
 .footer-messenger:hover { background: var(--orange); }
+.footer-messenger img { width: 20px; height: 20px; }
 .footer-messenger svg { width: 18px; height: 18px; }
 .footer-label { font-size: 12px; color: var(--gray-100); letter-spacing: 0.02em; margin-bottom: 8px; }
-.footer-val { font-size: 15px; font-weight: 600; color: var(--white); margin-bottom: 20px; display: block; }
+.footer-val { font-size: 15px; font-weight: 600; color: var(--white); margin-bottom: 20px; display: block; text-transform: uppercase; }
 .footer-mail { transition: color 0.2s; }
 .footer-mail:hover { color: var(--orange); }
 .footer-nav-title { font-family: 'Oswald', sans-serif; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gray-100); margin-bottom: 16px; }
@@ -896,7 +899,7 @@ input, textarea { font-family: inherit; }
      занимает всю ширину снизу */
   .map-section { padding: 32px 0; }
   .map-inner { border-radius: 12px; min-height: 420px; }
-  .map-info { position: absolute; left: 12px; right: 12px; bottom: 12px; width: auto; padding: 20px; }
+  .map-info { position: absolute; left: 12px; right: 12px; bottom: 44px; width: auto; padding: 20px; }
   .map-frame { min-height: 220px; }
 
   /* FOOTER */
