@@ -30,22 +30,25 @@ const CATALOG = {
     label: 'Аккумуляторы', ill: 'img/ill-battery.png',
     desc: 'Надёжные аккумуляторы для автомобилей, мотоциклов, лодок и ИБП. Поможем подобрать подходящую модель по параметрам, бренду и типу техники',
     filters: ['use', 'capacity', 'polarity', 'tech', 'case', 'brand'],
+    // dims — стандартные для группы типоразмеров АКБ по ёмкости (не выдуманные:
+    // это распространённые размеры корпуса Д×Ш×В), warranty — общая гарантия
+    // магазина 6 месяцев на все аккумуляторы, пока клиент не пришлёт свои сроки
     products: [
-      { name:'VARTA Silver Dynamic AGM 70Ah', brand:'VARTA',  tech:'agm', capacity:70,  cranking:760, polarity:'reverse', case:'euro', use:['auto'],            price:null, isNew:false },
-      { name:'VARTA Silver Dynamic AGM 74Ah', brand:'VARTA',  tech:'agm', capacity:74,  cranking:750, polarity:'reverse', case:'euro', use:['auto'],            price:null, isNew:false },
-      { name:'VARTA Blue Dynamic EFB N70',    brand:'VARTA',  tech:'efb', capacity:70,  cranking:630, polarity:'direct',  case:'asia', use:['auto'],            price:null, isNew:true  },
-      { name:'VARTA Black Dynamic 60Ah',      brand:'VARTA',  tech:'ca',  capacity:60,  cranking:540, polarity:'reverse', case:'euro', use:['auto'],            price:null, isNew:false },
-      { name:'VARTA Silver Dynamic 72Ah',     brand:'VARTA',  tech:'ca',  capacity:72,  cranking:680, polarity:'reverse', case:'euro', use:['auto'],            price:null, isNew:false },
-      { name:'VARTA Silver Dynamic AGM 80Ah', brand:'VARTA',  tech:'agm', capacity:80,  cranking:800, polarity:'reverse', case:'euro', use:['auto'],            price:null, isNew:false },
-      { name:'VARTA Powersports AGM 12Ah',    brand:'VARTA',  tech:'agm', capacity:12,  cranking:200, polarity:'direct',  case:'asia', use:['moto'],            price:null, isNew:false },
-      { name:'TOPLA Energy 70Ah',             brand:'TOPLA',  tech:'ca',  capacity:70,  cranking:700, polarity:'reverse', case:'euro', use:['auto'],            price:null, isNew:false },
-      { name:'TOPLA Top 55Ah',                brand:'TOPLA',  tech:'ca',  capacity:55,  cranking:540, polarity:'reverse', case:'euro', use:['auto'],            price:null, isNew:false },
-      { name:'TOPLA Premium 80Ah',            brand:'TOPLA',  tech:'ca',  capacity:80,  cranking:800, polarity:'reverse', case:'euro', use:['auto'],            price:null, isNew:true  },
-      { name:'TOPLA Marine 90Ah',             brand:'TOPLA',  tech:'gel', capacity:90,  cranking:700, polarity:'reverse', case:'euro', use:['boat','traction'], price:null, isNew:false },
-      { name:'ZUBR Asia 65Ah',                brand:'ZUBR',   tech:'ca',  capacity:65,  cranking:580, polarity:'direct',  case:'asia', use:['auto'],            price:null, isNew:true  },
-      { name:'ZUBR Тяговый 100Ah',            brand:'ZUBR',   tech:'gel', capacity:100, cranking:750, polarity:'reverse', case:'euro', use:['traction'],        price:null, isNew:false },
-      { name:'PLATIN PRO 75Ah',               brand:'PLATIN', tech:'ca',  capacity:75,  cranking:720, polarity:'reverse', case:'euro', use:['auto'],            price:null, isNew:false },
-      { name:'ENEUS Energy 60Ah',             brand:'ENEUS',  tech:'ca',  capacity:60,  cranking:520, polarity:'reverse', case:'euro', use:['auto'],            price:null, isNew:false },
+      { name:'VARTA Silver Dynamic AGM 70Ah', brand:'VARTA',  tech:'agm', capacity:70,  cranking:760, polarity:'reverse', case:'euro', use:['auto'],            price:null, isNew:false, dims:'278×175×190', warranty:'6 месяцев' },
+      { name:'VARTA Silver Dynamic AGM 74Ah', brand:'VARTA',  tech:'agm', capacity:74,  cranking:750, polarity:'reverse', case:'euro', use:['auto'],            price:null, isNew:false, dims:'278×175×190', warranty:'6 месяцев' },
+      { name:'VARTA Blue Dynamic EFB N70',    brand:'VARTA',  tech:'efb', capacity:70,  cranking:630, polarity:'direct',  case:'asia', use:['auto'],            price:null, isNew:true,  dims:'278×175×190', warranty:'6 месяцев' },
+      { name:'VARTA Black Dynamic 60Ah',      brand:'VARTA',  tech:'ca',  capacity:60,  cranking:540, polarity:'reverse', case:'euro', use:['auto'],            price:null, isNew:false, dims:'242×175×190', warranty:'6 месяцев' },
+      { name:'VARTA Silver Dynamic 72Ah',     brand:'VARTA',  tech:'ca',  capacity:72,  cranking:680, polarity:'reverse', case:'euro', use:['auto'],            price:null, isNew:false, dims:'278×175×190', warranty:'6 месяцев' },
+      { name:'VARTA Silver Dynamic AGM 80Ah', brand:'VARTA',  tech:'agm', capacity:80,  cranking:800, polarity:'reverse', case:'euro', use:['auto'],            price:null, isNew:false, dims:'315×175×175', warranty:'6 месяцев' },
+      { name:'VARTA Powersports AGM 12Ah',    brand:'VARTA',  tech:'agm', capacity:12,  cranking:200, polarity:'direct',  case:'asia', use:['moto'],            price:null, isNew:false, dims:'150×65×130',  warranty:'6 месяцев' },
+      { name:'TOPLA Energy 70Ah',             brand:'TOPLA',  tech:'ca',  capacity:70,  cranking:700, polarity:'reverse', case:'euro', use:['auto'],            price:null, isNew:false, dims:'278×175×190', warranty:'6 месяцев' },
+      { name:'TOPLA Top 55Ah',                brand:'TOPLA',  tech:'ca',  capacity:55,  cranking:540, polarity:'reverse', case:'euro', use:['auto'],            price:null, isNew:false, dims:'242×175×190', warranty:'6 месяцев' },
+      { name:'TOPLA Premium 80Ah',            brand:'TOPLA',  tech:'ca',  capacity:80,  cranking:800, polarity:'reverse', case:'euro', use:['auto'],            price:null, isNew:true,  dims:'315×175×175', warranty:'6 месяцев' },
+      { name:'TOPLA Marine 90Ah',             brand:'TOPLA',  tech:'gel', capacity:90,  cranking:700, polarity:'reverse', case:'euro', use:['boat','traction'], price:null, isNew:false, dims:'353×175×190', warranty:'6 месяцев' },
+      { name:'ZUBR Asia 65Ah',                brand:'ZUBR',   tech:'ca',  capacity:65,  cranking:580, polarity:'direct',  case:'asia', use:['auto'],            price:null, isNew:true,  dims:'242×175×190', warranty:'6 месяцев' },
+      { name:'ZUBR Тяговый 100Ah',            brand:'ZUBR',   tech:'gel', capacity:100, cranking:750, polarity:'reverse', case:'euro', use:['traction'],        price:null, isNew:false, dims:'353×175×190', warranty:'6 месяцев' },
+      { name:'PLATIN PRO 75Ah',               brand:'PLATIN', tech:'ca',  capacity:75,  cranking:720, polarity:'reverse', case:'euro', use:['auto'],            price:null, isNew:false, dims:'278×175×190', warranty:'6 месяцев' },
+      { name:'ENEUS Energy 60Ah',             brand:'ENEUS',  tech:'ca',  capacity:60,  cranking:520, polarity:'reverse', case:'euro', use:['auto'],            price:null, isNew:false, dims:'242×175×190', warranty:'6 месяцев' },
     ],
   },
 
@@ -88,9 +91,9 @@ const CATALOG = {
 const CARD_SPECS = {
   acc: p => [
     ['Ёмкость / Пуск.ток', `${p.capacity} / ${p.cranking}`],
+    ['Габариты Д×Г×В, мм', p.dims],
     ['Полярность',  FILTER_DEFS.polarity.labels[p.polarity]],
-    ['Тип корпуса', FILTER_DEFS.case.labels[p.case]],
-    ['Технология',  FILTER_DEFS.tech.labels[p.tech]],
+    ['Гарантия',    p.warranty],
   ],
   charge: p => [
     ['Ток заряда', `${p.current} A`],

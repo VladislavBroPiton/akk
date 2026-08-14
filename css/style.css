@@ -312,11 +312,11 @@ input, textarea { font-family: inherit; }
 .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
 
 /* ── SECTION HEADING ── */
-.section-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 40px; gap: 16px; }
+.section-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 40px; gap: 10px; }
 .section-title { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 36px; text-transform: uppercase; }
 
 /* ── CATEGORY CARDS ── */
-.categories-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.categories-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
 .category-card {
   border: 1px solid var(--gray-400); border-radius: 12px;
   padding: 20px; transition: all 0.25s ease; cursor: pointer;
@@ -350,7 +350,7 @@ input, textarea { font-family: inherit; }
 .tab-panel.active { display: block; }
 
 /* ── PRODUCT CARD ── */
-.products-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.products-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
 .product-card {
   border: 1px solid var(--gray-400); border-radius: 10px;
   overflow: hidden; transition: all 0.2s; background: var(--white);
@@ -371,7 +371,7 @@ input, textarea { font-family: inherit; }
 .product-price { color: var(--orange); font-weight: 700; font-size: 14px; margin: 12px 0 8px; text-transform: uppercase; letter-spacing: 0.03em; }
 
 /* ── SERVICES GRID ── */
-.services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
 .service-card {
   border: 1px solid var(--gray-100); border-radius: 10px;
   padding: 32px 28px; background: var(--white);
@@ -651,7 +651,7 @@ input, textarea { font-family: inherit; }
 /* Левая колонка скроллится, правая (блок покупки) — фиксированная */
 .product-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
 .product-col-main { display: flex; flex-direction: column; gap: 48px; min-width: 0; }
-.product-gallery { display: flex; gap: 16px; }
+.product-gallery { display: flex; gap: 10px; }
 .product-thumbnails { display: flex; flex-direction: column; gap: 10px; }
 .product-thumb { width: 64px; height: 64px; border: 2px solid var(--gray-400); border-radius: 8px; overflow: hidden; cursor: pointer; transition: border-color 0.2s; background: var(--gray-300); display: flex; align-items: center; justify-content: center; }
 .product-thumb.active { border-color: var(--orange); }
@@ -952,12 +952,12 @@ input, textarea { font-family: inherit; }
   .product-thumbnails { flex-direction: row; gap: 8px; }
   .product-thumb { width: 52px; height: 52px; }
   .product-main-img { min-height: 240px; }
-  .product-delivery-row { flex-wrap: wrap; gap: 16px; }
+  .product-delivery-row { flex-wrap: wrap; gap: 10px; }
   .similar-title { font-size: 22px; margin: 40px 0 20px; flex-direction: column; align-items: flex-start; gap: 12px; }
 
   /* SERVICES PAGE — иллюстрация переезжает наверх карточки */
   .services-page-grid { grid-template-columns: 1fr; gap: 12px; }
-  .service-page-card { grid-template-columns: 1fr; padding: 16px; gap: 16px; }
+  .service-page-card { grid-template-columns: 1fr; padding: 16px; gap: 10px; }
   .service-page-icon-wrap { order: -1; height: 230px; }
 
   /* DELIVERY PAGE */
