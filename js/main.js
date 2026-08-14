@@ -174,8 +174,6 @@ function renderFooter() {
       <div class="footer-col-mid">
         <div class="footer-label">Адрес магазина</div>
         <span class="footer-val">г. Волжский, ул. Пушкина 51д/319</span>
-        <div class="footer-label footer-mail-row">Почта</div>
-        <a href="mailto:amper134@yandex.ru" class="footer-val footer-mail footer-mail-row">amper134@yandex.ru</a>
         <div class="footer-label">График работы</div>
         <span class="footer-val">ПН-ПТ: 8:00-19:00</span>
       </div>

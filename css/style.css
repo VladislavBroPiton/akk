@@ -483,8 +483,6 @@ input, textarea { font-family: inherit; }
 .footer-messenger svg { width: 18px; height: 18px; }
 .footer-label { font-size: 12px; color: var(--gray-100); letter-spacing: 0.02em; margin-bottom: 8px; }
 .footer-val { font-size: 15px; font-weight: 600; color: var(--white); margin-bottom: 20px; display: block; text-transform: uppercase; }
-.footer-mail { transition: color 0.2s; }
-.footer-mail:hover { color: var(--orange); }
 .footer-nav-title { font-family: 'Oswald', sans-serif; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gray-100); margin-bottom: 16px; }
 .footer-nav a { display: block; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--white); padding: 4px 0; transition: color 0.2s; }
 .footer-nav a:hover { color: var(--orange); }
@@ -917,7 +915,6 @@ input, textarea { font-family: inherit; }
   .footer-policy { order: 1; }
   .footer-copy { order: 2; }
   .footer-credit { order: 3; }
-  .footer-mail-row { display: none; } /* почта скрыта на мобиле */
   /* Карта на мобиле */
   .footer-map-mobile {
     display: block;
