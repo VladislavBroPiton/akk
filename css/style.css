@@ -483,7 +483,9 @@ input, textarea { font-family: inherit; }
   transition: all 0.2s; color: var(--white); background: rgba(255,255,255,0.18);
 }
 .footer-messenger:hover { background: var(--orange); }
-.footer-messenger img { width: 20px; height: 20px; }
+/* картинки обрезаны по границе значка и не всегда квадратные —
+   contain не даёт им растянуться внутри квадратной кнопки */
+.footer-messenger img { width: 20px; height: 20px; object-fit: contain; }
 .footer-messenger svg { width: 18px; height: 18px; }
 .footer-label { font-size: 12px; color: var(--gray-100); letter-spacing: 0.02em; margin-bottom: 8px; }
 .footer-val { font-size: 15px; font-weight: 600; color: var(--white); margin-bottom: 20px; display: block; text-transform: uppercase; }
