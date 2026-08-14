@@ -565,7 +565,9 @@ input, textarea { font-family: inherit; }
 .contact-hours { font-size: 14px; color: var(--black-50); margin-top: 2px; }
 
 /* ── CATALOG PAGE ── */
-.catalog-layout { display: grid; grid-template-columns: 260px 1fr; gap: 40px; padding: 48px 0; }
+/* верхний padding раньше складывался с margin-bottom заголовка (.catalog-count)
+   и давал двойной отступ 72px вместо ~30px, как в макете — оставляем только нижний */
+.catalog-layout { display: grid; grid-template-columns: 260px 1fr; gap: 40px; padding: 0 0 48px; }
 .sidebar { background: var(--white); }
 .sidebar-section { border-bottom: 1px solid var(--gray-400); padding: 20px 0; }
 .sidebar-title { display: flex; justify-content: space-between; align-items: center; font-weight: 700; font-size: 15px; margin-bottom: 14px; cursor: pointer; }
@@ -600,7 +602,7 @@ input, textarea { font-family: inherit; }
 .catalog-empty { text-align: center; padding: 64px 20px; border: 1px dashed var(--gray-100); border-radius: 12px; }
 .catalog-empty-title { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 22px; text-transform: uppercase; margin-bottom: 8px; }
 .catalog-empty p { font-size: 14px; color: var(--black-50); margin-bottom: 20px; }
-.catalog-count { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 28px; text-transform: uppercase; margin-bottom: 24px; }
+.catalog-count { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 28px; text-transform: uppercase; margin-bottom: 32px; }
 .catalog-count span { font-size: 16px; font-weight: 400; font-family: 'Onest', sans-serif; color: var(--black-50); margin-left: 8px; }
 /* ── СОРТИРОВКА (свой выпадающий список, как в макете) ── */
 .sort { position: relative; }
