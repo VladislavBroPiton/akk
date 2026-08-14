@@ -33,6 +33,8 @@
 
 <!-- ── СОСТОЯНИЕ B: листинг раздела (вход через выбор категории) ── -->
 <div class="container" id="listing" hidden>
+  <!-- по макету заголовок раздела — над сайдбаром и плитками, во всю ширину -->
+  <div class="catalog-count" id="cat-title"></div>
   <div class="catalog-layout">
     <!-- сайдбар собирается из конфига раздела в CatalogUI.renderSidebar() -->
     <aside class="sidebar" id="sidebar"></aside>
@@ -41,10 +43,6 @@
       <button class="filter-toggle-btn" id="filterToggle" onclick="toggleFilter()" style="display:none;">⚙ Фильтры</button>
 
       <div class="cat-tiles" id="cat-tiles"></div>
-
-      <div class="catalog-top">
-        <div class="catalog-count" id="cat-title"></div>
-      </div>
 
       <div class="products-grid" id="cat-grid"></div>
 

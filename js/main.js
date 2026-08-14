@@ -713,7 +713,6 @@ const CatalogUI = {
           <button type="button" role="option" data-value="popular">Популярные</button>
           <button type="button" role="option" data-value="price-desc">Сначала дорогие</button>
           <button type="button" role="option" data-value="price-asc">Сначала дешевые</button>
-          <button type="button" role="option" data-value="new">Новинки</button>
         </div>
       </div>
       <div class="filter-head">

@@ -600,8 +600,7 @@ input, textarea { font-family: inherit; }
 .catalog-empty { text-align: center; padding: 64px 20px; border: 1px dashed var(--gray-100); border-radius: 12px; }
 .catalog-empty-title { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 22px; text-transform: uppercase; margin-bottom: 8px; }
 .catalog-empty p { font-size: 14px; color: var(--black-50); margin-bottom: 20px; }
-.catalog-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
-.catalog-count { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 28px; text-transform: uppercase; }
+.catalog-count { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 28px; text-transform: uppercase; margin-bottom: 24px; }
 .catalog-count span { font-size: 16px; font-weight: 400; font-family: 'Onest', sans-serif; color: var(--black-50); margin-left: 8px; }
 /* ── СОРТИРОВКА (свой выпадающий список, как в макете) ── */
 .sort { position: relative; }
@@ -670,8 +669,8 @@ input, textarea { font-family: inherit; }
 .cat-tile-icon { height: 46px; width: auto; object-fit: contain; transition: transform 0.3s ease; }
 .cat-tile:hover { border-color: var(--orange); background: var(--white); box-shadow: 0 8px 28px rgba(255,79,0,0.1); }
 .cat-tile:hover .cat-tile-icon { transform: scale(1.12); }
-.cat-tile.active { background: var(--black); color: var(--white); border-color: var(--black); }
-/* иллюстрация нарисована тёмным контуром — на активной чёрной плитке инвертируем */
+.cat-tile.active { background: #2196F3; color: var(--white); border: 2px solid var(--orange); }
+/* иллюстрация нарисована тёмным контуром — на активной синей плитке инвертируем */
 .cat-tile.active .cat-tile-icon { filter: invert(1); }
 
 /* Шапка сайдбара фильтров */
@@ -972,8 +971,7 @@ input, textarea { font-family: inherit; }
   .catalog-layout { grid-template-columns: 1fr; gap: 0; padding: 16px 0 48px; }
   .sidebar { display: none; }
   .sidebar.open { display: block; position: fixed; inset: 0; z-index: 300; overflow-y: auto; background: var(--white); padding: 20px; }
-  .catalog-top { flex-wrap: wrap; gap: 10px; }
-  .catalog-count { font-size: 22px; }
+  .catalog-count { font-size: 22px; margin-bottom: 16px; }
   .filter-btn { display: block; position: sticky; bottom: 0; }
   .catalog-empty { padding: 40px 16px; }
   .cat-tiles { gap: 8px; margin-bottom: 20px; }
