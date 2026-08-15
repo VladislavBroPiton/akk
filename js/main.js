@@ -209,7 +209,7 @@ function renderFooter() {
 
       <!-- Колонка 3: меню -->
       <div class="footer-col-right">
-        <div class="footer-nav-title">Меню</div>
+        <div class="footer-label">Меню</div>
         <nav class="footer-nav">
           <a href="index.html">Главная</a>
           <a href="catalog.html">Каталог</a>
