@@ -520,8 +520,9 @@ input, textarea { font-family: inherit; }
 .inner-hero-crumbs .breadcrumb span { color: var(--white); }
 
 /* ── STATS ROW ── */
-.stats-row { display: flex; justify-content: space-around; gap: 60px; padding: 48px 0; border-bottom: 1px solid var(--gray-400); }
-.stat { text-align: center; }
+/* по макету — в колонке текста, выровнены по левому краю, без разделителя снизу */
+.stats-row { display: flex; gap: 80px; margin-top: 12px; }
+.stat { text-align: left; }
 .stat-num { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 72px; color: var(--black); line-height: 1; }
 .stat-label { font-size: 14px; color: var(--black-50); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 8px; }
 
@@ -1057,7 +1058,7 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
   /* ABOUT PAGE — flex-wrap:wrap раньше ронял «24/7» и «100%» на свои строки,
      как только три числа переставали помещаться в ряд. nowrap + flex:1
      держит их в одну линию на любом мобильном экране. */
-  .stats-row { flex-wrap: nowrap; gap: 8px; padding: 32px 0; }
+  .stats-row { flex-wrap: nowrap; gap: 8px; margin-top: 20px; }
   .stat { flex: 1; min-width: 0; }
   .stat-num { font-size: 34px; }
   .stat-label { font-size: 11px; }
