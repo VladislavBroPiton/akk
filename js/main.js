@@ -32,6 +32,28 @@ const ICON_FILTER = '<svg viewBox="0 0 18 18" fill="none" aria-hidden="true" foc
   '<circle cx="12" cy="9" r="1.6" fill="var(--white)" stroke="currentColor" stroke-width="1.5"/>' +
   '<circle cx="7" cy="13" r="1.6" fill="var(--white)" stroke="currentColor" stroke-width="1.5"/></svg>';
 
+// плитки «Доставка / Самовывоз / Гарантии» на странице товара — контурные
+// иконки, срисованы с исходников Figma (Frame 1000003468)
+const ICON_DELIVERY = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">' +
+  '<path d="M2 7.5a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1v9.5a1 1 0 0 1-1 1h-1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>' +
+  '<path d="M2 7.5v8.5a1 1 0 0 0 1 1h1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>' +
+  '<path d="M13 10h3.6a1 1 0 0 1 .8.4l2.4 3.2a1 1 0 0 1 .2.6V17a1 1 0 0 1-1 1h-1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>' +
+  '<circle cx="7" cy="18" r="1.8" stroke="currentColor" stroke-width="1.6"/>' +
+  '<circle cx="17" cy="18" r="1.8" stroke="currentColor" stroke-width="1.6"/>' +
+  '<path d="M9 18h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>';
+const ICON_PICKUP = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">' +
+  '<path d="M12 3l8 4.2v9.6L12 21l-8-4.2V7.2L12 3z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>' +
+  '<path d="M12 11.5V21M4 7.2l8 4.3 8-4.3" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>';
+const ICON_WARRANTY = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">' +
+  '<path d="M7 2.5h7l4 4V20a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>' +
+  '<path d="M14 2.5V7a1 1 0 0 0 1 1h4" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>' +
+  '<path d="M9 13h6M9 16.5h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>';
+const ICON_PHONE = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">' +
+  '<path d="M5 4.5h3l1.6 4-2 1.6a10.5 10.5 0 0 0 5.3 5.3l1.6-2 4 1.6v3a1 1 0 0 1-1.1 1A16 16 0 0 1 4 6.1a1 1 0 0 1 1-1.1z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/></svg>';
+// треугольники стрелок слайдера «Похожие товары» — как в макете
+const ICON_ARROW_LEFT = '<svg viewBox="0 0 12 12" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8.5 1.5 3 6l5.5 4.5V1.5z"/></svg>';
+const ICON_ARROW_RIGHT = '<svg viewBox="0 0 12 12" fill="currentColor" aria-hidden="true" focusable="false"><path d="M3.5 1.5 9 6l-5.5 4.5V1.5z"/></svg>';
+
 // ── HEADER HTML ──
 function renderHeader(activePage = '') {
   // Состав и расположение — по макету: навигация уехала в верхнюю строку,
