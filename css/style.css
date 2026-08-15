@@ -550,9 +550,11 @@ input, textarea { font-family: inherit; }
 .delivery-list li::before { content: '•'; position: absolute; left: 0; color: var(--orange); }
 
 /* ── SERVICES PAGE ── */
-.services-page-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
-.service-page-card { border: 1px solid var(--gray-400); border-radius: 10px; padding: 24px; display: grid; grid-template-columns: 1fr 240px; gap: 24px; align-items: center; background: var(--white); margin: 1px; }
-.service-page-icon-wrap { background: var(--gray-400); border-radius: 8px; display: flex; align-items: center; justify-content: center; height: 200px; font-size: 64px; padding: 12px; }
+.services-page-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+/* по замечаниям дизайнера: меньше отступы внутри карточки, картинка занимает
+   больше места (колонка шире, было 240px) */
+.service-page-card { border: 1px solid var(--gray-400); border-radius: 10px; padding: 18px; display: grid; grid-template-columns: 1fr 300px; gap: 16px; align-items: center; background: var(--white); }
+.service-page-icon-wrap { background: var(--gray-400); border-radius: 8px; display: flex; align-items: center; justify-content: center; height: 220px; font-size: 64px; padding: 10px; }
 .service-page-icon-wrap img { max-height: 100%; max-width: 100%; object-fit: contain; }
 
 /* ── CONTACTS PAGE ── */
