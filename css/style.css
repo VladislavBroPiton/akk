@@ -925,6 +925,15 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
   .products-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
   /* каталог на мобиле — 1 колонка, отдельно от общих 2 у остальных сеток */
   #cat-grid { grid-template-columns: 1fr; }
+  /* «Хиты продаж» на главной — на мобиле листаем свайпом в одну строку,
+     а не сеткой 2×2: в узкой карточке подпись «Ёмкость / Пуск.ток»
+     переносилась на 2 строки и «прыгала» по высоте между карточками */
+  .tab-panel .products-grid {
+    grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 74%;
+    gap: 12px; overflow-x: auto; padding-bottom: 4px; margin: 0 -16px; padding-left: 16px; padding-right: 16px;
+    scroll-snap-type: x proximity;
+  }
+  .tab-panel .products-grid .product-card { scroll-snap-align: start; }
   .product-card-img { height: 140px; padding: 12px; }
   .product-card-body { padding: 12px; }
   .product-card-name { font-size: 12px; margin-bottom: 8px; }
