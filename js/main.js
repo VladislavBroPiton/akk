@@ -214,7 +214,7 @@ function renderFooter() {
           <a href="index.html">Главная</a>
           <a href="catalog.html">Каталог</a>
           <a href="delivery.html">Покупателям</a>
-          <a href="about.html">О нас</a>
+          <a href="about.html">О компании</a>
           <a href="contacts.html">Контакты</a>
         </nav>
       </div>

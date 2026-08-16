@@ -394,8 +394,10 @@ input, textarea { font-family: inherit; }
 /* ── CTA BANNER ── */
 .cta-banner { background: var(--orange); padding: 64px 0; }
 /* align-items:center раньше центрировал текст относительно формы —
-   форма выше текстового блока, и текст «плавал» ниже верхнего края */
-.cta-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+   форма выше текстового блока, и текст «плавал» ниже верхнего края.
+   Колонки не 1:1 — по макету текст прижат к левому краю уже узкой
+   колонкой, форма заметно шире и прижата к правому краю. */
+.cta-inner { display: grid; grid-template-columns: 2fr 3fr; gap: 140px; align-items: start; }
 .cta-title { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 40px; text-transform: uppercase; color: var(--white); margin-bottom: 14px; }
 .cta-desc { font-size: 15px; color: rgba(255,255,255,0.85); line-height: 1.6; }
 .cta-form { background: var(--white); border-radius: 12px; padding: 32px; }
@@ -561,13 +563,23 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
 .service-page-icon-wrap { background: var(--gray-400); border-radius: 8px; display: flex; align-items: center; justify-content: center; height: 220px; font-size: 64px; padding: 10px; }
 .service-page-icon-wrap img { max-height: 100%; max-width: 100%; object-fit: contain; }
 
-/* ── CONTACTS PAGE ── */
-.contacts-hero { min-height: 480px; position: relative; overflow: hidden; display: flex; }
-.contacts-map { flex: 1; position: relative; }
-.contacts-map iframe { width: 100%; height: 100%; border: none; position: absolute; inset: 0; }
-.contacts-info { width: 520px; background: var(--white); padding: 60px 40px; display: flex; flex-direction: column; justify-content: center; gap: 6px; z-index: 1; }
+/* ── CONTACTS PAGE ──
+   Карта — на всю ширину блока (фон), панель «Контакты» плавает поверх неё
+   слева, не колонка рядом с картой. */
+.contacts-hero { min-height: 700px; position: relative; overflow: hidden; }
+.contacts-map { position: absolute; inset: 0; }
+.contacts-map iframe { width: 100%; height: 100%; border: none; }
+.contacts-hero-inner {
+  position: relative; height: 100%; max-width: 1600px; margin: 0 auto; padding: 0 40px;
+  display: flex; align-items: center; pointer-events: none;
+}
+.contacts-info {
+  width: 520px; background: var(--white); padding: 60px 40px; display: flex;
+  flex-direction: column; gap: 6px; box-shadow: 0 12px 40px rgba(0,0,0,0.18); pointer-events: auto;
+}
 .contacts-page-title { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 36px; text-transform: uppercase; margin-bottom: 32px; }
-.contact-label { font-size: 12px; color: var(--black-50); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 4px; margin-top: 20px; }
+/* по макету подписи не капсом, с большой буквы — не «ТЕЛЕФОН», а «Телефон» */
+.contact-label { font-size: 12px; color: var(--black-50); letter-spacing: 0.02em; margin-bottom: 4px; margin-top: 20px; }
 .contact-val { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 22px; text-transform: uppercase; }
 .contact-val a:hover { color: var(--orange); }
 .contact-hours { font-size: 14px; color: var(--black-50); margin-top: 2px; }
@@ -1080,16 +1092,19 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
 
   /* CONTACTS PAGE — по мобильному макету панель наплывает на карту сверху
      (скруглённые верхние углы + тень), а не просто идёт отдельным блоком */
-  .contacts-hero { flex-direction: column-reverse; min-height: auto; }
+  .contacts-hero { min-height: auto; }
+  .contacts-map { position: relative; inset: auto; height: 340px; }
+  .contacts-map iframe { height: 340px; }
+  .contacts-hero-inner {
+    position: relative; height: auto; max-width: none; margin: -24px 0 0; padding: 0;
+    display: block; pointer-events: auto;
+  }
   .contacts-info {
-    width: 100%; padding: 28px 20px; margin-top: -24px;
+    width: 100%; padding: 28px 20px;
     border-radius: 20px 20px 0 0; box-shadow: 0 -8px 24px rgba(0,0,0,0.12);
-    position: relative; z-index: 2;
   }
   .contacts-page-title { font-size: 28px; margin-bottom: 20px; }
   .contact-val { font-size: 18px; }
-  .contacts-map { min-height: 340px; position: relative; }
-  .contacts-map iframe { position: relative; height: 340px; }
 
   /* ARTICLES PAGE */
   .articles-page-header { flex-wrap: wrap; padding: 24px 0 16px; gap: 10px; }

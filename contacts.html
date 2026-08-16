@@ -23,27 +23,29 @@
 <div id="header-mount"></div>
 <div id="breadcrumb-mount"></div>
 
-<!-- CONTACTS HERO with MAP -->
-<section class="contacts-hero" style="min-height:500px;">
-  <div class="contacts-info">
-    <h1 class="contacts-page-title">Контакты</h1>
-    <div class="contact-label">Телефон</div>
-    <div class="contact-val"><a href="tel:+79950253434">+7 (995)-025-34-34</a></div>
-    <div class="contact-label">Почта</div>
-    <div class="contact-val" style="font-size:16px;"><a href="mailto:amper134@yandex.ru">amper134@yandex.ru</a></div>
-    <div class="contact-label">Адрес</div>
-    <div class="contact-val" style="font-size:18px;">г. Волжский, ул. Пушкина 51д/319</div>
-    <div class="contact-hours">ПН-ПТ: 8:00-19:00</div>
-    <div style="margin-top:28px;">
-      <a href="tel:+79950253434" class="btn btn-primary">Связаться</a>
-    </div>
-  </div>
+<!-- CONTACTS HERO with MAP — карта на всю ширину блока, панель контактов
+     плавает поверх неё (не колонка рядом с картой) -->
+<section class="contacts-hero">
   <div class="contacts-map">
     <iframe
       src="https://yandex.ru/map-widget/v1/?ll=44.773,48.790&z=17&l=map&pt=44.773,48.790,pm2rdm"
-      allowfullscreen loading="lazy" title="Ампер на карте"
-      style="width:100%;height:500px;border:none;">
+      allowfullscreen loading="lazy" title="Ампер на карте">
     </iframe>
+  </div>
+  <div class="contacts-hero-inner">
+    <div class="contacts-info">
+      <h1 class="contacts-page-title">Контакты</h1>
+      <div class="contact-label">Телефон</div>
+      <div class="contact-val"><a href="tel:+79950253434">+7 (995)-025-34-34</a></div>
+      <div class="contact-label">Почта</div>
+      <div class="contact-val" style="font-size:16px;"><a href="mailto:amper134@yandex.ru">amper134@yandex.ru</a></div>
+      <div class="contact-label">Адрес</div>
+      <div class="contact-val" style="font-size:18px;">г. Волжский, ул. Пушкина 51д/319</div>
+      <div class="contact-hours">ПН-ПТ: 8:00-19:00</div>
+      <div style="margin-top:28px;">
+        <a href="tel:+79950253434" class="btn btn-primary">Связаться</a>
+      </div>
+    </div>
   </div>
 </section>
 
