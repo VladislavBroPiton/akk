@@ -764,13 +764,15 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
 .slider-btn-next:hover { background: #e54500; }
 
 /* ── ARTICLE PAGE ── */
-.article-layout { display: grid; grid-template-columns: 1fr 320px; gap: 60px; padding: 48px 0 80px; }
-.article-content h1 { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 36px; text-transform: uppercase; margin-bottom: 8px; }
-.article-date { font-size: 13px; color: var(--black-50); margin-bottom: 28px; }
+.article-layout { display: grid; grid-template-columns: 1fr 320px; gap: 40px; padding: 48px 0 80px; }
+/* заголовок и дата — прямые дети грида (не вложены в .article-content),
+   растянуты на всю ширину строки (текст + сайдбар), а не только в колонку текста */
+.article-layout > h1 { grid-column: 1 / -1; font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 36px; text-transform: uppercase; margin-bottom: 8px; }
+.article-layout > .article-date { grid-column: 1 / -1; font-size: 13px; color: var(--black-50); margin-bottom: 28px; }
 /* высота картинки — по соотношению сторон из макета (1140×578 на десктопе),
    а не жёсткий min-height: раньше без явной height div схлопывался до min-height */
 .article-hero-img { width: 100%; border-radius: 12px; margin-bottom: 28px; aspect-ratio: 1140 / 578; background: linear-gradient(135deg, #2a0f00, #1a1a1a); }
-.article-content p { font-size: 16px; line-height: 1.7; color: var(--black); margin-bottom: 18px; }
+.article-content p { font-size: 16px; line-height: 1.7; color: var(--black); margin-bottom: 12px; }
 .article-content h2 { font-size: 20px; font-weight: 700; margin: 32px 0 14px; }
 .article-content ul { margin: 10px 0 18px 20px; }
 .article-content ul li { font-size: 15px; line-height: 1.6; color: var(--black-50); margin-bottom: 6px; list-style: disc; }
@@ -789,6 +791,8 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
    на всю ширину строки грида, под колонками текста и сайдбара, как в макете */
 .see-also { grid-column: 1 / -1; margin-top: 60px; }
 .see-also-title { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 24px; text-transform: uppercase; margin-bottom: 24px; }
+/* карточки «Смотрите также» — компактнее, чем стандартная сетка статей */
+.see-also .articles-grid { gap: 14px; }
 
 /* ── ARTICLES LIST PAGE ── */
 .articles-page-section { background: var(--gray-300); padding-bottom: 64px; }
@@ -988,8 +992,11 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
   /* на мобиле всё в столбик: телефон сверху, затем адрес и меню в два столбца */
   .footer-grid { display: block; }
   .footer-col-left { padding-bottom: 16px; }
-  .footer-col-mid-right { display: flex; gap: 16px; padding-bottom: 0; }
-  .footer-col-mid, .footer-col-right { flex: 1; min-width: 0; }
+  /* «Меню» по макету прижато к правому краю экрана, а не растянуто
+     наравне с адресом — колонки по своей ширине, а не 50/50 */
+  .footer-col-mid-right { display: flex; justify-content: space-between; gap: 16px; padding-bottom: 0; }
+  .footer-col-mid { flex: 0 1 auto; min-width: 0; }
+  .footer-col-right { flex: 0 0 auto; }
   .footer-phone-big { font-size: 26px; margin-bottom: 10px; }
   /* на мобиле порядок строк другой: сначала политика, потом копирайт, потом «Разработка» */
   .footer-bottom { flex-direction: column; align-items: flex-start; gap: 4px; font-size: 11px; margin-top: 0; border-top: none; padding: 10px 0 16px; }
@@ -1116,7 +1123,7 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
 
   /* ARTICLE PAGE */
   .article-layout { grid-template-columns: 1fr; padding: 24px 0 48px; gap: 32px; }
-  .article-content h1 { font-size: 22px; }
+  .article-layout > h1 { font-size: 22px; }
   .article-hero-img { min-height: 180px; }
   /* «Смотрите также» на мобиле — горизонтальная карусель со скроллом,
      как в макете (вторая карточка обрезана краем экрана), а не колонка */
