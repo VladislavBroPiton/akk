@@ -389,10 +389,18 @@ function handleForm(e) {
 function initTabs() {
   document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.addEventListener('click', () => {
+      const tabs = btn.closest('.tabs');
+      // на мобиле список категорий свёрнут — видна только активная строка
+      // со стрелкой; тап по ней раскрывает список остальных, не переключая вкладку
+      if (tabs && btn.classList.contains('active')) {
+        tabs.classList.toggle('open');
+        return;
+      }
       const group = btn.closest('.tabs-wrap') || document;
       group.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
       group.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
       btn.classList.add('active');
+      if (tabs) tabs.classList.remove('open');
       const target = document.getElementById(btn.dataset.tab);
       if (target) target.classList.add('active');
     });

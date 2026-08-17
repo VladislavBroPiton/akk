@@ -994,10 +994,22 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
   .product-spec { font-size: 11px; }
   .product-price { font-size: 12px; }
 
-  /* TABS — на мобиле сегменты poровну не влезают, оставляем скролл
-     вбок с шириной по содержимому, а не flex:1 */
-  .tabs { overflow-x: auto; white-space: nowrap; gap: 0; }
-  .tab-btn { flex: none; padding: 10px 16px; font-size: 13px; }
+  /* TABS — на мобиле по макету это не ряд вкладок, а раскрывающийся список
+     (как выпадашка сортировки): видна только активная категория со стрелкой,
+     остальные показываются по тапу списком под ней */
+  .tabs { flex-direction: column; }
+  .tab-btn {
+    display: none; justify-content: space-between; align-items: center;
+    text-align: left; border-right: none; border-bottom: 1px solid var(--gray-400);
+    padding: 14px 16px;
+  }
+  .tab-btn.active {
+    display: flex; color: var(--black); font-weight: 700;
+  }
+  .tab-btn.active::after { content: '▼'; font-size: 10px; color: var(--black-50); }
+  .tabs.open .tab-btn { display: flex; }
+  .tabs.open .tab-btn:last-child { border-bottom: none; }
+  .tabs.open .tab-btn.active::after { content: '▲'; }
 
   /* SERVICES — 1 колонка, иллюстрация сверху */
   .services-grid { grid-template-columns: 1fr; gap: 12px; }
