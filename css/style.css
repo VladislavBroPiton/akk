@@ -764,11 +764,17 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
 .slider-btn-next:hover { background: #e54500; }
 
 /* ── ARTICLE PAGE ── */
-.article-layout { display: grid; grid-template-columns: 1fr 320px; gap: 22px; padding: 10px 0 80px; }
+/* row-gap:0 отдельно от column-gap — иначе построчный зазор грида складывался
+   бы с margin-bottom заголовка/даты, и реальный отступ оказывался больше
+   заданного (row-gap применяется и между строками h1/дата/картинка, не только
+   между колонкой текста и сайдбаром) */
+.article-layout { display: grid; grid-template-columns: 1fr 320px; row-gap: 0; column-gap: 14px; padding: 0 0 80px; }
 /* заголовок и дата — прямые дети грида (не вложены в .article-content),
-   растянуты на всю ширину строки (текст + сайдбар), а не только в колонку текста */
-.article-layout > h1 { grid-column: 1 / -1; font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 36px; text-transform: uppercase; margin-bottom: 6px; }
-.article-layout > .article-date { grid-column: 1 / -1; font-size: 13px; color: var(--black-50); margin-bottom: 10px; }
+   растянуты на всю ширину строки (текст + сайдбар), а не только в колонку текста.
+   padding-top у .article-layout убран совсем — хлебные крошки (.breadcrumb)
+   и так дают 12px своего нижнего padding, вместе с ним и получается видимый зазор. */
+.article-layout > h1 { grid-column: 1 / -1; font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 36px; text-transform: uppercase; margin-bottom: 4px; line-height: 1.15; }
+.article-layout > .article-date { grid-column: 1 / -1; font-size: 13px; color: var(--black-50); margin-bottom: 8px; }
 /* высота картинки — по соотношению сторон из макета (1140×578 на десктопе),
    а не жёсткий min-height: раньше без явной height div схлопывался до min-height */
 .article-hero-img { width: 100%; border-radius: 12px; margin-bottom: 28px; aspect-ratio: 1140 / 578; background: linear-gradient(135deg, #2a0f00, #1a1a1a); }
