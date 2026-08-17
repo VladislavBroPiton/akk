@@ -516,7 +516,11 @@ input, textarea { font-family: inherit; }
     linear-gradient(to right, rgba(0,0,0,0.75) 35%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0) 100%);
 }
 .inner-hero-content { position: relative; z-index: 1; padding: 48px 0; color: var(--white); }
-.inner-hero-title { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 44px; text-transform: uppercase; max-width: 560px; line-height: 1.1; }
+/* clamp вместо фиксированного 44px — на «промежуточных» ширинах окна
+   (между мобильным брейкпоинтом 768px и «широким» десктопом) контейнеру
+   physически не хватает места под длинный заголовок услуг даже без
+   ограничения max-width, из-за чего первая строка сама рвалась на 2 */
+.inner-hero-title { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: clamp(26px, 4vw, 44px); text-transform: uppercase; max-width: 800px; line-height: 1.1; }
 /* крошки поверх тёмного фото — светлый вариант вместо обычного тёмного текста */
 .inner-hero-crumbs { position: relative; z-index: 1; }
 .inner-hero-crumbs .breadcrumb, .inner-hero-crumbs .breadcrumb a { color: rgba(255,255,255,0.5); }
@@ -625,7 +629,7 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
 .catalog-empty-title { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 22px; text-transform: uppercase; margin-bottom: 8px; }
 .catalog-empty p { font-size: 14px; color: var(--black-50); margin-bottom: 20px; }
 .catalog-count { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 28px; text-transform: uppercase; margin-bottom: 32px; }
-.catalog-count span { font-size: 16px; font-weight: 400; font-family: 'Onest', sans-serif; color: var(--black-50); margin-left: 8px; }
+.catalog-count span { font-size: 16px; font-weight: 400; font-family: 'Onest', sans-serif; color: var(--black-50); margin-left: 8px; vertical-align: top; }
 /* ── СОРТИРОВКА (свой выпадающий список, как в макете) ── */
 .sort { position: relative; }
 .sort-label {
@@ -878,6 +882,9 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
   .hero-title { font-size: 28px; line-height: 1.1; }
   .section-title { font-size: 24px; }
   .inner-hero-title { font-size: 26px; }
+  /* заголовок услуг длиннее остальных inner-hero — на узком экране
+     при 26px рвётся на 3 строки вместо 2, здесь чуть меньше */
+  .services-hero-title { font-size: 20px; }
   .cta-title { font-size: 26px; }
   .h1 { font-size: 28px; }
   .h2 { font-size: 22px; }
