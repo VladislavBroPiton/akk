@@ -66,7 +66,7 @@ input, textarea { font-family: inherit; }
 .btn-outline-white:hover { background: var(--white); color: var(--black); }
 .btn-link {
   display: inline-flex; align-items: center; gap: 6px;
-  font-family: 'Onest', sans-serif; font-weight: 500; font-size: 14px;
+  font-family: 'Onest', sans-serif; font-weight: 600; font-size: 16px;
   color: var(--black); padding: 0;
 }
 .btn-link::after { content: '▶'; font-size: 10px; }
@@ -422,7 +422,9 @@ input, textarea { font-family: inherit; }
 .articles-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
 /* карточка — flex-колонка, чтобы «Подробнее» у всех прижималось к низу
    и ряд не выглядел рваным при разной длине заголовков */
-.article-card { border-radius: 10px; overflow: hidden; border: 1px solid var(--gray-400); background: var(--white); transition: all 0.2s; display: flex; flex-direction: column; }
+/* по макету рамка карточки заметнее — var(--gray-100) #CBCBCB, а не
+   почти невидимый var(--gray-400); толщина та же (1px), но контраст выше */
+.article-card { border-radius: 10px; overflow: hidden; border: 1px solid var(--gray-100); background: var(--white); transition: all 0.2s; display: flex; flex-direction: column; }
 .article-card:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.1); transform: translateY(-2px); }
 .article-card-img { width: 100%; height: 160px; object-fit: cover; background: var(--gray-300); flex-shrink: 0; }
 .article-card-img-placeholder { width: 100%; height: 160px; background: linear-gradient(135deg, #3d1500, #242424); flex-shrink: 0; }
