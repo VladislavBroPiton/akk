@@ -259,9 +259,11 @@ input, textarea { font-family: inherit; }
   background: var(--white);
   border-bottom: 1px solid var(--gray-400);
 }
-.no-hero-page .header-top { color: var(--black-50); border-bottom-color: var(--gray-400); }
+/* по макету адрес/почта в этом блоке — сплошным чёрным (#242424), не
+   полупрозрачным серым — иначе плохо видно на светлом фоне */
+.no-hero-page .header-top { color: var(--black); border-bottom-color: var(--gray-400); }
 .no-hero-page .header-addr::before {
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='15' viewBox='0 0 12 15' fill='none'%3E%3Cpath d='M6 1C3.5 1 1.5 3 1.5 5.5C1.5 9 6 14 6 14S10.5 9 10.5 5.5C10.5 3 8.5 1 6 1Z' stroke='%23242424' stroke-opacity='0.5' stroke-width='1.2'/%3E%3Ccircle cx='6' cy='5.5' r='1.6' stroke='%23242424' stroke-opacity='0.5' stroke-width='1.2'/%3E%3C/svg%3E") no-repeat center;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='15' viewBox='0 0 12 15' fill='none'%3E%3Cpath d='M6 1C3.5 1 1.5 3 1.5 5.5C1.5 9 6 14 6 14S10.5 9 10.5 5.5C10.5 3 8.5 1 6 1Z' stroke='%23242424' stroke-width='1.2'/%3E%3Ccircle cx='6' cy='5.5' r='1.6' stroke='%23242424' stroke-width='1.2'/%3E%3C/svg%3E") no-repeat center;
 }
 .no-hero-page .logo-sub { color: var(--black-50); }
 .no-hero-page .nav a { color: var(--black); }
