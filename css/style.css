@@ -339,7 +339,7 @@ input, textarea { font-family: inherit; }
 /* ── PRODUCT TABS ── */
 /* По макету — не подчёркивание активной вкладки, а сегменты через
    вертикальные разделители, поровну по ширине; активная — чёрным жирным. */
-.tabs { display: flex; margin-bottom: 32px; }
+.tabs { display: flex; margin-bottom: 32px; background: var(--white); border-radius: 8px; overflow: hidden; }
 .tab-btn {
   flex: 1; padding: 14px 8px; font-size: 15px; font-weight: 600;
   color: var(--black-50); border: none; border-right: 1px solid var(--gray-400);
