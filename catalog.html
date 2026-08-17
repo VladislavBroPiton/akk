@@ -36,14 +36,19 @@
   <!-- по макету заголовок раздела — над сайдбаром и плитками, во всю ширину -->
   <div class="catalog-count" id="cat-title"></div>
   <div class="catalog-layout">
-    <!-- сайдбар собирается из конфига раздела в CatalogUI.renderSidebar() -->
+    <!-- кнопка-воронка (только на мобиле, открывает панель фильтра) + сортировка —
+         по макету видны на странице сразу, не спрятаны внутри панели фильтра -->
+    <div class="catalog-toolbar">
+      <button class="filter-toggle-btn" id="filterToggle" onclick="toggleFilter()" style="display:none;" aria-label="Открыть фильтр"></button>
+      <div id="catalog-sort-mount"></div>
+    </div>
+
+    <!-- сайдбар (чекбоксы фильтра) собирается из конфига раздела в CatalogUI.renderSidebar() -->
     <aside class="sidebar" id="sidebar"></aside>
 
-    <div>
-      <button class="filter-toggle-btn" id="filterToggle" onclick="toggleFilter()" style="display:none;">⚙ Фильтры</button>
+    <div class="cat-tiles" id="cat-tiles"></div>
 
-      <div class="cat-tiles" id="cat-tiles"></div>
-
+    <div class="cat-main">
       <div class="products-grid" id="cat-grid"></div>
 
       <div class="catalog-empty" id="cat-empty" hidden>

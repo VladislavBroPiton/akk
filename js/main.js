@@ -25,12 +25,17 @@ const ICON_SEARCH = '<svg viewBox="0 0 20 20" fill="none" aria-hidden="true" foc
   '<circle cx="9" cy="9" r="6.2" stroke="currentColor" stroke-width="1.8"/>' +
   '<path d="M13.6 13.6L18.2 18.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>';
 
-// иконка-«ползунки» рядом с заголовком «Фильтр» в мобильной шторке — как в макете
+// иконка-«ползунки» рядом с заголовком «Фильтр» внутри панели фильтра — как в макете
 const ICON_FILTER = '<svg viewBox="0 0 18 18" fill="none" aria-hidden="true" focusable="false">' +
   '<path d="M2 5h14M2 9h14M2 13h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>' +
   '<circle cx="6" cy="5" r="1.6" fill="var(--white)" stroke="currentColor" stroke-width="1.5"/>' +
   '<circle cx="12" cy="9" r="1.6" fill="var(--white)" stroke="currentColor" stroke-width="1.5"/>' +
   '<circle cx="7" cy="13" r="1.6" fill="var(--white)" stroke="currentColor" stroke-width="1.5"/></svg>';
+
+// иконка-«воронка» кнопки открытия фильтра на мобильном — срисована с
+// исходника Figma (файл «Фильтр» в папке Дизайн)
+const ICON_FUNNEL = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">' +
+  '<path d="M4 5h16l-6.2 8.2v6l-3.6-1.8v-4.2z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/></svg>';
 
 // плитки «Доставка / Самовывоз / Гарантии» на странице товара — контурные
 // иконки, срисованы с исходников Figma (Frame 1000003468)
@@ -616,7 +621,9 @@ function toggleFilter() {
 // ── SHOW FILTER BTN ON MOBILE ──
 function checkMobileFilterBtn() {
   const btn = document.getElementById('filterToggle');
-  if (btn) btn.style.display = window.innerWidth <= 768 ? 'flex' : 'none';
+  if (!btn) return;
+  if (!btn.innerHTML) btn.innerHTML = ICON_FUNNEL;
+  btn.style.display = window.innerWidth <= 768 ? 'flex' : 'none';
 }
 
 // ── COLLAPSIBLE FILTER SECTIONS ──
@@ -733,9 +740,9 @@ const CatalogUI = {
         </div>`;
     }).join('');
 
-    document.getElementById('sidebar').innerHTML = `
-      <!-- строка сортировки + крестик закрытия шторки — одна строка, как в макете -->
-      <div class="filter-sheet-head">
+    // сортировка — отдельно от панели чекбоксов: на мобиле видна сразу на
+    // странице (рядом с кнопкой-воронкой), не спрятана внутри шторки фильтра
+    document.getElementById('catalog-sort-mount').innerHTML = `
       <div class="sort catalog-sort" id="catalog-sort" data-value="popular">
         <button class="sort-btn" type="button" aria-haspopup="listbox" aria-expanded="false">
           <span class="sort-btn-label">Сортировать по: <span class="sort-current">Популярные</span></span>
@@ -745,12 +752,15 @@ const CatalogUI = {
           <button type="button" role="option" data-value="price-desc">Сначала дорогие</button>
           <button type="button" role="option" data-value="price-asc">Сначала дешевые</button>
         </div>
-      </div>
-      <button class="filter-close" type="button" onclick="toggleFilter()" aria-label="Закрыть фильтр">✕</button>
-      </div>
+      </div>`;
+
+    document.getElementById('sidebar').innerHTML = `
       <div class="filter-head">
         <div class="filter-head-title">${ICON_FILTER}Фильтр</div>
-        <button class="filter-reset" type="button">Сбросить все</button>
+        <div class="filter-head-actions">
+          <button class="filter-reset" type="button">Сбросить все</button>
+          <button class="filter-close" type="button" onclick="toggleFilter()" aria-label="Закрыть фильтр">✕</button>
+        </div>
       </div>
       ${blocks}
       <button class="filter-btn" type="button">Применить</button>`;
