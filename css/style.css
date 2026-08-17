@@ -694,9 +694,7 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
 .cat-tile-icon { height: 46px; width: auto; object-fit: contain; transition: transform 0.3s ease; }
 .cat-tile:hover { border-color: var(--orange); background: var(--white); box-shadow: 0 8px 28px rgba(255,79,0,0.1); }
 .cat-tile:hover .cat-tile-icon { transform: scale(1.12); }
-.cat-tile.active { background: #2196F3; color: var(--white); border: 2px solid var(--orange); }
-/* иллюстрация нарисована тёмным контуром — на активной синей плитке инвертируем */
-.cat-tile.active .cat-tile-icon { filter: invert(1); }
+.cat-tile.active { background: var(--gray-300); border: 2px solid var(--orange); }
 
 /* Шапка сайдбара фильтров */
 .filter-head { display: flex; align-items: center; justify-content: space-between; padding-bottom: 12px; }
