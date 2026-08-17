@@ -685,14 +685,19 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
 .catalog-query:hover { color: var(--orange); }
 
 /* сортировка на странице каталога — та же .sort-логика, что и на странице
-   статей, но кнопкой во всю ширину с фоном, а не текстовой ссылкой */
-.catalog-toolbar { display: flex; align-items: center; gap: 12px; }
-.catalog-toolbar .catalog-sort { flex: 1; min-width: 0; margin-bottom: 0; }
+   статей, но кнопкой во всю ширину с фоном, а не текстовой ссылкой.
+   По макету блок сортировки прижат к правому краю строки (не растянут
+   от иконки-воронки на всю оставшуюся ширину), а сам виджет — по ширине
+   содержимого, не 100% */
+.catalog-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.catalog-toolbar .catalog-sort { flex: 0 1 auto; min-width: 0; margin-bottom: 0; }
 .catalog-sort { margin-bottom: 24px; }
 .catalog-sort .sort-btn {
   width: 100%; justify-content: space-between; align-items: flex-start;
   background: var(--gray-400); border-radius: 6px; padding: 14px 16px;
 }
+/* «Сортировать по:» — светлее самого значения (макет: чёрный 50% прозрачности, начертание то же) */
+.sort-btn-prefix { color: var(--black-50); }
 /* длинные варианты («Сначала дешевые/дорогие») не помещаются в один ряд
    в узком сайдбаре и раньше вылезали за его границы — весь текст теперь
    один flex-элемент, переносится на 2 строки как обычный текст, а стрелка

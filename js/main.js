@@ -745,7 +745,7 @@ const CatalogUI = {
     document.getElementById('catalog-sort-mount').innerHTML = `
       <div class="sort catalog-sort" id="catalog-sort" data-value="popular">
         <button class="sort-btn" type="button" aria-haspopup="listbox" aria-expanded="false">
-          <span class="sort-btn-label">Сортировать по: <span class="sort-current">Популярные</span></span>
+          <span class="sort-btn-label"><span class="sort-btn-prefix">Сортировать по:</span> <span class="sort-current">Популярные</span></span>
         </button>
         <div class="sort-list" role="listbox">
           <button type="button" role="option" data-value="popular">Популярные</button>
