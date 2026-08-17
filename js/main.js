@@ -738,7 +738,7 @@ const CatalogUI = {
       <div class="filter-sheet-head">
       <div class="sort catalog-sort" id="catalog-sort" data-value="popular">
         <button class="sort-btn" type="button" aria-haspopup="listbox" aria-expanded="false">
-          Сортировать по: <span class="sort-current">Популярные</span>
+          <span class="sort-btn-label">Сортировать по: <span class="sort-current">Популярные</span></span>
         </button>
         <div class="sort-list" role="listbox">
           <button type="button" role="option" data-value="popular">Популярные</button>
