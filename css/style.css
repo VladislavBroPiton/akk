@@ -985,7 +985,7 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
      градиент здесь давал заметный шов на стыке с .hero-photo-mobile: верх
      самого фото почти чёрный (0-2 по RGB), а градиент в точке стыка —
      тёплый коричневый (~45,15,0), граница между ними была видна. */
-  .hero-bg { background: #0a0a0a; }
+  .hero-bg { background: #000; }
   .hero-bg::after { background: none; }
   .hero-img { display: none; }
   /* десктопные 60px сверху у .hero-content на мобильном раздвигали
@@ -994,13 +994,20 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
   .hero-photo-mobile {
     display: block; position: relative;
     height: 250px; margin: 20px -16px 0;
-    background-image: url('../img/hero-main-mobile.jpg');
-    background-size: cover; background-position: center 65%; background-repeat: no-repeat;
+    /* #000 точно совпадал с фото (0.6-0.9 по RGB на верхних строчках), но
+       #0a0a0a (10,10,10) на фоне уже был заметно светлее — тонкая линия
+       шва оставалась. Плюс градиент-затухание поверх верха самого фото —
+       так граница размыта, а не зависит от точного совпадения одного цвета
+       (JPEG-сжатие/экран телефона может слегка сместить оттенок). */
+    background-image: linear-gradient(to bottom, #000 0%, rgba(0,0,0,0) 40px), url('../img/hero-main-mobile.jpg');
+    background-size: 100% 40px, cover;
+    background-position: top, center 65%;
+    background-repeat: no-repeat, no-repeat;
   }
   /* кнопки лежат на фото, не под ним: позиция сверена по макету — верх
      кнопок примерно на 68% высоты блока, снизу остаётся чуть фото видно */
   .hero-photo-mobile .hero-actions {
-    position: absolute; left: 16px; right: 16px; bottom: 49px; margin: 0;
+    position: absolute; left: 16px; right: 16px; bottom: 20px; margin: 0;
   }
   .hero-actions { flex-direction: row; gap: 10px; }
   .hero-actions .btn { flex: 1; min-width: 0; justify-content: center; }
