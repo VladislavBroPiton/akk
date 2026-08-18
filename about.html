@@ -25,10 +25,18 @@
 <!-- INNER HERO -->
 <section class="inner-hero">
   <div class="inner-hero-bg">
-    <img class="inner-hero-bg-img" id="hero-bg-img" alt="">
+    <picture>
+      <!-- отдельное фото под мобильную версию: качественнее и в портретных
+           пропорциях (не растянутый десктопный кадр) -->
+      <source media="(max-width: 768px)" srcset="img/hero-about-mobile.jpg">
+      <img class="inner-hero-bg-img" id="hero-bg-img" alt="">
+    </picture>
     <div class="inner-hero-overlay"></div>
   </div>
-  <div class="inner-hero-crumbs" id="breadcrumb-mount"></div>
+  <div class="inner-hero-crumbs-row">
+    <div class="inner-hero-crumbs" id="breadcrumb-mount"></div>
+    <a href="tel:+79950253434" class="header-phone inner-hero-phone">+7-995-025-34-34</a>
+  </div>
   <div class="container" style="width:100%">
     <div class="inner-hero-content" style="padding:48px 0 48px; max-width:560px;">
       <h1 class="inner-hero-title">Подберём аккумулятор<br>под ваш автомобиль</h1>

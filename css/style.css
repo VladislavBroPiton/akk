@@ -537,11 +537,22 @@ input, textarea { font-family: inherit; }
    на промежуточных ширинах (768px-«широкий» десктоп) не рвалась первая
    строка — верхний предел поднят до 64px */
 .inner-hero-title { font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: clamp(26px, 4vw, 64px); text-transform: uppercase; max-width: 800px; line-height: 1.1; }
+/* на десктопе свободный перенос по ширине — принудительные строки только на моб. */
+.services-title-break { display: none; }
 /* крошки поверх тёмного фото — светлый вариант вместо обычного тёмного текста */
-.inner-hero-crumbs { position: relative; z-index: 1; }
 .inner-hero-crumbs .breadcrumb, .inner-hero-crumbs .breadcrumb a { color: rgba(255,255,255,0.5); }
 .inner-hero-crumbs .breadcrumb a:hover { color: var(--orange); }
 .inner-hero-crumbs .breadcrumb span { color: var(--white); }
+/* строка крошки+телефон: на десктопе телефон здесь скрыт (он уже есть в
+   шапке), на мобильном — наоборот, встаёт в один ряд с крошками (см.
+   медиа-запрос), а дублирующий телефон из шапки прячется */
+.inner-hero-crumbs-row {
+  position: relative; z-index: 1;
+  max-width: 1600px; margin: 0 auto; padding: 0 40px;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+}
+.inner-hero-crumbs-row .breadcrumb .container { padding: 0; max-width: none; margin: 0; }
+.inner-hero-phone { display: none; }
 
 /* ── STATS ROW ── */
 /* по макету — в колонке текста, выровнены по левому краю, без разделителя снизу */
@@ -982,6 +993,13 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
     color: var(--white); border-color: var(--white);
   }
   .burger { display: flex; order: 1; flex-shrink: 0; }
+  /* на страницах с .inner-hero (about/услуги) телефон переезжает в один
+     ряд с крошками — прячем дублирующий телефон из второй строки шапки */
+  body:has(.inner-hero) .header-main .header-phone:not(.inner-hero-phone) { display: none; }
+  .inner-hero-crumbs-row { padding: 0 16px; }
+  .inner-hero-phone { display: inline-flex; font-size: 13px; padding: 6px 12px; }
+  /* заголовок услуг — 3 строки по макету вместо свободного переноса */
+  .services-title-break { display: block; }
   /* Кнопка каталога на .no-hero-page (см. выше, не в медиа-запросе) уже
      чёрная с белой иконкой и на мобильном — специально проверено по макету
      Каталог.png, доп. override здесь не нужен (более ранняя попытка сделать
