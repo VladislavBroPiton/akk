@@ -938,7 +938,10 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
   .logo { font-size: 18px; order: 2; margin: 0 auto; }
   .logo-sub { display: none; }
   .logo-bolt { font-size: 22px; }
-  .btn-catalog { order: 4; width: 40px; height: 40px; padding: 0; justify-content: center; background: rgba(255,255,255,0.15); color: var(--white); }
+  /* по макету кнопка каталога на мобиле — как и на десктопе: сплошной белый
+     квадрат с чёрной иконкой на тёмной (hero) шапке, см. .no-hero-page ниже
+     для светлой шапки — там наоборот, чёрный квадрат с белой иконкой */
+  .btn-catalog { order: 4; width: 40px; height: 40px; padding: 0; justify-content: center; background: var(--white); color: var(--black); }
   .btn-catalog-label { display: none; }
   .search-wrap { display: none; }
   /* поиск на мобиле — серый квадрат */
@@ -954,31 +957,25 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
     color: var(--white); border-color: var(--white);
   }
   .burger { display: flex; order: 1; flex-shrink: 0; }
-  /* На .no-hero-page (см. выше) кнопка каталога на десктопе — чёрная с белой
-     иконкой, но на мобильном это просто квадратная иконка-кнопка, как и
-     поиск: должна быть серой с чёрной иконкой, а не чёрным квадратом. */
-  .no-hero-page .btn-catalog { background: var(--gray-400); color: var(--black); }
-  .no-hero-page .btn-catalog:hover { background: var(--gray-100); color: var(--black); }
+  /* Кнопка каталога на .no-hero-page (см. выше, не в медиа-запросе) уже
+     чёрная с белой иконкой и на мобильном — специально проверено по макету
+     Каталог.png, доп. override здесь не нужен (более ранняя попытка сделать
+     её серой, как поиск, была ошибкой — по макету каталог всегда
+     контрастный: белый на тёмной шапке, чёрный на светлой). Здесь только
+     кнопка поиска — раньше была полупрозрачно-белой, на светлой шапке
+     мобильной версии становилась не видна. */
   .no-hero-page .icon-btn-search { background: var(--gray-400); color: var(--black); }
   .no-hero-page .icon-btn-search:hover { background: var(--gray-100); color: var(--black); }
   .no-hero-page .header-phone { color: var(--black); border-color: var(--black); }
 
-  /* HERO — по мобильному макету (Главная-1.png) это не общее фоновое фото
-     под всем блоком, а: заголовок/текст на простом градиенте → отдельная
-     рамка с фото аккумулятора → кнопки в ряд под ней */
+  /* HERO — по мобильному макету (Главная-1.png, сверено пиксельно 18.08.2026)
+     это ТО ЖЕ общее фоновое фото на весь блок, что и на десктопе — не отдельная
+     рамка с фото. Раньше здесь была рамка между текстом и кнопками (ошибка:
+     на макете кнопки лежат прямо на фото, без рамки/фона вокруг) — из-за неё
+     фото аккумулятора выглядело мелким, сколько бы ни настраивали её
+     background-size. Убрал рамку, .hero-img снова виден и на мобильном. */
   .hero { min-height: auto; padding-top: 110px; padding-bottom: 24px; }
-  .hero-img { display: none; }
   .hero-bg::after { background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.5) 100%); }
-  .hero-img-mobile {
-    display: block; width: 100%; height: 160px;
-    background-color: var(--gray-300);
-    /* cover, не contain: на фото аккумулятор занимает только нижнюю треть
-       кадра, сверху пустой чёрный фон — при contain в рамку влезала вся эта
-       пустота и сам аккумулятор выглядел мелким. cover + прижатие к низу
-       заполняет рамку именно аккумулятором. */
-    background-size: cover; background-position: center bottom; background-repeat: no-repeat;
-    border-radius: 12px; margin: 20px 0;
-  }
   .hero-actions { flex-direction: row; gap: 10px; }
   .hero-actions .btn { flex: 1; min-width: 0; justify-content: center; }
 
