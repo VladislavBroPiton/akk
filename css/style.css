@@ -571,7 +571,8 @@ input, textarea { font-family: inherit; }
 /* ── DELIVERY PAGE ── */
 .delivery-section { padding: 80px 0; background: var(--gray-300); }
 .delivery-row { display: grid; grid-template-columns: 1fr 2fr; gap: 80px; padding: 64px 0; align-items: start; }
-.delivery-label { font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 32px; text-transform: uppercase; color: var(--black); padding-top: 8px; }
+/* H2 по таблице Typography = 56px десктоп / 32px моб. (override ниже) */
+.delivery-label { font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 56px; text-transform: uppercase; color: var(--black); padding-top: 8px; }
 .delivery-content-title { font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 22px; text-transform: uppercase; margin-bottom: 16px; }
 .delivery-content p { font-size: 15px; color: var(--black-50); line-height: 1.65; margin-bottom: 10px; }
 .delivery-list { list-style: none; margin: 12px 0; }
@@ -602,7 +603,8 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
   width: 520px; background: var(--white); padding: 60px 40px; display: flex;
   flex-direction: column; gap: 6px; box-shadow: 0 12px 40px rgba(0,0,0,0.18); pointer-events: auto;
 }
-.contacts-page-title { font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 36px; text-transform: uppercase; margin-bottom: 32px; }
+/* H1 по таблице Typography = 64px десктоп / 36px моб. (override ниже) */
+.contacts-page-title { font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 64px; text-transform: uppercase; margin-bottom: 32px; }
 /* по макету подписи не капсом, с большой буквы — не «ТЕЛЕФОН», а «Телефон» */
 .contact-label { font-size: 12px; color: var(--black-50); letter-spacing: 0.02em; margin-bottom: 4px; margin-top: 20px; }
 .contact-val { font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 22px; text-transform: uppercase; }
@@ -771,7 +773,8 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
 .product-main-img { flex: 1; background: var(--gray-300); border-radius: 12px; display: flex; align-items: center; justify-content: center; padding: 32px; min-height: 340px; position: relative; }
 .product-main-img img { max-height: 280px; object-fit: contain; }
 .product-info { display: flex; flex-direction: column; gap: 20px; position: sticky; top: 120px; align-self: start; }
-.product-page-title { font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 28px; text-transform: uppercase; line-height: 1.2; }
+/* H1 по таблице Typography = 64px десктоп / 36px моб. (override ниже) */
+.product-page-title { font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 64px; text-transform: uppercase; line-height: 1.2; }
 .product-page-desc { font-size: 14px; color: var(--black-50); line-height: 1.65; }
 .product-page-price { color: var(--orange); font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 18px; text-transform: uppercase; letter-spacing: 0.05em; }
 .product-delivery-row { display: flex; gap: 12px; }
@@ -815,7 +818,8 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
    растянуты на всю ширину строки (текст + сайдбар), а не только в колонку текста.
    padding-top у .article-layout убран совсем — хлебные крошки (.breadcrumb)
    и так дают 12px своего нижнего padding, вместе с ним и получается видимый зазор. */
-.article-layout > h1 { grid-column: 1 / -1; font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 36px; text-transform: uppercase; margin-bottom: 4px; line-height: 1.15; }
+/* H1 по таблице Typography = 64px десктоп / 36px моб. (override ниже) */
+.article-layout > h1 { grid-column: 1 / -1; font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 64px; text-transform: uppercase; margin-bottom: 4px; line-height: 1.15; }
 .article-layout > .article-date { grid-column: 1 / -1; font-size: 13px; color: var(--black-50); margin-bottom: 8px; }
 /* высота картинки — по соотношению сторон из макета (1140×578 на десктопе),
    а не жёсткий min-height: раньше без явной height div схлопывался до min-height */
@@ -846,7 +850,8 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
 .articles-page-section { background: var(--gray-300); padding-bottom: 64px; }
 .articles-page-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
 .articles-page-header { display: flex; align-items: flex-end; gap: 20px; padding: 48px 0 32px; }
-.articles-page-title { font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 40px; text-transform: uppercase; }
+/* H1 по таблице Typography = 64px десктоп / 36px моб. (override ниже) */
+.articles-page-title { font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 64px; text-transform: uppercase; }
 .articles-count { font-size: 18px; color: var(--black-50); align-self: flex-start; }
 .load-more { display: flex; justify-content: center; margin-top: 40px; }
 /* display у элемента перебивает атрибут hidden, поэтому прячем явно —
@@ -1199,6 +1204,9 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
   .product-thumb { width: 52px; height: 52px; }
   .product-main-img { min-height: 240px; }
   .product-delivery-row { flex-wrap: wrap; gap: 10px; }
+  /* по таблице Typography (H1 моб. = 36px) — на десктопе .product-page-title
+     теперь 64px, без этого override на моб. унаследовался бы тоже 64px */
+  .product-page-title { font-size: 36px; }
   .similar-title { font-size: 22px; margin: 40px 0 20px; flex-direction: column; align-items: flex-start; gap: 12px; }
 
   /* SERVICES PAGE — иллюстрация переезжает наверх карточки */
@@ -1209,7 +1217,8 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
   /* DELIVERY PAGE */
   .delivery-section { padding: 32px 0; }
   .delivery-row { grid-template-columns: 1fr; gap: 12px; padding: 32px 0; }
-  .delivery-label { font-size: 22px; }
+  /* по таблице Typography (H2 моб. = 32px), было 22px */
+  .delivery-label { font-size: 32px; }
   .delivery-content-title { font-size: 16px; }
 
   /* ABOUT PAGE — flex-wrap:wrap раньше ронял «24/7» и «100%» на свои строки,
@@ -1239,12 +1248,14 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
     width: 100%; padding: 28px 20px;
     border-radius: 20px 20px 0 0; box-shadow: 0 -8px 24px rgba(0,0,0,0.12);
   }
-  .contacts-page-title { font-size: 28px; margin-bottom: 20px; }
+  /* по таблице Typography (H1 моб. = 36px), было 28px */
+  .contacts-page-title { font-size: 36px; margin-bottom: 20px; }
   .contact-val { font-size: 18px; }
 
   /* ARTICLES PAGE */
   .articles-page-header { flex-wrap: wrap; padding: 24px 0 16px; gap: 10px; }
-  .articles-page-title { font-size: 28px; }
+  /* по таблице Typography (H1 моб. = 36px), было 28px */
+  .articles-page-title { font-size: 36px; }
   /* блок сортировки прижат к правому краю — панель раскрываем влево,
      иначе она вылезает за экран и появляется горизонтальная прокрутка */
   .sort-list { left: auto; right: 0; }
@@ -1252,7 +1263,8 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
 
   /* ARTICLE PAGE */
   .article-layout { grid-template-columns: 1fr; padding: 24px 0 48px; gap: 32px; }
-  .article-layout > h1 { font-size: 22px; }
+  /* по таблице Typography (H1 моб. = 36px), было 22px */
+  .article-layout > h1 { font-size: 36px; }
   .article-hero-img { min-height: 180px; }
   /* «Смотрите также» на мобиле — горизонтальная карусель со скроллом,
      как в макете (вторая карточка обрезана краем экрана), а не колонка */
