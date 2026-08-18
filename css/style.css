@@ -368,10 +368,11 @@ input, textarea { font-family: inherit; }
 .product-card:hover .btn-link { color: var(--orange); }
 .product-card-img { background: var(--white); padding: 20px; text-align: center; position: relative; height: 180px; display: flex; align-items: center; justify-content: center; }
 .product-card-img img { max-height: 130px; object-fit: contain; }
-/* по макету — контурный оранжевый бейдж, не заливка зелёным */
+/* по макету — контурный оранжевый бейдж, не заливка зелёным; текст внутри
+   чёрный, не оранжевый */
 .product-badge {
-  position: absolute; top: 10px; left: 10px;
-  background: transparent; color: var(--orange); font-size: 11px; font-weight: 700;
+  position: absolute; top: 10px; left: 10px; z-index: 1;
+  background: transparent; color: var(--black); font-size: 11px; font-weight: 700;
   padding: 3px 10px; border: 1px solid var(--orange); border-radius: 20px; text-transform: uppercase; letter-spacing: 0.03em;
 }
 .product-card-body { padding: 16px; }
@@ -993,7 +994,11 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
     scroll-snap-type: x proximity;
   }
   .tab-panel .products-grid .product-card { scroll-snap-align: start; }
+  /* высота бокса уменьшилась (140px), а max-height картинки (130px) на
+     десктопное значение не пересчитывался — картинка не помещалась и
+     наезжала на бейдж «В наличии» сверху */
   .product-card-img { height: 140px; padding: 12px; }
+  .product-card-img img { max-height: 100px; }
   .product-card-body { padding: 12px; }
   .product-card-name { font-size: 12px; margin-bottom: 8px; }
   .product-spec { font-size: 11px; }
@@ -1016,9 +1021,14 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
   .tabs.open .tab-btn:last-child { border-bottom: none; }
   .tabs.open .tab-btn.active::after { content: '▲'; }
 
-  /* SERVICES — 1 колонка, иллюстрация сверху */
-  .services-grid { grid-template-columns: 1fr; gap: 12px; }
-  .service-card { padding: 20px; }
+  /* SERVICES — по макету на мобиле карточки листаются свайпом в один ряд
+     (как «Хиты продаж» и «Смотрите также»), а не стоят одна под одной */
+  .services-grid {
+    grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 78%;
+    gap: 12px; overflow-x: auto; padding-bottom: 4px; margin: 0 -16px; padding-left: 16px; padding-right: 16px;
+    scroll-snap-type: x proximity;
+  }
+  .service-card { padding: 20px; scroll-snap-align: start; }
   .service-ill { height: 130px; margin-bottom: 16px; }
   .service-card > .service-name { font-size: 18px; margin-bottom: 8px; }
   .service-card > .service-desc { margin-bottom: 14px; }
