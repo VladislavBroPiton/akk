@@ -251,6 +251,16 @@ input, textarea { font-family: inherit; }
 .search-overlay .search-empty { color: rgba(255,255,255,0.5); }
 
 .breadcrumb { padding: 12px 0; font-size: 13px; color: var(--black-50); }
+/* строка крошки+телефон на delivery.html (no-hero-page): на десктопе
+   телефон здесь скрыт (уже есть в шапке), на мобильном — в один ряд с
+   крошками, дублирующий телефон из шапки прячется (тот же паттерн, что
+   и .inner-hero-crumbs-row на about/услуги) */
+.page-crumbs-row {
+  width: 100%; max-width: 1600px; margin: 0 auto; padding: 0 40px;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+}
+.page-crumbs-row .breadcrumb .container { padding: 0; max-width: none; margin: 0; }
+.page-crumbs-phone { display: none; }
 /* На страницах без баннера (каталог, товар, статьи, контакты, доставка)
    шапке не на что накладываться — тёмного фонового фото нет. Поэтому она
    не прозрачная поверх картинки, а sticky и светлая, и все цвета внутри
@@ -548,7 +558,11 @@ input, textarea { font-family: inherit; }
    медиа-запрос), а дублирующий телефон из шапки прячется */
 .inner-hero-crumbs-row {
   position: relative; z-index: 1;
-  max-width: 1600px; margin: 0 auto; padding: 0 40px;
+  /* .inner-hero — flex-column, поэтому margin:auto здесь не центрирует
+     блок целиком по-обычному, а сначала сжимает его по контенту (флекс-
+     авто-отступы съедают лишнее место) — из-за этого вся строка уезжала
+     в центр вместо растягивания на всю ширину. width:100% фиксирует это. */
+  width: 100%; max-width: 1600px; margin: 0 auto; padding: 0 40px;
   display: flex; align-items: center; justify-content: space-between; gap: 16px;
 }
 .inner-hero-crumbs-row .breadcrumb .container { padding: 0; max-width: none; margin: 0; }
@@ -1000,6 +1014,11 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
   .inner-hero-phone { display: inline-flex; font-size: 13px; padding: 6px 12px; }
   /* заголовок услуг — 3 строки по макету вместо свободного переноса */
   .services-title-break { display: block; }
+  /* то же самое для delivery.html (no-hero-page): телефон в один ряд с
+     крошками, дублирующий телефон из шапки прячется */
+  body:has(.page-crumbs-row) .header-main .header-phone:not(.page-crumbs-phone) { display: none; }
+  .page-crumbs-row { padding: 0 16px; }
+  .page-crumbs-phone { display: inline-flex; font-size: 13px; padding: 6px 12px; }
   /* Кнопка каталога на .no-hero-page (см. выше, не в медиа-запросе) уже
      чёрная с белой иконкой и на мобильном — специально проверено по макету
      Каталог.png, доп. override здесь не нужен (более ранняя попытка сделать
@@ -1295,7 +1314,11 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
 
   /* INNER HERO — было 200px: фото едва помещалось под шапкой, заголовок
      оказывался прижат к самому низу. По макету блок заметно выше. */
-  .inner-hero { min-height: 500px; }
+  /* padding-top:110px был рассчитан под 2 строки шапки (иконки + телефон);
+     на страницах с .inner-hero-crumbs-row телефон-дубликат из шапки скрыт
+     (см. выше), шапка теперь в одну строку (~64px) — уменьшаем отступ,
+     чтобы строка крошки+телефон не висела с лишним зазором под шапкой */
+  .inner-hero { min-height: 500px; padding-top: 76px; }
   .inner-hero-content { padding: 28px 0; }
 }
 
