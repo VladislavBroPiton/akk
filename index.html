@@ -31,6 +31,9 @@
     <div class="hero-content fade-in">
       <h1 class="hero-title">Аккумуляторы, зарядные устройства и аксессуары в Волжском</h1>
       <p class="hero-subtitle">Подберём аккумулятор под ваш автомобиль за несколько минут — с консультацией, доставкой и гарантией качества</p>
+      <!-- по мобильному макету — отдельная рамка с фото между текстом и кнопками,
+           а не общее фоновое фото под всем блоком (то — только для десктопа) -->
+      <img class="hero-img-mobile" id="hero-img-mobile" alt="Аккумуляторы">
       <div class="hero-actions">
         <a href="#cta" class="btn btn-primary">Подобрать аккумулятор</a>
         <a href="catalog.html" class="btn btn-outline-white">Перейти в каталог</a>
@@ -192,6 +195,8 @@
 
   const hi = document.getElementById('hero-img');
   if (hi) hi.src = IMG.heroBg;
+  const hiMobile = document.getElementById('hero-img-mobile');
+  if (hiMobile) hiMobile.src = IMG.heroBg;
   document.getElementById('header-mount').innerHTML = renderHeader('index.html');
   document.getElementById('cta-mount').innerHTML = renderCtaForm();
   document.getElementById('footer-mount').innerHTML = renderFooter();
