@@ -4,6 +4,22 @@
    менялась ширина текста, переносы строк, вид кнопок. Файл сгенерирован из
    пакетов @fontsource/oswald и @fontsource/onest (npm, зеркало Google Fonts). */
 
+/* Adderley Bold — по макету (Typography.png) это основной шрифт заголовков,
+   кнопок и тегов, Oswald был временной бесплатной заменой, пока не было
+   исходника. Файл — adderley_bold.otf от Dharma Type (dharmatype.com),
+   лицензия SIL Open Font License 1.1 (текст лицензии зашит в сам файл шрифта:
+   разрешено коммерческое использование и @font-face на вебе). Кириллица
+   проверена — есть все буквы А-Я/а-я, включая Ё/ё. Единственное начертание —
+   Bold, поэтому Oswald 700 оставлен запасным шрифтом в font-family на случай,
+   если файл почему-то не загрузится. */
+@font-face {
+  font-family: 'Adderley';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 700;
+  src: url('fonts/adderley-bold.woff2') format('woff2');
+}
+
 @font-face {
   font-family: 'Oswald';
   font-style: normal;

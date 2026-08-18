@@ -28,17 +28,17 @@ input, textarea { font-family: inherit; }
 
 /* ── TYPOGRAPHY ── */
 /* Adderley Bold → Oswald Bold (similar condensed bold feel) */
-.h1 { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 64px; line-height: 1.05; text-transform: uppercase; }
-.h2 { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 56px; line-height: 1.05; text-transform: uppercase; }
-.h3 { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 40px; line-height: 1.1; text-transform: uppercase; }
+.h1 { font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 64px; line-height: 1.05; text-transform: uppercase; }
+.h2 { font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 56px; line-height: 1.05; text-transform: uppercase; }
+.h3 { font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 40px; line-height: 1.1; text-transform: uppercase; }
 .h4 { font-family: 'Onest', sans-serif; font-weight: 600; font-size: 24px; line-height: 1.2; }
-.h5 { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 20px; text-transform: uppercase; }
-.btn-text { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 16px; letter-spacing: 0.05em; text-transform: uppercase; }
+.h5 { font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 20px; text-transform: uppercase; }
+.btn-text { font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 16px; letter-spacing: 0.05em; text-transform: uppercase; }
 .text-1 { font-size: 20px; font-weight: 500; }
 .text-2 { font-size: 16px; font-weight: 600; }
 .text-3 { font-size: 14px; font-weight: 400; line-height: 1.5; }
 .text-4 { font-size: 12px; font-weight: 500; }
-.tag { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 0.03em; }
+.tag { font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 0.03em; }
 
 /* ── LAYOUT ── */
 /* Раньше было 1280px — по замерам макета (отступ шапки, высота кнопки
@@ -53,7 +53,7 @@ input, textarea { font-family: inherit; }
 .btn {
   display: inline-flex; align-items: center; justify-content: center;
   height: 52px; padding: 0 32px;
-  font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 16px;
+  font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 16px;
   letter-spacing: 0.05em; text-transform: uppercase;
   transition: all 0.2s ease; border-radius: 4px;
   white-space: nowrap;
@@ -118,7 +118,7 @@ input, textarea { font-family: inherit; }
   display: flex; align-items: center; gap: 8px;
   height: 44px; padding: 0 20px;
   background: var(--white); color: var(--black);
-  font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 15px;
+  font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 15px;
   text-transform: uppercase; letter-spacing: 0.03em;
   border-radius: 4px; flex-shrink: 0;
   transition: background 0.2s, color 0.2s;
@@ -180,7 +180,7 @@ input, textarea { font-family: inherit; }
 .nav-dropdown-menu a:hover { color: var(--orange); background: var(--gray-300); }
 
 .header-phone {
-  font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 17px;
+  font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 17px;
   color: var(--white); border: 2px solid var(--white); border-radius: 4px;
   padding: 8px 18px; white-space: nowrap; transition: all 0.2s; flex-shrink: 0;
   margin-left: auto;
@@ -213,11 +213,11 @@ input, textarea { font-family: inherit; }
 .search-row-img img { max-width: 100%; max-height: 100%; object-fit: contain; }
 .search-row-body { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
 .search-row-name {
-  font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 13px;
+  font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 13px;
   text-transform: uppercase; color: var(--black);
 }
 .search-row-price {
-  font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 13px;
+  font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 13px;
   text-transform: uppercase; color: var(--orange);
 }
 .search-empty { font-size: 14px; color: var(--black-50); padding: 8px 2px; }
@@ -309,13 +309,13 @@ input, textarea { font-family: inherit; }
 /* max-width был 620px — заголовок в макете шире (замер ≈830px) и должен
    переноситься в 2 строки, а не в 3 */
 .hero-content { position: relative; z-index: 1; padding: 60px 0; color: var(--white); max-width: 1000px; }
-.hero-title { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 52px; line-height: 1.05; text-transform: uppercase; margin-bottom: 16px; }
+.hero-title { font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 52px; line-height: 1.05; text-transform: uppercase; margin-bottom: 16px; }
 .hero-subtitle { font-size: 16px; font-weight: 400; color: var(--white); margin-bottom: 32px; line-height: 1.55; max-width: 540px; }
 .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
 
 /* ── SECTION HEADING ── */
 .section-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 40px; gap: 10px; }
-.section-title { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 36px; text-transform: uppercase; }
+.section-title { font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 36px; text-transform: uppercase; }
 
 /* ── CATEGORY CARDS ── */
 .categories-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
@@ -400,7 +400,7 @@ input, textarea { font-family: inherit; }
    Колонки не 1:1 — по макету текст прижат к левому краю уже узкой
    колонкой, форма заметно шире и прижата к правому краю. */
 .cta-inner { display: grid; grid-template-columns: 2fr 3fr; gap: 140px; align-items: start; }
-.cta-title { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 40px; text-transform: uppercase; color: var(--white); margin-bottom: 14px; }
+.cta-title { font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 40px; text-transform: uppercase; color: var(--white); margin-bottom: 14px; }
 .cta-desc { font-size: 15px; color: rgba(255,255,255,0.85); line-height: 1.6; }
 .cta-form { background: var(--white); border-radius: 12px; padding: 32px; }
 .form-field { margin-bottom: 14px; position: relative; }
@@ -415,7 +415,7 @@ input, textarea { font-family: inherit; }
 .form-required { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); color: var(--orange); font-size: 18px; }
 .form-check { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--black-50); margin-bottom: 16px; cursor: pointer; }
 .form-check input[type=checkbox] { accent-color: var(--black); width: 16px; height: 16px; flex-shrink: 0; }
-.form-submit { width: 100%; height: 52px; background: var(--orange); color: var(--white); font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 16px; letter-spacing: 0.08em; text-transform: uppercase; border-radius: 6px; border: none; cursor: pointer; transition: background 0.2s; }
+.form-submit { width: 100%; height: 52px; background: var(--orange); color: var(--white); font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 16px; letter-spacing: 0.08em; text-transform: uppercase; border-radius: 6px; border: none; cursor: pointer; transition: background 0.2s; }
 .form-submit:hover { background: #e54500; }
 
 /* ── ARTICLES ── */
@@ -448,7 +448,7 @@ input, textarea { font-family: inherit; }
   display: flex; flex-direction: column; gap: 8px; width: 280px;
   box-shadow: 0 8px 24px rgba(0,0,0,0.15);
 }
-.map-city { display: flex; align-items: center; gap: 6px; font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 22px; text-transform: uppercase; margin-bottom: 4px; }
+.map-city { display: flex; align-items: center; gap: 6px; font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 22px; text-transform: uppercase; margin-bottom: 4px; }
 .map-city-badge { flex-shrink: 0; }
 .map-rating { display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--black-50); margin-bottom: 20px; }
 .stars { color: #ffc107; font-size: 14px; }
@@ -479,9 +479,9 @@ input, textarea { font-family: inherit; }
   display: flex;
   gap: 48px;
 }
-.footer-logo { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 24px; color: var(--white); text-transform: uppercase; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+.footer-logo { font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 24px; color: var(--white); text-transform: uppercase; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
 .footer-logo .logo-bolt { color: var(--orange); }
-.footer-phone-big { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 32px; color: var(--white); margin-bottom: 16px; display: block; }
+.footer-phone-big { font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 32px; color: var(--white); margin-bottom: 16px; display: block; }
 .footer-phone-big:hover { color: var(--orange); }
 .footer-messengers { display: flex; gap: 10px; margin-bottom: 0; }
 /* в макете кнопки залиты серым, не обведены рамкой */
@@ -523,7 +523,7 @@ input, textarea { font-family: inherit; }
    (между мобильным брейкпоинтом 768px и «широким» десктопом) контейнеру
    physически не хватает места под длинный заголовок услуг даже без
    ограничения max-width, из-за чего первая строка сама рвалась на 2 */
-.inner-hero-title { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: clamp(26px, 4vw, 44px); text-transform: uppercase; max-width: 800px; line-height: 1.1; }
+.inner-hero-title { font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: clamp(26px, 4vw, 44px); text-transform: uppercase; max-width: 800px; line-height: 1.1; }
 /* крошки поверх тёмного фото — светлый вариант вместо обычного тёмного текста */
 .inner-hero-crumbs { position: relative; z-index: 1; }
 .inner-hero-crumbs .breadcrumb, .inner-hero-crumbs .breadcrumb a { color: rgba(255,255,255,0.5); }
@@ -534,7 +534,7 @@ input, textarea { font-family: inherit; }
 /* по макету — в колонке текста, выровнены по левому краю, без разделителя снизу */
 .stats-row { display: flex; gap: 80px; margin-top: 12px; }
 .stat { text-align: left; }
-.stat-num { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 72px; color: var(--black); line-height: 1; }
+.stat-num { font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 72px; color: var(--black); line-height: 1; }
 .stat-label { font-size: 14px; color: var(--black-50); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 8px; }
 
 .about-intro-row { display: grid; grid-template-columns: 1fr 2fr; gap: 60px; align-items: start; margin-bottom: 64px; }
@@ -550,7 +550,7 @@ input, textarea { font-family: inherit; }
   min-height: 281px;
 }
 .advantage-text { padding: 36px 40px; display: flex; flex-direction: column; justify-content: center; }
-.advantage-title { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 18px; text-transform: uppercase; margin-bottom: 12px; color: var(--black); letter-spacing: 0.02em; }
+.advantage-title { font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 18px; text-transform: uppercase; margin-bottom: 12px; color: var(--black); letter-spacing: 0.02em; }
 .advantage-desc { font-size: 14px; color: var(--black-50); line-height: 1.65; }
 .advantage-img { position: relative; overflow: hidden; min-height: 281px; }
 .advantage-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
@@ -558,8 +558,8 @@ input, textarea { font-family: inherit; }
 /* ── DELIVERY PAGE ── */
 .delivery-section { padding: 80px 0; background: var(--gray-300); }
 .delivery-row { display: grid; grid-template-columns: 1fr 2fr; gap: 80px; padding: 64px 0; align-items: start; }
-.delivery-label { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 32px; text-transform: uppercase; color: var(--black); padding-top: 8px; }
-.delivery-content-title { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 22px; text-transform: uppercase; margin-bottom: 16px; }
+.delivery-label { font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 32px; text-transform: uppercase; color: var(--black); padding-top: 8px; }
+.delivery-content-title { font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 22px; text-transform: uppercase; margin-bottom: 16px; }
 .delivery-content p { font-size: 15px; color: var(--black-50); line-height: 1.65; margin-bottom: 10px; }
 .delivery-list { list-style: none; margin: 12px 0; }
 .delivery-list li { font-size: 15px; color: var(--black-50); padding: 4px 0 4px 20px; position: relative; line-height: 1.6; }
@@ -589,10 +589,10 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
   width: 520px; background: var(--white); padding: 60px 40px; display: flex;
   flex-direction: column; gap: 6px; box-shadow: 0 12px 40px rgba(0,0,0,0.18); pointer-events: auto;
 }
-.contacts-page-title { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 36px; text-transform: uppercase; margin-bottom: 32px; }
+.contacts-page-title { font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 36px; text-transform: uppercase; margin-bottom: 32px; }
 /* по макету подписи не капсом, с большой буквы — не «ТЕЛЕФОН», а «Телефон» */
 .contact-label { font-size: 12px; color: var(--black-50); letter-spacing: 0.02em; margin-bottom: 4px; margin-top: 20px; }
-.contact-val { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 22px; text-transform: uppercase; }
+.contact-val { font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 22px; text-transform: uppercase; }
 .contact-val a:hover { color: var(--orange); }
 .contact-hours { font-size: 14px; color: var(--black-50); margin-top: 2px; }
 
@@ -639,9 +639,9 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
 .filter-range-labels { display: flex; justify-content: space-between; font-size: 13px; color: var(--black-50); margin-top: 10px; }
 /* пустой результат */
 .catalog-empty { text-align: center; padding: 64px 20px; border: 1px dashed var(--gray-100); border-radius: 12px; }
-.catalog-empty-title { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 22px; text-transform: uppercase; margin-bottom: 8px; }
+.catalog-empty-title { font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 22px; text-transform: uppercase; margin-bottom: 8px; }
 .catalog-empty p { font-size: 14px; color: var(--black-50); margin-bottom: 20px; }
-.catalog-count { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 28px; text-transform: uppercase; margin-bottom: 32px; }
+.catalog-count { font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 28px; text-transform: uppercase; margin-bottom: 32px; }
 .catalog-count span { font-size: 16px; font-weight: 400; font-family: 'Onest', sans-serif; color: var(--black-50); margin-left: 8px; vertical-align: top; }
 /* ── СОРТИРОВКА (свой выпадающий список, как в макете) ── */
 .sort { position: relative; }
@@ -651,7 +651,7 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
 }
 .sort-btn {
   display: flex; align-items: center; gap: 8px;
-  font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 15px;
+  font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 15px;
   text-transform: uppercase; letter-spacing: 0.02em;
   color: var(--black); background: none; border: none; padding: 0;
   white-space: nowrap; transition: color 0.2s;
@@ -670,7 +670,7 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
 .sort-list button {
   display: block; width: 100%; text-align: left;
   padding: 6px 16px; white-space: nowrap;
-  font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 14px;
+  font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 14px;
   text-transform: uppercase; letter-spacing: 0.02em;
   color: var(--black); background: none; border: none; transition: color 0.15s;
 }
@@ -708,7 +708,7 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
 .catalog-sort .sort-btn::after { font-size: 10px; }
 .catalog-sort .sort-list { width: 100%; }
 /* на десктопе фильтр применяется сразу по клику, кнопка нужна только на мобиле */
-.filter-btn { display: none; width: 100%; height: 44px; background: var(--orange); color: var(--white); font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 15px; text-transform: uppercase; letter-spacing: 0.04em; border-radius: 6px; border: none; cursor: pointer; margin-top: 20px; transition: background 0.2s; }
+.filter-btn { display: none; width: 100%; height: 44px; background: var(--orange); color: var(--white); font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 15px; text-transform: uppercase; letter-spacing: 0.04em; border-radius: 6px; border: none; cursor: pointer; margin-top: 20px; transition: background 0.2s; }
 .filter-btn:hover { background: #e54500; }
 /* Плитки разделов над сеткой товаров */
 .cat-tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 28px; }
@@ -717,7 +717,7 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
   display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 8px;
   padding: 20px 24px; min-height: 110px;
   background: var(--gray-300); border: 1px solid transparent; border-radius: 10px;
-  font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 14px;
+  font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 14px;
   text-transform: uppercase; letter-spacing: 0.04em; text-align: left;
   transition: all 0.25s ease;
 }
@@ -728,7 +728,7 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
 
 /* Шапка сайдбара фильтров */
 .filter-head { display: flex; align-items: center; justify-content: space-between; padding-bottom: 12px; }
-.filter-head-title { display: flex; align-items: center; gap: 8px; font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 18px; text-transform: uppercase; }
+.filter-head-title { display: flex; align-items: center; gap: 8px; font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 18px; text-transform: uppercase; }
 .filter-head-title svg { width: 18px; height: 18px; flex-shrink: 0; }
 .filter-head-actions { display: flex; align-items: center; gap: 12px; }
 /* крестик закрытия шторки — виден только на мобиле, см. .sidebar.open ниже */
@@ -758,9 +758,9 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
 .product-main-img { flex: 1; background: var(--gray-300); border-radius: 12px; display: flex; align-items: center; justify-content: center; padding: 32px; min-height: 340px; position: relative; }
 .product-main-img img { max-height: 280px; object-fit: contain; }
 .product-info { display: flex; flex-direction: column; gap: 20px; position: sticky; top: 120px; align-self: start; }
-.product-page-title { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 28px; text-transform: uppercase; line-height: 1.2; }
+.product-page-title { font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 28px; text-transform: uppercase; line-height: 1.2; }
 .product-page-desc { font-size: 14px; color: var(--black-50); line-height: 1.65; }
-.product-page-price { color: var(--orange); font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 18px; text-transform: uppercase; letter-spacing: 0.05em; }
+.product-page-price { color: var(--orange); font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 18px; text-transform: uppercase; letter-spacing: 0.05em; }
 .product-delivery-row { display: flex; gap: 12px; }
 /* вся плитка кликабельна */
 .product-delivery-item {
@@ -770,7 +770,7 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
   transition: all 0.2s ease; cursor: pointer;
 }
 .product-delivery-item:hover { border-color: var(--orange); color: var(--black); box-shadow: 0 6px 20px rgba(255,79,0,0.1); }
-.product-delivery-title { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 13px; text-transform: uppercase; color: var(--black); }
+.product-delivery-title { font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 13px; text-transform: uppercase; color: var(--black); }
 .product-delivery-item .btn-link { font-size: 12px; color: var(--orange); }
 .product-delivery-icon {
   display: flex; align-items: center; justify-content: center;
@@ -784,7 +784,7 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
 .specs-table td { padding: 12px 0; font-size: 14px; }
 .specs-table td:first-child { color: var(--black-50); width: 45%; }
 .specs-table td:last-child { font-weight: 600; text-align: right; }
-.similar-title { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 28px; text-transform: uppercase; margin: 64px 0 32px; display: flex; justify-content: space-between; align-items: center; }
+.similar-title { font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 28px; text-transform: uppercase; margin: 64px 0 32px; display: flex; justify-content: space-between; align-items: center; }
 .slider-nav { display: flex; gap: 10px; }
 .slider-btn { width: 40px; height: 40px; border: none; border-radius: 6px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s; }
 .slider-btn-prev { background: var(--gray-400); color: var(--gray-100); }
@@ -802,7 +802,7 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
    растянуты на всю ширину строки (текст + сайдбар), а не только в колонку текста.
    padding-top у .article-layout убран совсем — хлебные крошки (.breadcrumb)
    и так дают 12px своего нижнего padding, вместе с ним и получается видимый зазор. */
-.article-layout > h1 { grid-column: 1 / -1; font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 36px; text-transform: uppercase; margin-bottom: 4px; line-height: 1.15; }
+.article-layout > h1 { grid-column: 1 / -1; font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 36px; text-transform: uppercase; margin-bottom: 4px; line-height: 1.15; }
 .article-layout > .article-date { grid-column: 1 / -1; font-size: 13px; color: var(--black-50); margin-bottom: 8px; }
 /* высота картинки — по соотношению сторон из макета (1140×578 на десктопе),
    а не жёсткий min-height: раньше без явной height div схлопывался до min-height */
@@ -812,12 +812,12 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
 .article-content ul { margin: 10px 0 18px 20px; }
 .article-content ul li { font-size: 15px; line-height: 1.6; color: var(--black-50); margin-bottom: 6px; list-style: disc; }
 .article-sidebar-widget { background: var(--orange); border-radius: 12px; padding: 28px; color: var(--white); position: sticky; top: 100px; }
-.widget-title { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 22px; text-transform: uppercase; margin-bottom: 12px; }
+.widget-title { font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 22px; text-transform: uppercase; margin-bottom: 12px; }
 .widget-desc { font-size: 13px; line-height: 1.55; opacity: 0.9; margin-bottom: 20px; }
 .widget-btn {
   display: flex; align-items: center; justify-content: center;
   height: 52px; background: var(--white); color: var(--orange);
-  font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 16px;
+  font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 16px;
   letter-spacing: 0.05em; text-transform: uppercase; border-radius: 4px;
   transition: all 0.2s;
 }
@@ -825,7 +825,7 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
 /* теперь прямой элемент .article-layout (не вложен в article) — растягиваем
    на всю ширину строки грида, под колонками текста и сайдбара, как в макете */
 .see-also { grid-column: 1 / -1; margin-top: 60px; }
-.see-also-title { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 24px; text-transform: uppercase; margin-bottom: 24px; }
+.see-also-title { font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 24px; text-transform: uppercase; margin-bottom: 24px; }
 /* карточки «Смотрите также» — компактнее, чем стандартная сетка статей */
 .see-also .articles-grid { gap: 14px; }
 
@@ -833,7 +833,7 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
 .articles-page-section { background: var(--gray-300); padding-bottom: 64px; }
 .articles-page-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
 .articles-page-header { display: flex; align-items: flex-end; gap: 20px; padding: 48px 0 32px; }
-.articles-page-title { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 40px; text-transform: uppercase; }
+.articles-page-title { font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 40px; text-transform: uppercase; }
 .articles-count { font-size: 18px; color: var(--black-50); align-self: flex-start; }
 .load-more { display: flex; justify-content: center; margin-top: 40px; }
 /* display у элемента перебивает атрибут hidden, поэтому прячем явно —
@@ -855,7 +855,7 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
 .mobile-menu-logo { display: flex; align-items: center; gap: 8px; margin: 0 auto; }
 .mobile-nav { display: flex; flex-direction: column; padding: 20px 20px 0; }
 .mobile-nav a {
-  font-family: 'Oswald', sans-serif; font-size: 26px; font-weight: 700;
+  font-family: 'Adderley', 'Oswald', sans-serif; font-size: 26px; font-weight: 700;
   text-transform: uppercase; padding: 13px 0; color: var(--white);
 }
 .mobile-nav a:hover, .mobile-nav a.active { color: var(--orange); }
@@ -863,7 +863,7 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
 .mobile-menu-label { font-size: 12px; color: rgba(255,255,255,0.5); margin-bottom: 5px; }
 .mobile-menu-val {
   display: flex; align-items: center; gap: 6px; margin-bottom: 18px;
-  font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 14px;
+  font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 14px;
   text-transform: uppercase; color: var(--white);
 }
 .mobile-menu-val:last-child { margin-bottom: 0; }
