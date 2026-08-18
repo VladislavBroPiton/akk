@@ -849,7 +849,12 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
 
 /* ── MOBILE MENU ── */
 .burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; background: none; border: none; }
-.burger span { display: block; width: 24px; height: 2px; background: var(--black); transition: all 0.3s; }
+/* по умолчанию (тёмная hero-шапка) линии белые, на .no-hero-page (светлая
+   шапка) — чёрные, тот же паттерн, что у .header-phone и иконок каталог/поиск */
+.burger span { display: block; width: 24px; height: 2px; background: var(--white); transition: all 0.3s; }
+/* нижняя полоса короче — по исходнику из Figma (белое/чёрное бургер меню моб.png) */
+.burger span:last-child { width: 11px; }
+.no-hero-page .burger span { background: var(--black); }
 
 /* ── МОБИЛЬНОЕ МЕНЮ ── */
 /* Тёмный полноэкранный слой: сверху крестик, логотип и кнопки поиска/каталога,
@@ -968,23 +973,29 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
   .no-hero-page .icon-btn-search:hover { background: var(--gray-100); color: var(--black); }
   .no-hero-page .header-phone { color: var(--black); border-color: var(--black); }
 
-  /* HERO — по мобильному макету (Главная-1.png, сверено пиксельно 18.08.2026)
-     это ТО ЖЕ общее фоновое фото на весь блок, что и на десктопе — не отдельная
-     рамка с фото. Раньше здесь была рамка между текстом и кнопками (ошибка:
-     на макете кнопки лежат прямо на фото, без рамки/фона вокруг) — из-за неё
-     фото аккумулятора выглядело мелким, сколько бы ни настраивали её
-     background-size. Убрал рамку, .hero-img снова виден и на мобильном. */
+  /* HERO — по мобильному макету (Главная-1.png, пересверено пиксельно
+     18.08.2026, третий заход). Заголовок/подзаголовок — на сплошном тёмном
+     фоне (.hero-bg), фото аккумулятора туда НЕ заходит: сразу после
+     подзаголовка идёт отдельный блок .hero-photo-mobile на всю ширину
+     (высота и положение кнопок в нём сверены по пикселям с макетом),
+     десктопное общее фоновое фото (.hero-img) на мобильном скрыто. */
   .hero { min-height: auto; padding-top: 110px; padding-bottom: 24px; }
   .hero-bg::after { background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.5) 100%); }
-  /* мобильное фото (img/hero-main-mobile.jpg) снизу имеет чёрное поле —
-     object-position:bottom (как у десктопного фото) на низких экранах
-     обрезал бы именно аккумулятор, оставляя пустой низ. 65% — прижимает
-     вырез ближе к аккумулятору, но не к самому низу кадра. */
-  .hero-img { object-position: center 65%; }
-  /* десктопные 60px сверху/снизу у .hero-content на мобильном раздвигали
-     телефон/заголовок и оставляли лишнюю пустоту под кнопками — в макете
-     оба зазора небольшие */
-  .hero-content { padding-top: 16px; padding-bottom: 24px; }
+  .hero-img { display: none; }
+  /* десктопные 60px сверху у .hero-content на мобильном раздвигали
+     телефон и заголовок — в макете зазор небольшой */
+  .hero-content { padding-top: 16px; padding-bottom: 0; }
+  .hero-photo-mobile {
+    display: block; position: relative;
+    height: 250px; margin: 20px -16px 0;
+    background-image: url('../img/hero-main-mobile.jpg');
+    background-size: cover; background-position: center 65%; background-repeat: no-repeat;
+  }
+  /* кнопки лежат на фото, не под ним: позиция сверена по макету — верх
+     кнопок примерно на 68% высоты блока, снизу остаётся чуть фото видно */
+  .hero-photo-mobile .hero-actions {
+    position: absolute; left: 16px; right: 16px; bottom: 49px; margin: 0;
+  }
   .hero-actions { flex-direction: row; gap: 10px; }
   .hero-actions .btn { flex: 1; min-width: 0; justify-content: center; }
 
