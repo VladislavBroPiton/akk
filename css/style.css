@@ -302,9 +302,12 @@ input, textarea { font-family: inherit; }
      контейнера сайта (1600px), а не только внутри него. Текст и меню
      остаются в рамках .container, а фон-фото уходит до самых краёв.
      object-fit:cover без явного height иначе посчитал бы высоту картинки
-     по её собственным пропорциям, а не растянул между top и bottom. */
+     по её собственным пропорциям, а не растянул между top и bottom.
+     object-position:bottom — на самом фото аккумулятор внизу кадра, сверху
+     сплошной чёрный фон; на широких экранах cover обрезает по центру и
+     срезает аккумулятор снизу, если не прижать вырез к низу. */
   position: absolute; inset: 0; width: 100%; height: 100%;
-  object-fit: cover; opacity: 0.75;
+  object-fit: cover; object-position: center bottom; opacity: 0.75;
 }
 /* max-width был 620px — заголовок в макете шире (замер ≈830px) и должен
    переноситься в 2 строки, а не в 3 */
@@ -935,7 +938,7 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
   .logo { font-size: 18px; order: 2; margin: 0 auto; }
   .logo-sub { display: none; }
   .logo-bolt { font-size: 22px; }
-  .btn-catalog { order: 4; width: 40px; height: 40px; padding: 0; justify-content: center; background: rgba(255,255,255,0.15); }
+  .btn-catalog { order: 4; width: 40px; height: 40px; padding: 0; justify-content: center; background: rgba(255,255,255,0.15); color: var(--white); }
   .btn-catalog-label { display: none; }
   .search-wrap { display: none; }
   /* поиск на мобиле — серый квадрат */
@@ -951,9 +954,11 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
     color: var(--white); border-color: var(--white);
   }
   .burger { display: flex; order: 1; flex-shrink: 0; }
-  /* Кнопка каталога уже тёмная на .no-hero-page (см. выше) — здесь только
-     кнопка поиска: раньше была полупрозрачно-белой, на светлой шапке
-     мобильной версии становилась не видна. */
+  /* На .no-hero-page (см. выше) кнопка каталога на десктопе — чёрная с белой
+     иконкой, но на мобильном это просто квадратная иконка-кнопка, как и
+     поиск: должна быть серой с чёрной иконкой, а не чёрным квадратом. */
+  .no-hero-page .btn-catalog { background: var(--gray-400); color: var(--black); }
+  .no-hero-page .btn-catalog:hover { background: var(--gray-100); color: var(--black); }
   .no-hero-page .icon-btn-search { background: var(--gray-400); color: var(--black); }
   .no-hero-page .icon-btn-search:hover { background: var(--gray-100); color: var(--black); }
   .no-hero-page .header-phone { color: var(--black); border-color: var(--black); }
@@ -967,7 +972,11 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
   .hero-img-mobile {
     display: block; width: 100%; height: 160px;
     background-color: var(--gray-300);
-    background-size: contain; background-position: center; background-repeat: no-repeat;
+    /* cover, не contain: на фото аккумулятор занимает только нижнюю треть
+       кадра, сверху пустой чёрный фон — при contain в рамку влезала вся эта
+       пустота и сам аккумулятор выглядел мелким. cover + прижатие к низу
+       заполняет рамку именно аккумулятором. */
+    background-size: cover; background-position: center bottom; background-repeat: no-repeat;
     border-radius: 12px; margin: 20px 0;
   }
   .hero-actions { flex-direction: row; gap: 10px; }
