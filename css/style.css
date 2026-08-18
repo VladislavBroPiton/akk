@@ -53,7 +53,9 @@ input, textarea { font-family: inherit; }
 .btn {
   display: inline-flex; align-items: center; justify-content: center;
   height: 52px; padding: 0 32px;
-  font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 16px;
+  /* по таблице Typography: Button text = 24px на десктопе, 16px на моб.
+     (переопределено ниже в мобильном медиа-запросе) */
+  font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 24px;
   letter-spacing: 0.05em; text-transform: uppercase;
   transition: all 0.2s ease; border-radius: 4px;
   white-space: nowrap;
@@ -312,7 +314,7 @@ input, textarea { font-family: inherit; }
 /* max-width был 620px — заголовок в макете шире (замер ≈830px) и должен
    переноситься в 2 строки, а не в 3 */
 .hero-content { position: relative; z-index: 1; padding: 60px 0; color: var(--white); max-width: 1000px; }
-.hero-title { font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 52px; line-height: 1.05; text-transform: uppercase; margin-bottom: 16px; }
+.hero-title { font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 64px; line-height: 1.05; text-transform: uppercase; margin-bottom: 16px; }
 .hero-subtitle { font-size: 16px; font-weight: 400; color: var(--white); margin-bottom: 32px; line-height: 1.55; max-width: 540px; }
 .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
 /* эта картинка — только для мобильной раскладки (см. медиа-запрос ниже),
@@ -321,7 +323,7 @@ input, textarea { font-family: inherit; }
 
 /* ── SECTION HEADING ── */
 .section-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 40px; gap: 10px; }
-.section-title { font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 36px; text-transform: uppercase; }
+.section-title { font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 56px; text-transform: uppercase; }
 
 /* ── CATEGORY CARDS ── */
 .categories-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
@@ -916,16 +918,23 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
   .section-sm { padding: 24px 0; }
 
   /* TYPOGRAPHY */
-  .hero-title { font-size: 28px; line-height: 1.1; }
-  .section-title { font-size: 24px; }
+  /* Button text по таблице = 16px на моб. (на десктопе .btn теперь 24px) */
+  .btn { font-size: 16px; }
+  .hero-title { font-size: 36px; line-height: 1; }
+  /* по таблице Typography (H2 моб. = 32px), было 24px */
+  .section-title { font-size: 32px; }
   .about-section-heading { font-size: 30px; }
   .inner-hero-title { font-size: 26px; }
   /* заголовок услуг длиннее остальных inner-hero — на узком экране
      при 26px рвётся на 3 строки вместо 2, здесь чуть меньше */
   .services-hero-title { font-size: 20px; }
-  .cta-title { font-size: 26px; }
-  .h1 { font-size: 28px; }
-  .h2 { font-size: 22px; }
+  /* по таблице Typography (H3 моб. = 24px), было 26px */
+  .cta-title { font-size: 24px; }
+  /* .h1/.h2 — служебные utility-классы, дублирующие ту же шкалу Typography;
+     на десктопе уже верно (64/56), на моб. были рассинхронизированы (28/22
+     вместо 36/32 из таблицы) */
+  .h1 { font-size: 36px; }
+  .h2 { font-size: 32px; }
   .stat-num { font-size: 48px; }
 
   /* HEADER — по макету: бургер, логотип, поиск и каталог в одну строку,
