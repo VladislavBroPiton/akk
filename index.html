@@ -26,10 +26,17 @@
 <!-- HERO -->
 <section class="hero">
   <div class="hero-bg"></div>
-  <img class="hero-img" id="hero-img" alt="Аккумуляторы">
+  <picture>
+    <!-- отдельное фото под мобильную версию: на нём аккумулятор занимает
+         намного больше кадра, чем на широком десктопном баннере, — иначе
+         на узком экране аккумулятор выглядит мелким относительно пустого
+         чёрного фона над ним. -->
+    <source media="(max-width: 768px)" srcset="img/hero-main-mobile.jpg">
+    <img class="hero-img" id="hero-img" alt="Аккумуляторы">
+  </picture>
   <div class="container" style="width:100%">
     <div class="hero-content fade-in">
-      <h1 class="hero-title">Аккумуляторы, зарядные устройства и аксессуары в Волжском</h1>
+      <h1 class="hero-title">Аккумуляторы, зарядные устройства и аксессуары в&nbsp;Волжском</h1>
       <p class="hero-subtitle">Подберём аккумулятор под ваш автомобиль за несколько минут — с консультацией, доставкой и гарантией качества</p>
       <div class="hero-actions">
         <a href="#cta" class="btn btn-primary">Подобрать аккумулятор</a>
