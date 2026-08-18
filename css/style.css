@@ -399,7 +399,8 @@ input, textarea { font-family: inherit; }
    большую часть высоты (было 150px, из-за чего карточка выглядела
    низкой и с непропорционально маленькой картинкой) */
 .service-ill { height: 320px; width: auto; object-fit: contain; margin-bottom: 20px; }
-.service-name { font-family: 'Onest', sans-serif; font-weight: 700; font-size: 18px; margin-bottom: 10px; }
+/* H4 по таблице Typography: Onest SemiBold 24px десктоп / Adderley Bold 16px моб. */
+.service-name { font-family: 'Onest', sans-serif; font-weight: 600; font-size: 24px; margin-bottom: 10px; }
 .service-desc { font-size: 14px; color: var(--black-50); line-height: 1.55; margin-bottom: 20px; }
 
 /* ── CTA BANNER ── */
@@ -532,7 +533,10 @@ input, textarea { font-family: inherit; }
    (между мобильным брейкпоинтом 768px и «широким» десктопом) контейнеру
    physически не хватает места под длинный заголовок услуг даже без
    ограничения max-width, из-за чего первая строка сама рвалась на 2 */
-.inner-hero-title { font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: clamp(26px, 4vw, 44px); text-transform: uppercase; max-width: 800px; line-height: 1.1; }
+/* H1 по таблице Typography = 64px десктоп; clamp снизу оставлен, чтобы
+   на промежуточных ширинах (768px-«широкий» десктоп) не рвалась первая
+   строка — верхний предел поднят до 64px */
+.inner-hero-title { font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: clamp(26px, 4vw, 64px); text-transform: uppercase; max-width: 800px; line-height: 1.1; }
 /* крошки поверх тёмного фото — светлый вариант вместо обычного тёмного текста */
 .inner-hero-crumbs { position: relative; z-index: 1; }
 .inner-hero-crumbs .breadcrumb, .inner-hero-crumbs .breadcrumb a { color: rgba(255,255,255,0.5); }
@@ -924,10 +928,12 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
   /* по таблице Typography (H2 моб. = 32px), было 24px */
   .section-title { font-size: 32px; }
   .about-section-heading { font-size: 30px; }
-  .inner-hero-title { font-size: 26px; }
-  /* заголовок услуг длиннее остальных inner-hero — на узком экране
-     при 26px рвётся на 3 строки вместо 2, здесь чуть меньше */
-  .services-hero-title { font-size: 20px; }
+  /* по таблице Typography (H1 моб. = 36px), было 26px. Заголовок услуг
+     длиннее остальных inner-hero — при 36px на самых узких телефонах
+     (375px) переносится в 3 строки вместо 2, но это осознанный компромисс
+     в пользу точного соответствия таблице (см. также правку HTML — убран
+     принудительный <br>, перенос естественный, без осиротевшей строки) */
+  .inner-hero-title { font-size: 36px; }
   /* по таблице Typography (H3 моб. = 24px), было 26px */
   .cta-title { font-size: 24px; }
   /* .h1/.h2 — служебные utility-классы, дублирующие ту же шкалу Typography;
@@ -1080,7 +1086,10 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
   }
   .service-card { padding: 20px; scroll-snap-align: start; }
   .service-ill { height: 130px; margin-bottom: 16px; }
-  .service-card > .service-name { font-size: 18px; margin-bottom: 8px; }
+  /* H4 моб. по таблице Typography — Adderley Bold 16px (на десктопе Onest
+     SemiBold 24px, см. .service-name выше); правило общее, не только для
+     карточек на главной, действует и на .service-page-card (стр. «Услуги») */
+  .service-name { font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 16px; margin-bottom: 8px; }
   .service-card > .service-desc { margin-bottom: 14px; }
 
   /* CTA BANNER */
