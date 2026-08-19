@@ -155,6 +155,9 @@ input, textarea { font-family: inherit; }
 .search-input::placeholder {
   color: var(--white); text-transform: uppercase;
   font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 24px;
+  /* без этого текст плейсхолдера центрировался не по высоте поля целиком,
+     а по своей строке — уезжал выше лупы */
+  line-height: 44px;
 }
 .search-input:focus { border-color: var(--orange); }
 .search-icon {
