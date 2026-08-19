@@ -96,7 +96,7 @@ const CATALOG = {
 const CARD_SPECS = {
   acc: p => [
     ['Ёмкость / Пуск.ток', `${p.capacity} / ${p.cranking}`],
-    ['Габариты Д×Г×В, мм', p.dims],
+    ['Габариты Д×Ш×В, мм', p.dims],
     ['Полярность',  FILTER_DEFS.polarity.labels[p.polarity]],
     ['Гарантия',    p.warranty],
   ],
