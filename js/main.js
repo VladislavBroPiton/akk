@@ -742,7 +742,7 @@ const CatalogUI = {
       }
 
       return `
-        <div class="sidebar-section">
+        <div class="sidebar-section" data-filter-key="${key}">
           <div class="sidebar-title">${def.title}</div>
           <div class="filter-body">${body}</div>
         </div>`;
@@ -822,6 +822,7 @@ const CatalogUI = {
     this.page = 1;
     this.renderGrid();
     this.updateCounts(state);
+    this.updateCaseFiltersVisibility(state);
     this.syncUrl(state);
     // при поиске показываем сам запрос и даём его сбросить
     const query = this.q
@@ -882,6 +883,19 @@ const CatalogUI = {
         : `<button class="page-btn ${n === cur ? 'active' : ''}" type="button" data-page="${n}">${n}</button>`
       ).join('')}
       <button class="page-btn prev-next" type="button" data-page="${cur + 1}" ${cur === totalPages ? 'disabled' : ''}>Вперёд ›</button>`;
+  },
+
+  // «Тип корпуса»/«Размер корпуса» имеют смысл только для автомобильных АКБ —
+  // у мото/лодочных/тяговых нет этих стандартных типоразмеров. Прячем секции
+  // в сайдбаре, если выбрана «Применяемость» и среди неё нет «Автомобильные».
+  // На карточку товара (p.dims) это не влияет — там отдельное поле.
+  updateCaseFiltersVisibility(state) {
+    const selectedUse = state.checks.use || [];
+    const showCaseFilters = !selectedUse.length || selectedUse.includes('auto');
+    ['case', 'caseSize'].forEach(key => {
+      const section = document.querySelector(`#sidebar .sidebar-section[data-filter-key="${key}"]`);
+      if (section) section.hidden = !showCaseFilters;
+    });
   },
 
   // счётчик у пункта = сколько найдётся, если выбрать именно его
