@@ -435,7 +435,9 @@ input, textarea { font-family: inherit; }
    форма выше текстового блока, и текст «плавал» ниже верхнего края.
    Колонки не 1:1 — по макету текст прижат к левому краю уже узкой
    колонкой, форма заметно шире и прижата к правому краю. */
-.cta-inner { display: grid; grid-template-columns: 2fr 3fr; gap: 140px; align-items: start; }
+/* 5fr 6fr вместо 2fr 3fr — по макету текстовая колонка чуть шире, иначе
+   описание переносится раньше нужного места (см. .cta-desc-break ниже) */
+.cta-inner { display: grid; grid-template-columns: 5fr 6fr; gap: 140px; align-items: start; }
 .cta-title { font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 40px; text-transform: uppercase; color: var(--white); margin-bottom: 14px; }
 .cta-desc { font-size: 15px; color: rgba(255,255,255,0.85); line-height: 1.6; }
 .cta-form { background: var(--white); border-radius: 12px; padding: 32px; }
@@ -597,6 +599,9 @@ input, textarea { font-family: inherit; }
 .about-section-heading { font-size: 52px; }
 
 /* ── ADVANTAGES ── */
+/* на главной этого раздела нет в десктопном макете — только в мобильном
+   (см. медиа-запрос ниже) */
+.advantages-desktop-hide { display: none; }
 .advantages-list { display: flex; flex-direction: column; gap: 16px; }
 .advantage-row {
   display: grid; grid-template-columns: 1fr 1fr; gap: 0;
@@ -1158,6 +1163,9 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
   .cta-banner { padding: 32px 0; }
   .cta-inner { grid-template-columns: 1fr; gap: 24px; }
   .cta-form { padding: 20px; }
+  /* принудительный перенос описания — только для десктопной ширины
+     колонки, на мобильном (узкая колонка) перенос остаётся свободным */
+  .cta-desc-break { display: none; }
 
   /* ARTICLES — 1 колонка: в две заголовки рвались на 5 строк */
   .articles-grid { grid-template-columns: 1fr; gap: 12px; }
@@ -1285,6 +1293,7 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
   .stat { flex: 1; min-width: 0; }
   .stat-num { font-size: 34px; }
   .stat-label { font-size: 11px; }
+  .advantages-desktop-hide { display: block; }
   .advantage-row { grid-template-columns: 1fr; min-height: auto; }
   .advantage-img { min-height: 200px; order: 2; }
   .advantage-text { padding: 20px; order: 1; }

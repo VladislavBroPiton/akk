@@ -248,7 +248,7 @@ function renderCtaForm(dark = false) {
     <div class="cta-inner">
       <div>
         <h2 class="cta-title">Подобрать аккумулятор</h2>
-        <p class="cta-desc">Наши специалисты учитывают все характеристики — от ёмкости до типа корпуса. Вы получите точный подбор, консультацию и рекомендации по эксплуатации</p>
+        <p class="cta-desc">Наши специалисты учитывают все характеристики — от ёмкости до типа <br class="cta-desc-break">корпуса. Вы получите точный подбор, консультацию и рекомендации <br class="cta-desc-break">по эксплуатации</p>
       </div>
       <div class="cta-form">
         <form class="contact-form" onsubmit="handleForm(event)">
