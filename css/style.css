@@ -169,7 +169,16 @@ input, textarea { font-family: inherit; }
 .nav a { font-size: 14px; font-weight: 500; color: var(--white); transition: color 0.2s; }
 .nav a:hover, .nav a.active { color: var(--orange); }
 .nav-dropdown { position: relative; }
-.nav-dropdown > a::after { content: ' ▾'; font-size: 16px; }
+/* символ ▾ через системный шрифт (Adderley его не содержит) на 10-16px не
+   растёт физически — упирается в хинтинг шрифта, увеличение font-size не
+   давало видимого эффекта. CSS-треугольник border-трюком — размер зависит
+   только от border-width, без сюрпризов шрифтового рендеринга. */
+.nav-dropdown > a::after {
+  content: ''; display: inline-block; margin-left: 6px; vertical-align: middle;
+  width: 0; height: 0;
+  border-left: 9px solid transparent; border-right: 9px solid transparent;
+  border-top: 11px solid currentColor;
+}
 .nav-dropdown-menu {
   display: none; position: absolute; top: 100%; left: 0;
   padding-top: 8px;
