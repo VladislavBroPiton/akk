@@ -150,11 +150,16 @@ input, textarea { font-family: inherit; }
   font-size: 14px; background: rgba(255,255,255,0.18); outline: none;
   color: var(--white);
 }
-.search-input::placeholder { color: rgba(255,255,255,0.4); }
+/* по макету плейсхолдер «Поиск» — капсом, Adderley Bold 24px, сплошной
+   белый (было rgba с прозрачностью, не капс, не Adderley) */
+.search-input::placeholder {
+  color: var(--white); text-transform: uppercase;
+  font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 24px;
+}
 .search-input:focus { border-color: var(--orange); }
 .search-icon {
   position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
-  color: rgba(255,255,255,0.4); display: flex; pointer-events: none;
+  color: var(--white); display: flex; pointer-events: none;
 }
 .search-icon svg { width: 18px; height: 18px; }
 
@@ -284,8 +289,8 @@ input, textarea { font-family: inherit; }
 .no-hero-page .btn-catalog { background: var(--black); color: var(--white); }
 .no-hero-page .btn-catalog:hover { background: var(--orange); color: var(--white); }
 .no-hero-page .search-input { background: var(--gray-400); border-color: var(--gray-100); color: var(--black); }
-.no-hero-page .search-input::placeholder { color: var(--black-50); }
-.no-hero-page .search-icon { color: var(--black-50); }
+.no-hero-page .search-input::placeholder { color: var(--black); }
+.no-hero-page .search-icon { color: var(--black); }
 .no-hero-page .header-phone { color: var(--black); border-color: var(--black); }
 .no-hero-page .header-phone:hover { background: var(--black); color: var(--white); }
 .breadcrumb a { color: var(--black-50); }
