@@ -962,6 +962,10 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
   /* Button text по таблице = 16px на моб. (на десктопе .btn теперь 24px) */
   .btn { font-size: 16px; }
   .hero-title { font-size: 36px; line-height: 1; }
+  /* принудительный перенос подзаголовка после «— » — только для десктопа,
+     на мобильном перенос остаётся свободным (был 3 строки, с этим br стало
+     бы 4) */
+  .hero-subtitle-break { display: none; }
   /* по таблице Typography (H2 моб. = 32px), было 24px */
   .section-title { font-size: 32px; }
   .about-section-heading { font-size: 30px; }
