@@ -457,7 +457,7 @@ input, textarea { font-family: inherit; }
 .form-submit:hover { background: #e54500; }
 
 /* ── ARTICLES ── */
-.articles-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+.articles-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
 /* карточка — flex-колонка, чтобы «Подробнее» у всех прижималось к низу
    и ряд не выглядел рваным при разной длине заголовков */
 /* по макету рамка карточки заметнее — var(--gray-100) #CBCBCB, а не
@@ -890,11 +890,11 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
 .see-also { grid-column: 1 / -1; margin-top: 60px; }
 .see-also-title { font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 24px; text-transform: uppercase; margin-bottom: 24px; }
 /* карточки «Смотрите также» — компактнее, чем стандартная сетка статей */
-.see-also .articles-grid { gap: 14px; }
+.see-also .articles-grid { gap: 10px; }
 
 /* ── ARTICLES LIST PAGE ── */
 .articles-page-section { background: var(--gray-300); padding-bottom: 64px; }
-.articles-page-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+.articles-page-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
 .articles-page-header { display: flex; align-items: flex-end; gap: 20px; padding: 48px 0 32px; }
 /* H1 по таблице Typography = 64px десктоп / 36px моб. (override ниже) */
 .articles-page-title { font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 64px; text-transform: uppercase; }
