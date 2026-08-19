@@ -964,8 +964,14 @@ const CatalogUI = {
 
   bind() {
     const sidebar = document.getElementById('sidebar');
-    // на десктопе применяем сразу, на мобиле — по кнопке, чтобы список не дёргался под пальцем
-    sidebar.addEventListener('change', () => { if (!this.isMobile()) this.apply(); });
+    // на десктопе применяем сразу, на мобиле — по кнопке, чтобы список не дёргался под пальцем.
+    // Видимость «Тип корпуса»/«Размер корпуса» — исключение: она не трогает
+    // список товаров и счётчики, поэтому обновляется сразу и на мобиле, не
+    // дожидаясь «Применить».
+    sidebar.addEventListener('change', () => {
+      this.updateCaseFiltersVisibility(this.readState());
+      if (!this.isMobile()) this.apply();
+    });
     sidebar.addEventListener('input', e => {
       if (!e.target.classList.contains('filter-range-input')) return;
       this.updateSliderFill(e.target);
