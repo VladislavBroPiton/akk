@@ -9,12 +9,23 @@ const FILTER_DEFS = {
   use:        { title: 'Применяемость',  type: 'checks', labels: { auto:'Автомобильные', moto:'Мото', boat:'Лодочные', traction:'Тяговые / ИБП' } },
   capacity:   { title: 'Ёмкость, Ah',    type: 'range' },
   polarity:   { title: 'Полярность',     type: 'checks', labels: { direct:'Прямая', reverse:'Обратная' } },
-  tech:       { title: 'Технология',     type: 'checks', labels: { ca:'Ca/Ca', efb:'EFB', agm:'AGM', gel:'GEL', 'agm-gel':'AGM+GEL' } },
+  tech:       { title: 'Технология',     type: 'checks', labels: {
+    ca:'Ca/Ca', efb:'EFB', agm:'AGM', gel:'GEL', 'agm-gel':'AGM+GEL',
+    'li-ion':'Li-ion, Li-pol', lifepo4:'LiFePO4', lto:'LTO', 'ni-cd':'Ni-Cd, Ni-MH',
+  } },
   case:       { title: 'Тип корпуса',    type: 'checks', labels: { euro:'Европейский', asia:'Азиатский' } },
-  // стандартные типоразмеры корпуса АКБ (реальные коды, не выдуманные)
+  // размер корпуса АКБ — код + габариты Д×Ш×В, мм (реальные типоразмеры)
   caseSize:   { title: 'Размер корпуса', type: 'checks', labels: {
-    L1:'L1', LB1:'LB1', L2:'L2', LB2:'LB2', L3:'L3', LB3:'LB3', L4:'L4', LB4:'LB4',
-    L5:'L5', L6:'L6', B19:'B19', B24:'B24', D23:'D23', D26:'D26', D31:'D31', special:'Специальный',
+    B19:'187×127×227 (B19)', B20:'197×129×227 (B20)', B24:'238×129×227 (B24)',
+    D20:'207×173×205 (D20)', D23:'232×173×225 (D23)', D26:'260×173×225 (D26)', D31:'306×173×225 (D31)',
+    GR31:'330×173×240 (GR31)',
+    L1:'207×175×190 (L1)', LB1:'207×175×175 (LB1)',
+    L2:'242×175×190 (L2)', LB2:'242×175×175 (LB2)',
+    L3:'278×175×190 (L3)', LB3:'278×175×175 (LB3)',
+    L4:'315×175×190 (L4)', LB4:'315×175×175 (LB4)',
+    L5:'353×175×190 (L5)', L6:'393×175×190 (L6)',
+    A:'513×189×223 (A)', B:'513×223×223 (B)', C:'518×276×242 (C)',
+    special:'Специальный',
   } },
   brand:      { title: 'Бренд',          type: 'checks', labels: { VARTA:'VARTA', TOPLA:'TOPLA', ZUBR:'ZUBR', PLATIN:'PLATIN', ENEUS:'ENEUS' } },
   chargeType: { title: 'Тип устройства', type: 'checks', labels: { auto:'Автоматическое', pulse:'Импульсное', jump:'Пуско-зарядное', starter:'Пусковое' } },
