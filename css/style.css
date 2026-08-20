@@ -467,14 +467,10 @@ input, textarea { font-family: inherit; }
    почти невидимый var(--gray-400); толщина та же (1px), но контраст выше */
 .article-card { border-radius: 10px; overflow: hidden; border: 1px solid var(--gray-100); background: var(--white); transition: all 0.2s; display: flex; flex-direction: column; }
 .article-card:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.1); transform: translateY(-2px); }
-/* было 160px — при ширине карточки ~330px давало плоский кроп ~2:1,
-   фото выглядели растянутыми по горизонтали. Уменьшать это значение —
-   значит снова делать кроп площе (шире по отношению к высоте) при той же
-   ширине карточки, то есть возвращать растянутый вид. 220px (~3:2) —
-   минимум для не-растянутой пропорции; компактность карточки в целом
-   нужно делать через текст/отступы, не через сжатие фото. */
-.article-card-img { width: 100%; height: 220px; object-fit: cover; background: var(--gray-300); flex-shrink: 0; }
-.article-card-img-placeholder { width: 100%; height: 220px; background: linear-gradient(135deg, #3d1500, #242424); flex-shrink: 0; }
+/* было 160px (~2:1, растянутый вид). 220px давало ~3:2; 200px — компромисс
+   ближе к 16:9 (~1.66:1), ещё не выглядит растянутым, но чуть компактнее. */
+.article-card-img { width: 100%; height: 200px; object-fit: cover; background: var(--gray-300); flex-shrink: 0; }
+.article-card-img-placeholder { width: 100%; height: 200px; background: linear-gradient(135deg, #3d1500, #242424); flex-shrink: 0; }
 .article-card-body { padding: 18px 18px 20px; display: flex; flex-direction: column; flex: 1; }
 .article-card-title { font-weight: 700; font-size: 14px; line-height: 1.45; margin-bottom: 10px; text-transform: uppercase; }
 /* в блоке «Полезные статьи» на главной первая карточка выделена
