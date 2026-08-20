@@ -763,7 +763,7 @@ const CatalogUI = {
 
     document.getElementById('sidebar').innerHTML = `
       <div class="filter-head">
-        <div class="filter-head-title">${ICON_FILTER}Фильтр</div>
+        <div class="filter-head-title">Фильтр${ICON_FILTER}</div>
         <div class="filter-head-actions">
           <button class="filter-reset" type="button">Сбросить все</button>
           <button class="filter-close" type="button" onclick="toggleFilter()" aria-label="Закрыть фильтр">✕</button>

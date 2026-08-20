@@ -688,7 +688,7 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
    flex-контейнер, не общий грид с плитками: раньше .catalog-toolbar и
    .cat-tiles делили одну строку грида, и высота высокой плитки навязывала
    пустой отступ перед сайдбаром (тот делил СВОЮ строку с .cat-main) */
-.catalog-sidebar-col { display: flex; flex-direction: column; gap: 40px; }
+.catalog-sidebar-col { display: flex; flex-direction: column; gap: 10px; }
 .catalog-content-col { display: flex; flex-direction: column; }
 .catalog-toolbar .filter-toggle-btn { display: none; }
 .sidebar { background: var(--white); }
