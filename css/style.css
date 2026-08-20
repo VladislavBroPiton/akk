@@ -559,7 +559,10 @@ input, textarea { font-family: inherit; }
 .footer-nav a { display: block; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--white); padding: 4px 0; transition: color 0.2s; }
 .footer-nav a:hover { color: var(--orange); }
 /* по макету текст низа футера светлее (белый 20%, а не 40%) и чуть крупнее (14px) */
-.footer-bottom { padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; align-items: center; font-size: 14px; color: rgba(255,255,255,0.2); flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+/* margin-top (зазор до тонкой линии-разделителя) + padding-top (после
+   линии до текста) визуально воспринимаются как ОДИН общий отступ —
+   в сумме должно быть 26px, не 26 у одного из двух */
+.footer-bottom { padding-top: 11px; border-top: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; align-items: center; font-size: 14px; color: rgba(255,255,255,0.2); flex-wrap: wrap; gap: 12px; margin-top: 15px; }
 .footer-bottom a { color: rgba(255,255,255,0.2); }
 .footer-bottom a:hover { color: var(--white); }
 .footer-credit { display: flex; align-items: center; gap: 6px; text-transform: uppercase; letter-spacing: 0.04em; }
