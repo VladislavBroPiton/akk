@@ -684,7 +684,10 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
 /* toolbar (воронка+сортировка) и сайдбар — левая колонка (2 строки);
    плитки разделов и сетка товаров — правая колонка (тоже 2 строки) */
 .catalog-layout { display: grid; grid-template-columns: 260px 1fr; gap: 40px; padding: 0 0 48px; }
-.catalog-toolbar { grid-column: 1; grid-row: 1; margin-bottom: 24px; }
+/* без align-self ячейка тянется на всю высоту строки грида (по высоте
+   плитки категории справа), а кнопка внутри (align-items:center) уезжает
+   в середину — визуально гораздо ниже margin-bottom */
+.catalog-toolbar { grid-column: 1; grid-row: 1; align-self: start; margin-bottom: 24px; }
 .catalog-toolbar .filter-toggle-btn { display: none; }
 #sidebar { grid-column: 1; grid-row: 2; }
 .cat-tiles { grid-column: 2; grid-row: 1; }
