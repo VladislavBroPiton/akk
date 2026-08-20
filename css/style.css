@@ -691,8 +691,8 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
 .catalog-sidebar-col { display: flex; flex-direction: column; gap: 10px; }
 .catalog-content-col { display: flex; flex-direction: column; }
 .catalog-toolbar .filter-toggle-btn { display: none; }
-.sidebar { background: var(--gray-400); }
-.sidebar-section { border-bottom: 1px solid var(--gray-400); padding: 20px 0; }
+.sidebar { background: var(--gray-400); border-radius: 8px; padding: 20px; }
+.sidebar-section { border-bottom: 1px solid var(--gray-100); padding: 20px 0; }
 .sidebar-title { display: flex; justify-content: space-between; align-items: center; font-weight: 700; font-size: 15px; margin-bottom: 14px; cursor: pointer; }
 .sidebar-title::after { content: '▲'; font-size: 10px; color: var(--black-50); transition: transform 0.2s; }
 .sidebar-title.collapsed::after { transform: rotate(180deg); }
