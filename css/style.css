@@ -465,7 +465,7 @@ input, textarea { font-family: inherit; }
    и ряд не выглядел рваным при разной длине заголовков */
 /* по макету рамка карточки заметнее — var(--gray-100) #CBCBCB, а не
    почти невидимый var(--gray-400); толщина та же (1px), но контраст выше */
-.article-card { border-radius: 10px; overflow: hidden; border: 1px solid var(--gray-100); background: var(--white); transition: all 0.2s; display: flex; flex-direction: column; }
+.article-card { border-radius: 10px; overflow: hidden; border: 1px solid var(--gray-100); background: var(--white); transition: all 0.2s; display: flex; flex-direction: column; cursor: pointer; }
 .article-card:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.1); transform: translateY(-2px); }
 /* по макету картинка НЕ во всю ширину карточки — отступ 18px по бокам
    (тот же, что и у .article-card-body ниже) и 20px сверху, плюс свой
@@ -478,10 +478,8 @@ input, textarea { font-family: inherit; }
   background: var(--gray-300); flex-shrink: 0;
 }
 .article-card-body { padding: 18px 18px 20px; display: flex; flex-direction: column; flex: 1; }
-.article-card-title { font-weight: 700; font-size: 14px; line-height: 1.45; margin-bottom: 10px; text-transform: uppercase; }
-/* в блоке «Полезные статьи» на главной первая карточка выделена
-   оранжевым заголовком — только там, не в общем списке статей */
-#articles-mount .article-card:first-child .article-card-title { color: var(--orange); }
+.article-card-title { font-weight: 700; font-size: 14px; line-height: 1.45; margin-bottom: 10px; text-transform: uppercase; color: var(--black); transition: color 0.25s ease; }
+.article-card:hover .article-card-title { color: var(--orange); }
 .article-card-text { font-size: 13px; color: var(--black-50); line-height: 1.55; margin-bottom: 14px; flex: 1; }
 
 /* ── MAP BLOCK ── */
@@ -610,9 +608,6 @@ input, textarea { font-family: inherit; }
 .about-section-heading { font-size: 52px; }
 
 /* ── ADVANTAGES ── */
-/* на главной этого раздела нет в десктопном макете — только в мобильном
-   (см. медиа-запрос ниже) */
-.advantages-desktop-hide { display: none; }
 .advantages-list { display: flex; flex-direction: column; gap: 16px; }
 .advantage-row {
   display: grid; grid-template-columns: 1fr 1fr; gap: 0;
@@ -1303,7 +1298,6 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
   .stat { flex: 1; min-width: 0; }
   .stat-num { font-size: 34px; }
   .stat-label { font-size: 11px; }
-  .advantages-desktop-hide { display: block; }
   .advantage-row { grid-template-columns: 1fr; min-height: auto; }
   .advantage-img { min-height: 200px; order: 2; }
   .advantage-text { padding: 20px; order: 1; }

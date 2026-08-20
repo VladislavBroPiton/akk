@@ -329,16 +329,16 @@ function productCard(name, specs, badge = 'В наличии', price = null) {
 // заголовок, текст, фото и ссылка не разъезжались по трём страницам.
 function articleCard(a) {
   return `
-<div class="article-card">
+<a href="${a.file}" class="article-card">
   ${a.img
     ? `<img src="${a.img}" alt="${a.title}" class="article-card-img" loading="lazy" onerror="articleImgFallback(this)">`
     : `<div class="article-card-img-placeholder"></div>`}
   <div class="article-card-body">
     <div class="article-card-title">${a.title}</div>
     <div class="article-card-text">${a.excerpt}</div>
-    <a href="${a.file}" class="btn-link">Подробнее</a>
+    <span class="btn-link">Подробнее</span>
   </div>
-</div>`;
+</a>`;
 }
 
 /* ═══════════════ СТРАНИЦА СТАТЬИ ═══════════════
