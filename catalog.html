@@ -36,28 +36,35 @@
   <!-- по макету заголовок раздела — над сайдбаром и плитками, во всю ширину -->
   <div class="catalog-count" id="cat-title"></div>
   <div class="catalog-layout">
-    <!-- кнопка-воронка (только на мобиле, открывает панель фильтра) + сортировка —
-         по макету видны на странице сразу, не спрятаны внутри панели фильтра -->
-    <div class="catalog-toolbar">
-      <button class="filter-toggle-btn" id="filterToggle" onclick="toggleFilter()" style="display:none;" aria-label="Открыть фильтр"></button>
-      <div id="catalog-sort-mount"></div>
-    </div>
-
-    <!-- сайдбар (чекбоксы фильтра) собирается из конфига раздела в CatalogUI.renderSidebar() -->
-    <aside class="sidebar" id="sidebar"></aside>
-
-    <div class="cat-tiles" id="cat-tiles"></div>
-
-    <div class="cat-main">
-      <div class="products-grid" id="cat-grid"></div>
-
-      <div class="catalog-empty" id="cat-empty" hidden>
-        <div class="catalog-empty-title">Ничего не найдено</div>
-        <p>Попробуйте ослабить условия или сбросить фильтры</p>
-        <button class="btn btn-outline" type="button" onclick="CatalogUI.reset()">Сбросить фильтры</button>
+    <!-- левая колонка (тулбар+сайдбар) отдельным flex-контейнером — иначе
+         в гриде она делит строки с высокими плитками справа, и высота
+         плитки навязывает лишний пустой отступ перед сайдбаром -->
+    <div class="catalog-sidebar-col">
+      <!-- кнопка-воронка (только на мобиле, открывает панель фильтра) + сортировка —
+           по макету видны на странице сразу, не спрятаны внутри панели фильтра -->
+      <div class="catalog-toolbar">
+        <button class="filter-toggle-btn" id="filterToggle" onclick="toggleFilter()" style="display:none;" aria-label="Открыть фильтр"></button>
+        <div id="catalog-sort-mount"></div>
       </div>
 
-      <div class="pagination" id="pagination"></div>
+      <!-- сайдбар (чекбоксы фильтра) собирается из конфига раздела в CatalogUI.renderSidebar() -->
+      <aside class="sidebar" id="sidebar"></aside>
+    </div>
+
+    <div class="catalog-content-col">
+      <div class="cat-tiles" id="cat-tiles"></div>
+
+      <div class="cat-main">
+        <div class="products-grid" id="cat-grid"></div>
+
+        <div class="catalog-empty" id="cat-empty" hidden>
+          <div class="catalog-empty-title">Ничего не найдено</div>
+          <p>Попробуйте ослабить условия или сбросить фильтры</p>
+          <button class="btn btn-outline" type="button" onclick="CatalogUI.reset()">Сбросить фильтры</button>
+        </div>
+
+        <div class="pagination" id="pagination"></div>
+      </div>
     </div>
   </div>
 </div>
