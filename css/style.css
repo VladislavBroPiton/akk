@@ -727,7 +727,7 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
 .catalog-empty p { font-size: 14px; color: var(--black-50); margin-bottom: 20px; }
 /* по макету (Typography 1600/H2): 56px, margin-top 45px (до крошек), margin-bottom 40px (до сортировки) — было 28px/0/32px */
 .catalog-count { font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 56px; line-height: 1; text-transform: uppercase; margin-top: 45px; margin-bottom: 40px; }
-.catalog-count span { font-size: 16px; font-weight: 400; font-family: 'Onest', sans-serif; color: var(--black-50); margin-left: 8px; vertical-align: top; }
+.catalog-count span { font-size: 16px; font-weight: 400; font-family: 'Onest', sans-serif; color: var(--black-50); margin-left: 4px; vertical-align: top; }
 /* ── СОРТИРОВКА (свой выпадающий список, как в макете) ── */
 .sort { position: relative; }
 .sort-label {
