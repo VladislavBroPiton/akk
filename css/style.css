@@ -491,13 +491,17 @@ input, textarea { font-family: inherit; }
    ссылку Яндекс.Карт «Открыть в Яндекс картах» под виджетом */
 .map-info {
   position: absolute; left: 24px; bottom: 56px; z-index: 1;
-  background: var(--white); border-radius: 12px; padding: 28px 32px;
+  background: var(--white); border-radius: 12px; padding: 20px;
   display: flex; flex-direction: column; gap: 8px; width: 280px;
   box-shadow: 0 8px 24px rgba(0,0,0,0.15);
 }
-.map-city { display: flex; align-items: center; gap: 6px; font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 22px; text-transform: uppercase; margin-bottom: 4px; }
+/* по макету «Волжский» — обычным регистром, не капсом. Убирать
+   text-transform:uppercase было недостаточно — у шрифта Adderley нет
+   строчных букв (рендерит капителью независимо от регистра исходного
+   текста), поэтому сменил семейство на Onest (как в остальном тексте) */
+.map-city { display: flex; align-items: center; gap: 6px; font-family: 'Onest', sans-serif; font-weight: 700; font-size: 22px; margin-bottom: 4px; }
 .map-city-badge { flex-shrink: 0; }
-.map-rating { display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--black-50); margin-bottom: 20px; }
+.map-rating { display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--black-50); margin-bottom: 16px; }
 .stars { color: #ffc107; font-size: 14px; }
 .map-frame { position: absolute; inset: 0; background: var(--gray-400); display: flex; align-items: center; justify-content: center; font-size: 14px; color: var(--black-50); overflow: hidden; }
 .map-frame iframe { width: 100%; height: 100%; border: none; position: absolute; inset: 0; }
