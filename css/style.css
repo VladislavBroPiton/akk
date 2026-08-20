@@ -467,10 +467,16 @@ input, textarea { font-family: inherit; }
    почти невидимый var(--gray-400); толщина та же (1px), но контраст выше */
 .article-card { border-radius: 10px; overflow: hidden; border: 1px solid var(--gray-100); background: var(--white); transition: all 0.2s; display: flex; flex-direction: column; }
 .article-card:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.1); transform: translateY(-2px); }
-/* было 160px (~2:1, растянутый вид). 220px давало ~3:2; 200px — компромисс
-   ближе к 16:9 (~1.66:1), ещё не выглядит растянутым, но чуть компактнее. */
-.article-card-img { width: 100%; height: 200px; object-fit: cover; background: var(--gray-300); flex-shrink: 0; }
-.article-card-img-placeholder { width: 100%; height: 200px; background: linear-gradient(135deg, #3d1500, #242424); flex-shrink: 0; }
+/* по макету картинка НЕ во всю ширину карточки — отступ 18px по бокам
+   (тот же, что и у .article-card-body ниже) и 20px сверху, плюс свой
+   border-radius:10px отдельно от рамки карточки. Пропорция в макете
+   336×171 ≈ 1.96:1 — держим через aspect-ratio, чтобы не зависеть от
+   точной ширины карточки на разных экранах. */
+.article-card-img, .article-card-img-placeholder {
+  width: auto; margin: 20px 18px 0; border-radius: 10px;
+  aspect-ratio: 336 / 171; object-fit: cover;
+  background: var(--gray-300); flex-shrink: 0;
+}
 .article-card-body { padding: 18px 18px 20px; display: flex; flex-direction: column; flex: 1; }
 .article-card-title { font-weight: 700; font-size: 14px; line-height: 1.45; margin-bottom: 10px; text-transform: uppercase; }
 /* в блоке «Полезные статьи» на главной первая карточка выделена
@@ -1175,7 +1181,6 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
   /* ARTICLES — 1 колонка: в две заголовки рвались на 5 строк */
   .articles-grid { grid-template-columns: 1fr; gap: 12px; }
   .articles-page-grid { grid-template-columns: 1fr; gap: 12px; }
-  .article-card-img, .article-card-img-placeholder { height: 150px; }
 
   /* MAP — на мобиле карточка не помещается плавающей поверх узкой карты,
      занимает всю ширину снизу */
