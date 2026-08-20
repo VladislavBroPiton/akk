@@ -25,12 +25,11 @@ const ICON_SEARCH = '<svg viewBox="0 0 20 20" fill="none" aria-hidden="true" foc
   '<circle cx="9" cy="9" r="6.2" stroke="currentColor" stroke-width="1.8"/>' +
   '<path d="M13.6 13.6L18.2 18.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>';
 
-// иконка-«ползунки» рядом с заголовком «Фильтр» внутри панели фильтра — как в макете
+// иконка-«ползунки» рядом с заголовком «Фильтр» внутри панели фильтра — как в макете (rivet-icons filter-solid)
 const ICON_FILTER = '<svg viewBox="0 0 18 18" fill="none" aria-hidden="true" focusable="false">' +
-  '<path d="M2 5h14M2 9h14M2 13h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>' +
-  '<circle cx="6" cy="5" r="1.6" fill="var(--white)" stroke="currentColor" stroke-width="1.5"/>' +
-  '<circle cx="12" cy="9" r="1.6" fill="var(--white)" stroke="currentColor" stroke-width="1.5"/>' +
-  '<circle cx="7" cy="13" r="1.6" fill="var(--white)" stroke="currentColor" stroke-width="1.5"/></svg>';
+  '<path d="M1 4.5h16M1 13.5h16" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>' +
+  '<circle cx="6.5" cy="4.5" r="3.2" fill="currentColor"/>' +
+  '<circle cx="11.5" cy="13.5" r="3.2" fill="currentColor"/></svg>';
 
 // иконка-«воронка» кнопки открытия фильтра на мобильном — срисована с
 // исходника Figma (файл «Фильтр» в папке Дизайн)
