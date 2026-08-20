@@ -683,15 +683,14 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
    и давал двойной отступ 72px вместо ~30px, как в макете — оставляем только нижний */
 /* toolbar (воронка+сортировка) и сайдбар — левая колонка (2 строки);
    плитки разделов и сетка товаров — правая колонка (тоже 2 строки) */
-.catalog-layout { display: grid; grid-template-columns: 260px 1fr; gap: 40px; padding: 0 0 48px; }
-/* без align-self ячейка тянется на всю высоту строки грида (по высоте
-   плитки категории справа), а кнопка внутри (align-items:center) уезжает
-   в середину — визуально гораздо ниже margin-bottom */
-.catalog-toolbar { grid-column: 1; grid-row: 1; align-self: start; margin-bottom: 24px; }
+.catalog-layout { display: grid; grid-template-columns: 260px 1fr; gap: 40px; padding: 0 0 48px; align-items: start; }
+/* левая колонка (тулбар+сайдбар) и правая (плитки+товары) — каждая свой
+   flex-контейнер, не общий грид с плитками: раньше .catalog-toolbar и
+   .cat-tiles делили одну строку грида, и высота высокой плитки навязывала
+   пустой отступ перед сайдбаром (тот делил СВОЮ строку с .cat-main) */
+.catalog-sidebar-col { display: flex; flex-direction: column; gap: 40px; }
+.catalog-content-col { display: flex; flex-direction: column; }
 .catalog-toolbar .filter-toggle-btn { display: none; }
-#sidebar { grid-column: 1; grid-row: 2; }
-.cat-tiles { grid-column: 2; grid-row: 1; }
-.cat-main { grid-column: 2; grid-row: 2; }
 .sidebar { background: var(--white); }
 .sidebar-section { border-bottom: 1px solid var(--gray-400); padding: 20px 0; }
 .sidebar-title { display: flex; justify-content: space-between; align-items: center; font-weight: 700; font-size: 15px; margin-bottom: 14px; cursor: pointer; }
@@ -1245,8 +1244,11 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
   .breadcrumb { font-size: 12px; padding: 8px 0; }
 
   /* CATALOG PAGE — по макету на мобиле сразу под плитками видна строка
-     [воронка фильтра] [сортировка], а не спрятаны внутри панели фильтра */
+     [воронка фильтра] [сортировка], а не спрятаны внутри панели фильтра.
+     display:contents «раскрывает» десктопные обёртки .catalog-sidebar-col/
+     .catalog-content-col — их дети снова прямые дети грида, order работает. */
   .catalog-layout { grid-template-columns: 1fr; gap: 0; padding: 16px 0 48px; }
+  .catalog-sidebar-col, .catalog-content-col { display: contents; }
   .cat-tiles { order: 1; grid-column: 1; grid-row: auto; gap: 8px; margin-bottom: 20px; }
   .catalog-toolbar { order: 2; grid-column: 1; grid-row: auto; margin-bottom: 20px; }
   .sidebar { order: 3; grid-row: auto; display: none; }
