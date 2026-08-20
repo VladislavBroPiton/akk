@@ -776,7 +776,8 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
    от иконки-воронки на всю оставшуюся ширину), а сам виджет — по ширине
    содержимого, не 100% */
 .catalog-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-.catalog-toolbar .catalog-sort { flex: 0 1 auto; min-width: 0; margin-bottom: 0; }
+.catalog-toolbar #catalog-sort-mount { flex: 1 1 auto; min-width: 0; }
+.catalog-toolbar .catalog-sort { flex: 1 1 auto; min-width: 0; margin-bottom: 0; }
 .catalog-sort { margin-bottom: 24px; }
 .catalog-sort .sort-btn {
   width: 100%; justify-content: space-between; align-items: flex-start;
