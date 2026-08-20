@@ -723,7 +723,8 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
 .catalog-empty { text-align: center; padding: 64px 20px; border: 1px dashed var(--gray-100); border-radius: 12px; }
 .catalog-empty-title { font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 22px; text-transform: uppercase; margin-bottom: 8px; }
 .catalog-empty p { font-size: 14px; color: var(--black-50); margin-bottom: 20px; }
-.catalog-count { font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 28px; text-transform: uppercase; margin-bottom: 32px; }
+/* по макету (Typography 1600/H2): 56px, margin-top 45px (до крошек), margin-bottom 40px (до сортировки) — было 28px/0/32px */
+.catalog-count { font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 56px; line-height: 1; text-transform: uppercase; margin-top: 45px; margin-bottom: 40px; }
 .catalog-count span { font-size: 16px; font-weight: 400; font-family: 'Onest', sans-serif; color: var(--black-50); margin-left: 8px; vertical-align: top; }
 /* ── СОРТИРОВКА (свой выпадающий список, как в макете) ── */
 .sort { position: relative; }
@@ -1263,7 +1264,8 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
     width: 32px; height: 32px;
     font-size: 18px; color: var(--black-50); background: var(--gray-300); border-radius: 50%;
   }
-  .catalog-count { font-size: 22px; margin-bottom: 16px; }
+  /* margin-top:45px десктопный — не задан отдельно для мобильного, сбрасываем на 0, как было раньше */
+  .catalog-count { font-size: 22px; margin-top: 0; margin-bottom: 16px; }
   .filter-btn { display: block; position: sticky; bottom: 0; }
   .catalog-empty { padding: 40px 16px; }
   .cat-tile { min-height: 84px; padding: 12px 6px; font-size: 11px; gap: 6px; }
