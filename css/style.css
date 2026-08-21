@@ -844,9 +844,9 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
 .product-main-img { flex: 1; background: var(--white); border-radius: 12px; display: flex; align-items: center; justify-content: center; padding: 32px; min-height: 340px; position: relative; }
 .product-main-img img { max-height: 280px; object-fit: contain; }
 .product-info { display: flex; flex-direction: column; gap: 20px; position: sticky; top: 120px; align-self: start; }
-/* H1 по таблице Typography = 64px десктоп / 36px моб. (override ниже) */
-.product-page-title { font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 64px; text-transform: uppercase; line-height: 1.2; }
-.product-page-desc { font-size: 14px; color: var(--black-50); line-height: 1.65; }
+/* H2 (1600/H2) по девпанели Figma — 56px, line-height 100% */
+.product-page-title { font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 56px; text-transform: uppercase; line-height: 1; }
+.product-page-desc { font-size: 14px; color: var(--black-50); line-height: 1.1; }
 .product-page-price { color: var(--orange); font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 18px; text-transform: uppercase; letter-spacing: 0.05em; }
 .product-delivery-row { display: flex; gap: 12px; }
 /* вся плитка кликабельна */
@@ -1298,7 +1298,7 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
   .product-main-img { min-height: 240px; }
   .product-delivery-row { flex-wrap: wrap; gap: 10px; }
   /* по таблице Typography (H1 моб. = 36px) — на десктопе .product-page-title
-     теперь 64px, без этого override на моб. унаследовался бы тоже 64px */
+     56px, без этого override на моб. унаследовался бы тоже 56px */
   .product-page-title { font-size: 36px; }
   .similar-title { font-size: 22px; margin: 40px 0 20px; flex-direction: column; align-items: flex-start; gap: 12px; }
 
