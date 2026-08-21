@@ -637,7 +637,7 @@ input, textarea { font-family: inherit; }
 
 /* ── DELIVERY PAGE ── */
 .delivery-section { padding: 80px 0; background: var(--gray-300); }
-.delivery-row { display: grid; grid-template-columns: 1fr 2fr; gap: 80px; padding: 64px 0; align-items: start; }
+.delivery-row { display: grid; grid-template-columns: 1fr 2fr; gap: 80px; padding: 40px 0; align-items: start; }
 /* H2 по таблице Typography = 56px десктоп / 32px моб. (override ниже) */
 .delivery-label { font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 56px; text-transform: uppercase; color: var(--black); padding-top: 8px; }
 .delivery-content-title { font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 22px; text-transform: uppercase; margin-bottom: 16px; }
