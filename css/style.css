@@ -659,7 +659,7 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
 .service-page-card-body { display: flex; flex-direction: column; align-self: stretch; }
 .service-page-card-body .btn-link { margin-top: auto; }
 .service-page-card:hover .service-name, .service-page-card:hover .btn-link { color: var(--orange); }
-.service-page-icon-wrap { background: var(--gray-400); border-radius: 8px; display: flex; align-items: center; justify-content: center; height: 220px; font-size: 64px; padding: 10px; }
+.service-page-icon-wrap { background: var(--gray-400); border-radius: 8px; display: flex; align-items: center; justify-content: center; height: 220px; font-size: 64px; padding: 36px; }
 .service-page-icon-wrap img { max-height: 100%; max-width: 100%; object-fit: contain; }
 
 /* ── CONTACTS PAGE ──
