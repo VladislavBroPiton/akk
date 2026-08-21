@@ -287,7 +287,7 @@ input, textarea { font-family: inherit; }
    фоне — обратный набор от шапки на hero-страницах. */
 .no-hero-page .header {
   position: sticky;
-  background: var(--white);
+  background: var(--gray-300);
   border-bottom: 1px solid var(--gray-400);
 }
 /* по макету адрес/почта в этом блоке — сплошным чёрным (#242424), не
@@ -839,8 +839,9 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
 .product-layout { display: grid; grid-template-columns: 1.19fr 1fr; gap: 40px; align-items: start; }
 .product-col-main { display: flex; flex-direction: column; gap: 48px; min-width: 0; }
 .product-gallery { display: flex; gap: 10px; }
-/* переключатель миниатюр — снизу вверх (активная снизу), не сверху вниз */
-.product-thumbnails { display: flex; flex-direction: column-reverse; gap: 10px; }
+/* переключатель миниатюр — внутри карточки с фото (не отдельной колонкой
+   слева от неё), прижат к левому краю, снизу вверх (активная снизу) */
+.product-thumbnails { position: absolute; left: 24px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column-reverse; gap: 10px; z-index: 1; }
 .product-thumb { width: 64px; height: 64px; border: 2px solid var(--gray-400); border-radius: 8px; overflow: hidden; cursor: pointer; transition: border-color 0.2s; background: var(--gray-300); display: flex; align-items: center; justify-content: center; }
 .product-thumb.active { border-color: var(--orange); }
 .product-thumb img { width: 100%; height: 100%; object-fit: contain; padding: 4px; }
@@ -852,7 +853,7 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
 .product-page-desc { font-size: 14px; color: var(--black-50); line-height: 1.1; }
 /* .product-info — flex-колонка с общим gap:20px; здесь нужен именно 10px
    над ценой, поэтому компенсируем разницу отрицательным отступом */
-.product-page-price { color: var(--orange); font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 18px; text-transform: uppercase; letter-spacing: 0.05em; margin-top: -10px; }
+.product-page-price { color: var(--orange); font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 18px; text-transform: uppercase; letter-spacing: 0.05em; margin-top: -10px; margin-bottom: 58px; }
 .product-delivery-row { display: flex; gap: 12px; }
 /* вся плитка кликабельна */
 .product-delivery-item {
@@ -870,7 +871,7 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
 }
 .product-delivery-icon svg { width: 20px; height: 20px; }
 .product-phone-btn { width: 52px; padding: 0; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-.product-phone-btn svg { width: 20px; height: 20px; }
+.product-phone-btn svg { width: 26px; height: 26px; }
 .specs-table { width: 100%; border-collapse: collapse; }
 .specs-table tr { border-bottom: 1px solid var(--gray-300); }
 .specs-table td { padding: 12px 0; font-size: 14px; }
@@ -878,11 +879,16 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
 .specs-table td:last-child { font-weight: 600; text-align: right; }
 .similar-title { font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 28px; text-transform: uppercase; margin: 64px 0 32px; display: flex; justify-content: space-between; align-items: center; }
 .slider-nav { display: flex; gap: 10px; }
-.slider-btn { width: 40px; height: 40px; border: none; border-radius: 6px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s; }
-.slider-btn-prev { background: var(--gray-400); color: var(--gray-100); }
-.slider-btn-prev:disabled { cursor: default; }
+.slider-btn { width: 32px; height: 32px; border: none; border-radius: 4px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s; }
+.slider-btn svg { width: 14px; height: 14px; }
+/* по исходнику Button.png/Button (1).png — фон gray-100 с белой стрелкой,
+   при наведении/нажатии — orange, как и остальные интерактивные элементы */
+.slider-btn-prev { background: var(--gray-100); color: var(--white); }
+.slider-btn-prev:not(:disabled):hover, .slider-btn-prev:not(:disabled):active { background: var(--orange); }
+.slider-btn-prev:disabled { cursor: default; opacity: 0.5; }
 .slider-btn-next { background: var(--orange); color: var(--white); }
 .slider-btn-next:hover { background: #e54500; }
+.slider-btn-next:active { background: #cc3d00; }
 
 /* ── ARTICLE PAGE ── */
 /* row-gap:0 отдельно от column-gap — иначе построчный зазор грида складывался
@@ -1297,10 +1303,11 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
   .product-layout { grid-template-columns: 1fr; gap: 24px; }
   .product-col-main { gap: 32px; }
   .product-info { position: static; }
-  .product-gallery { flex-direction: column-reverse; }
-  .product-thumbnails { flex-direction: row; gap: 8px; }
+  /* на моб. миниатюры не оверлеем поверх фото (мало места), а отдельной
+     строкой под ним — сбрасываем абсолютное позиционирование с десктопа */
+  .product-main-img { min-height: 240px; flex-direction: column; gap: 12px; }
+  .product-thumbnails { position: static; transform: none; flex-direction: row; gap: 8px; }
   .product-thumb { width: 52px; height: 52px; }
-  .product-main-img { min-height: 240px; }
   .product-delivery-row { flex-wrap: wrap; gap: 10px; }
   /* по таблице Typography (H1 моб. = 36px) — на десктопе .product-page-title
      56px, без этого override на моб. унаследовался бы тоже 56px */
