@@ -847,13 +847,15 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
 /* H2 (1600/H2) по девпанели Figma — 56px, line-height 100% */
 .product-page-title { font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 56px; text-transform: uppercase; line-height: 1; }
 .product-page-desc { font-size: 14px; color: var(--black-50); line-height: 1.1; }
-.product-page-price { color: var(--orange); font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 18px; text-transform: uppercase; letter-spacing: 0.05em; }
+/* .product-info — flex-колонка с общим gap:20px; здесь нужен именно 10px
+   над ценой, поэтому компенсируем разницу отрицательным отступом */
+.product-page-price { color: var(--orange); font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 18px; text-transform: uppercase; letter-spacing: 0.05em; margin-top: -10px; }
 .product-delivery-row { display: flex; gap: 12px; }
 /* вся плитка кликабельна */
 .product-delivery-item {
   flex: 1; display: flex; flex-direction: column; align-items: flex-start; gap: 8px;
   font-size: 12px; color: var(--black-50); text-align: left;
-  padding: 14px 10px; border: 1px solid var(--gray-400); border-radius: 8px;
+  padding: 14px 10px; background: var(--white); border: 1px solid var(--gray-400); border-radius: 10px;
   transition: all 0.2s ease; cursor: pointer;
 }
 .product-delivery-item:hover { border-color: var(--orange); color: var(--black); box-shadow: 0 6px 20px rgba(255,79,0,0.1); }
