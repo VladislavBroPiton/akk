@@ -833,16 +833,19 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
 
 /* ── PRODUCT PAGE ── */
 .product-page { padding: 48px 0 80px; }
-/* Левая колонка скроллится, правая (блок покупки) — фиксированная */
-.product-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+/* Левая колонка скроллится, правая (блок покупки) — фиксированная.
+   По девпанели (карточка 805×509 при ширине фрейма 1600) колонки не 50/50,
+   а ~1.19:1 с зазором 40px, не 60 */
+.product-layout { display: grid; grid-template-columns: 1.19fr 1fr; gap: 40px; align-items: start; }
 .product-col-main { display: flex; flex-direction: column; gap: 48px; min-width: 0; }
 .product-gallery { display: flex; gap: 10px; }
-.product-thumbnails { display: flex; flex-direction: column; gap: 10px; }
+/* переключатель миниатюр — снизу вверх (активная снизу), не сверху вниз */
+.product-thumbnails { display: flex; flex-direction: column-reverse; gap: 10px; }
 .product-thumb { width: 64px; height: 64px; border: 2px solid var(--gray-400); border-radius: 8px; overflow: hidden; cursor: pointer; transition: border-color 0.2s; background: var(--gray-300); display: flex; align-items: center; justify-content: center; }
 .product-thumb.active { border-color: var(--orange); }
 .product-thumb img { width: 100%; height: 100%; object-fit: contain; padding: 4px; }
-.product-main-img { flex: 1; background: var(--white); border-radius: 12px; display: flex; align-items: center; justify-content: center; padding: 32px; min-height: 340px; position: relative; }
-.product-main-img img { max-height: 280px; object-fit: contain; }
+.product-main-img { flex: 1; background: var(--white); border-radius: 12px; display: flex; align-items: center; justify-content: center; padding: 32px; min-height: 509px; position: relative; }
+.product-main-img img { max-height: 420px; object-fit: contain; }
 .product-info { display: flex; flex-direction: column; gap: 20px; position: sticky; top: 120px; align-self: start; }
 /* H2 (1600/H2) по девпанели Figma — 56px, line-height 100% */
 .product-page-title { font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 56px; text-transform: uppercase; line-height: 1; }
