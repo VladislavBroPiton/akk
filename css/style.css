@@ -627,6 +627,10 @@ input, textarea { font-family: inherit; }
 .about-section-heading { font-size: 52px; }
 
 /* ── ADVANTAGES ── */
+/* заголовок «Преимущества» тоже прилипает — с меньшим top, чем у карточек,
+   поэтому остаётся виден поверх них, пока не проскроллится весь блок
+   (containing block для sticky — .container, общий с .advantages-list) */
+.advantages-heading { position: sticky; top: 100px; z-index: 5; background: var(--gray-300); }
 /* карточки «наезжают» друг на друга при скролле: каждая следующая —
    position:sticky с чуть большим top и более высоким z-index, поэтому
    останавливается чуть ниже предыдущей и перекрывает её сверху */
