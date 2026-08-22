@@ -566,8 +566,11 @@ input, textarea { font-family: inherit; }
 .footer-bottom a { color: rgba(255,255,255,0.2); }
 .footer-bottom a:hover { color: var(--white); }
 .footer-credit { display: flex; align-items: center; gap: 6px; text-transform: uppercase; letter-spacing: 0.04em; }
-.footer-credit-logo { height: 16px; width: auto; flex-shrink: 0; transition: transform 0.5s ease; }
-.footer-credit a:hover .footer-credit-logo { transform: rotate(360deg); }
+.footer-credit a { display: flex; align-items: center; gap: 4px; }
+.footer-credit-logo { height: 16px; width: auto; flex-shrink: 0; }
+/* крутится только иконка-значок, не текстовый логотип рядом */
+.footer-credit-icon-img { height: 16px; width: auto; flex-shrink: 0; transition: transform 0.5s ease; }
+.footer-credit a:hover .footer-credit-icon-img { transform: rotate(360deg); }
 
 /* ── INNER PAGE HERO ── */
 /* Крошки живут внутри героя (сверху, поверх фото), заголовок — снизу:
