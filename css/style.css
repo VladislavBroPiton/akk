@@ -949,8 +949,12 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
 /* высота картинки — по соотношению сторон из макета (1140×578 на десктопе),
    а не жёсткий min-height: раньше без явной height div схлопывался до min-height */
 .article-hero-img { width: 100%; border-radius: 12px; margin-bottom: 28px; aspect-ratio: 1140 / 578; background: linear-gradient(135deg, #2a0f00, #1a1a1a); }
-.article-content p { font-size: 16px; line-height: 1.7; color: var(--black); margin-bottom: 12px; }
-.article-content h2 { font-size: 20px; font-weight: 700; margin: 32px 0 14px; }
+.article-content p { font-size: 16px; line-height: 1.7; color: var(--black-50); margin-bottom: 12px; }
+.article-content h2 { font-size: 20px; font-weight: 700; color: var(--black); margin: 32px 0 14px; }
+/* подпункты нумерованного списка внутри более общего заголовка («Что
+   проверить осенью» → «1. Возраст», «2. Напряжение»...) — мельче и серым,
+   чтобы не спорить по значимости с родительским заголовком */
+.article-content h2.article-sub-heading { font-size: 16px; color: var(--black-50); margin: 20px 0 8px; }
 .article-content ul { margin: 10px 0 18px 20px; }
 .article-content ul li { font-size: 15px; line-height: 1.6; color: var(--black-50); margin-bottom: 6px; list-style: disc; }
 .article-sidebar-widget { background: var(--orange); border-radius: 12px; padding: 28px; color: var(--white); position: sticky; top: 100px; }
