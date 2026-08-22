@@ -627,12 +627,20 @@ input, textarea { font-family: inherit; }
 .about-section-heading { font-size: 52px; }
 
 /* ── ADVANTAGES ── */
+/* карточки «наезжают» друг на друга при скролле: каждая следующая —
+   position:sticky с чуть большим top и более высоким z-index, поэтому
+   останавливается чуть ниже предыдущей и перекрывает её сверху */
 .advantages-list { display: flex; flex-direction: column; gap: 16px; }
 .advantage-row {
   display: grid; grid-template-columns: 1fr 1fr; gap: 0;
   border: 1px solid var(--black-50); border-radius: 10px; overflow: hidden; background: var(--gray-300);
   min-height: 281px;
+  position: sticky;
 }
+.advantage-row:nth-child(1) { top: 128px; z-index: 1; }
+.advantage-row:nth-child(2) { top: 148px; z-index: 2; }
+.advantage-row:nth-child(3) { top: 168px; z-index: 3; }
+.advantage-row:nth-child(4) { top: 188px; z-index: 4; }
 .advantage-text { padding: 36px 40px; display: flex; flex-direction: column; justify-content: flex-start; }
 .advantage-title { font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 40px; text-transform: uppercase; margin-bottom: 12px; color: var(--black); letter-spacing: 0.02em; }
 .advantage-desc { font-size: 20px; color: var(--black-50); line-height: 1.65; }
