@@ -973,7 +973,7 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
 
 /* ── ARTICLES LIST PAGE ── */
 .articles-page-section { background: var(--gray-300); padding-bottom: 64px; }
-.articles-page-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 11px; }
+.articles-page-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
 /* по полному макету заголовок+счётчик и сортировка — в одну строку (не
    прижаты к правому краю через margin-left:auto, а с фиксированным
    отступом 40px от заголовка); счётчик статей — вплотную к «Статьи», 8px */
