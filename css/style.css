@@ -776,8 +776,17 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
   color: var(--black); background: none; border: none; padding: 0;
   white-space: nowrap; transition: color 0.2s;
 }
-.sort-btn::after { content: '▼'; font-size: 8px; line-height: 1; }
-.sort.open .sort-btn::after { content: '▲'; }
+/* Unicode-стрелка ▼ упирается в хинтинг на маленьком кегле и не растёт —
+   как и в шапке (nav-dropdown), заменена на CSS-треугольник, размер по
+   девпанели 13×10.71px */
+.sort-btn::after {
+  content: ''; display: inline-block; flex-shrink: 0;
+  width: 0; height: 0;
+  border-left: 6.5px solid transparent; border-right: 6.5px solid transparent;
+  border-top: 10.71px solid currentColor;
+  transition: transform 0.2s;
+}
+.sort.open .sort-btn::after { transform: rotate(180deg); }
 .sort-btn:hover { color: var(--orange); }
 
 .sort-list {
@@ -825,8 +834,7 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
    один flex-элемент, переносится на 2 строки как обычный текст, а стрелка
    не сжимается и не съезжает при переносе */
 .sort-btn-label { white-space: normal; text-align: left; flex: 1 1 auto; min-width: 0; }
-.catalog-sort .sort-btn::after { flex-shrink: 0; margin-top: 4px; }
-.catalog-sort .sort-btn::after { font-size: 10px; }
+.catalog-sort .sort-btn::after { margin-top: 4px; }
 .catalog-sort .sort-list { width: 100%; }
 /* на десктопе фильтр применяется сразу по клику, кнопка нужна только на мобиле */
 .filter-btn { display: none; width: 100%; height: 44px; background: var(--orange); color: var(--white); font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 15px; text-transform: uppercase; letter-spacing: 0.04em; border-radius: 6px; border: none; cursor: pointer; margin-top: 20px; transition: background 0.2s; }
