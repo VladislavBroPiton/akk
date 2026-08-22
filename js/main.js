@@ -233,7 +233,7 @@ function renderFooter() {
     <div class="footer-bottom">
       <span class="footer-copy">Все права защищены ©АМПЕР</span>
       <a href="#" class="footer-policy">Политика конфиденциальности</a>
-      <a href="https://lead-studio.pro" target="_blank" rel="noopener" class="footer-credit"><span>Разработка</span><img src="img/lead-studio-logo.png" alt="Lead Studio" class="footer-credit-logo"></a>
+      <span class="footer-credit"><span>Разработка</span><a href="https://lead-studio.pro" target="_blank" rel="noopener"><img src="img/lead-studio-logo.png" alt="Lead Studio" class="footer-credit-logo"></a></span>
     </div>
   </div>
 </footer>`;
