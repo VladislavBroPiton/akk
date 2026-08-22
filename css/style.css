@@ -698,8 +698,8 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
 .contacts-map { position: absolute; inset: 0; }
 .contacts-map iframe { width: 100%; height: 100%; border: none; }
 .contacts-hero-inner {
-  position: relative; height: 100%; max-width: 1600px; margin: 0 auto; padding: 0 40px;
-  display: flex; align-items: center; pointer-events: none;
+  position: relative; height: 100%; max-width: 1600px; margin: 0 auto; padding: 40px 40px 0;
+  display: flex; align-items: flex-start; pointer-events: none;
 }
 .contacts-info {
   width: 524px; height: 620px; background: var(--white); padding: 24px 20px; border-radius: 10px;
@@ -707,7 +707,7 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
   box-shadow: 0 12px 40px rgba(0,0,0,0.18); pointer-events: auto;
 }
 /* по девпанели: 56px, отступ сверху 24 и снизу 144 (не часть общей Typography-шкалы) */
-.contacts-page-title { font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 56px; text-transform: uppercase; margin-top: 200px; margin-bottom: 144px; color: red; }
+.contacts-page-title { font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 56px; text-transform: uppercase; margin-top: 24px; margin-bottom: 144px; }
 /* по макету подписи не капсом, с большой буквы — не «ТЕЛЕФОН», а «Телефон» */
 .contact-label { font-size: 12px; color: var(--black-50); letter-spacing: 0.02em; margin-bottom: 4px; margin-top: 20px; }
 .contact-val { font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 22px; text-transform: uppercase; }
