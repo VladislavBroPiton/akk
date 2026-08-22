@@ -702,11 +702,12 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
   display: flex; align-items: center; pointer-events: none;
 }
 .contacts-info {
-  width: 520px; background: var(--white); padding: 60px 40px; display: flex;
-  flex-direction: column; gap: 6px; box-shadow: 0 12px 40px rgba(0,0,0,0.18); pointer-events: auto;
+  width: 524px; height: 620px; background: var(--white); padding: 24px 20px; border-radius: 10px;
+  display: flex; flex-direction: column;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.18); pointer-events: auto;
 }
-/* H1 по таблице Typography = 64px десктоп / 36px моб. (override ниже) */
-.contacts-page-title { font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 64px; text-transform: uppercase; margin-bottom: 32px; }
+/* по девпанели: 56px, отступ сверху 24 и снизу 144 (не часть общей Typography-шкалы) */
+.contacts-page-title { font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 56px; text-transform: uppercase; margin-top: 24px; margin-bottom: 144px; }
 /* по макету подписи не капсом, с большой буквы — не «ТЕЛЕФОН», а «Телефон» */
 .contact-label { font-size: 12px; color: var(--black-50); letter-spacing: 0.02em; margin-bottom: 4px; margin-top: 20px; }
 .contact-val { font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 22px; text-transform: uppercase; }
@@ -1408,7 +1409,7 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
     display: block; pointer-events: auto;
   }
   .contacts-info {
-    width: 100%; padding: 28px 20px;
+    width: 100%; height: auto; padding: 28px 20px;
     border-radius: 20px 20px 0 0; box-shadow: 0 -8px 24px rgba(0,0,0,0.12);
   }
   /* по таблице Typography (H1 моб. = 36px), было 28px */
