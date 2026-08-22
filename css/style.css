@@ -630,7 +630,7 @@ input, textarea { font-family: inherit; }
 /* заголовок «Преимущества» тоже прилипает — с меньшим top, чем у карточек,
    поэтому остаётся виден поверх них, пока не проскроллится весь блок
    (containing block для sticky — .container, общий с .advantages-list) */
-.advantages-heading { position: sticky; top: 100px; z-index: 5; background: var(--gray-300); }
+.advantages-heading { position: sticky; top: 120px; z-index: 5; background: var(--gray-300); }
 /* карточки «наезжают» друг на друга при скролле: каждая следующая —
    position:sticky с чуть большим top и более высоким z-index, поэтому
    останавливается чуть ниже предыдущей и перекрывает её сверху */
@@ -641,10 +641,10 @@ input, textarea { font-family: inherit; }
   min-height: 281px;
   position: sticky;
 }
-.advantage-row:nth-child(1) { top: 128px; z-index: 1; }
-.advantage-row:nth-child(2) { top: 148px; z-index: 2; }
-.advantage-row:nth-child(3) { top: 168px; z-index: 3; }
-.advantage-row:nth-child(4) { top: 188px; z-index: 4; }
+.advantage-row:nth-child(1) { top: 220px; z-index: 1; }
+.advantage-row:nth-child(2) { top: 240px; z-index: 2; }
+.advantage-row:nth-child(3) { top: 260px; z-index: 3; }
+.advantage-row:nth-child(4) { top: 280px; z-index: 4; }
 .advantage-text { padding: 36px 40px; display: flex; flex-direction: column; justify-content: flex-start; }
 .advantage-title { font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 40px; text-transform: uppercase; margin-bottom: 12px; color: var(--black); letter-spacing: 0.02em; }
 .advantage-desc { font-size: 20px; color: var(--black-50); line-height: 1.65; }
