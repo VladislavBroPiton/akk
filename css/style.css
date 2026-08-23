@@ -873,7 +873,11 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
 .pagination { display: flex; gap: 8px; justify-content: center; margin-top: 40px; align-items: center; }
 .page-btn { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--gray-400); border-radius: 6px; font-size: 14px; cursor: pointer; transition: all 0.2s; background: var(--white); }
 .page-btn:hover, .page-btn.active { background: var(--orange); color: var(--white); border-color: var(--orange); }
-.page-btn.prev-next { width: auto; padding: 0 16px; font-weight: 600; }
+.page-btn.prev-next { width: auto; padding: 0 16px; font-weight: 600; gap: 6px; }
+.page-btn-arrow { display: inline-block; width: 0; height: 0; flex-shrink: 0; }
+.prev .page-btn-arrow { border-top: 5px solid transparent; border-bottom: 5px solid transparent; border-right: 6px solid currentColor; }
+.next .page-btn-arrow { border-top: 5px solid transparent; border-bottom: 5px solid transparent; border-left: 6px solid currentColor; }
+.page-btn:disabled { opacity: 0.4; cursor: default; }
 
 /* ── PRODUCT PAGE ── */
 .product-page { padding: 48px 0 80px; }
@@ -1193,6 +1197,14 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
   .category-card-img { height: 150px; margin-bottom: 16px; }
   .category-card-name { font-size: 18px; margin-bottom: 8px; }
   .category-card-desc { font-size: 13px; margin-bottom: 14px; }
+
+  /* PAGINATION — по макету «Назад»/«Вперёд» без слов, только стрелка;
+     все кнопки — квадрат 32×32, радиус 4px, рамка gray-100 */
+  .page-btn { width: 32px; height: 32px; border-radius: 4px; border-color: var(--gray-100); font-size: 13px; }
+  .page-btn.prev-next { width: 32px; padding: 0; gap: 0; }
+  .page-btn-text { display: none; }
+  .prev .page-btn-arrow { border-top-width: 6px; border-bottom-width: 6px; border-right-width: 7px; }
+  .next .page-btn-arrow { border-top-width: 6px; border-bottom-width: 6px; border-left-width: 7px; }
 
   /* PRODUCTS — 2 колонки (как в Figma) */
   .products-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }

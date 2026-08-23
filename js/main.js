@@ -876,12 +876,12 @@ const CatalogUI = {
     if (totalPages <= 1) { el.innerHTML = ''; return; }
     const cur = this.page;
     el.innerHTML = `
-      <button class="page-btn prev-next" type="button" data-page="${cur - 1}" ${cur === 1 ? 'disabled' : ''}>‹ Назад</button>
+      <button class="page-btn prev-next prev" type="button" data-page="${cur - 1}" ${cur === 1 ? 'disabled' : ''}><span class="page-btn-arrow"></span><span class="page-btn-text">Назад</span></button>
       ${this.pageNumbers(cur, totalPages).map(n => n === '…'
         ? `<span class="page-btn page-dots">…</span>`
         : `<button class="page-btn ${n === cur ? 'active' : ''}" type="button" data-page="${n}">${n}</button>`
       ).join('')}
-      <button class="page-btn prev-next" type="button" data-page="${cur + 1}" ${cur === totalPages ? 'disabled' : ''}>Вперёд ›</button>`;
+      <button class="page-btn prev-next next" type="button" data-page="${cur + 1}" ${cur === totalPages ? 'disabled' : ''}><span class="page-btn-text">Вперёд</span><span class="page-btn-arrow"></span></button>`;
   },
 
   // «Тип корпуса»/«Размер корпуса» имеют смысл только для автомобильных АКБ —
