@@ -25,7 +25,11 @@
 <!-- INNER HERO -->
 <section class="inner-hero">
   <div class="inner-hero-bg">
-    <img class="inner-hero-bg-img" id="hero-bg-img" alt="">
+    <picture>
+      <!-- отдельное фото под мобильную версию, как на «О компании» -->
+      <source media="(max-width: 768px)" srcset="img/hero-services-mobile.jpg">
+      <img class="inner-hero-bg-img" id="hero-bg-img" alt="">
+    </picture>
     <div class="inner-hero-overlay"></div>
   </div>
   <div class="inner-hero-crumbs-row">
