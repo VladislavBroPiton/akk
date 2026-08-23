@@ -401,7 +401,7 @@ input, textarea { font-family: inherit; }
 .product-card:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.1); transform: translateY(-2px); }
 .product-card:hover .btn-link { color: var(--orange); }
 .product-card-img { background: var(--white); padding: 20px; text-align: center; position: relative; height: 180px; display: flex; align-items: center; justify-content: center; }
-.product-card-img img { max-height: 130px; object-fit: contain; }
+.product-card-img img { max-height: 130px; max-width: 100%; object-fit: contain; }
 /* по макету — контурный оранжевый бейдж, не заливка зелёным; текст внутри
    чёрный, не оранжевый */
 .product-badge {
@@ -1208,7 +1208,7 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
   /* высота бокса уменьшилась (140px), а max-height картинки (130px) на
      десктопное значение не пересчитывался — картинка не помещалась и
      наезжала на бейдж «В наличии» сверху */
-  .product-card-img { height: 140px; padding: 12px; }
+  .product-card-img { height: 140px; padding: 20px; }
   .product-card-img img { max-height: 100px; }
   .product-card-body { padding: 12px; }
   .product-card-name { font-size: 12px; margin-bottom: 8px; }
@@ -1227,10 +1227,18 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
   .tab-btn.active {
     display: flex; color: var(--black); font-weight: 700;
   }
-  .tab-btn.active::after { content: '▼'; font-size: 10px; color: var(--black-50); }
+  /* Unicode ▼ на маленьком кегле упирается в хинтинг шрифта и не растёт —
+     как и остальные стрелки на сайте, заменена на CSS-треугольник */
+  .tab-btn.active::after {
+    content: ''; display: inline-block; flex-shrink: 0;
+    width: 0; height: 0;
+    border-left: 6.5px solid transparent; border-right: 6.5px solid transparent;
+    border-top: 10.71px solid currentColor;
+    transition: transform 0.2s;
+  }
   .tabs.open .tab-btn { display: flex; }
   .tabs.open .tab-btn:last-child { border-bottom: none; }
-  .tabs.open .tab-btn.active::after { content: '▲'; }
+  .tabs.open .tab-btn.active::after { transform: rotate(180deg); }
 
   /* SERVICES — по макету на мобиле карточки листаются свайпом в один ряд
      (как «Хиты продаж» и «Смотрите также»), а не стоят одна под одной */
