@@ -1462,13 +1462,21 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
     position: relative; height: auto; max-width: none; margin: -24px 0 0; padding: 0;
     display: block; pointer-events: auto;
   }
+  /* по девпанели карточка не во всю ширину, а плавает поверх карты с
+     отступами 20px по бокам и скруглением 10px со всех сторон (не только
+     сверху) — наезжает на нижнюю часть карты (340px), а не идёт под ней */
+  .contacts-hero-inner { margin: -110px 20px 0; }
   .contacts-info {
-    width: 100%; height: auto; padding: 28px 20px;
-    border-radius: 20px 20px 0 0; box-shadow: 0 -8px 24px rgba(0,0,0,0.12);
+    width: auto; height: auto; padding: 28px 20px;
+    border-radius: 10px; box-shadow: 0 12px 32px rgba(0,0,0,0.18);
   }
-  /* по таблице Typography (H1 моб. = 36px), было 28px */
-  .contacts-page-title { font-size: 36px; margin-bottom: 20px; }
+  /* по таблице Typography (H1 моб. = 36px), было 28px; отступ сверху 12px */
+  .contacts-page-title { font-size: 36px; margin-top: 12px; margin-bottom: 20px; }
   .contact-val { font-size: 18px; }
+  /* по девпанели: 12px, вес 500, line-height 100% (десктопные 20px не трогаем) */
+  .contact-hours { font-size: 12px; font-weight: 500; line-height: 1; margin-bottom: 12px; }
+  /* кнопка «Связаться» — компактная (hug), не во всю ширину карточки */
+  .contacts-connect-btn { width: auto !important; height: 32px; padding: 0 12px; font-size: 13px; }
 
   /* ARTICLES PAGE */
   .articles-page-header { flex-wrap: wrap; padding: 24px 0 16px; gap: 10px; }
