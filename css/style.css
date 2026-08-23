@@ -1372,7 +1372,7 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
      берём хекс напрямую) */
   .sidebar.open {
     display: block; position: fixed; left: 0; right: 0; bottom: 0; top: 320px;
-    z-index: 300; overflow-y: auto; background: magenta;
+    z-index: 300; overflow-y: auto; background: #F7F8FA;
     border-radius: 8px 8px 0 0; padding: 20px;
     box-shadow: 0 -8px 32px rgba(0,0,0,0.25);
   }
