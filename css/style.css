@@ -1434,8 +1434,12 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
      держит их в одну линию на любом мобильном экране. */
   .stats-row { flex-wrap: nowrap; gap: 8px; margin-top: 20px; }
   .stat { flex: 1; min-width: 0; }
-  .stat-num { font-size: 34px; }
-  .stat-label { font-size: 11px; }
+  .stat-num { font-size: 56px; }
+  .stat-label { font-size: 14px; }
+  /* итоговый отступ над «Преимущества» должен быть 80px, а перед этим уже
+     идёт margin-bottom:32 у .about-intro-row + padding-bottom:32 у .section
+     предыдущего блока — компенсируем, чтобы в сумме было ровно 80 */
+  .advantages-section { padding-top: 16px; }
   .advantage-row { grid-template-columns: 1fr; min-height: auto; }
   .advantage-img { min-height: 200px; order: 2; }
   .advantage-text { padding: 20px; order: 1; }
