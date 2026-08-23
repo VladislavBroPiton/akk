@@ -1446,7 +1446,9 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
   /* десктопные 40px/20px (по макету) на моб. слишком крупные — уменьшаем
      пропорционально, как и другие заголовки/тексты по шкале Typography */
   .advantage-title { font-size: 20px; }
-  .advantage-desc { font-size: 14px; }
+  /* по девпанели: 12px, вес 500, line-height 100%, сплошной чёрный без
+     прозрачности (не var(--black-50), как было) */
+  .advantage-desc { font-size: 12px; font-weight: 500; line-height: 1; color: var(--black); }
   /* по мобильному макету заголовок «О компании» и текст идут в одну
      колонку, друг под другом, а не в 2 узкие колонки рядом */
   .about-intro-row { grid-template-columns: 1fr; gap: 16px; margin-bottom: 32px; }
