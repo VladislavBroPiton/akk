@@ -1480,12 +1480,25 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
   .contacts-connect-btn { width: auto !important; height: 32px; padding: 0 12px; font-size: 13px; }
 
   /* ARTICLES PAGE */
-  .articles-page-header { flex-wrap: wrap; padding: 24px 0 16px; gap: 10px; }
+  /* сортировка прижата к правому краю, а не сразу после заголовка */
+  .articles-page-header { flex-wrap: wrap; justify-content: space-between; padding: 24px 0 16px; gap: 10px; }
   /* по таблице Typography (H1 моб. = 36px), было 28px */
   .articles-page-title { font-size: 36px; }
   /* блок сортировки на моб. переносится под заголовок — панель раскрываем
      влево, иначе она вылезает за экран и появляется горизонтальная прокрутка */
   .sort-list { left: auto; right: 0; }
+  /* по девпанели: заголовок карточки статьи — Adderley 700 16px, описание —
+     Onest 500 12px (были обычные, не типографские, 14px/13px без шрифта) */
+  .article-card-title { font-family: 'Adderley', 'Oswald', sans-serif; font-size: 16px; line-height: 1; }
+  .article-card-text { font-family: 'Onest', sans-serif; font-weight: 500; font-size: 12px; line-height: 1; }
+  /* стрелка ▶ у «Подробнее» — Unicode-символ на мал. кегле не растёт,
+     заменена на CSS-треугольник (13×10.71, повёрнут на 90°) */
+  .article-card .btn-link::after {
+    content: ''; display: inline-block;
+    width: 0; height: 0;
+    border-top: 6.5px solid transparent; border-bottom: 6.5px solid transparent;
+    border-left: 10.71px solid currentColor;
+  }
   .sort-btn { font-size: 14px; }
 
   /* ARTICLE PAGE */
