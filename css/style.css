@@ -1057,6 +1057,8 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
 @media (max-width: 768px) {
   /* CONTAINER */
   .container { padding: 0 16px; }
+  /* «Хиты продаж» на моб. — по макету отступ секции 20px, не общие 16px */
+  .hits-section .container { padding-left: 20px; padding-right: 20px; }
   .section { padding: 32px 0; }
   .section-sm { padding: 24px 0; }
 
@@ -1198,13 +1200,24 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
   #cat-grid { grid-template-columns: 1fr; }
   /* «Хиты продаж» на главной — на мобиле листаем свайпом в одну строку,
      а не сеткой 2×2: в узкой карточке подпись «Ёмкость / Пуск.ток»
-     переносилась на 2 строки и «прыгала» по высоте между карточками */
+     переносилась на 2 строки и «прыгала» по высоте между карточками.
+     Отступ первой карточки — НЕ padding/margin на скролл-контейнере: при
+     активном scroll-snap-type браузер при инициализации сразу доскроллит
+     до первого snap-align элемента (первой карточки), «съедая» любой
+     padding/margin перед ней. Рабочий приём — псевдоэлемент ::before как
+     полноценный flex-item нужной ширины, у которого тоже есть
+     scroll-snap-align: он и становится точкой покоя вместо первой карточки. */
   .tab-panel .products-grid {
-    grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 74%;
-    gap: 12px; overflow-x: auto; padding-bottom: 4px; margin: 0 -16px; padding-left: 16px; padding-right: 16px;
+    display: flex; flex-wrap: nowrap;
+    gap: 12px; overflow-x: auto; padding-bottom: 4px; margin: 0 -20px;
     scroll-snap-type: x proximity;
   }
-  .tab-panel .products-grid .product-card { scroll-snap-align: start; }
+  /* ширина псевдоэлемента — 20px минус gap:12px, чтобы ДО первой карточки
+     было ровно 20px (gap уже добавляет 12 из них) */
+  .tab-panel .products-grid::before,
+  .tab-panel .products-grid::after { content: ''; flex: 0 0 8px; }
+  .tab-panel .products-grid::before { scroll-snap-align: start; }
+  .tab-panel .products-grid .product-card { flex: 0 0 74%; scroll-snap-align: start; }
   /* высота бокса уменьшилась (140px), а max-height картинки (130px) на
      десктопное значение не пересчитывался — картинка не помещалась и
      наезжала на бейдж «В наличии» сверху */
@@ -1227,13 +1240,12 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
   .tab-btn.active {
     display: flex; color: var(--black); font-weight: 700;
   }
-  /* Unicode ▼ на маленьком кегле упирается в хинтинг шрифта и не растёт —
-     как и остальные стрелки на сайте, заменена на CSS-треугольник */
+  /* стрелка — исходник Icon.png из папки Дизайн (шеврон, не сплошной
+     треугольник и не Unicode-символ, который упирается в хинтинг шрифта) */
   .tab-btn.active::after {
     content: ''; display: inline-block; flex-shrink: 0;
-    width: 0; height: 0;
-    border-left: 6.5px solid transparent; border-right: 6.5px solid transparent;
-    border-top: 10.71px solid currentColor;
+    width: 16px; height: 8px;
+    background: url('../img/icon-chevron-down.png') no-repeat center / contain;
     transition: transform 0.2s;
   }
   .tabs.open .tab-btn { display: flex; }
@@ -1241,12 +1253,20 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
   .tabs.open .tab-btn.active::after { transform: rotate(180deg); }
 
   /* SERVICES — по макету на мобиле карточки листаются свайпом в один ряд
-     (как «Хиты продаж» и «Смотрите также»), а не стоят одна под одной */
+     (как «Хиты продаж» и «Смотрите также»), а не стоят одна под одной.
+     Отступ первой карточки — псевдоэлемент, не padding/margin (см.
+     подробный комментарий у «Хиты продаж» — scroll-snap иначе съедает
+     любой отступ перед первым snap-align элементом). */
   .services-grid {
-    grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 78%;
-    gap: 12px; overflow-x: auto; padding-bottom: 4px; margin: 0 -16px; padding-left: 16px; padding-right: 16px;
+    display: flex; flex-wrap: nowrap;
+    gap: 12px; overflow-x: auto; padding-bottom: 4px; margin: 0 -16px;
     scroll-snap-type: x proximity;
   }
+  /* ширина псевдоэлемента — 16px минус gap:12px */
+  .services-grid::before,
+  .services-grid::after { content: ''; flex: 0 0 4px; }
+  .services-grid::before { scroll-snap-align: start; }
+  .services-grid .service-card { flex: 0 0 78%; }
   .service-card { padding: 20px; scroll-snap-align: start; }
   .service-ill { height: 130px; margin-bottom: 16px; }
   /* H4 моб. по таблице Typography — Adderley Bold 16px (на десктопе Onest
@@ -1439,13 +1459,20 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
   .article-layout > h1 { font-size: 36px; }
   .article-hero-img { min-height: 180px; }
   /* «Смотрите также» на мобиле — горизонтальная карусель со скроллом,
-     как в макете (вторая карточка обрезана краем экрана), а не колонка */
+     как в макете (вторая карточка обрезана краем экрана), а не колонка.
+     Отступ первой карточки — псевдоэлемент, не padding/margin (см.
+     подробный комментарий у «Хиты продаж» — scroll-snap иначе съедает
+     любой отступ перед первым snap-align элементом). */
   .see-also .articles-grid {
-    grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 78%;
-    gap: 12px; overflow-x: auto; padding-bottom: 4px; margin: 0 -16px; padding-left: 16px; padding-right: 16px;
+    display: flex; flex-wrap: nowrap;
+    gap: 12px; overflow-x: auto; padding-bottom: 4px; margin: 0 -16px;
     scroll-snap-type: x proximity;
   }
-  .see-also .articles-grid .article-card { scroll-snap-align: start; }
+  /* ширина псевдоэлемента — 16px минус gap:12px */
+  .see-also .articles-grid::before,
+  .see-also .articles-grid::after { content: ''; flex: 0 0 4px; }
+  .see-also .articles-grid::before { scroll-snap-align: start; }
+  .see-also .articles-grid .article-card { flex: 0 0 78%; scroll-snap-align: start; }
 
   /* INNER HERO — было 200px: фото едва помещалось под шапкой, заголовок
      оказывался прижат к самому низу. По макету блок заметно выше. */
