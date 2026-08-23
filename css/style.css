@@ -1372,7 +1372,7 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
      берём хекс напрямую) */
   .sidebar.open {
     display: block; position: fixed; left: 0; right: 0; bottom: 0; top: 320px;
-    z-index: 300; overflow-y: auto; background: #F7F8FA;
+    z-index: 300; overflow-y: auto; background: var(--white);
     border-radius: 8px 8px 0 0; padding: 20px;
     box-shadow: 0 -8px 32px rgba(0,0,0,0.25);
   }
@@ -1382,7 +1382,7 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
   .filter-close {
     display: flex; align-items: center; justify-content: center; flex-shrink: 0;
     width: 32px; height: 32px;
-    font-size: 18px; color: var(--black-50); background: #F7F8FA; border-radius: 4px;
+    font-size: 18px; color: var(--black-50); background: var(--white); border-radius: 4px;
   }
   /* margin-top:45px десктопный — не задан отдельно для мобильного, сбрасываем на 0, как было раньше */
   .catalog-count { font-size: 22px; margin-top: 0; margin-bottom: 16px; }
@@ -1396,7 +1396,7 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
   .filter-toggle-btn {
     width: 44px; height: 44px; padding: 0; flex-shrink: 0;
     display: flex; align-items: center; justify-content: center;
-    border: none; border-radius: 4px; background: #F7F8FA;
+    border: none; border-radius: 4px; background: var(--white);
     color: var(--black); cursor: pointer;
   }
   .filter-toggle-btn svg { width: 20px; height: 20px; }
