@@ -1421,10 +1421,10 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
 
   /* DELIVERY PAGE */
   .delivery-section { padding: 32px 0; }
-  .delivery-row { grid-template-columns: 1fr; gap: 32px; padding: 32px 0; }
+  .delivery-row { grid-template-columns: 1fr; gap: 20px; padding: 32px 0; }
   /* по таблице Typography (H2 моб. = 32px), было 22px */
   .delivery-label { font-size: 32px; }
-  .delivery-content-title { font-size: 24px; }
+  .delivery-content-title { font-size: 24px; margin-bottom: 12px; }
   .delivery-title-break { display: block; }
 
   /* ABOUT PAGE — flex-wrap:wrap раньше ронял «24/7» и «100%» на свои строки,
