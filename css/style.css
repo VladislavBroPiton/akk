@@ -1426,6 +1426,8 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
   .delivery-label { font-size: 32px; }
   .delivery-content-title { font-size: 24px; margin-bottom: 12px; }
   .delivery-title-break { display: block; }
+  /* по девпанели: 12px, вес 500, line-height 100%, чёрный 60% (не 50%) */
+  .delivery-content p { font-size: 12px; font-weight: 500; line-height: 1; color: rgba(36, 36, 36, 0.6); }
 
   /* ABOUT PAGE — flex-wrap:wrap раньше ронял «24/7» и «100%» на свои строки,
      как только три числа переставали помещаться в ряд. nowrap + flex:1
