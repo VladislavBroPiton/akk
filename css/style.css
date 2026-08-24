@@ -1449,18 +1449,21 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
   .product-page-price { font-size: 24px; margin-top: 0; margin-bottom: 0; }
   /* блок «Доставка/Самовывоз/Гарантии» — на моб. не 3 узкие плитки в ряд,
      а полноширинные строки одна под другой, как в макете */
-  .product-delivery-row { flex-direction: column; gap: 10px; margin-top: 24px; }
+  .product-delivery-row { flex-direction: column; gap: 4px; margin-top: 24px; margin-bottom: 10px; }
+  /* по макету: иконка сверху, название под ней — а «Подробнее» справа от
+     этой пары, по центру строки. Grid вместо row/column, т.к. в HTML
+     иконка+название+ссылка лежат плоско, тремя соседями */
   .product-delivery-item {
-    flex-direction: row; align-items: center; gap: 12px;
+    display: grid; grid-template-columns: auto 1fr; grid-template-rows: auto auto;
+    align-items: center; column-gap: 12px; row-gap: 4px;
     width: 100%; padding: 12px;
   }
-  .product-delivery-title { font-size: 14px; }
-  /* по девпанели: «Подробнее» тут чёрный SemiBold 16px, а не оранжевый;
-     margin-left:auto прижимает именно её к правому краю строки, а не все
-     три элемента вразнобой через justify-content:space-between */
+  .product-delivery-icon { grid-column: 1; grid-row: 1; }
+  .product-delivery-title { grid-column: 1; grid-row: 2; font-size: 14px; }
+  /* по девпанели: «Подробнее» тут чёрный SemiBold 16px, а не оранжевый */
   .product-delivery-item .btn-link {
+    grid-column: 2; grid-row: 1 / span 2; justify-self: end;
     font-family: 'Onest', sans-serif; font-weight: 600; font-size: 16px; color: var(--black);
-    margin-left: auto;
   }
   .similar-title { font-size: 22px; margin: 40px 0 20px; }
   /* по макету на моб. у карусели «Похожие товары» нет стрелок листания */
