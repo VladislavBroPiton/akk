@@ -1376,8 +1376,13 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
     border-radius: 8px 8px 0 0; padding: 20px;
     box-shadow: 0 -8px 32px rgba(0,0,0,0.25);
   }
+  /* затемнение — только область НАД шторкой (0 до top:320px панели), а не
+     inset:0 через весь экран: собственный фон .sidebar.open по спецификации
+     CSS рисуется САМЫМ НИЖНИМ слоем стека — ниже даже z-index:-1 у ::before,
+     поэтому затемнение перекрывало белый фон панели насквозь (крестик и
+     текст ПОВЕРХ затемнения оставались чистыми, а сам фон панели — серел) */
   .sidebar.open::before {
-    content: ''; position: fixed; inset: 0; z-index: -1; background: rgba(0,0,0,0.5);
+    content: ''; position: fixed; top: 0; left: 0; right: 0; height: 320px; z-index: -1; background: rgba(0,0,0,0.5);
   }
   .filter-close {
     display: flex; align-items: center; justify-content: center; flex-shrink: 0;
