@@ -1434,8 +1434,8 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
   .product-info { position: static; gap: 0; }
   /* по макету миниатюры остаются слева поверх фото, снизу вверх — как на
      десктопе; просто меньше сама карточка и сами миниатюры */
-  .product-main-img { min-height: 280px; padding: 20px; }
-  .product-main-img img { max-height: 240px; }
+  .product-main-img { min-height: 280px; padding: 56px 40px; }
+  .product-main-img img { max-height: 170px; }
   .product-thumb { width: 44px; height: 44px; }
   .product-thumbnails { left: 16px; bottom: 16px; gap: 8px; }
   /* «Характеристики» дублированы после цены — прячем десктопный блок
