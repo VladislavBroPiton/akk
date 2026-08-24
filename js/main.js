@@ -24,6 +24,10 @@ const IMG = {
 const ICON_SEARCH = '<svg viewBox="0 0 20 20" fill="none" aria-hidden="true" focusable="false">' +
   '<circle cx="9" cy="9" r="6.2" stroke="currentColor" stroke-width="1.8"/>' +
   '<path d="M13.6 13.6L18.2 18.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>';
+// крестик закрытия полноэкранного поиска — векторная иконка вместо символа
+// «✕»: по девпанели 18×18, обычный текстовый глиф на таком размере плывёт
+const ICON_CLOSE_X = '<svg viewBox="0 0 18 18" fill="none" aria-hidden="true" focusable="false">' +
+  '<path d="M4 4l10 10M14 4L4 14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>';
 
 // иконка-«ползунки» рядом с заголовком «Фильтр» внутри панели фильтра — как в макете (rivet-icons filter-solid)
 const ICON_FILTER = '<svg viewBox="0 0 18 18" fill="none" aria-hidden="true" focusable="false">' +
@@ -152,7 +156,7 @@ function renderHeader(activePage = '') {
       <input type="search" id="searchOverlayInput" placeholder="Поиск" autocomplete="off">
       <span class="search-overlay-icon">${ICON_SEARCH}</span>
     </div>
-    <button class="search-overlay-close" id="searchOverlayClose" type="button" aria-label="Закрыть поиск">✕</button>
+    <button class="search-overlay-close" id="searchOverlayClose" type="button" aria-label="Закрыть поиск">${ICON_CLOSE_X}</button>
   </div>
   <div class="search-overlay-body" id="searchOverlayBody"></div>
 </div>

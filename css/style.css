@@ -262,11 +262,24 @@ input, textarea { font-family: inherit; }
   color: var(--white); display: flex; pointer-events: none;
 }
 .search-overlay-icon svg { width: 18px; height: 18px; }
-.search-overlay-close { color: var(--white); font-size: 26px; line-height: 1; padding: 0 4px; }
+.search-overlay-close { color: var(--white); display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; }
+.search-overlay-close svg { width: 18px; height: 18px; }
 .search-overlay-body { padding: 6px 16px 32px; }
 .search-overlay .search-meta { color: rgba(255,255,255,0.5); }
 .search-overlay .search-meta a { color: var(--white); }
-.search-overlay .search-row { border-color: transparent; }
+.search-overlay .search-row { border-color: transparent; border-radius: 4px; padding: 8px; gap: 10px; }
+.search-overlay .search-row-img { width: 52px; height: 43px; }
+.search-overlay .search-row-name { font-size: 16px; }
+.search-overlay .search-row-price { font-size: 20px; }
+/* «Подробнее ▶» тут мельче, чем базовый .btn-link (16px/▶-символ) — по
+   девпанели: Onest Medium 12px + векторный треугольник 9×7, не символ,
+   т.к. текстовый ▶ на таком размере не масштабируется чисто */
+.search-overlay .btn-link { font-family: 'Onest', sans-serif; font-weight: 500; font-size: 12px; color: var(--black); }
+.search-overlay .btn-link::after {
+  content: ''; width: 0; height: 0;
+  border-top: 3.5px solid transparent; border-bottom: 3.5px solid transparent;
+  border-left: 6px solid var(--black); font-size: 0;
+}
 .search-overlay .search-empty { color: rgba(255,255,255,0.5); }
 
 .breadcrumb { padding: 12px 0; font-size: 13px; color: var(--black-50); }
