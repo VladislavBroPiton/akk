@@ -922,7 +922,13 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
 }
 .product-delivery-icon svg { width: 20px; height: 20px; }
 .product-phone-btn { width: 52px; padding: 0; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-.product-phone-btn svg { width: 28px; height: 28px; }
+/* иконка из исходника Фигмы (img/icon-phone.png) — как маска, а не img,
+   чтобы цвет следовал currentColor и на hover .btn-outline уходил в белый */
+.product-phone-btn .phone-icon {
+  display: block; width: 28px; height: 28px; background-color: currentColor;
+  -webkit-mask: url('../img/icon-phone.png') center / contain no-repeat;
+  mask: url('../img/icon-phone.png') center / contain no-repeat;
+}
 /* на моб. «Характеристики» дублированы после цены (десктопный блок в левой
    колонке под галереей там визуально не подходит) — показываем по одному */
 .product-specs-mobile-only { display: none; }
