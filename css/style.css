@@ -267,8 +267,13 @@ input, textarea { font-family: inherit; }
 .search-overlay-body { padding: 6px 16px 32px; }
 .search-overlay .search-meta { color: rgba(255,255,255,0.5); }
 .search-overlay .search-meta a { color: var(--white); }
-.search-overlay .search-row { border-color: transparent; border-radius: 4px; padding: 8px; gap: 10px; }
-.search-overlay .search-row-img { width: 52px; height: 43px; }
+/* точные отступы по девпанели: картинка не по центру строки, а с
+   фиксированными полями (top17/left30/bottom27/right32 до текста) —
+   гoтового flex gap/padding тут недостаточно, разносим margin'ом самой
+   картинки, а не паддингом строки */
+.search-overlay .search-row { border: none; border-radius: 4px; padding: 0; gap: 0; align-items: flex-start; }
+.search-overlay .search-row-img { width: 52px; height: 43px; margin: 17px 32px 27px 30px; }
+.search-overlay .search-row-body { padding-top: 8px; gap: 10px; }
 .search-overlay .search-row-name { font-size: 16px; }
 .search-overlay .search-row-price { font-size: 20px; }
 /* «Подробнее ▶» тут мельче, чем базовый .btn-link (16px/▶-символ) — по
