@@ -1239,12 +1239,16 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
   /* высота бокса уменьшилась (140px), а max-height картинки (130px) на
      десктопное значение не пересчитывался — картинка не помещалась и
      наезжала на бейдж «В наличии» сверху */
-  /* align-items:flex-end — картинка прижата к низу бокса, а не по центру:
-     иначе верх картинки заезжает под бейдж «В наличии» в левом углу */
-  .product-card-img { height: 140px; padding: 20px; align-items: flex-end; }
+  /* по макету картинка по центру бокса; бейдж «В наличии» смещён ниже
+     (top:20 вместо 10) и правее, чтобы не наезжать на неё сверху-слева */
+  .product-card-img { height: 140px; padding: 20px; align-items: center; }
   .product-card-img img { max-height: 90px; }
+  .product-badge { top: 20px; left: 16px; border-radius: 4px; padding: 6px 10px; }
   .product-card-body { padding: 12px; }
-  .product-card-name { font-size: 12px; margin-bottom: 8px; }
+  .product-card-name {
+    font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700;
+    font-size: 20px; line-height: 1; margin-bottom: 8px;
+  }
   .product-spec { font-size: 11px; }
   .product-price { font-size: 12px; }
 
