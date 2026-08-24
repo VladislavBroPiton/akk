@@ -49,6 +49,10 @@
 
       <!-- сайдбар (чекбоксы фильтра) собирается из конфига раздела в CatalogUI.renderSidebar() -->
       <aside class="sidebar" id="sidebar"></aside>
+      <!-- крестик закрытия шторки на моб. — вне #sidebar: у панели overflow-y:auto,
+           и кнопка внутри неё с отрицательным top не ловила клики (обрезалась
+           контекстом прокрутки), поэтому вынесена отдельным элементом -->
+      <button class="filter-close" type="button" onclick="toggleFilter()" aria-label="Закрыть фильтр">✕</button>
     </div>
 
     <div class="catalog-content-col">

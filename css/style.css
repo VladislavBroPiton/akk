@@ -1372,7 +1372,7 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
      берём хекс напрямую) */
   .sidebar.open {
     display: block; position: fixed; left: 0; right: 0; bottom: 0; top: 320px;
-    z-index: 300; overflow-y: auto; background: var(--white);
+    z-index: 300; overflow-y: auto; background: var(--gray-400);
     border-radius: 8px 8px 0 0; padding: 20px;
     box-shadow: 0 -8px 32px rgba(0,0,0,0.25);
   }
@@ -1384,11 +1384,20 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
   .sidebar.open::before {
     content: ''; position: fixed; top: 0; left: 0; right: 0; height: 320px; z-index: -1; background: rgba(0,0,0,0.5);
   }
+  /* по девпанели крестик не внутри самой панели, а плавает над её верхним
+     краем справа (top:291 у крестика против top:321 у панели — зазор 10px
+     при высоте крестика 20px). Теперь это отдельный элемент — сиблинг
+     #sidebar в catalog.html (а не потомок), потому что панель имеет
+     overflow-y:auto, и кнопка ВНУТРИ неё с отрицательным top не ловила
+     клики (обрезалась контекстом прокрутки). position:fixed напрямую
+     от вьюпорта, видна только когда открыта панель (.sidebar.open ~). */
   .filter-close {
-    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-    width: 32px; height: 32px;
-    font-size: 18px; color: var(--black-50); background: var(--white); border-radius: 4px;
+    display: none; align-items: center; justify-content: center; flex-shrink: 0;
+    position: fixed; top: 290px; right: 0; z-index: 301;
+    width: 20px; height: 20px;
+    font-size: 12px; color: var(--black-50); background: #F7F8FA; border-radius: 4px;
   }
+  .sidebar.open ~ .filter-close { display: flex; }
   /* margin-top:45px десктопный — не задан отдельно для мобильного, сбрасываем на 0, как было раньше */
   .catalog-count { font-size: 22px; margin-top: 0; margin-bottom: 16px; }
   .filter-btn { display: block; position: sticky; bottom: 0; }

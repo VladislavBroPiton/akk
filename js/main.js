@@ -766,7 +766,6 @@ const CatalogUI = {
         <div class="filter-head-title">Фильтр${ICON_FILTER}</div>
         <div class="filter-head-actions">
           <button class="filter-reset" type="button">Сбросить все</button>
-          <button class="filter-close" type="button" onclick="toggleFilter()" aria-label="Закрыть фильтр">✕</button>
         </div>
       </div>
       ${blocks}
