@@ -908,7 +908,7 @@ const CatalogUI = {
       cb.disabled = dead;
     });
     const btn = document.querySelector('#sidebar .filter-btn');
-    if (btn) btn.textContent = `Применить (${this.list.length})`;
+    if (btn) btn.textContent = 'Применить';
   },
 
   // ── АДРЕСНАЯ СТРОКА ──

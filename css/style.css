@@ -923,6 +923,9 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
 .product-delivery-icon svg { width: 20px; height: 20px; }
 .product-phone-btn { width: 52px; padding: 0; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
 .product-phone-btn svg { width: 28px; height: 28px; }
+/* на моб. «Характеристики» дублированы после цены (десктопный блок в левой
+   колонке под галереей там визуально не подходит) — показываем по одному */
+.product-specs-mobile-only { display: none; }
 .specs-table { width: 100%; border-collapse: collapse; }
 .specs-table tr { border-bottom: 1px solid var(--gray-300); }
 .specs-table td { padding: 12px 0; font-size: 14px; }
@@ -1428,17 +1431,40 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
   .product-page { padding: 24px 0 48px; }
   .product-layout { grid-template-columns: 1fr; gap: 24px; }
   .product-col-main { gap: 32px; }
-  .product-info { position: static; }
-  /* на моб. миниатюры не оверлеем поверх фото (мало места), а отдельной
-     строкой под ним — сбрасываем абсолютное позиционирование с десктопа */
-  .product-main-img { min-height: 240px; flex-direction: column; gap: 12px; }
-  .product-thumbnails { position: static; transform: none; flex-direction: row; gap: 8px; }
-  .product-thumb { width: 52px; height: 52px; }
-  .product-delivery-row { flex-wrap: wrap; gap: 10px; }
-  /* по таблице Typography (H1 моб. = 36px) — на десктопе .product-page-title
-     56px, без этого override на моб. унаследовался бы тоже 56px */
-  .product-page-title { font-size: 36px; }
-  .similar-title { font-size: 22px; margin: 40px 0 20px; flex-direction: column; align-items: flex-start; gap: 12px; }
+  .product-info { position: static; gap: 0; }
+  /* по макету миниатюры остаются слева поверх фото, снизу вверх — как на
+     десктопе; просто меньше сама карточка и сами миниатюры */
+  .product-main-img { min-height: 280px; padding: 20px; }
+  .product-main-img img { max-height: 240px; }
+  .product-thumb { width: 44px; height: 44px; }
+  .product-thumbnails { left: 16px; bottom: 16px; gap: 8px; }
+  /* «Характеристики» дублированы после цены — прячем десктопный блок
+     (в левой колонке под галереей), показываем моб.-дубликат */
+  .product-specs-desktop-only { display: none; }
+  .product-specs-mobile-only { display: block; margin-top: 40px; }
+  /* .product-info теперь gap:0 (выше) — расстояния между заголовком, описанием,
+     ценой и разделом «Доставка» задаём точными margin по месту */
+  .product-page-title { font-size: 32px; margin-bottom: 10px; }
+  .product-page-desc { font-size: 12px; margin-bottom: 10px; }
+  .product-page-price { font-size: 24px; margin-top: 0; margin-bottom: 0; }
+  /* блок «Доставка/Самовывоз/Гарантии» — на моб. не 3 узкие плитки в ряд,
+     а полноширинные строки одна под другой, как в макете */
+  .product-delivery-row { flex-direction: column; gap: 10px; margin-top: 24px; }
+  .product-delivery-item {
+    flex-direction: row; align-items: center; gap: 12px;
+    width: 100%; padding: 12px;
+  }
+  .product-delivery-title { font-size: 14px; }
+  /* по девпанели: «Подробнее» тут чёрный SemiBold 16px, а не оранжевый;
+     margin-left:auto прижимает именно её к правому краю строки, а не все
+     три элемента вразнобой через justify-content:space-between */
+  .product-delivery-item .btn-link {
+    font-family: 'Onest', sans-serif; font-weight: 600; font-size: 16px; color: var(--black);
+    margin-left: auto;
+  }
+  .similar-title { font-size: 22px; margin: 40px 0 20px; }
+  /* по макету на моб. у карусели «Похожие товары» нет стрелок листания */
+  .slider-nav { display: none; }
 
   /* SERVICES PAGE — иллюстрация переезжает наверх карточки */
   .services-page-grid { grid-template-columns: 1fr; gap: 12px; }
