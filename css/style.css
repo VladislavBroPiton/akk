@@ -1225,7 +1225,10 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
      padding/margin перед ней. Рабочий приём — псевдоэлемент ::before как
      полноценный flex-item нужной ширины, у которого тоже есть
      scroll-snap-align: он и становится точкой покоя вместо первой карточки. */
-  .tab-panel .products-grid {
+  /* «Похожие товары» на странице товара — та же карусель свайпом, что и
+     «Хиты продаж» на главной (см. комментарий выше), просто другой корень */
+  .tab-panel .products-grid,
+  #similar-mount {
     display: flex; flex-wrap: nowrap;
     gap: 12px; overflow-x: auto; padding-bottom: 4px; margin: 0 -20px;
     scroll-snap-type: x proximity;
@@ -1233,9 +1236,13 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
   /* ширина псевдоэлемента — 20px минус gap:12px, чтобы ДО первой карточки
      было ровно 20px (gap уже добавляет 12 из них) */
   .tab-panel .products-grid::before,
-  .tab-panel .products-grid::after { content: ''; flex: 0 0 8px; }
-  .tab-panel .products-grid::before { scroll-snap-align: start; }
-  .tab-panel .products-grid .product-card { flex: 0 0 74%; scroll-snap-align: start; }
+  .tab-panel .products-grid::after,
+  #similar-mount::before,
+  #similar-mount::after { content: ''; flex: 0 0 8px; }
+  .tab-panel .products-grid::before,
+  #similar-mount::before { scroll-snap-align: start; }
+  .tab-panel .products-grid .product-card,
+  #similar-mount .product-card { flex: 0 0 74%; scroll-snap-align: start; }
   /* высота бокса уменьшилась (140px), а max-height картинки (130px) на
      десктопное значение не пересчитывался — картинка не помещалась и
      наезжала на бейдж «В наличии» сверху */
