@@ -594,6 +594,8 @@ input, textarea { font-family: inherit; }
 /* Крошки живут внутри героя (сверху, поверх фото), заголовок — снизу:
    flex-column с justify-content:space-between разводит их по краям. */
 .inner-hero { min-height: 760px; display: flex; flex-direction: column; justify-content: space-between; background: var(--black); position: relative; overflow: hidden; padding-top: 110px; }
+/* по девпанели картинка на «Услугах» 1600×617 — ниже, чем общий inner-hero */
+.services-hero { min-height: 617px; }
 .inner-hero-bg { position: absolute; inset: 0; }
 .inner-hero-bg-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; opacity: 1; }
 .inner-hero-overlay {

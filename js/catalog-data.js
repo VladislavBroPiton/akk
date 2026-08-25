@@ -88,7 +88,7 @@ const CATALOG = {
   access: {
     label: 'Аксессуары', ill: 'img/ill-accessory.png',
     desc: 'Клеммы, провода, крепления и другие полезные аксессуары для подключения, обслуживания и эксплуатации аккумуляторов',
-    filters: ['accType', 'material'],
+    filters: ['accType'],
     products: [
       { name:'Клеммы аккумуляторные свинцовые',     accType:'terminal', material:'lead',    price:null, isNew:false },
       { name:'Клеммы аккумуляторные латунные',      accType:'terminal', material:'brass',   price:null, isNew:false },
