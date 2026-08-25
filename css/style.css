@@ -1353,8 +1353,10 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
   .footer { padding: 0; }
   .footer-map-wrap { display: none; }
   .footer-content { background: var(--black); padding-top: 28px; padding-bottom: 0; }
-  /* на мобиле всё в столбик: телефон сверху, затем адрес и меню в два столбца */
-  .footer-grid { display: block; }
+  /* на мобиле всё в столбик: телефон сверху, затем адрес и меню в два столбца.
+     margin-bottom — чтобы карте-фону было где «подышать» до копирайта, как
+     на десктопе (там для этого margin-bottom:160 у .footer-messengers) */
+  .footer-grid { display: block; margin-bottom: 190px; }
   .footer-col-left { padding-bottom: 16px; }
   /* 175px-отступ под мессенджерами — десктопная особенность (даёт месту
      карте на фоне «подышать»), на моб. карта отдельным блоком ниже */
