@@ -533,7 +533,9 @@ input, textarea { font-family: inherit; }
 .map-frame iframe { width: 100%; height: 100%; border: none; position: absolute; inset: 0; }
 
 /* ── FOOTER ── */
-.footer { background: var(--black); color: var(--white); padding: 0; position: relative; overflow: hidden; }
+/* z-index:0 — создаёт свой стекинг-контекст, иначе z-index:-1 у .footer-map-mobile
+   «убегает» в контекст выше и рисуется под фоном страницы, а не под футером */
+.footer { background: var(--black); color: var(--white); padding: 0; position: relative; z-index: 0; overflow: hidden; }
 .footer-map-wrap { position: absolute; inset: 0; z-index: 0; }
 .footer-map-img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
 .footer-content { position: relative; z-index: 1; padding-top: 60px; padding-bottom: 32px; }
@@ -695,6 +697,7 @@ input, textarea { font-family: inherit; }
 /* принудительный перенос нужен только на моб. (см. медиа-запрос) — на
    десктопе при 22px текст и так переносится естественно как надо */
 .delivery-title-break { display: none; }
+.footer-addr-break { display: none; }
 .delivery-content p { font-size: 15px; color: var(--black-50); line-height: 1.65; margin-bottom: 10px; }
 .delivery-list { list-style: none; margin: 12px 0; }
 .delivery-list li { font-size: 15px; color: var(--black-50); padding: 4px 0 4px 20px; position: relative; line-height: 1.6; }
@@ -1358,6 +1361,7 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
      на десктопе (там для этого margin-bottom:160 у .footer-messengers) */
   .footer-grid { display: block; margin-bottom: 190px; }
   .footer-col-left { padding-bottom: 16px; }
+  .footer-addr-break { display: block; }
   /* 175px-отступ под мессенджерами — десктопная особенность (даёт месту
      карте на фоне «подышать»), на моб. карта отдельным блоком ниже */
   .footer-messengers { margin-bottom: 0; }

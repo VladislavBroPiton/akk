@@ -208,7 +208,7 @@ function renderFooter() {
       <div class="footer-col-mid-right">
       <div class="footer-col-mid">
         <div class="footer-label">Адрес магазина</div>
-        <span class="footer-val">г. Волжский, ул. Пушкина 51д/319</span>
+        <span class="footer-val">г. Волжский, ул. Пушкина<br class="footer-addr-break"> 51д/319</span>
         <div class="footer-label">График работы</div>
         <span class="footer-val">ПН-ПТ: 8:00-19:00</span>
       </div>
@@ -227,6 +227,8 @@ function renderFooter() {
       </div><!-- /footer-col-mid-right -->
 
     </div>
+  </div><!-- /footer-content: карта и копирайт ниже — уже вне контейнера,
+             иначе их «container» вкладывался бы в этот и удваивал padding -->
   <!-- Карта только для мобилы — между контентом и копирайтом -->
   <div class="footer-map-mobile">
     <img id="footer-map-mob-img" alt="">
