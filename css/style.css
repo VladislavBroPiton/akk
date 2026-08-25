@@ -573,8 +573,8 @@ input, textarea { font-family: inherit; }
 .footer-messenger img { width: 20px; height: 20px; object-fit: contain; }
 .footer-messenger svg { width: 18px; height: 18px; }
 .footer-label { font-size: 12px; color: var(--gray-100); letter-spacing: 0.02em; margin-bottom: 8px; }
-.footer-val { font-size: 15px; font-weight: 600; color: var(--white); margin-bottom: 20px; display: block; text-transform: uppercase; }
-.footer-nav a { display: block; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--white); padding: 4px 0; transition: color 0.2s; }
+.footer-val { font-family: 'Adderley', 'Oswald', sans-serif; font-size: 15px; font-weight: 600; color: var(--white); margin-bottom: 20px; display: block; text-transform: uppercase; }
+.footer-nav a { display: block; font-family: 'Adderley', 'Oswald', sans-serif; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--white); padding: 4px 0; transition: color 0.2s; }
 .footer-nav a:hover { color: var(--orange); }
 /* по макету текст низа футера светлее (белый 20%, а не 40%) и чуть крупнее (14px) */
 /* margin-top (зазор до тонкой линии-разделителя) + padding-top (после
