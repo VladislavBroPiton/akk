@@ -558,7 +558,7 @@ input, textarea { font-family: inherit; }
 }
 .footer-logo { font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 24px; color: var(--white); text-transform: uppercase; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
 .footer-logo .logo-bolt { color: var(--orange); }
-.footer-phone-big { font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 32px; color: var(--white); margin-bottom: 16px; display: block; }
+.footer-phone-big { font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 56px; color: var(--white); margin-bottom: 16px; display: block; }
 .footer-phone-big:hover { color: var(--orange); }
 .footer-messengers { display: flex; gap: 10px; margin-bottom: 160px; }
 /* в макете кнопки залиты серым, не обведены рамкой */
@@ -572,9 +572,9 @@ input, textarea { font-family: inherit; }
    contain не даёт им растянуться внутри квадратной кнопки */
 .footer-messenger img { width: 20px; height: 20px; object-fit: contain; }
 .footer-messenger svg { width: 18px; height: 18px; }
-.footer-label { font-size: 12px; color: var(--gray-100); letter-spacing: 0.02em; margin-bottom: 8px; }
-.footer-val { font-family: 'Adderley', 'Oswald', sans-serif; font-size: 15px; font-weight: 600; color: var(--white); margin-bottom: 20px; display: block; text-transform: uppercase; }
-.footer-nav a { display: block; font-family: 'Adderley', 'Oswald', sans-serif; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--white); padding: 4px 0; transition: color 0.2s; }
+.footer-label { font-size: 16px; color: var(--gray-100); letter-spacing: 0.02em; margin-bottom: 8px; }
+.footer-val { font-family: 'Adderley', 'Oswald', sans-serif; font-size: 20px; font-weight: 600; color: var(--white); margin-bottom: 20px; display: block; text-transform: uppercase; }
+.footer-nav a { display: block; font-family: 'Adderley', 'Oswald', sans-serif; font-size: 20px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--white); padding: 4px 0; transition: color 0.2s; }
 .footer-nav a:hover { color: var(--orange); }
 /* по макету текст низа футера светлее (белый 20%, а не 40%) и чуть крупнее (14px) */
 /* margin-top (зазор до тонкой линии-разделителя) + padding-top (после
@@ -583,6 +583,8 @@ input, textarea { font-family: inherit; }
 .footer-bottom { padding-top: 11px; border-top: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; align-items: center; font-size: 14px; color: rgba(255,255,255,0.2); flex-wrap: wrap; gap: 12px; margin-top: 15px; }
 .footer-bottom a { color: rgba(255,255,255,0.2); }
 .footer-bottom a:hover { color: var(--white); }
+.footer-copy { font-size: 12px; }
+.footer-policy { font-size: 14px; }
 .footer-credit { display: flex; align-items: center; gap: 6px; text-transform: uppercase; letter-spacing: 0.04em; }
 .footer-credit a { display: flex; align-items: center; gap: 4px; }
 .footer-credit-logo { height: 16px; width: auto; flex-shrink: 0; }
@@ -1368,20 +1370,20 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
   .footer-policy { order: 1; }
   .footer-copy { order: 2; }
   .footer-credit { order: 3; }
-  /* Карта на мобиле */
+  /* Карта на мобиле — как на десктопе (.footer-map-wrap): фон на весь футер,
+     а не узкая полоса-плашка между блоками — источник (Footer mob.png) уже
+     содержит нужные тёмные поля сверху/снизу под текст поверх карты */
   .footer-map-mobile {
     display: block;
-    width: 100%;
-    height: 200px;
-    overflow: hidden;
+    position: absolute; inset: 0; z-index: -1;
+    width: 100%; height: 100%;
     background: var(--black);
-    margin-top: 0;
   }
   .footer-map-mobile img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: left center;
+    object-position: center;
     display: block;
   }
 
