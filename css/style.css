@@ -425,10 +425,11 @@ input, textarea { font-family: inherit; }
 .product-spec { display: flex; justify-content: space-between; font-size: 12px; color: var(--black-50); padding: 4px 0; border-bottom: 1px solid var(--gray-300); }
 .product-spec:last-of-type { border-bottom: none; }
 .product-spec-val { font-weight: 600; color: var(--black); }
-/* «ЦЕНА» лейбл чёрным слева + значение оранжевым — по девпанели 24px на
-   обоих брейкпоинтах, не 14/12 как было у одной строки раньше */
+/* «ЦЕНА» лейбл чёрным слева + значение оранжевым справа (крайний правый
+   край, как у остальных строк .product-spec через space-between) — по
+   девпанели 24px на обоих брейкпоинтах, не 14/12 как было у одной строки раньше */
 .product-price {
-  display: flex; align-items: baseline; gap: 6px; margin: 12px 0 8px;
+  display: flex; justify-content: space-between; align-items: baseline; margin: 12px 0 8px;
   font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 24px;
   text-transform: uppercase; letter-spacing: 0.03em;
 }
