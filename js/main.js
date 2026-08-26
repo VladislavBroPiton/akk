@@ -307,11 +307,12 @@ function articleImgFallback(el) {
 }
 
 // ── PRODUCT CARD ──
-// price === null → «Уточняется» (пока клиент не передал прайс)
+// price === null → «По запросу» (пока клиент не передал прайс);
+// «Р» — буквой, не значком ₽: в Adderley нет глифа ₽, браузер подставлял
+// его из запасного шрифта, отсюда несовпадающая высота символа
 function productCard(name, specs, price = null) {
-  const priceValue = price == null
-    ? 'Уточняется'
-    : `${price.toLocaleString('ru-RU')} ₽`;
+  const isInquiry = price == null;
+  const priceValue = isInquiry ? 'По запросу' : `${price.toLocaleString('ru-RU')} Р`;
   return `
 <a href="product.html" class="product-card">
   <div class="product-card-img">
@@ -320,7 +321,7 @@ function productCard(name, specs, price = null) {
   <div class="product-card-body">
     <div class="product-card-name">${name}</div>
     ${specs.map(s => `<div class="product-spec"><span>${s[0]}</span><span class="product-spec-val">${s[1]}</span></div>`).join('')}
-    <div class="product-price"><span class="price-label">Цена</span><span class="price-value">${priceValue}</span></div>
+    <div class="product-price"><span class="price-label">Цена</span><span class="price-value${isInquiry ? ' price-value-inquiry' : ''}">${priceValue}</span></div>
     <span class="btn-link">Подробнее</span>
   </div>
 </a>`;
@@ -481,7 +482,7 @@ function searchAllUrl(query, found) {
 }
 
 function searchRow(p) {
-  const price = p.price == null ? 'Цена уточняется' : `${p.price.toLocaleString('ru-RU')} ₽`;
+  const price = p.price == null ? 'Цена уточняется' : `${p.price.toLocaleString('ru-RU')} Р`;
   return `
 <a class="search-row" href="product.html">
   <span class="search-row-img"><img src="${IMG.battery}" alt="" loading="lazy" onerror="productImgFallback(this)"></span>
