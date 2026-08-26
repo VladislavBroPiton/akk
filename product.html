@@ -43,36 +43,20 @@
         <!-- SPECS (десктоп — в левой прокручиваемой колонке, сразу под галереей) -->
         <div class="product-specs-desktop-only">
           <h2 class="section-title" style="font-size:22px;margin-bottom:20px;">Характеристики</h2>
-          <table class="specs-table">
-            <tr><td>Ёмкость</td><td>70 Ah</td></tr>
-            <tr><td>Пусковой ток</td><td>760 A</td></tr>
-            <tr><td>Габариты</td><td>278×175×190 мм</td></tr>
-            <tr><td>Производитель</td><td>VARTA</td></tr>
-            <tr><td>Полярность</td><td>обратная</td></tr>
-            <tr><td>Тип корпуса</td><td>европейский</td></tr>
-            <tr><td>Технология</td><td>AGM</td></tr>
-          </table>
+          <table class="specs-table" id="specs-table-desktop"></table>
         </div>
       </div>
 
       <!-- ПРАВАЯ КОЛОНКА — фиксированная -->
       <div class="product-info">
-        <h1 class="product-page-title">Аккумулятор автомобильный<br>VARTA Silver Dynamic AGM 70Ah</h1>
+        <h1 class="product-page-title" id="prod-title">Аккумулятор автомобильный<br>VARTA Silver Dynamic AGM 70Ah</h1>
         <p class="product-page-desc">Аккумулятор разработан с учётом современных требований к надёжности и эффективности. Он обеспечивает стабильную работу всех систем автомобиля, включая электронику, систему зажигания и дополнительные устройства. Технология AGM рассчитана на автомобили с системой Start-Stop и повышенной нагрузкой на бортовую сеть: электролит связан в стекловолокне, поэтому батарея не боится вибрации и держит частые пуски.</p>
-        <div class="product-page-price"><span class="price-label">Цена</span><span class="price-value">5 000 Р</span></div>
+        <div class="product-page-price" id="prod-price"><span class="price-label">Цена</span><span class="price-value">5 000 Р</span></div>
 
         <!-- SPECS (моб. — сразу после цены, а не под галереей как на десктопе) -->
         <div class="product-specs-mobile-only">
           <h2 class="section-title" style="font-size:22px;margin-bottom:20px;">Характеристики</h2>
-          <table class="specs-table">
-            <tr><td>Ёмкость</td><td>70 Ah</td></tr>
-            <tr><td>Пусковой ток</td><td>760 A</td></tr>
-            <tr><td>Габариты</td><td>278×175×190 мм</td></tr>
-            <tr><td>Производитель</td><td>VARTA</td></tr>
-            <tr><td>Полярность</td><td>обратная</td></tr>
-            <tr><td>Тип корпуса</td><td>европейский</td></tr>
-            <tr><td>Технология</td><td>AGM</td></tr>
-          </table>
+          <table class="specs-table" id="specs-table-mobile"></table>
         </div>
 
         <!-- плитки целиком кликабельны -->
@@ -119,11 +103,17 @@
 <script src="js/catalog-data.js"></script>
 <script src="js/main.js"></script>
 <script>
+  // товар — по ?name= из ссылки карточки/поиска; без параметра (или если
+  // не нашли — товар из другой категории) показываем дефолтный демо-товар
+  const qName = new URLSearchParams(location.search).get('name');
+  const PRODUCT = CATALOG.acc.products.find(p => p.name === qName) || CATALOG.acc.products[0];
+
+  document.title = `${PRODUCT.name} — Ампер`;
   document.getElementById('header-mount').innerHTML = renderHeader('catalog.html');
   document.getElementById('breadcrumb-mount').innerHTML = renderBreadcrumb([
     {href:'index.html',label:'Главная'},
     {href:'catalog.html',label:'Каталог'},
-    {href:'product.html',label:'VARTA Silver Dynamic AGM 70Ah'},
+    {href:'product.html',label:PRODUCT.name},
   ]);
   document.getElementById('cta-mount').innerHTML = renderCtaForm();
   document.getElementById('footer-mount').innerHTML = renderFooter();
@@ -134,11 +124,28 @@
   document.getElementById('slider-prev').innerHTML = ICON_ARROW_LEFT;
   document.getElementById('slider-next').innerHTML = ICON_ARROW_RIGHT;
 
+  document.getElementById('prod-title').innerHTML = `Аккумулятор автомобильный<br>${PRODUCT.name}`;
+
+  const isInquiry = PRODUCT.price == null;
+  const priceValue = isInquiry ? 'По запросу' : `${PRODUCT.price.toLocaleString('ru-RU')} Р`;
+  document.getElementById('prod-price').innerHTML =
+    `<span class="price-label">Цена</span><span class="price-value${isInquiry ? ' price-value-inquiry' : ''}">${priceValue}</span>`;
+
+  const specsHtml = `
+    <tr><td>Ёмкость</td><td>${PRODUCT.capacity} Ah</td></tr>
+    <tr><td>Пусковой ток</td><td>${PRODUCT.cranking} A</td></tr>
+    <tr><td>Габариты</td><td>${PRODUCT.dims} мм</td></tr>
+    <tr><td>Производитель</td><td>${PRODUCT.brand}</td></tr>
+    <tr><td>Полярность</td><td>${FILTER_DEFS.polarity.labels[PRODUCT.polarity]}</td></tr>
+    <tr><td>Тип корпуса</td><td>${FILTER_DEFS.case.labels[PRODUCT.case]}</td></tr>
+    <tr><td>Технология</td><td>${FILTER_DEFS.tech.labels[PRODUCT.tech]}</td></tr>`;
+  document.getElementById('specs-table-desktop').innerHTML = specsHtml;
+  document.getElementById('specs-table-mobile').innerHTML = specsHtml;
+
   // Похожие товары берём из каталога, а сам этот товар из списка убираем —
   // раньше он показывался первым в собственном блоке «Похожие».
-  const THIS_PRODUCT = 'VARTA Silver Dynamic AGM 70Ah';
   document.getElementById('similar-mount').innerHTML = CATALOG.acc.products
-    .filter(p => p.name !== THIS_PRODUCT)
+    .filter(p => p.name !== PRODUCT.name)
     .slice(0, 4)
     .map(p => productCard(p.name, CARD_SPECS.acc(p), p.price)).join('');
 
@@ -147,7 +154,7 @@
     if (el) el.src = IMG.battery;
   });
   const pm = document.getElementById('prod-main');
-  if (pm) pm.src = IMG.battery;
+  if (pm) { pm.src = IMG.battery; pm.alt = PRODUCT.name; }
   // initThumbs() вызывается один раз из main.js на DOMContentLoaded
 </script>
 </body>

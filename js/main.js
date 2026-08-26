@@ -314,7 +314,7 @@ function productCard(name, specs, price = null) {
   const isInquiry = price == null;
   const priceValue = isInquiry ? 'По запросу' : `${price.toLocaleString('ru-RU')} Р`;
   return `
-<a href="product.html" class="product-card">
+<a href="product.html?name=${encodeURIComponent(name)}" class="product-card">
   <div class="product-card-img">
     <img src="${IMG.battery}" alt="${name}" loading="lazy" onerror="productImgFallback(this)">
   </div>
@@ -484,7 +484,7 @@ function searchAllUrl(query, found) {
 function searchRow(p) {
   const price = p.price == null ? 'Цена уточняется' : `${p.price.toLocaleString('ru-RU')} Р`;
   return `
-<a class="search-row" href="product.html">
+<a class="search-row" href="product.html?name=${encodeURIComponent(p.name)}">
   <span class="search-row-img"><img src="${IMG.battery}" alt="" loading="lazy" onerror="productImgFallback(this)"></span>
   <span class="search-row-body">
     <span class="search-row-name">${p.name}</span>
