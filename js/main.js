@@ -307,21 +307,20 @@ function articleImgFallback(el) {
 }
 
 // ── PRODUCT CARD ──
-// price === null → «Цена уточняется» (пока клиент не передал прайс)
-function productCard(name, specs, badge = 'В наличии', price = null) {
-  const priceLabel = price == null
-    ? 'Цена уточняется'
+// price === null → «Уточняется» (пока клиент не передал прайс)
+function productCard(name, specs, price = null) {
+  const priceValue = price == null
+    ? 'Уточняется'
     : `${price.toLocaleString('ru-RU')} ₽`;
   return `
 <a href="product.html" class="product-card">
   <div class="product-card-img">
-    <span class="product-badge">${badge}</span>
     <img src="${IMG.battery}" alt="${name}" loading="lazy" onerror="productImgFallback(this)">
   </div>
   <div class="product-card-body">
     <div class="product-card-name">${name}</div>
     ${specs.map(s => `<div class="product-spec"><span>${s[0]}</span><span class="product-spec-val">${s[1]}</span></div>`).join('')}
-    <div class="product-price">${priceLabel}</div>
+    <div class="product-price"><span class="price-label">Цена</span><span class="price-value">${priceValue}</span></div>
     <span class="btn-link">Подробнее</span>
   </div>
 </a>`;
@@ -857,7 +856,7 @@ const CatalogUI = {
     const start = (this.page - 1) * this.PAGE;
     const slice = this.list.slice(start, start + this.PAGE);
     grid.innerHTML = slice.map(p =>
-      productCard(p.name, this.cardSpecs(p), 'В наличии', p.price)).join('');
+      productCard(p.name, this.cardSpecs(p), p.price)).join('');
     this.renderPagination(totalPages);
     initReveal();
   },

@@ -190,7 +190,7 @@
     const cat = HIT_TABS[tab];
     if (!el || !CATALOG[cat]) return;
     el.innerHTML = CATALOG[cat].products.slice(0, 4)
-      .map(p => productCard(p.name, CARD_SPECS[cat](p), 'В наличии', p.price)).join('');
+      .map(p => productCard(p.name, CARD_SPECS[cat](p), p.price)).join('');
   });
 
   // четыре свежие статьи из общего списка js/articles-data.js

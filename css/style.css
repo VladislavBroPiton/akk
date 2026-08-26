@@ -420,19 +420,20 @@ input, textarea { font-family: inherit; }
 .product-card:hover .btn-link { color: var(--orange); }
 .product-card-img { background: var(--white); padding: 20px; text-align: center; position: relative; height: 180px; display: flex; align-items: center; justify-content: center; }
 .product-card-img img { max-height: 130px; max-width: 100%; object-fit: contain; }
-/* по макету — контурный оранжевый бейдж, не заливка зелёным; текст внутри
-   чёрный, не оранжевый */
-.product-badge {
-  position: absolute; top: 10px; left: 10px; z-index: 1;
-  background: transparent; color: var(--black); font-size: 11px; font-weight: 700;
-  padding: 3px 10px; border: 1px solid var(--orange); border-radius: 6px; text-transform: uppercase; letter-spacing: 0.03em;
-}
 .product-card-body { padding: 16px; }
 .product-card-name { font-weight: 600; font-size: 14px; margin-bottom: 12px; line-height: 1.4; text-transform: uppercase; }
 .product-spec { display: flex; justify-content: space-between; font-size: 12px; color: var(--black-50); padding: 4px 0; border-bottom: 1px solid var(--gray-300); }
 .product-spec:last-of-type { border-bottom: none; }
 .product-spec-val { font-weight: 600; color: var(--black); }
-.product-price { color: var(--orange); font-weight: 700; font-size: 14px; margin: 12px 0 8px; text-transform: uppercase; letter-spacing: 0.03em; }
+/* «ЦЕНА» лейбл чёрным слева + значение оранжевым — по девпанели 24px на
+   обоих брейкпоинтах, не 14/12 как было у одной строки раньше */
+.product-price {
+  display: flex; align-items: baseline; gap: 6px; margin: 12px 0 8px;
+  font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 24px;
+  text-transform: uppercase; letter-spacing: 0.03em;
+}
+.price-label { color: var(--black); }
+.price-value { color: var(--orange); }
 
 /* ── SERVICES GRID ── */
 .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
@@ -929,7 +930,13 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
 .product-page-desc { font-size: 14px; color: var(--black-50); line-height: 1.1; }
 /* .product-info — flex-колонка с общим gap:20px; здесь нужен именно 10px
    над ценой, поэтому компенсируем разницу отрицательным отступом */
-.product-page-price { color: var(--orange); font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 18px; text-transform: uppercase; letter-spacing: 0.05em; margin-top: -10px; margin-bottom: 58px; }
+/* «Цена» лейбл чёрным слева + значение оранжевым (.price-label/.price-value
+   общие с карточками товара) — 24px и на десктопе, и на моб. по девпанели */
+.product-page-price {
+  display: flex; align-items: baseline; gap: 8px;
+  font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 24px;
+  text-transform: uppercase; letter-spacing: 0.05em; margin-top: -10px; margin-bottom: 58px;
+}
 .product-delivery-row { display: flex; gap: 12px; }
 /* вся плитка кликабельна */
 .product-delivery-item {
@@ -1277,14 +1284,11 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
   /* высота бокса уменьшилась (140px), а max-height картинки (130px) на
      десктопное значение не пересчитывался — картинка не помещалась и
      наезжала на бейдж «В наличии» сверху */
-  /* align-items:flex-end — картинка прижата к низу бокса, а не по центру:
-     иначе верх картинки заезжает под бейдж «В наличии» в левом углу */
-  .product-card-img { height: 140px; padding: 20px; align-items: flex-end; }
+  .product-card-img { height: 140px; padding: 20px; align-items: center; }
   .product-card-img img { max-height: 90px; }
   .product-card-body { padding: 12px; }
   .product-card-name { font-size: 12px; margin-bottom: 8px; }
   .product-spec { font-size: 11px; }
-  .product-price { font-size: 12px; }
 
   /* TABS — на мобиле по макету это не ряд вкладок, а раскрывающийся список
      (как выпадашка сортировки): видна только активная категория со стрелкой,
@@ -1487,7 +1491,7 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
      ценой и разделом «Доставка» задаём точными margin по месту */
   .product-page-title { font-size: 32px; margin-bottom: 10px; }
   .product-page-desc { font-size: 12px; margin-bottom: 10px; }
-  .product-page-price { font-size: 24px; margin-top: 0; margin-bottom: 0; }
+  .product-page-price { margin-top: 0; margin-bottom: 0; }
   /* блок «Доставка/Самовывоз/Гарантии» — на моб. не 3 узкие плитки в ряд,
      а полноширинные строки одна под другой, как в макете */
   .product-delivery-row { flex-direction: column; gap: 4px; margin-top: 24px; margin-bottom: 10px; }

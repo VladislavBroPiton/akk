@@ -47,6 +47,8 @@
           <table class="specs-table">
             <tr><td>Ёмкость</td><td>70 Ah</td></tr>
             <tr><td>Пусковой ток</td><td>760 A</td></tr>
+            <tr><td>Габариты</td><td>278×175×190 мм</td></tr>
+            <tr><td>Производитель</td><td>VARTA</td></tr>
             <tr><td>Полярность</td><td>обратная</td></tr>
             <tr><td>Тип корпуса</td><td>европейский</td></tr>
             <tr><td>Технология</td><td>AGM</td></tr>
@@ -58,7 +60,7 @@
       <div class="product-info">
         <h1 class="product-page-title">Аккумулятор автомобильный<br>VARTA Silver Dynamic AGM 70Ah</h1>
         <p class="product-page-desc">Аккумулятор разработан с учётом современных требований к надёжности и эффективности. Он обеспечивает стабильную работу всех систем автомобиля, включая электронику, систему зажигания и дополнительные устройства. Технология AGM рассчитана на автомобили с системой Start-Stop и повышенной нагрузкой на бортовую сеть: электролит связан в стекловолокне, поэтому батарея не боится вибрации и держит частые пуски.</p>
-        <div class="product-page-price">Цена уточняется</div>
+        <div class="product-page-price"><span class="price-label">Цена</span><span class="price-value">Уточняется</span></div>
 
         <!-- SPECS (моб. — сразу после цены, а не под галереей как на десктопе) -->
         <div class="product-specs-mobile-only">
@@ -66,6 +68,8 @@
           <table class="specs-table">
             <tr><td>Ёмкость</td><td>70 Ah</td></tr>
             <tr><td>Пусковой ток</td><td>760 A</td></tr>
+            <tr><td>Габариты</td><td>278×175×190 мм</td></tr>
+            <tr><td>Производитель</td><td>VARTA</td></tr>
             <tr><td>Полярность</td><td>обратная</td></tr>
             <tr><td>Тип корпуса</td><td>европейский</td></tr>
             <tr><td>Технология</td><td>AGM</td></tr>
@@ -137,7 +141,7 @@
   document.getElementById('similar-mount').innerHTML = CATALOG.acc.products
     .filter(p => p.name !== THIS_PRODUCT)
     .slice(0, 4)
-    .map(p => productCard(p.name, CARD_SPECS.acc(p), 'В наличии', p.price)).join('');
+    .map(p => productCard(p.name, CARD_SPECS.acc(p), p.price)).join('');
 
   ['prod-thumb-1','prod-thumb-2','prod-thumb-3'].forEach(id => {
     const el = document.getElementById(id);
