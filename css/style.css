@@ -938,7 +938,7 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
 .product-page-price {
   display: flex; align-items: baseline; gap: 8px;
   font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 40px;
-  text-transform: uppercase; letter-spacing: 0.05em; margin-top: -10px; margin-bottom: 58px;
+  text-transform: uppercase; letter-spacing: 0.05em; margin-top: -10px; margin-bottom: 36px;
 }
 .product-delivery-row { display: flex; gap: 12px; }
 /* вся плитка кликабельна */
