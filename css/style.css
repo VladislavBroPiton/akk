@@ -940,8 +940,6 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
   font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 24px;
   text-transform: uppercase; letter-spacing: 0.05em; margin-top: -10px; margin-bottom: 58px;
 }
-/* «По запросу» тут крупнее суммы — по девпанели 40px, не 24 */
-.product-page-price .price-value-inquiry { font-size: 40px; }
 .product-delivery-row { display: flex; gap: 12px; }
 /* вся плитка кликабельна */
 .product-delivery-item {
