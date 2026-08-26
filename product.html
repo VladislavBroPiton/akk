@@ -50,7 +50,7 @@
       <!-- ПРАВАЯ КОЛОНКА — фиксированная -->
       <div class="product-info">
         <h1 class="product-page-title" id="prod-title">Аккумулятор автомобильный<br>VARTA Silver Dynamic AGM 70Ah</h1>
-        <p class="product-page-desc">Аккумулятор разработан с учётом современных требований к надёжности и эффективности. Он обеспечивает стабильную работу всех систем автомобиля, включая электронику, систему зажигания и дополнительные устройства. Технология AGM рассчитана на автомобили с системой Start-Stop и повышенной нагрузкой на бортовую сеть: электролит связан в стекловолокне, поэтому батарея не боится вибрации и держит частые пуски.</p>
+        <p class="product-page-desc" id="prod-desc">Аккумулятор разработан с учётом современных требований к надёжности и эффективности. Он обеспечивает стабильную работу всех систем автомобиля, включая электронику, систему зажигания и дополнительные устройства. Технология AGM рассчитана на автомобили с системой Start-Stop и повышенной нагрузкой на бортовую сеть: электролит связан в стекловолокне, поэтому батарея не боится вибрации и держит частые пуски.</p>
         <div class="product-page-price" id="prod-price"><span class="price-label">Цена</span><span class="price-value">5 000 Р</span></div>
 
         <!-- SPECS (моб. — сразу после цены, а не под галереей как на десктопе) -->
@@ -103,10 +103,19 @@
 <script src="js/catalog-data.js"></script>
 <script src="js/main.js"></script>
 <script>
-  // товар — по ?name= из ссылки карточки/поиска; без параметра (или если
-  // не нашли — товар из другой категории) показываем дефолтный демо-товар
+  // товар — по ?name= из ссылки карточки/поиска, ищем во ВСЕХ трёх разделах
+  // каталога (аккумуляторы/зарядные/аксессуары), а не только в аккумуляторах —
+  // иначе карточка зарядного или аксессуара открывала чужой товар-аккумулятор.
+  // Без параметра (или если не нашли нигде) — дефолтный демо-товар.
   const qName = new URLSearchParams(location.search).get('name');
-  const PRODUCT = CATALOG.acc.products.find(p => p.name === qName) || CATALOG.acc.products[0];
+  let PRODUCT_CAT = 'acc';
+  let PRODUCT = CATALOG.acc.products[0];
+  if (qName) {
+    for (const cat of ['acc', 'charge', 'access']) {
+      const found = CATALOG[cat].products.find(p => p.name === qName);
+      if (found) { PRODUCT = found; PRODUCT_CAT = cat; break; }
+    }
+  }
 
   document.title = `${PRODUCT.name} — Ампер`;
   document.getElementById('header-mount').innerHTML = renderHeader('catalog.html');
@@ -124,30 +133,53 @@
   document.getElementById('slider-prev').innerHTML = ICON_ARROW_LEFT;
   document.getElementById('slider-next').innerHTML = ICON_ARROW_RIGHT;
 
-  document.getElementById('prod-title').innerHTML = `Аккумулятор автомобильный<br>${PRODUCT.name}`;
+  // «Аккумулятор автомобильный» осмысленный префикс только для аккумуляторов —
+  // названия зарядных/аксессуаров уже самодостаточны («Клеммы...», «ЗУ...»)
+  document.getElementById('prod-title').innerHTML = PRODUCT_CAT === 'acc'
+    ? `Аккумулятор автомобильный<br>${PRODUCT.name}`
+    : PRODUCT.name;
+  // описание в вёрстке написано конкретно под аккумулятор (AGM, Start-Stop) —
+  // для остальных разделов явно не подходит, берём общий текст раздела
+  if (PRODUCT_CAT !== 'acc') {
+    document.getElementById('prod-desc').textContent = CATALOG[PRODUCT_CAT].desc;
+  }
 
   const isInquiry = PRODUCT.price == null;
   const priceValue = isInquiry ? 'По запросу' : `${PRODUCT.price.toLocaleString('ru-RU')} Р`;
   document.getElementById('prod-price').innerHTML =
     `<span class="price-label">Цена</span><span class="price-value${isInquiry ? ' price-value-inquiry' : ''}">${priceValue}</span>`;
 
-  const specsHtml = `
-    <tr><td>Ёмкость</td><td>${PRODUCT.capacity} Ah</td></tr>
-    <tr><td>Пусковой ток</td><td>${PRODUCT.cranking} A</td></tr>
-    <tr><td>Габариты</td><td>${PRODUCT.dims} мм</td></tr>
-    <tr><td>Производитель</td><td>${PRODUCT.brand}</td></tr>
-    <tr><td>Полярность</td><td>${FILTER_DEFS.polarity.labels[PRODUCT.polarity]}</td></tr>
-    <tr><td>Тип корпуса</td><td>${FILTER_DEFS.case.labels[PRODUCT.case]}</td></tr>
-    <tr><td>Технология</td><td>${FILTER_DEFS.tech.labels[PRODUCT.tech]}</td></tr>`;
+  // характеристики — разные поля на каждый раздел каталога
+  const SPEC_ROWS = {
+    acc: p => `
+      <tr><td>Ёмкость</td><td>${p.capacity} Ah</td></tr>
+      <tr><td>Пусковой ток</td><td>${p.cranking} A</td></tr>
+      <tr><td>Габариты</td><td>${p.dims} мм</td></tr>
+      <tr><td>Производитель</td><td>${p.brand}</td></tr>
+      <tr><td>Полярность</td><td>${FILTER_DEFS.polarity.labels[p.polarity]}</td></tr>
+      <tr><td>Тип корпуса</td><td>${FILTER_DEFS.case.labels[p.case]}</td></tr>
+      <tr><td>Технология</td><td>${FILTER_DEFS.tech.labels[p.tech]}</td></tr>`,
+    charge: p => `
+      <tr><td>Тип</td><td>${FILTER_DEFS.chargeType.labels[p.chargeType]}</td></tr>
+      <tr><td>Напряжение</td><td>${FILTER_DEFS.voltage.labels[p.voltage]} В</td></tr>
+      <tr><td>Режим 12/24В</td><td>${FILTER_DEFS.dualVoltage.labels[p.dualVoltage]}</td></tr>
+      <tr><td>Макс. ток заряда</td><td>${p.current} A</td></tr>
+      <tr><td>Производитель</td><td>${p.chargeBrand}</td></tr>`,
+    access: p => `
+      <tr><td>Тип</td><td>${FILTER_DEFS.accType.labels[p.accType]}</td></tr>
+      <tr><td>Материал</td><td>${FILTER_DEFS.material.labels[p.material]}</td></tr>
+      <tr><td>Производитель</td><td>${p.accessBrand}</td></tr>`,
+  };
+  const specsHtml = SPEC_ROWS[PRODUCT_CAT](PRODUCT);
   document.getElementById('specs-table-desktop').innerHTML = specsHtml;
   document.getElementById('specs-table-mobile').innerHTML = specsHtml;
 
-  // Похожие товары берём из каталога, а сам этот товар из списка убираем —
-  // раньше он показывался первым в собственном блоке «Похожие».
-  document.getElementById('similar-mount').innerHTML = CATALOG.acc.products
+  // Похожие товары — из того же раздела каталога, что и сам товар; сам
+  // товар из списка убираем — раньше он показывался первым среди «Похожих».
+  document.getElementById('similar-mount').innerHTML = CATALOG[PRODUCT_CAT].products
     .filter(p => p.name !== PRODUCT.name)
     .slice(0, 4)
-    .map(p => productCard(p.name, CARD_SPECS.acc(p), p.price)).join('');
+    .map(p => productCard(p.name, CARD_SPECS[PRODUCT_CAT](p), p.price)).join('');
 
   ['prod-thumb-1','prod-thumb-2','prod-thumb-3'].forEach(id => {
     const el = document.getElementById(id);
