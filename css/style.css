@@ -934,10 +934,10 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
 /* .product-info — flex-колонка с общим gap:20px; здесь нужен именно 10px
    над ценой, поэтому компенсируем разницу отрицательным отступом */
 /* «Цена» лейбл чёрным слева + значение оранжевым (.price-label/.price-value
-   общие с карточками товара) — 24px и на десктопе, и на моб. по девпанели */
+   общие с карточками товара) — 40px на десктопе, 32px на моб. (см. медиа-запрос) */
 .product-page-price {
   display: flex; align-items: baseline; gap: 8px;
-  font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 24px;
+  font-family: 'Adderley', 'Oswald', sans-serif; font-weight: 700; font-size: 40px;
   text-transform: uppercase; letter-spacing: 0.05em; margin-top: -10px; margin-bottom: 58px;
 }
 .product-delivery-row { display: flex; gap: 12px; }
@@ -1493,7 +1493,7 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
      ценой и разделом «Доставка» задаём точными margin по месту */
   .product-page-title { font-size: 32px; margin-bottom: 10px; }
   .product-page-desc { font-size: 12px; margin-bottom: 10px; }
-  .product-page-price { margin-top: 0; margin-bottom: 0; }
+  .product-page-price { font-size: 32px; margin-top: 0; margin-bottom: 0; }
   /* блок «Доставка/Самовывоз/Гарантии» — на моб. не 3 узкие плитки в ряд,
      а полноширинные строки одна под другой, как в макете */
   .product-delivery-row { flex-direction: column; gap: 4px; margin-top: 24px; margin-bottom: 10px; }
