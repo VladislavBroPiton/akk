@@ -1633,9 +1633,10 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
   .inner-hero { min-height: 500px; padding-top: 76px; }
   .inner-hero-content { padding: 28px 0; }
   /* широкое фото (5 аккумуляторов в ряд) при cover в узком блоке кадрируется
-     по центру — виден 3й-4й аккум., а по макету должны быть видны первые
-     (ZUBR/Topla), третий обрезан краем экрана */
-  .services-hero-img { object-position: 20% top; }
+     по центру — нужно видно 3 аккумулятора (ZUBR/Topla/EFB), поэтому блок
+     чуть ниже (меньше вертикальный кроп → меньше «зум» по ширине) */
+  .services-hero { min-height: 380px; }
+  .services-hero-img { object-position: 8% top; }
 }
 
 /* ── ANIMATIONS ── */

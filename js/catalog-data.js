@@ -128,9 +128,9 @@ const CARD_SPECS = {
     ['Гарантия',    p.warranty],
   ],
   charge: p => [
-    ['Ток заряда', `${p.current} A`],
-    ['Напряжение', FILTER_DEFS.voltage.labels[p.voltage]],
-    ['Тип',        FILTER_DEFS.chargeType.labels[p.chargeType]],
+    ['Макс. ток заряда, А',       p.current],
+    ['Номинальное напр. АКБ, В',  FILTER_DEFS.voltage.labels[p.voltage]],
+    ['Тип',                       FILTER_DEFS.chargeType.labels[p.chargeType]],
   ],
   access: p => [
     ['Тип',       FILTER_DEFS.accType.labels[p.accType]],
