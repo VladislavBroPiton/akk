@@ -532,7 +532,6 @@ input, textarea { font-family: inherit; }
    ширину (align-self:stretch); по макету она по размеру текста, не во
    всю карточку */
 .map-info .btn { height: 44px; font-size: 15px; align-self: flex-start; }
-.stars { color: #ffc107; font-size: 14px; }
 .map-frame { position: absolute; inset: 0; background: var(--gray-400); display: flex; align-items: center; justify-content: center; font-size: 14px; color: var(--black-50); overflow: hidden; }
 .map-frame iframe { width: 100%; height: 100%; border: none; position: absolute; inset: 0; }
 
