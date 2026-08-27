@@ -1591,7 +1591,7 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
   .sort-list { left: auto; right: 0; }
   /* по девпанели: заголовок карточки статьи — Adderley 700 16px, описание —
      Onest 500 12px (были обычные, не типографские, 14px/13px без шрифта) */
-  .article-card-title { font-family: 'Adderley', 'Oswald', sans-serif; font-size: 16px; line-height: 1; }
+  .article-card-title { font-family: 'Adderley', 'Oswald', sans-serif; font-size: 20px; line-height: 1; }
   .article-card-text { font-family: 'Onest', sans-serif; font-weight: 500; font-size: 12px; line-height: 1; }
   /* стрелка ▶ у «Подробнее» — Unicode-символ на мал. кегле не растёт,
      заменена на CSS-треугольник (13×10.71, повёрнут на 90°) */
