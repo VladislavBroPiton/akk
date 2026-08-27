@@ -210,7 +210,7 @@ function renderFooter() {
         <div class="footer-label">Адрес магазина</div>
         <span class="footer-val">г. Волжский, ул. Пушкина<br class="footer-addr-break"> 51д/319</span>
         <div class="footer-label">График работы</div>
-        <span class="footer-val">ПН-ПТ: 8:00-19:00</span>
+        <span class="footer-val">Ежедневно с 8.30 до 18.30</span>
       </div>
 
       <!-- Колонка 3: меню -->
