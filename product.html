@@ -156,7 +156,7 @@
       <tr><td>Ёмкость</td><td>${p.capacity} Ah</td></tr>
       <tr><td>Пусковой ток</td><td>${p.cranking} A</td></tr>
       <tr><td>Габариты</td><td>${p.dims} мм</td></tr>
-      <tr><td>Производитель</td><td>${p.brand}</td></tr>
+      <tr><td>Бренд</td><td>${p.brand}</td></tr>
       <tr><td>Полярность</td><td>${FILTER_DEFS.polarity.labels[p.polarity]}</td></tr>
       <tr><td>Тип корпуса</td><td>${FILTER_DEFS.case.labels[p.case]}</td></tr>
       <tr><td>Технология</td><td>${FILTER_DEFS.tech.labels[p.tech]}</td></tr>`,
@@ -165,11 +165,11 @@
       <tr><td>Напряжение</td><td>${FILTER_DEFS.voltage.labels[p.voltage]} В</td></tr>
       <tr><td>Режим 12/24В</td><td>${FILTER_DEFS.dualVoltage.labels[p.dualVoltage]}</td></tr>
       <tr><td>Макс. ток заряда</td><td>${p.current} A</td></tr>
-      <tr><td>Производитель</td><td>${p.chargeBrand}</td></tr>`,
+      <tr><td>Бренд</td><td>${p.chargeBrand}</td></tr>`,
     access: p => `
       <tr><td>Тип</td><td>${FILTER_DEFS.accType.labels[p.accType]}</td></tr>
       <tr><td>Материал</td><td>${FILTER_DEFS.material.labels[p.material]}</td></tr>
-      <tr><td>Производитель</td><td>${p.accessBrand}</td></tr>`,
+      <tr><td>Бренд</td><td>${p.accessBrand}</td></tr>`,
   };
   const specsHtml = SPEC_ROWS[PRODUCT_CAT](PRODUCT);
   document.getElementById('specs-table-desktop').innerHTML = specsHtml;
