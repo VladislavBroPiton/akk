@@ -734,15 +734,14 @@ const CatalogUI = {
           const v = p[key];
           (Array.isArray(v) ? v : [v]).forEach(x => present.add(String(x)));
         });
-        // «Применяемость»/«Тип» — выбор только одного варианта (radio),
-        // остальные фильтры — как раньше, множественный выбор (checkbox)
-        const inputType = def.single ? 'radio' : 'checkbox';
-        const nameAttr = def.single ? ` name="filter-${key}"` : '';
+        // «Применяемость»/«Тип» — выбор только одного варианта, но визуально
+        // те же квадратные чекбоксы, что и у остальных фильтров (не radio-
+        // кружки) — взаимное исключение навешано отдельно в bind()
         body = Object.keys(def.labels)
           .filter(v => present.has(v))
           .map(v => `
             <label class="filter-check">
-              <input type="${inputType}"${nameAttr} data-key="${key}" value="${v}">
+              <input type="checkbox" data-key="${key}" value="${v}">
               <span>${def.labels[v]}</span>
               <span class="filter-count"></span>
             </label>`).join('');
@@ -786,7 +785,7 @@ const CatalogUI = {
   // ── СОСТОЯНИЕ ЧИТАЕМ ИЗ DOM ──
   readState() {
     const state = { checks: {}, ranges: {} };
-    document.querySelectorAll('#sidebar input[type=checkbox], #sidebar input[type=radio]').forEach(cb => {
+    document.querySelectorAll('#sidebar input[type=checkbox]').forEach(cb => {
       if (!cb.checked) return;
       (state.checks[cb.dataset.key] = state.checks[cb.dataset.key] || []).push(cb.value);
     });
@@ -906,7 +905,7 @@ const CatalogUI = {
 
   // счётчик у пункта = сколько найдётся, если выбрать именно его
   updateCounts(state) {
-    document.querySelectorAll('#sidebar input[type=checkbox], #sidebar input[type=radio]').forEach(cb => {
+    document.querySelectorAll('#sidebar input[type=checkbox]').forEach(cb => {
       const key = cb.dataset.key;
       const n = this.results(state, key).filter(p => this.hasValue(p[key], cb.value)).length;
       const label = cb.closest('.filter-check');
@@ -940,7 +939,7 @@ const CatalogUI = {
 
   readUrl() {
     const p = new URLSearchParams(location.search);
-    document.querySelectorAll('#sidebar input[type=checkbox], #sidebar input[type=radio]').forEach(cb => {
+    document.querySelectorAll('#sidebar input[type=checkbox]').forEach(cb => {
       const v = p.get(cb.dataset.key);
       cb.checked = !!v && v.split(',').indexOf(cb.value) !== -1;
     });
@@ -960,7 +959,7 @@ const CatalogUI = {
   },
 
   reset() {
-    document.querySelectorAll('#sidebar input[type=checkbox], #sidebar input[type=radio]').forEach(c => { c.checked = false; });
+    document.querySelectorAll('#sidebar input[type=checkbox]').forEach(c => { c.checked = false; });
     document.querySelectorAll('#sidebar .filter-range-input').forEach(inp => {
       inp.value = inp.min;
       this.updateSliderFill(inp);
@@ -974,7 +973,17 @@ const CatalogUI = {
     // Видимость «Тип корпуса»/«Размер корпуса» — исключение: она не трогает
     // список товаров и счётчики, поэтому обновляется сразу и на мобиле, не
     // дожидаясь «Применить».
-    sidebar.addEventListener('change', () => {
+    sidebar.addEventListener('change', (e) => {
+      // одиночный выбор («Применяемость»/«Тип») — снимаем остальные галочки
+      // той же группы; сами инпуты остаются обычными чекбоксами (квадрат),
+      // просто ведут себя как радио — по макету везде одинаковый вид
+      const key = e.target.dataset.key;
+      const def = key && this.defs[key];
+      if (def && def.single && e.target.checked) {
+        sidebar.querySelectorAll(`input[data-key="${key}"]`).forEach(cb => {
+          if (cb !== e.target) cb.checked = false;
+        });
+      }
       this.updateCaseFiltersVisibility(this.readState());
       if (!this.isMobile()) this.apply();
     });
