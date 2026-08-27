@@ -1636,7 +1636,9 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
      по центру — нужно видно 3 аккумулятора (ZUBR/Topla/EFB), поэтому блок
      чуть ниже (меньше вертикальный кроп → меньше «зум» по ширине) */
   .services-hero { min-height: 380px; }
-  .services-hero-img { object-position: 8% top; }
+  /* top у самой картинки (не у контейнера) — сверху остаётся тёмный фон
+     героя, аккумуляторы визуально ниже, не упираются в шапку/крошки */
+  .services-hero-img { position: absolute; top: 65px; height: calc(100% - 65px); object-position: 8% top; }
 }
 
 /* ── ANIMATIONS ── */
