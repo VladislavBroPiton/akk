@@ -1641,8 +1641,11 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
      Продлить саму картинку вверх нельзя (там её попросту нет), поэтому
      верхний край размыт градиентной маской в чёрный фон героя — иначе
      это была бы чёткая линия, похожая на обрезанное фото */
+  /* в кадре именно TOPLA/EFB/VARTA (2-4-й аккумулятор), не первые три —
+     top увеличен (меньше высота картинки → шире виден кроп), позиция
+     сдвинута правее */
   .services-hero-img {
-    position: absolute; top: 35px; height: calc(100% - 35px); object-position: 8% top;
+    position: absolute; top: 55px; height: calc(100% - 55px); object-position: 53% top;
     -webkit-mask-image: linear-gradient(to bottom, transparent, #000 45px);
     mask-image: linear-gradient(to bottom, transparent, #000 45px);
   }
