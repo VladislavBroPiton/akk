@@ -734,11 +734,15 @@ const CatalogUI = {
           const v = p[key];
           (Array.isArray(v) ? v : [v]).forEach(x => present.add(String(x)));
         });
+        // «Применяемость»/«Тип» — выбор только одного варианта (radio),
+        // остальные фильтры — как раньше, множественный выбор (checkbox)
+        const inputType = def.single ? 'radio' : 'checkbox';
+        const nameAttr = def.single ? ` name="filter-${key}"` : '';
         body = Object.keys(def.labels)
           .filter(v => present.has(v))
           .map(v => `
             <label class="filter-check">
-              <input type="checkbox" data-key="${key}" value="${v}">
+              <input type="${inputType}"${nameAttr} data-key="${key}" value="${v}">
               <span>${def.labels[v]}</span>
               <span class="filter-count"></span>
             </label>`).join('');
@@ -782,7 +786,7 @@ const CatalogUI = {
   // ── СОСТОЯНИЕ ЧИТАЕМ ИЗ DOM ──
   readState() {
     const state = { checks: {}, ranges: {} };
-    document.querySelectorAll('#sidebar input[type=checkbox]').forEach(cb => {
+    document.querySelectorAll('#sidebar input[type=checkbox], #sidebar input[type=radio]').forEach(cb => {
       if (!cb.checked) return;
       (state.checks[cb.dataset.key] = state.checks[cb.dataset.key] || []).push(cb.value);
     });
@@ -902,7 +906,7 @@ const CatalogUI = {
 
   // счётчик у пункта = сколько найдётся, если выбрать именно его
   updateCounts(state) {
-    document.querySelectorAll('#sidebar input[type=checkbox]').forEach(cb => {
+    document.querySelectorAll('#sidebar input[type=checkbox], #sidebar input[type=radio]').forEach(cb => {
       const key = cb.dataset.key;
       const n = this.results(state, key).filter(p => this.hasValue(p[key], cb.value)).length;
       const label = cb.closest('.filter-check');
@@ -936,7 +940,7 @@ const CatalogUI = {
 
   readUrl() {
     const p = new URLSearchParams(location.search);
-    document.querySelectorAll('#sidebar input[type=checkbox]').forEach(cb => {
+    document.querySelectorAll('#sidebar input[type=checkbox], #sidebar input[type=radio]').forEach(cb => {
       const v = p.get(cb.dataset.key);
       cb.checked = !!v && v.split(',').indexOf(cb.value) !== -1;
     });
@@ -956,7 +960,7 @@ const CatalogUI = {
   },
 
   reset() {
-    document.querySelectorAll('#sidebar input[type=checkbox]').forEach(c => { c.checked = false; });
+    document.querySelectorAll('#sidebar input[type=checkbox], #sidebar input[type=radio]').forEach(c => { c.checked = false; });
     document.querySelectorAll('#sidebar .filter-range-input').forEach(inp => {
       inp.value = inp.min;
       this.updateSliderFill(inp);

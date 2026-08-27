@@ -6,7 +6,7 @@
 /* ── ОПИСАНИЕ ФИЛЬТРОВ ──
    Только данные, без функций — переносится в JSON как есть. */
 const FILTER_DEFS = {
-  use:        { title: 'Применяемость',  type: 'checks', labels: { auto:'Автомобильные', moto:'Мото', boat:'Лодочные', traction:'Тяговые / ИБП' } },
+  use:        { title: 'Применяемость',  type: 'checks', single: true, labels: { auto:'Автомобильные', moto:'Мото', boat:'Лодочные', traction:'Тяговые / ИБП' } },
   capacity:   { title: 'Ёмкость, Ah',    type: 'range' },
   polarity:   { title: 'Полярность',     type: 'checks', labels: { direct:'Прямая', reverse:'Обратная' } },
   tech:       { title: 'Технология',     type: 'checks', labels: {
@@ -36,12 +36,12 @@ const FILTER_DEFS = {
     TOYOKO:'TOYOKO', TOPLA:'TOPLA', TUBOR:'TUBOR', 'TYUMEN BATTERY':'TYUMEN BATTERY',
     VARTA:'VARTA', VESLINE:'VESLINE', VOLAT:'VOLAT', ZUBR:'ZUBR', АКОМ:'АКОМ', ОДИН:'ОДИН',
   } },
-  chargeType: { title: 'Тип',            type: 'checks', labels: { pulse:'Импульсное', transformer:'Трансформаторное', jump:'Пуско-зарядное' } },
+  chargeType: { title: 'Тип',            type: 'checks', single: true, labels: { pulse:'Импульсное', transformer:'Трансформаторное', jump:'Пуско-зарядное' } },
   voltage:    { title: 'Номинальное напряжение аккумулятора, В', type: 'checks', labels: { '6':'6', '12':'12' } },
   dualVoltage:{ title: 'Режим 12/24В',   type: 'checks', labels: { yes:'Да', no:'Нет' } },
   current:    { title: 'Макс. ток заряда, А', type: 'range' },
   chargeBrand:{ title: 'Бренд',          type: 'checks', labels: { MAXINTER:'MAXINTER', ОРИОН:'ОРИОН' } },
-  accType:    { title: 'Тип',            type: 'checks', labels: { terminal:'Клеммы', wire:'Провода, перемычки', mount:'Крепление АКБ', jumper:'Провода внешнего запуска', other:'Прочее' } },
+  accType:    { title: 'Тип',            type: 'checks', single: true, labels: { terminal:'Клеммы', wire:'Провода, перемычки', mount:'Крепление АКБ', jumper:'Провода внешнего запуска', other:'Прочее' } },
   material:   { title: 'Материал',       type: 'checks', labels: { lead:'Свинец', brass:'Латунь', copper:'Медь', steel:'Сталь', plastic:'Пластик' } },
   accessBrand:{ title: 'Бренд',          type: 'checks', labels: {
     AIRLINE:'AIRLINE', BYNIK:'BYNIK', 'Oil Right':'Oil Right', ГАРАНТ:'ГАРАНТ',
@@ -134,7 +134,6 @@ const CARD_SPECS = {
   ],
   access: p => [
     ['Тип',       FILTER_DEFS.accType.labels[p.accType]],
-    ['Материал',  FILTER_DEFS.material.labels[p.material]],
   ],
 };
 
