@@ -134,6 +134,7 @@ const CARD_SPECS = {
   ],
   access: p => [
     ['Тип',       FILTER_DEFS.accType.labels[p.accType]],
+    ['Бренд',     p.accessBrand],
   ],
 };
 
