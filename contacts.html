@@ -28,7 +28,7 @@
      плавает поверх неё (не колонка рядом с картой) -->
 <section class="contacts-hero">
   <div class="contacts-map">
-    <iframe
+    <iframe id="contactsMapIframe"
       src="https://yandex.ru/map-widget/v1/?ll=44.791599,48.788252&z=17&l=map&pt=44.791599,48.788252,pm2rdm"
       allowfullscreen loading="lazy" title="Ампер на карте">
     </iframe>
@@ -63,6 +63,13 @@
   ]);
   document.getElementById('cta-mount').innerHTML = renderCtaForm();
   document.getElementById('footer-mount').innerHTML = renderFooter();
+
+  // на моб. карточка над картой перекрывает маркер (он по центру) — сдвигаем
+  // видимый центр карты правее-выше от маркера, сам маркер (pt) не трогаем
+  if (window.innerWidth <= 768) {
+    const mapIframe = document.getElementById('contactsMapIframe');
+    if (mapIframe) mapIframe.src = 'https://yandex.ru/map-widget/v1/?ll=44.79117,48.787192&z=17&l=map&pt=44.791599,48.788252,pm2rdm';
+  }
 </script>
 </body>
 </html>

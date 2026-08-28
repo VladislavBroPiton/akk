@@ -164,7 +164,7 @@
         <a href="https://yandex.ru/maps/?rtext=~48.788252,44.791599&rtt=auto" target="_blank" rel="noopener" class="btn btn-primary">Как добраться</a>
       </div>
       <div class="map-frame">
-        <iframe
+        <iframe id="mapFrameIframe"
           src="https://yandex.ru/map-widget/v1/?ll=44.791599,48.788252&z=13&l=map&pt=44.791599,48.788252,pm2rdm"
           allowfullscreen loading="lazy" title="Карта">
         </iframe>
@@ -201,6 +201,13 @@
   document.getElementById('header-mount').innerHTML = renderHeader('index.html');
   document.getElementById('cta-mount').innerHTML = renderCtaForm();
   document.getElementById('footer-mount').innerHTML = renderFooter();
+
+  // на моб. карточка над картой перекрывает маркер (он по центру) — сдвигаем
+  // видимый центр карты правее-выше от маркера, сам маркер (pt) не трогаем
+  if (window.innerWidth <= 768) {
+    const mapIframe = document.getElementById('mapFrameIframe');
+    if (mapIframe) mapIframe.src = 'https://yandex.ru/map-widget/v1/?ll=44.776149,48.780335&z=13&l=map&pt=44.791599,48.788252,pm2rdm';
+  }
 </script>
 </body>
 </html>
