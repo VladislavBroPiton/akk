@@ -1557,18 +1557,22 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
   /* CONTACTS PAGE — по мобильному макету панель наплывает на карту сверху
      (скруглённые верхние углы + тень), а не просто идёт отдельным блоком */
   .contacts-hero { min-height: auto; }
-  .contacts-map { position: relative; inset: auto; height: 340px; }
-  .contacts-map iframe { height: 340px; }
+  /* карта растянута вниз (было 340) — раньше карточка почти не оставляла
+     над собой видимой карты */
+  .contacts-map { position: relative; inset: auto; height: 480px; }
+  .contacts-map iframe { height: 480px; }
   .contacts-hero-inner {
     position: relative; height: auto; max-width: none; margin: -24px 0 0; padding: 0;
     display: block; pointer-events: auto;
   }
   /* по девпанели карточка не во всю ширину, а плавает поверх карты с
      отступами 20px по бокам и скруглением 10px со всех сторон (не только
-     сверху) — наезжает на нижнюю часть карты (340px), а не идёт под ней */
-  .contacts-hero-inner { margin: -110px 20px 0; }
+     сверху) — наезжает на нижнюю часть карты, а не идёт под ней.
+     width:fit-content — карточка по ширине контента, а не во всю ширину
+     экрана (раньше оставалась пустая полоса справа) */
+  .contacts-hero-inner { width: fit-content; max-width: calc(100% - 40px); margin: -110px 20px 0; }
   .contacts-info {
-    width: auto; height: auto; min-height: auto; padding: 28px 20px 12px;
+    width: auto; height: auto; min-height: auto; padding: 18px 20px 12px;
     border-radius: 10px; box-shadow: 0 12px 32px rgba(0,0,0,0.18);
   }
   /* по таблице Typography (H1 моб. = 36px), было 28px; отступ сверху 12px */
