@@ -1353,9 +1353,9 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
   /* MAP — на мобиле карточка не помещается плавающей поверх узкой карты,
      занимает всю ширину снизу */
   .map-section { padding: 32px 0; }
-  .map-inner { border-radius: 12px; min-height: 420px; }
+  .map-inner { border-radius: 12px; min-height: 300px; }
   .map-info { position: absolute; left: 12px; bottom: 44px; width: max-content; max-width: calc(100% - 24px); padding: 20px; }
-  .map-frame { min-height: 220px; }
+  .map-frame { min-height: 180px; }
 
   /* FOOTER */
   .footer { padding: 0; }
