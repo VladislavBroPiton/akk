@@ -1353,7 +1353,8 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
   /* MAP — на мобиле карточка не помещается плавающей поверх узкой карты,
      занимает всю ширину снизу */
   .map-section { padding: 32px 0; }
-  .map-inner { border-radius: 12px; min-height: 420px; }
+  /* на всю ширину экрана — минус padding контейнера (16px) с боков */
+  .map-inner { margin: 0 -16px; border-radius: 0; min-height: 420px; }
   .map-info { position: absolute; left: 12px; bottom: 44px; width: max-content; max-width: calc(100% - 24px); padding: 20px; }
   .map-frame { min-height: 220px; }
 
@@ -1557,10 +1558,12 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
   /* CONTACTS PAGE — по мобильному макету панель наплывает на карту сверху
      (скруглённые верхние углы + тень), а не просто идёт отдельным блоком */
   .contacts-hero { min-height: auto; }
-  /* карта растянута вниз (было 340) — раньше карточка почти не оставляла
-     над собой видимой карты */
-  .contacts-map { position: relative; inset: auto; height: 480px; }
-  .contacts-map iframe { height: 480px; }
+  /* карта растянута вниз до упора следующего блока (было 340, потом 480) —
+     карточка высотой ~352px, наплыв ровно на её высоту (-352px), поэтому
+     низ карточки и низ карты совпадают — под карточкой больше нет пустого
+     фона до раздела «Подобрать аккумулятор» */
+  .contacts-map { position: relative; inset: auto; height: 650px; }
+  .contacts-map iframe { height: 650px; }
   .contacts-hero-inner {
     position: relative; height: auto; max-width: none; margin: -24px 0 0; padding: 0;
     display: block; pointer-events: auto;
@@ -1570,7 +1573,7 @@ ul.delivery-list li::before { content: '•'; position: absolute; left: 0; color
      сверху) — наезжает на нижнюю часть карты, а не идёт под ней.
      width:fit-content — карточка по ширине контента, а не во всю ширину
      экрана (раньше оставалась пустая полоса справа) */
-  .contacts-hero-inner { width: fit-content; max-width: calc(100% - 40px); margin: -110px 20px 0; }
+  .contacts-hero-inner { width: fit-content; max-width: calc(100% - 40px); margin: -352px 20px 0; }
   .contacts-info {
     width: auto; height: auto; min-height: auto; padding: 18px 20px 12px;
     border-radius: 10px; box-shadow: 0 12px 32px rgba(0,0,0,0.18);
